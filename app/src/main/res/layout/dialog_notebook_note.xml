@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <EditText
+        android:id="@+id/noteTitleInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        android:inputType="text"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/gray" />
+
+    <EditText
+        android:id="@+id/noteBodyInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="top"
+        android:hint="Note"
+        android:inputType="textMultiLine"
+        android:minLines="4"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/gray" />
+
+</LinearLayout>

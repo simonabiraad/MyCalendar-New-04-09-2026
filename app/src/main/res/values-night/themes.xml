@@ -1,0 +1,34 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.MyCalendar2026SAR" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/light_green</item>
+        <item name="colorSecondaryVariant">@color/light_green</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+        <!-- Dialog button colors -->
+        <item name="materialAlertDialogTheme">@style/CustomAlertDialogTheme</item>
+        <item name="alertDialogTheme">@style/CustomAlertDialogTheme</item>
+    </style>
+
+    <style name="CustomAlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/light_green</item>
+        <item name="colorAccent">@color/light_green</item>
+        <item name="colorSecondary">@color/light_green</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <!-- For standard AlertDialog buttons -->
+        <item name="buttonBarPositiveButtonStyle">@style/GreenButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/GreenButtonStyle</item>
+        <item name="buttonBarNeutralButtonStyle">@style/GreenButtonStyle</item>
+    </style>
+
+    <style name="GreenButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/light_green</item>
+    </style>
+</resources>
