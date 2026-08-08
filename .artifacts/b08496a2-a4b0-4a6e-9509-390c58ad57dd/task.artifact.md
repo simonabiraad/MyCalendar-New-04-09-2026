@@ -1,0 +1,11 @@
+- [ ] Create Widget Info XMLs (9 variations)
+- [ ] Create Widget Layouts
+    - [ ] `widget_small_summary.xml`
+    - [ ] `widget_list_view.xml`
+    - [ ] `widget_list_item.xml`
+- [ ] Implement Widget Provider Classes
+    - [ ] `BaseWidgetProvider.java`
+    - [ ] Individual Providers (Today, Sticky, Task x 3 sizes)
+- [ ] Implement `WidgetRemoteViewsService` and `WidgetRemoteViewsFactory`
+- [ ] Register all widgets in `AndroidManifest.xml`
+- [ ] Verify build and functionality

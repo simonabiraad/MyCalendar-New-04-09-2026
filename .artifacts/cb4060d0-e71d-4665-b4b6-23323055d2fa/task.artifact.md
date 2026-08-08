@@ -1,0 +1,4 @@
+- [ ] Re-verify and ensure all colorful category logos exist
+- [ ] Refine `getCategoryLogo` and disable tinting in `CategoryActivity.java`
+- [ ] Refine `getCategoryLogo` and disable tinting in `ExpensesActivity.java`
+- [ ] Verify colorful logos are visible in both list and grid views

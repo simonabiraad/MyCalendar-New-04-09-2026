@@ -1,0 +1,8 @@
+- [x] Prioritize Category and Notes in Transaction List
+- [x] View and Manage Transaction Notes via Popup
+- [x] Implement Quick Note Notification Bar
+- [x] Restrict Note Visibility to Expenses Only
+- [x] Standardize Note Input Borders
+    - [x] Update `activity_main.xml` note input style
+    - [x] Update `notification_widget.xml` height
+- [x] Verify functionality

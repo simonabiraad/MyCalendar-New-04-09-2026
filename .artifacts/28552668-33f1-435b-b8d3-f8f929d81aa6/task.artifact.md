@@ -1,0 +1,8 @@
+- [x] Implement Task Feature
+    - [x] Create resources (icons)
+    - [x] Create layouts (`activity_task.xml`, `item_task.xml`)
+    - [x] Update existing layouts (`activity_main.xml`, `notification_widget.xml`)
+    - [x] Implement `TaskActivity.java`
+    - [x] Update `MainActivity.java` and `QuickNoteNotificationService.java`
+    - [x] Update `AndroidManifest.xml`
+- [x] Verify Task Feature
