@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_card_4x4_bg"
+    android:padding="20dp">
+
+    <!-- Top Left: Branding -->
+    <LinearLayout
+        android:id="@+id/logo_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_menu_calendar_color"
+            android:contentDescription="SAR Logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="SAR CALENDAR"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1" />
+    </LinearLayout>
+
+    <!-- Top Right: Header -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:text="2026 DASHBOARD"
+        android:textColor="#AAAAAA"
+        android:textSize="8sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.1" />
+
+    <!-- Center: Large Date -->
+    <LinearLayout
+        android:id="@+id/center_date_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/widget_day_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WEDNESDAY"
+            android:textColor="@color/light_green"
+            android:textSize="14sp"
+            android:textAllCaps="true"
+            android:letterSpacing="0.1" />
+
+        <TextView
+            android:id="@+id/widget_day_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="16"
+            android:textColor="@color/white"
+            android:textSize="80sp"
+            android:textStyle="bold"
+            android:includeFontPadding="false" />
+
+        <TextView
+            android:id="@+id/widget_month_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JULY 2026"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textAllCaps="true"
+            android:letterSpacing="0.1" />
+    </LinearLayout>
+
+    <!-- Bottom: Summary Columns -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <!-- Today Column -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_menu_calendar_color"
+                android:contentDescription="Today" />
+            <TextView
+                android:id="@+id/count_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textColor="@color/light_green"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TODAY"
+                android:textColor="#AAAAAA"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <!-- Sticky Column -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_menu_sticky_note_color"
+                android:contentDescription="Sticky" />
+            <TextView
+                android:id="@+id/count_sticky"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:textColor="@color/light_green"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="STICKY"
+                android:textColor="#AAAAAA"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <!-- Tasks Column -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_menu_task_color"
+                android:contentDescription="Tasks" />
+            <TextView
+                android:id="@+id/count_tasks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:textColor="@color/light_green"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TASKS"
+                android:textColor="#AAAAAA"
+                android:textSize="9sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

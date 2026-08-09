@@ -11,17 +11,7 @@ public class WidgetUtils {
         AppWidgetManager mgr = AppWidgetManager.getInstance(context);
         
         Class<?>[] classes = {
-            CalendarWidget.class,
-            AgendaWidgetProvider.class,
-            TodayWidgets.Small.class,
-            TodayWidgets.Medium.class,
-            TodayWidgets.Large.class,
-            StickyWidgets.Small.class,
-            StickyWidgets.Medium.class,
-            StickyWidgets.Large.class,
-            TaskWidgets.Small.class,
-            TaskWidgets.Medium.class,
-            TaskWidgets.Large.class
+            SARCalendarWidget4x4.class
         };
 
         for (Class<?> cls : classes) {

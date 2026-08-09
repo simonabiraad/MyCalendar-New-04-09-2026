@@ -235,7 +235,7 @@ public class ExpensesActivity extends AppCompatActivity {
             } else if (id == R.id.nav_notebook) {
                 startActivity(new Intent(this, NotebookActivity.class));
             } else if (id == R.id.nav_calendar) {
-                finish(); // Go back to MainActivity
+                startActivity(new Intent(this, ExpensesCalendarActivity.class));
             } else if (id == R.id.nav_cash_calculator) {
                 CalculatorDialogFragment.newInstance(result ->
                         Toast.makeText(this, "Result: " + result, Toast.LENGTH_LONG).show())

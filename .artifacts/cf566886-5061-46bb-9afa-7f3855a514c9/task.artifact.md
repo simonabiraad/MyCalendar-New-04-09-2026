@@ -1,0 +1,6 @@
+- [x] Create layout `activity_expenses_calendar.xml`
+- [x] Create layout `item_expenses_calendar_day.xml`
+- [x] Create `ExpensesCalendarActivity.java`
+- [x] Update `ExpensesActivity.java` to link the new calendar screen
+- [x] Register `ExpensesCalendarActivity` in `AndroidManifest.xml`
+- [x] Verify build and functionality

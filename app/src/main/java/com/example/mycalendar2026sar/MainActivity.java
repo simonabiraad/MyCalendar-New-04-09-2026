@@ -2219,11 +2219,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshUIColors() {
+        int mainTheme = colorPrefs.getInt("color_main_theme", getColor(R.color.light_green));
         int bgColor = colorPrefs.getInt("color_app_background", Color.BLACK);
 
         // Root Background
         View root = findViewById(R.id.main);
         if (root != null) root.setBackgroundColor(bgColor);
+
+        View bottomSticky = findViewById(R.id.bottomStickyContainer);
+        if (bottomSticky != null) bottomSticky.setBackgroundColor(bgColor);
 
         // Header
         TextView title = findViewById(R.id.titleTextView);

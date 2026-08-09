@@ -56,11 +56,12 @@
     </LinearLayout>
 
     <ScrollView
-
         android:id="@+id/mainScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/selectionBar"
+        app:layout_constraintBottom_toTopOf="@id/bottomStickyContainer">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -74,18 +75,17 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Menu"
                 android:src="@android:drawable/ic_menu_sort_by_size"
-                app:layout_constraintBottom_toBottomOf="@id/logoTitleContainer"
+                app:layout_constraintBottom_toBottomOf="@id/headerTextContainer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/logoTitleContainer"
+                app:layout_constraintTop_toTopOf="@id/headerTextContainer"
                 app:tint="@color/light_green" />
 
             <LinearLayout
-                android:id="@+id/logoTitleContainer"
+                android:id="@+id/headerTextContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
+                android:gravity="center"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -98,20 +98,16 @@
                     android:textColor="@color/light_green"
                     android:textSize="22sp"
                     android:textStyle="bold" />
-            </LinearLayout>
 
-            <TextClock
-                android:id="@+id/textClockDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:format12Hour="EEEE, MMMM dd, yyyy"
-                android:format24Hour="EEEE, MMMM dd, yyyy"
-                android:textColor="@color/light_green"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/logoTitleContainer" />
+                <TextClock
+                    android:id="@+id/textClockDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:format12Hour="EEEE, MMMM dd, yyyy"
+                    android:format24Hour="EEEE, MMMM dd, yyyy"
+                    android:textColor="@color/light_green"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/calendarHeader"
@@ -120,7 +116,7 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@id/textClockDate">
+                app:layout_constraintTop_toBottomOf="@id/headerTextContainer">
 
                 <ImageButton
                     android:id="@+id/prevMonth"
@@ -202,110 +198,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/remarkLabel" />
 
-            <LinearLayout
-                android:id="@+id/noteInputContainer"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/summary_border"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="12dp"
-                android:paddingEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dayRemarksContainer">
-
-                <EditText
-                    android:id="@+id/noteInput"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:autofillHints="none"
-                    android:background="@null"
-                    android:hint="@string/note_hint"
-                    android:inputType="textMultiLine"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:textSize="14sp" />
-
-                <ImageButton
-                    android:id="@+id/voiceNoteButton"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Voice Note"
-                    android:src="@android:drawable/ic_btn_speak_now"
-                    app:tint="@color/light_green" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/buttonContainer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/noteInputContainer">
-
-                <Button
-                    android:id="@+id/taskButton"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/light_green"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:paddingLeft="4dp"
-                    android:paddingRight="4dp"
-                    android:text="Task"
-                    android:textSize="11sp" />
-
-                <Button
-                    android:id="@+id/secureBoxButton"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/light_green"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:paddingLeft="4dp"
-                    android:paddingRight="4dp"
-                    android:text="@string/secure_box"
-                    android:textSize="11sp" />
-
-                <Button
-                    android:id="@+id/expensesButton"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/light_green"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:paddingLeft="4dp"
-                    android:paddingRight="4dp"
-                    android:text="@string/expenses"
-                    android:textSize="11sp" />
-
-                <Button
-                    android:id="@+id/saveNoteButton"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/light_green"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:paddingLeft="4dp"
-                    android:paddingRight="4dp"
-                    android:text="@string/save_note"
-                    android:textSize="11sp" />
-
-            </LinearLayout>
-
             <TextView
                 android:id="@+id/remarkHistoryTitle"
                 android:layout_width="0dp"
@@ -319,7 +211,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/buttonContainer" />
+                app:layout_constraintTop_toBottomOf="@id/dayRemarksContainer" />
 
             <LinearLayout
                 android:id="@+id/remarkHistoryContainer"
@@ -398,8 +290,9 @@
                 android:padding="0dp"
                 android:text="🎙"
                 android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/headerTextContainer"
                 app:layout_constraintEnd_toStartOf="@id/notificationSettingsButton"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@id/headerTextContainer" />
 
             <Button
                 android:id="@+id/notificationSettingsButton"
@@ -411,10 +304,118 @@
                 android:padding="0dp"
                 android:text="@string/notification_icon"
                 android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@id/headerTextContainer"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@id/headerTextContainer" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottomStickyContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#000000"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/noteInputContainer"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/summary_border"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="8dp">
+
+            <EditText
+                android:id="@+id/noteInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:autofillHints="none"
+                android:background="@null"
+                android:hint="@string/note_hint"
+                android:inputType="textMultiLine"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="14sp" />
+
+            <ImageButton
+                android:id="@+id/voiceNoteButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Voice Note"
+                android:src="@android:drawable/ic_btn_speak_now"
+                app:tint="@color/light_green" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/taskButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/light_green"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="Task"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/secureBoxButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/light_green"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="@string/secure_box"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/expensesButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/light_green"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="@string/expenses"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/saveNoteButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/light_green"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="@string/save_note"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
