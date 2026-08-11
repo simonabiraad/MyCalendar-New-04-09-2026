@@ -1,6 +1,3 @@
-- [x] Create layout `activity_expenses_calendar.xml`
-- [x] Create layout `item_expenses_calendar_day.xml`
-- [x] Create `ExpensesCalendarActivity.java`
-- [x] Update `ExpensesActivity.java` to link the new calendar screen
-- [x] Register `ExpensesCalendarActivity` in `AndroidManifest.xml`
+- [x] Modify `activity_task.xml`: Make input area taller and add voice button
+- [x] Update `TaskActivity.java`: Implement voice recognition logic
 - [x] Verify build and functionality

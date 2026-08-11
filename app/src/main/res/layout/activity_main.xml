@@ -371,7 +371,7 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="Task"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/secureBoxButton"
@@ -385,7 +385,7 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="@string/secure_box"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/expensesButton"
@@ -399,7 +399,7 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="@string/expenses"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/saveNoteButton"
@@ -413,7 +413,7 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="@string/save_note"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
     </LinearLayout>

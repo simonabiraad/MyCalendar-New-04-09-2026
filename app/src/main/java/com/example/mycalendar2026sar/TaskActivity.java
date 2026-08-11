@@ -16,18 +16,22 @@ import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.speech.RecognizerIntent;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class TaskActivity extends AppCompatActivity {
 
@@ -39,6 +43,19 @@ public class TaskActivity extends AppCompatActivity {
     private TaskAdapter adapter;
     private List<TaskItem> taskList = new ArrayList<>();
     private SharedPreferences sharedPreferences;
+
+    private final ActivityResultLauncher<Intent> voiceRecognitionLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    ArrayList<String> matches = result.getData().getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    if (matches != null && !matches.isEmpty()) {
+                        String spokenText = matches.get(0);
+                        String existingText = taskInput.getText().toString();
+                        taskInput.setText(existingText.isEmpty() ? spokenText : existingText + " " + spokenText);
+                        taskInput.setSelection(taskInput.getText().length());
+                    }
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +78,12 @@ public class TaskActivity extends AppCompatActivity {
 
         taskInput = findViewById(R.id.taskInput);
         recyclerView = findViewById(R.id.taskRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setStackFromEnd(false);
+        recyclerView.setLayoutManager(layoutManager);
 
+        findViewById(R.id.taskBackButton).setOnClickListener(v -> finish());
+        findViewById(R.id.voiceTaskButton).setOnClickListener(v -> startVoiceRecognition());
         findViewById(R.id.addTaskButton).setOnClickListener(v -> addTask());
 
         findViewById(R.id.taskMenuButton).setOnClickListener(this::showTaskMenu);
@@ -161,6 +182,18 @@ public class TaskActivity extends AppCompatActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {}
         });
         itemTouchHelper.attachToRecyclerView(recyclerView);
+    }
+
+    private void startVoiceRecognition() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak your task...");
+        try {
+            voiceRecognitionLauncher.launch(intent);
+        } catch (Exception e) {
+            Toast.makeText(this, "Voice recognition not supported", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void addTask() {

@@ -1,53 +1,41 @@
-# Implementation Plan - Expenses Calendar View
+# Implementation Plan - Task Voice Input and UI Expansion
 
-The goal is to implement a new "Calendar" view within the Expenses module that matches the design shown in the user's provided image. This view will allow users to see their financial data (Cash In, Cash Out, Balance) in a monthly calendar format.
+The goal is to enhance the Task page by making the "Add New Task" area larger for easier multi-line input and adding a voice-to-text button for hands-free task creation.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> I will be creating a new activity `ExpensesCalendarActivity` to host this view. Clicking "Calendar" in the Expenses drawer will now open this new activity instead of closing the Expenses module.
+> The "Add a new task..." input box will now be taller to comfortably fit two lines of text. A new colored Voice button will be added next to the Add (+) button.
 
 ## Proposed Changes
 
-### [Component Name] Layouts
+### Task Layout
 
-#### [NEW] [activity_expenses_calendar.xml](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/res/layout/activity_expenses_calendar.xml)
-- Implement the UI shown in the first image:
-    - **Toolbar**: Back button, Title "Calendar", and Overflow menu.
-    - **Date Navigator**: Horizontal layout with `<` button, current month range text, and `>` button.
-    - **Weekday Labels**: Row with "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun".
-    - **Calendar Grid**: `GridView` to display days of the month.
-    - **Totals Footer**: A table-like footer showing "Total Cash In", "Total Cash Out", and "Balance" with their respective sums.
+#### [MODIFY] [activity_task.xml](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/res/layout/activity_task.xml)
+- Update `taskInput` (`EditText`):
+    - Set `android:minLines="2"` and `android:gravity="top"` to support two lines of text.
+    - Adjust padding for better vertical alignment.
+- Add `voiceTaskButton` (`ImageButton`):
+    - Position it between `taskInput` and `addTaskButton`.
+    - Use `@drawable/ic_menu_voice_note_color` for a professional, colored look.
+    - Set `background="?attr/selectableItemBackgroundBorderless"`.
 
-#### [NEW] [item_expenses_calendar_day.xml](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/res/layout/item_expenses_calendar_day.xml)
-- A simple layout for each day cell in the calendar grid, showing the day number.
+### Task Logic
 
-### [Component Name] Java Logic
-
-#### [NEW] [ExpensesCalendarActivity.java](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/java/com/example/mycalendar2026sar/ExpensesCalendarActivity.java)
-- Handle the calendar logic:
-    - Populate the grid with the correct days for the selected month.
-    - Implement month navigation (previous/next).
-    - Query `TransactionDbHelper` to get all transactions for the visible month.
-    - Calculate and display total Cash In, Cash Out, and Balance for the month in the footer.
-    - (Optional/Future) Highlight days that have transactions.
-
-#### [MODIFY] [ExpensesActivity.java](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/java/com/example/mycalendar2026sar/ExpensesActivity.java)
-- Update the `NavigationView` listener: Change the behavior of `R.id.nav_calendar` to launch `ExpensesCalendarActivity` instead of calling `finish()`.
-
-### [Component Name] Manifest
-
-#### [MODIFY] [AndroidManifest.xml](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/AndroidManifest.xml)
-- Register `ExpensesCalendarActivity`.
+#### [MODIFY] [TaskActivity.java](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/java/com/example/mycalendar2026sar/TaskActivity.java)
+- Implement `voiceRecognitionLauncher` using `ActivityResultContracts.StartActivityForResult()`.
+- Add `startVoiceRecognition()` method to launch the system speech recognizer.
+- Set an `OnClickListener` for the new `voiceTaskButton` to trigger `startVoiceRecognition()`.
+- Update the launcher callback to append the spoken text into the `taskInput` field.
 
 ## Verification Plan
 
 ### Automated Tests
-- Run Gradle build to ensure no compilation errors.
+- Perform a build to ensure XML and Java changes are valid.
 
 ### Manual Verification
-- Open the Expenses module.
-- Open the drawer and tap "Calendar".
-- Verify the new Calendar screen opens and matches the design in the provided image.
-- Verify that navigating between months works correctly.
-- Verify that the totals at the bottom reflect the data in the database for that month.
+- Open the Task page.
+- Verify the input area is visibly taller.
+- Type two lines of text to ensure it wraps correctly and remains readable.
+- Tap the new Voice button.
+- Speak a task and verify that the text correctly appears in the input box.
