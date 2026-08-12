@@ -140,7 +140,7 @@ id action_report
 id action_secure_box
 id action_toggle_quick_bar
 id addAccountButton
-id addCategoryButton
+id addCategoryHeaderButton
 id addTaskButton
 id addTransactionMain
 id addTransactionTitle
@@ -209,6 +209,11 @@ id cashInButton
 id cashInTotalText
 id cashOutButton
 id cashOutTotalText
+id catAmount
+id catIcon
+id catName
+id catPercent
+id catProgress
 id categoryBackButton
 id categoryContainer
 id categoryExpenseToggle
@@ -223,6 +228,9 @@ id categoryToggleContainer
 id categoryToolbarTitle
 id categoryTopBar
 id center_date_container
+id chartBackButton
+id chartHeader
+id chartTitle
 id clearDataRow
 id count_sticky
 id count_tasks
@@ -249,6 +257,8 @@ id deletedRowForeverButton
 id deletedRowRestoreButton
 id deletedRowTitle
 id deletedTopBar
+id detailsContainer
+id detailsContainerAccount
 id dialogMessage
 id dialogTitle
 id drawer_layout
@@ -264,16 +274,17 @@ id empty_view
 id expense_type_main
 id expensesButton
 id expensesButtonContainer
+id expensesChartButton
 id expensesExportButton
 id expensesMenuButton
 id expensesNavigationView
 id expensesOverflowButton
-id expensesSearchView
 id expenses_calendar_main
 id expenses_main
 id finalBalanceRow
 id finalBalanceTotalText
 id footerButtonsContainer
+id headerLayout
 id headerTextContainer
 id headerTitle
 id imagePreview
@@ -285,6 +296,7 @@ id item_date
 id item_text
 id item_title
 id itemsContainer
+id lineChart
 id lockExpensesSwitch
 id logo_container
 id main
@@ -351,6 +363,8 @@ id notification_widget_root
 id optionCamera
 id optionGallery
 id optionPdf
+id pieChart
+id pieChartAccount
 id prevMonth
 id previousBalanceRow
 id previousBalanceTotalText
@@ -466,6 +480,7 @@ id yearlyButton
 layout activity_account_summary
 layout activity_add_transaction
 layout activity_category
+layout activity_chart
 layout activity_daily_expenses
 layout activity_deleted_transactions
 layout activity_expense_type
@@ -500,6 +515,7 @@ layout item_account
 layout item_account_summary_row
 layout item_category
 layout item_category_chip
+layout item_chart_detail
 layout item_deleted_transaction_row
 layout item_expenses_calendar_day
 layout item_notebook_note

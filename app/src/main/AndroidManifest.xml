@@ -97,6 +97,10 @@
             android:name=".ExpensesCalendarActivity"
             android:exported="false"
             android:theme="@style/Theme.MyCalendar2026SAR" />
+        <activity
+            android:name=".ChartActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MyCalendar2026SAR" />
 
         <service
             android:name=".QuickNoteNotificationService"

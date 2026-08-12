@@ -2,18 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/notification_widget_root"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
+    android:layout_height="35dp"
     android:background="@color/black"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="5dp">
 
     <TextView
         android:id="@+id/notif_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="4dp"
         android:text="SAR Calendar"
         android:textColor="@color/light_green"
         android:textSize="14sp"
@@ -30,53 +30,53 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="4dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:padding="6dp"
-            android:src="@drawable/ic_notif_voice_color"
-            android:background="?android:attr/selectableItemBackgroundBorderless" />
+            android:src="@drawable/ic_notif_voice_color" />
 
         <ImageView
             android:id="@+id/notif_note_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="4dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:padding="6dp"
-            android:src="@drawable/ic_notif_plus_color"
-            android:background="?android:attr/selectableItemBackgroundBorderless" />
+            android:src="@drawable/ic_notif_plus_color" />
 
         <ImageView
             android:id="@+id/notif_sb_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="4dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:padding="6dp"
-            android:src="@drawable/ic_menu_accounts_color"
-            android:background="?android:attr/selectableItemBackgroundBorderless" />
+            android:src="@drawable/ic_menu_accounts_color" />
 
         <ImageView
             android:id="@+id/notif_task_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="4dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:padding="6dp"
-            android:src="@drawable/ic_menu_task_color"
-            android:background="?android:attr/selectableItemBackgroundBorderless" />
+            android:src="@drawable/ic_menu_task_color" />
 
         <ImageView
             android:id="@+id/notif_expenses_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="4dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:padding="6dp"
-            android:src="@drawable/ic_menu_calc_color"
-            android:background="?android:attr/selectableItemBackgroundBorderless" />
+            android:src="@drawable/ic_menu_calc_color" />
 
         <ImageView
             android:id="@+id/notif_settings_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:padding="6dp"
-            android:src="@drawable/ic_menu_settings_color"
-            android:background="?android:attr/selectableItemBackgroundBorderless" />
+            android:src="@drawable/ic_menu_settings_color" />
 
     </LinearLayout>
 

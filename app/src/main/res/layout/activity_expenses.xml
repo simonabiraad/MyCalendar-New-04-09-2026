@@ -48,10 +48,10 @@
             android:contentDescription="@string/export_options_description"
             android:padding="8dp"
             android:scaleType="fitCenter"
-            android:src="@android:drawable/ic_menu_save"
-            app:layout_constraintBottom_toBottomOf="@id/expensesSearchView"
+            android:src="@drawable/ic_menu_print_color"
+            app:layout_constraintBottom_toBottomOf="@id/expensesChartButton"
             app:layout_constraintEnd_toStartOf="@id/aiAssistantButton"
-            app:layout_constraintTop_toTopOf="@id/expensesSearchView"
+            app:layout_constraintTop_toTopOf="@id/expensesChartButton"
             app:tint="@color/white" />
 
         <Button
@@ -65,20 +65,22 @@
             android:padding="0dp"
             android:text="🎙"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/expensesSearchView"
-            app:layout_constraintEnd_toStartOf="@id/expensesSearchView"
-            app:layout_constraintTop_toTopOf="@id/expensesSearchView" />
+            app:layout_constraintBottom_toBottomOf="@id/expensesChartButton"
+            app:layout_constraintEnd_toStartOf="@id/expensesChartButton"
+            app:layout_constraintTop_toTopOf="@id/expensesChartButton" />
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/expensesSearchView"
-            android:layout_width="47dp"
-            android:layout_height="33dp"
-            android:layout_margin="8dp"
-            android:background="@drawable/rounded_search_bg"
-            app:iconifiedByDefault="false"
+        <ImageButton
+            android:id="@+id/expensesChartButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/chart_icon_description"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_report_logo"
             app:layout_constraintEnd_toStartOf="@id/expensesOverflowButton"
-            app:layout_constraintTop_toTopOf="parent"
-            app:queryHint="@string/search_expenses_hint" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/expensesOverflowButton"
@@ -87,7 +89,7 @@
             android:layout_margin="4dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/more_options_description"
-            android:src="@android:drawable/ic_menu_more"
+            android:src="@drawable/ic_menu_tx_all_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/white" />
@@ -103,7 +105,7 @@
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expensesSearchView">
+            app:layout_constraintTop_toBottomOf="@id/expensesChartButton">
 
             <Button
                 android:id="@+id/allButton"

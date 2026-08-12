@@ -138,7 +138,7 @@ int id action_report 0x0
 int id action_secure_box 0x0
 int id action_toggle_quick_bar 0x0
 int id addAccountButton 0x0
-int id addCategoryButton 0x0
+int id addCategoryHeaderButton 0x0
 int id addTaskButton 0x0
 int id addTransactionMain 0x0
 int id addTransactionTitle 0x0
@@ -207,6 +207,11 @@ int id cashInButton 0x0
 int id cashInTotalText 0x0
 int id cashOutButton 0x0
 int id cashOutTotalText 0x0
+int id catAmount 0x0
+int id catIcon 0x0
+int id catName 0x0
+int id catPercent 0x0
+int id catProgress 0x0
 int id categoryBackButton 0x0
 int id categoryContainer 0x0
 int id categoryExpenseToggle 0x0
@@ -221,6 +226,9 @@ int id categoryToggleContainer 0x0
 int id categoryToolbarTitle 0x0
 int id categoryTopBar 0x0
 int id center_date_container 0x0
+int id chartBackButton 0x0
+int id chartHeader 0x0
+int id chartTitle 0x0
 int id clearDataRow 0x0
 int id count_sticky 0x0
 int id count_tasks 0x0
@@ -247,6 +255,8 @@ int id deletedRowForeverButton 0x0
 int id deletedRowRestoreButton 0x0
 int id deletedRowTitle 0x0
 int id deletedTopBar 0x0
+int id detailsContainer 0x0
+int id detailsContainerAccount 0x0
 int id dialogMessage 0x0
 int id dialogTitle 0x0
 int id drawer_layout 0x0
@@ -262,16 +272,17 @@ int id empty_view 0x0
 int id expense_type_main 0x0
 int id expensesButton 0x0
 int id expensesButtonContainer 0x0
+int id expensesChartButton 0x0
 int id expensesExportButton 0x0
 int id expensesMenuButton 0x0
 int id expensesNavigationView 0x0
 int id expensesOverflowButton 0x0
-int id expensesSearchView 0x0
 int id expenses_calendar_main 0x0
 int id expenses_main 0x0
 int id finalBalanceRow 0x0
 int id finalBalanceTotalText 0x0
 int id footerButtonsContainer 0x0
+int id headerLayout 0x0
 int id headerTextContainer 0x0
 int id headerTitle 0x0
 int id imagePreview 0x0
@@ -283,6 +294,7 @@ int id item_date 0x0
 int id item_text 0x0
 int id item_title 0x0
 int id itemsContainer 0x0
+int id lineChart 0x0
 int id lockExpensesSwitch 0x0
 int id logo_container 0x0
 int id main 0x0
@@ -349,6 +361,8 @@ int id notification_widget_root 0x0
 int id optionCamera 0x0
 int id optionGallery 0x0
 int id optionPdf 0x0
+int id pieChart 0x0
+int id pieChartAccount 0x0
 int id prevMonth 0x0
 int id previousBalanceRow 0x0
 int id previousBalanceTotalText 0x0
@@ -464,6 +478,7 @@ int id yearlyButton 0x0
 int layout activity_account_summary 0x0
 int layout activity_add_transaction 0x0
 int layout activity_category 0x0
+int layout activity_chart 0x0
 int layout activity_daily_expenses 0x0
 int layout activity_deleted_transactions 0x0
 int layout activity_expense_type 0x0
@@ -498,6 +513,7 @@ int layout item_account 0x0
 int layout item_account_summary_row 0x0
 int layout item_category 0x0
 int layout item_category_chip 0x0
+int layout item_chart_detail 0x0
 int layout item_deleted_transaction_row 0x0
 int layout item_expenses_calendar_day 0x0
 int layout item_notebook_note 0x0

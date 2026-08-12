@@ -3266,7 +3266,7 @@ int id actions 0x7f090069
 int id activity_chooser_view_content 0x7f09006a
 int id add 0x7f09006b
 int id addAccountButton 0x7f09006c
-int id addCategoryButton 0x7f09006d
+int id addCategoryHeaderButton 0x7f090367
 int id addTaskButton 0x7f09006e
 int id addTransactionMain 0x7f09006f
 int id addTransactionTitle 0x7f090070
@@ -3367,6 +3367,11 @@ int id cashInButton 0x7f0900ce
 int id cashInTotalText 0x7f0900cf
 int id cashOutButton 0x7f0900d0
 int id cashOutTotalText 0x7f0900d1
+int id catAmount 0x7f09036f
+int id catIcon 0x7f090370
+int id catName 0x7f090371
+int id catPercent 0x7f090372
+int id catProgress 0x7f090373
 int id categoryBackButton 0x7f0900d2
 int id categoryContainer 0x7f0900d3
 int id categoryExpenseToggle 0x7f0900d4
@@ -3389,6 +3394,9 @@ int id center_vertical 0x7f0900e4
 int id chain 0x7f0900e5
 int id chain2 0x7f0900e6
 int id chains 0x7f0900e7
+int id chartBackButton 0x7f090369
+int id chartHeader 0x7f09036a
+int id chartTitle 0x7f09036b
 int id checkbox 0x7f0900e8
 int id checked 0x7f0900e9
 int id chronometer 0x7f0900ea
@@ -3453,6 +3461,8 @@ int id design_menu_item_action_area 0x7f090124
 int id design_menu_item_action_area_stub 0x7f090125
 int id design_menu_item_text 0x7f090126
 int id design_navigation_view 0x7f090127
+int id detailsContainer 0x7f090374
+int id detailsContainerAccount 0x7f090375
 int id dialogMessage 0x7f090128
 int id dialogTitle 0x7f090129
 int id dialog_button 0x7f09012a
@@ -3501,11 +3511,11 @@ int id expanded_menu 0x7f090154
 int id expense_type_main 0x7f090155
 int id expensesButton 0x7f090156
 int id expensesButtonContainer 0x7f090157
+int id expensesChartButton 0x7f09036c
 int id expensesExportButton 0x7f090158
 int id expensesMenuButton 0x7f090159
 int id expensesNavigationView 0x7f09015a
 int id expensesOverflowButton 0x7f09015b
-int id expensesSearchView 0x7f09015c
 int id expenses_calendar_main 0x7f09015d
 int id expenses_main 0x7f09015e
 int id fade 0x7f09015f
@@ -3540,6 +3550,7 @@ int id graph_wrap 0x7f09017b
 int id group_divider 0x7f09017c
 int id grouping 0x7f09017d
 int id groups 0x7f09017e
+int id headerLayout 0x7f090368
 int id headerTextContainer 0x7f09017f
 int id headerTitle 0x7f090180
 int id header_title 0x7f090181
@@ -3581,6 +3592,7 @@ int id leftToRight 0x7f0901a4
 int id legacy 0x7f0901a5
 int id line1 0x7f0901a6
 int id line3 0x7f0901a7
+int id lineChart 0x7f09036d
 int id linear 0x7f0901a8
 int id listMode 0x7f0901a9
 int id list_item 0x7f0901aa
@@ -3759,6 +3771,8 @@ int id path 0x7f090256
 int id pathRelative 0x7f090257
 int id peekHeight 0x7f090258
 int id percent 0x7f090259
+int id pieChart 0x7f09036e
+int id pieChartAccount 0x7f090376
 int id pin 0x7f09025a
 int id position 0x7f09025b
 int id postLayout 0x7f09025c
@@ -4139,6 +4153,7 @@ int layout abc_tooltip 0x7f0c001b
 int layout activity_account_summary 0x7f0c001c
 int layout activity_add_transaction 0x7f0c001d
 int layout activity_category 0x7f0c001e
+int layout activity_chart 0x7f0c00a2
 int layout activity_daily_expenses 0x7f0c001f
 int layout activity_deleted_transactions 0x7f0c0020
 int layout activity_expense_type 0x7f0c0021
@@ -4192,6 +4207,7 @@ int layout item_account 0x7f0c0050
 int layout item_account_summary_row 0x7f0c0051
 int layout item_category 0x7f0c0052
 int layout item_category_chip 0x7f0c0053
+int layout item_chart_detail 0x7f0c00a3
 int layout item_deleted_transaction_row 0x7f0c0054
 int layout item_expenses_calendar_day 0x7f0c0055
 int layout item_notebook_note 0x7f0c0056

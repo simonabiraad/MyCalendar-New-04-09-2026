@@ -1,0 +1,4 @@
+- [x] Update header title in `activity_chart.xml`
+- [x] Implement account loading and "Total Accounts" logic in `ChartActivity.java`
+- [x] Update center text labels and data mapping
+- [x] Verify wealth distribution chart and list

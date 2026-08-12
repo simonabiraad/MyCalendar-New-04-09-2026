@@ -146,12 +146,16 @@ public class SecureBoxActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                new AlertDialog.Builder(SecureBoxActivity.this, R.style.CustomAlertDialogTheme)
-                        .setTitle("Leave Page")
-                        .setMessage("Are you sure you want to leave this page?")
-                        .setPositiveButton("Yes", (dialog, which) -> finish())
-                        .setNegativeButton("No", null)
-                        .show();
+                if (isSelectionMode) {
+                    exitSelectionMode();
+                } else {
+                    new AlertDialog.Builder(SecureBoxActivity.this, R.style.CustomAlertDialogTheme)
+                            .setTitle("Leave Page")
+                            .setMessage("Are you sure you want to leave this page?")
+                            .setPositiveButton("Yes", (dialog, which) -> finish())
+                            .setNegativeButton("No", null)
+                            .show();
+                }
             }
         });
     }
@@ -165,13 +169,20 @@ public class SecureBoxActivity extends AppCompatActivity {
         selectionBar = findViewById(R.id.selectionBar);
         selectionCountText = findViewById(R.id.selectionCountText);
 
-        categoryRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        categoryRecyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         notesRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
+        findViewById(R.id.backButton).setOnClickListener(v -> {
+            if (isSelectionMode) {
+                exitSelectionMode();
+            } else {
+                finish();
+            }
+        });
         findViewById(R.id.saveStickyNoteButton).setOnClickListener(v -> saveNote());
-        findViewById(R.id.addCategoryButton).setOnClickListener(v -> showAddCategoryDialog());
         findViewById(R.id.sbVoiceNoteButton).setOnClickListener(v -> startVoiceRecognition());
         findViewById(R.id.sbCameraNoteButton).setOnClickListener(v -> showSourceOptionsDialog());
+        findViewById(R.id.addCategoryHeaderButton).setOnClickListener(v -> showAddCategoryDialog());
         
         findViewById(R.id.cancelSelectionBtn).setOnClickListener(v -> exitSelectionMode());
         findViewById(R.id.deleteSelectedBtn).setOnClickListener(v -> {
@@ -348,17 +359,27 @@ public class SecureBoxActivity extends AppCompatActivity {
 
     private class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.VH> {
         @NonNull @Override public VH onCreateViewHolder(@NonNull ViewGroup p, int t) {
-            return new VH(new Button(p.getContext()));
+            Button b = new Button(p.getContext());
+            GridLayoutManager.LayoutParams lp = new GridLayoutManager.LayoutParams(-1, -2);
+            lp.setMargins(4, 4, 4, 4);
+            b.setLayoutParams(lp);
+            return new VH(b);
         }
+
         @Override public void onBindViewHolder(@NonNull VH h, int pos) {
-            CategoryItem itm = categoryList.get(pos); Button b = (Button) h.itemView;
-            b.setText(itm.name); b.setAllCaps(false); b.setTextColor(Color.WHITE); applyFontSettings(b, 15);
+            Button b = (Button) h.itemView;
+            b.setAllCaps(false);
+            b.setTextColor(Color.WHITE);
+            applyFontSettings(b, 14);
+
+            CategoryItem itm = categoryList.get(pos);
+            b.setText(itm.name);
             b.setBackgroundTintList(android.content.res.ColorStateList.valueOf(itm.color));
             b.setAlpha(activeCategoryKey.equals(itm.key) ? 1.0f : 0.6f);
             b.setOnClickListener(v -> selectCategory(itm.key, itm.color));
             b.setOnLongClickListener(v -> { showCategoryOptionsDialog(itm.key, b); return true; });
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-2, -2); lp.setMargins(0, 0, 8, 0); b.setLayoutParams(lp);
         }
+
         @Override public int getItemCount() { return categoryList.size(); }
         class VH extends RecyclerView.ViewHolder { VH(View v) { super(v); } }
     }
@@ -507,6 +528,23 @@ public class SecureBoxActivity extends AppCompatActivity {
         else { ce = new EditText(this); ce.setText(c); applyFontSettings(ce, 18); ce.setGravity(48); ce.setBackground(null); l.addView(ce); }
         LinearLayout bl = new LinearLayout(this); bl.setGravity(android.view.Gravity.END); Button can = new Button(this); can.setText("Cancel"); applyFontSettings(can, 16); can.setOnClickListener(v -> d.dismiss()); bl.addView(can);
         final EditText fce = ce;
+        Button sh = new Button(this); sh.setText("Share"); applyFontSettings(sh, 16);
+        sh.setOnClickListener(v -> {
+            String nt = te.getText().toString().trim();
+            String nc = fce != null ? fce.getText().toString().trim() : (c.startsWith("[IMG:") ? "[Image content]" : c);
+            String shareText = "*" + nt + "*\n\n" + nc;
+            Intent sendIntent = new Intent(Intent.ACTION_SEND);
+            sendIntent.setType("text/plain");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+            sendIntent.setPackage("com.whatsapp");
+            try {
+                startActivity(sendIntent);
+            } catch (android.content.ActivityNotFoundException ex) {
+                sendIntent.setPackage(null);
+                startActivity(Intent.createChooser(sendIntent, "Share via"));
+            }
+        });
+        bl.addView(sh);
         Button pr = new Button(this); pr.setText("Print"); applyFontSettings(pr, 16); pr.setOnClickListener(v -> { String p = te.getText().toString() + (fce != null ? "\n\n" + fce.getText().toString() : "\n\n[Image]"); printSingleNote(p); }); bl.addView(pr);
         Button sa = new Button(this); sa.setText("Save"); applyFontSettings(sa, 16); sa.setOnClickListener(v -> { String nt = te.getText().toString().trim(), nc = fce != null ? fce.getText().toString().trim() : c; if (fce != null && nc.isEmpty()) Toast.makeText(this, "Empty", Toast.LENGTH_SHORT).show(); else { updateNote(k, idx, (nt.isEmpty() ? "No Name" : nt) + TITLE_SEP + nc); d.dismiss(); } }); bl.addView(sa);
         l.addView(bl); s.addView(l); d.setContentView(s); d.show();

@@ -152,42 +152,6 @@ public class ExpensesActivity extends AppCompatActivity {
             drawerLayout.openDrawer(GravityCompat.START);
         });
 
-        findViewById(R.id.aiAssistantButton).setOnClickListener(v -> {
-            isVoiceCommandMode = true;
-            startVoiceRecognition();
-        });
-
-        topExpensesButton.setOnClickListener(v -> showAccountsDialog());
-
-        findViewById(R.id.expensesOverflowButton).setOnClickListener(v -> {
-            androidx.appcompat.widget.PopupMenu popup = new androidx.appcompat.widget.PopupMenu(this, v);
-            popup.getMenuInflater().inflate(R.menu.menu_expenses_overflow, popup.getMenu());
-            
-            try {
-                java.lang.reflect.Field field = popup.getClass().getDeclaredField("mPopup");
-                field.setAccessible(true);
-                Object menuHelper = field.get(popup);
-                if (menuHelper != null) {
-                    Class<?> classPopupHelper = menuHelper.getClass();
-                    java.lang.reflect.Method setForceIcons = classPopupHelper.getMethod("setForceShowIcon", boolean.class);
-                    setForceIcons.invoke(menuHelper, true);
-                }
-            } catch (Exception ignored) {}
-
-            popup.setOnMenuItemClickListener(item -> {
-                int id = item.getItemId();
-                String title = String.valueOf(item.getTitle());
-                if (id == R.id.action_date_asc || id == R.id.action_date_desc) {
-                    item.setChecked(true);
-                } else if (id == R.id.action_category) {
-                    startActivity(new Intent(this, CategoryActivity.class));
-                }
-                Toast.makeText(this, title + " selected", Toast.LENGTH_SHORT).show();
-                return true;
-            });
-            popup.show();
-        });
-
         findViewById(R.id.expensesExportButton).setOnClickListener(v -> {
             androidx.appcompat.widget.PopupMenu popup = new androidx.appcompat.widget.PopupMenu(this, v);
             popup.getMenuInflater().inflate(R.menu.menu_expenses_export, popup.getMenu());
@@ -440,6 +404,10 @@ public class ExpensesActivity extends AppCompatActivity {
             refreshTransactionsList();
         });
 
+        findViewById(R.id.expensesChartButton).setOnClickListener(v -> {
+            startActivity(new Intent(this, ChartActivity.class));
+        });
+
         findViewById(R.id.cashInButton).setOnClickListener(v -> {
             Intent intent = new Intent(this, AddTransactionActivity.class);
             intent.putExtra("type", Transaction.TYPE_CASH_IN);
@@ -452,23 +420,6 @@ public class ExpensesActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        SearchView searchView = findViewById(R.id.expensesSearchView);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                currentSearchQuery = query;
-                refreshTransactionsList();
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                currentSearchQuery = newText;
-                refreshTransactionsList();
-                return true;
-            }
-        });
-
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -479,6 +430,42 @@ public class ExpensesActivity extends AppCompatActivity {
                         .setNegativeButton("No", null)
                         .show();
             }
+        });
+
+        findViewById(R.id.aiAssistantButton).setOnClickListener(v -> {
+            isVoiceCommandMode = true;
+            startVoiceRecognition();
+        });
+
+        topExpensesButton.setOnClickListener(v -> showAccountsDialog());
+
+        findViewById(R.id.expensesOverflowButton).setOnClickListener(v -> {
+            androidx.appcompat.widget.PopupMenu popup = new androidx.appcompat.widget.PopupMenu(this, v);
+            popup.getMenuInflater().inflate(R.menu.menu_expenses_overflow, popup.getMenu());
+
+            try {
+                java.lang.reflect.Field field = popup.getClass().getDeclaredField("mPopup");
+                field.setAccessible(true);
+                Object menuHelper = field.get(popup);
+                if (menuHelper != null) {
+                    Class<?> classPopupHelper = menuHelper.getClass();
+                    java.lang.reflect.Method setForceIcons = classPopupHelper.getMethod("setForceShowIcon", boolean.class);
+                    setForceIcons.invoke(menuHelper, true);
+                }
+            } catch (Exception ignored) {}
+
+            popup.setOnMenuItemClickListener(item -> {
+                int id = item.getItemId();
+                String title = String.valueOf(item.getTitle());
+                if (id == R.id.action_date_asc || id == R.id.action_date_desc) {
+                    item.setChecked(true);
+                } else if (id == R.id.action_category) {
+                    startActivity(new Intent(this, CategoryActivity.class));
+                }
+                Toast.makeText(this, title + " selected", Toast.LENGTH_SHORT).show();
+                return true;
+            });
+            popup.show();
         });
         
         updateFilterButtonsUI();
