@@ -21,7 +21,7 @@
             android:src="@android:drawable/ic_menu_agenda"
             android:layout_marginEnd="12dp"
             android:contentDescription="Account Icon"
-            app:tint="@android:color/black" />
+            app:tint="@android:color/white" />
 
         <!-- Edit Mode: Reorder Up -->
         <ImageButton
@@ -50,7 +50,7 @@
             android:layout_weight="1"
             android:text="Account Name"
             android:textSize="16sp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:layout_marginStart="8dp" />
 
         <TextView
@@ -60,7 +60,7 @@
             android:text="0.00"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <!-- Edit Mode: Delete -->
         <ImageButton

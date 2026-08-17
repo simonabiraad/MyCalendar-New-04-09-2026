@@ -62,9 +62,6 @@ public class BalanceManager {
                     .edit()
                     .putString(KEY_ACCOUNT_LIST, array.toString())
                     .apply();
-
-            // Update System Monthly Income in DB
-            TransactionDbHelper.getInstance(context).addOrUpdateMonthlyIncome(totalBalance);
         } catch (Exception e) {
             e.printStackTrace();
         }

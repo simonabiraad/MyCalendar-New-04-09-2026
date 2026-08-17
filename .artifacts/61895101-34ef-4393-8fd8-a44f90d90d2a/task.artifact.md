@@ -1,0 +1,3 @@
+- [x] Update `dialog_accounts.xml` for dark mode and button border
+- [x] Update `item_account.xml` for dark mode (white text/icons)
+- [x] Verify changes (syntax check)

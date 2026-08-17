@@ -1,5 +1,6 @@
 package com.example.mycalendar2026sar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,17 +52,18 @@ public class AccountSummaryActivity extends AppCompatActivity {
     private void loadData() {
         List<Account> accounts = BalanceManager.loadAccounts(this);
 
+        // Pre-populate if empty
+        if (accounts.isEmpty()) {
+            accounts.add(new Account("Expenses", 0.00));
+            BalanceManager.saveAccounts(this, accounts);
+        }
+
         double totalBalance = 0;
         for (Account a : accounts) {
             totalBalance += a.getBalance();
         }
         totalBalanceText.setText(String.format(Locale.getDefault(), "%.2f", totalBalance));
 
-        if (accounts.isEmpty()) {
-            recyclerView.setVisibility(View.GONE);
-            emptyText.setVisibility(View.VISIBLE);
-            return;
-        }
         recyclerView.setVisibility(View.VISIBLE);
         emptyText.setVisibility(View.GONE);
 
@@ -92,16 +94,26 @@ public class AccountSummaryActivity extends AppCompatActivity {
             }
         }
 
-        recyclerView.setAdapter(new SummaryAdapter(accounts, monthTotals));
+        recyclerView.setAdapter(new SummaryAdapter(accounts, monthTotals, account -> {
+            Intent intent = new Intent(this, ExpensesActivity.class);
+            intent.putExtra("active_account", account.getName());
+            startActivity(intent);
+        }));
     }
 
     private static class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHolder> {
         private final List<Account> accounts;
         private final java.util.Map<String, double[]> monthTotals;
+        private final OnAccountClickListener listener;
 
-        SummaryAdapter(List<Account> accounts, java.util.Map<String, double[]> monthTotals) {
+        interface OnAccountClickListener {
+            void onAccountClick(Account account);
+        }
+
+        SummaryAdapter(List<Account> accounts, java.util.Map<String, double[]> monthTotals, OnAccountClickListener listener) {
             this.accounts = new ArrayList<>(accounts);
             this.monthTotals = monthTotals;
+            this.listener = listener;
         }
 
         @NonNull
@@ -123,6 +135,8 @@ public class AccountSummaryActivity extends AppCompatActivity {
             double out = totals != null ? totals[1] : 0;
             holder.in.setText(String.format(Locale.getDefault(), "This month In: %.2f", in));
             holder.out.setText(String.format(Locale.getDefault(), "This month Out: %.2f", out));
+
+            holder.itemView.setOnClickListener(v -> listener.onAccountClick(account));
         }
 
         @Override

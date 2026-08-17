@@ -109,9 +109,13 @@ public class ExpensesActivity extends AppCompatActivity {
         loadAccounts();
         if (accountList.isEmpty()) {
             accountList.add(new Account("Expenses", 0.00));
-            accountList.add(new Account("Cash", 500.00));
-            accountList.add(new Account("Bank", 1500.00));
             saveAccounts();
+        } else {
+            // Clean up old default accounts if they still exist
+            boolean removed = accountList.removeIf(a -> a.getName().equalsIgnoreCase("Cash") || a.getName().equalsIgnoreCase("Bank"));
+            if (removed) {
+                saveAccounts();
+            }
         }
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -143,9 +147,16 @@ public class ExpensesActivity extends AppCompatActivity {
         transactionsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         transactionsRecyclerView.setAdapter(transactionAdapter);
 
+        // Handle Active Account context from Intent
+        String passedAccount = getIntent().getStringExtra("active_account");
+        if (passedAccount != null) {
+            topExpensesButton.setText(passedAccount);
+            saveActiveAccount(passedAccount);
+        }
+
         refreshTransactionsList();
         
-        // Persist default account
+        // Persist default account if needed
         saveActiveAccount(topExpensesButton.getText().toString());
 
         findViewById(R.id.expensesMenuButton).setOnClickListener(v -> {
@@ -423,12 +434,27 @@ public class ExpensesActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                new androidx.appcompat.app.AlertDialog.Builder(ExpensesActivity.this, R.style.CustomAlertDialogTheme)
-                        .setTitle("Leave Page")
-                        .setMessage("Are you sure you want to leave this page?")
-                        .setPositiveButton("Yes", (dialog, which) -> finish())
-                        .setNegativeButton("No", null)
-                        .show();
+                String activeAccount = getSharedPreferences("ExpensesPrefs", MODE_PRIVATE).getString("ActiveAccount", "Expenses");
+                if (!activeAccount.equals("Expenses")) {
+                    // Inside an account: Return to Summary Mode immediately
+                    saveActiveAccount("Expenses");
+                    topExpensesButton.setText("Expenses");
+                    refreshTransactionsList();
+                } else {
+                    // Already in Summary Mode: Show confirmation dialog
+                    new androidx.appcompat.app.AlertDialog.Builder(ExpensesActivity.this, R.style.CustomAlertDialogTheme)
+                            .setTitle("Leave Expenses")
+                            .setMessage("Do you want to leave Expenses?")
+                            .setPositiveButton("Yes", (dialog, which) -> {
+                                // Redirect to SAR Calendar (MainActivity)
+                                Intent intent = new Intent(ExpensesActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                startActivity(intent);
+                                finish();
+                            })
+                            .setNegativeButton("No", null)
+                            .show();
+                }
             }
         });
 
@@ -437,7 +463,10 @@ public class ExpensesActivity extends AppCompatActivity {
             startVoiceRecognition();
         });
 
-        topExpensesButton.setOnClickListener(v -> showAccountsDialog());
+        topExpensesButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AccountSummaryActivity.class);
+            startActivity(intent);
+        });
 
         findViewById(R.id.expensesOverflowButton).setOnClickListener(v -> {
             androidx.appcompat.widget.PopupMenu popup = new androidx.appcompat.widget.PopupMenu(this, v);
@@ -576,27 +605,80 @@ public class ExpensesActivity extends AppCompatActivity {
             View addView = getLayoutInflater().inflate(R.layout.dialog_add_account, null);
             android.widget.EditText nameInput = addView.findViewById(R.id.editAccountName);
             android.widget.EditText balanceInput = addView.findViewById(R.id.editAccountBalance);
-            
-            new androidx.appcompat.app.AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
-                    .setTitle("Add New Account")
+            android.widget.TextView txtAccountDate = addView.findViewById(R.id.txtAccountDate);
+            android.view.View indicatorPlus = addView.findViewById(R.id.indicatorPlus);
+            android.view.View indicatorMinus = addView.findViewById(R.id.indicatorMinus);
+
+            final java.util.Calendar selectedCal = java.util.Calendar.getInstance();
+            final java.text.SimpleDateFormat dialogSdf = new java.text.SimpleDateFormat("dd-MMM-yyyy", java.util.Locale.getDefault());
+            txtAccountDate.setText(dialogSdf.format(selectedCal.getTime()));
+
+            final boolean[] isPositive = {true};
+            indicatorPlus.setBackgroundTintList(android.content.res.ColorStateList.valueOf(androidx.core.content.ContextCompat.getColor(this, R.color.income_green)));
+            indicatorMinus.setBackgroundTintList(null);
+
+            androidx.appcompat.app.AlertDialog addDialog = new androidx.appcompat.app.AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
                     .setView(addView)
-                    .setPositiveButton("Add", (d, w) -> {
-                        String name = nameInput.getText().toString();
-                        String balanceStr = balanceInput.getText().toString();
-                        if (!name.isEmpty()) {
-                            double balance = 0.0;
-                            if (!balanceStr.isEmpty()) {
-                                try {
-                                    balance = Double.parseDouble(balanceStr);
-                                } catch (NumberFormatException ignored) {}
-                            }
-                            accountList.add(new Account(name, balance));
-                            adapter.updateList(accountList);
-                            saveAccounts();
-                        }
-                    })
-                    .setNegativeButton("Cancel", null)
-                    .show();
+                    .create();
+
+            if (addDialog.getWindow() != null) {
+                addDialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
+            }
+
+            addView.findViewById(R.id.typePlusContainer).setOnClickListener(v1 -> {
+                isPositive[0] = true;
+                indicatorPlus.setBackgroundTintList(android.content.res.ColorStateList.valueOf(androidx.core.content.ContextCompat.getColor(this, R.color.income_green)));
+                indicatorMinus.setBackgroundTintList(null);
+            });
+
+            addView.findViewById(R.id.typeMinusContainer).setOnClickListener(v1 -> {
+                isPositive[0] = false;
+                indicatorMinus.setBackgroundTintList(android.content.res.ColorStateList.valueOf(androidx.core.content.ContextCompat.getColor(this, R.color.expense_red)));
+                indicatorPlus.setBackgroundTintList(null);
+            });
+
+            addView.findViewById(R.id.dateSelectionBox).setOnClickListener(v1 -> {
+                new android.app.DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+                    selectedCal.set(year, month, dayOfMonth);
+                    txtAccountDate.setText(dialogSdf.format(selectedCal.getTime()));
+                }, selectedCal.get(java.util.Calendar.YEAR), selectedCal.get(java.util.Calendar.MONTH), selectedCal.get(java.util.Calendar.DAY_OF_MONTH)).show();
+            });
+
+            addView.findViewById(R.id.btnCancelAccount).setOnClickListener(v1 -> addDialog.dismiss());
+
+            addView.findViewById(R.id.btnSaveAccount).setOnClickListener(v1 -> {
+                String name = nameInput.getText().toString().trim();
+                String balanceStr = balanceInput.getText().toString().trim();
+
+                if (!name.isEmpty()) {
+                    double balance = 0.0;
+                    if (!balanceStr.isEmpty()) {
+                        try {
+                            balance = Double.parseDouble(balanceStr);
+                        } catch (NumberFormatException ignored) {}
+                    }
+
+                    // Add account with 0 balance first
+                    accountList.add(new Account(name, 0.00));
+                    saveAccounts();
+
+                    if (balance > 0) {
+                        String type = isPositive[0] ? Transaction.TYPE_CASH_IN : Transaction.TYPE_CASH_OUT;
+                        double finalBalanceDelta = isPositive[0] ? balance : -balance;
+
+                        transactionDbHelper.addTransaction("Income", balance, type, selectedCal.getTimeInMillis(), name);
+                        BalanceManager.updateAccountBalance(this, name, finalBalanceDelta);
+                        loadAccounts(); // Reload
+                    }
+
+                    adapter.updateList(accountList);
+                    addDialog.dismiss();
+                } else {
+                    android.widget.Toast.makeText(this, "Please enter a name", android.widget.Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            addDialog.show();
         });
 
         dialog.show();
@@ -795,11 +877,36 @@ public class ExpensesActivity extends AppCompatActivity {
     private void refreshTransactionsList() {
         List<Transaction> allAscending = transactionDbHelper.getAllTransactionsAscending();
 
-        // Running balance is computed across the FULL history (not just the filtered
-        // view) so "Balance after" always reflects the true balance at that point in time.
+        // Step 1: Calculate Global Aggregated Income (Sum of all "Income" transactions)
+        double totalAggregatedIncome = 0;
+        for (Transaction t : allAscending) {
+            if ("Income".equalsIgnoreCase(t.getTitle())) {
+                totalAggregatedIncome += t.getAmount();
+            }
+        }
+        // Sync with Monthly Income row
+        transactionDbHelper.addOrUpdateMonthlyIncome(totalAggregatedIncome);
+        // Refresh the list from DB to include the updated Monthly Income
+        allAscending = transactionDbHelper.getAllTransactionsAscending();
+
+        // Running balance is computed across the history of the ACTIVE ACCOUNT
+        // so "Balance after" always reflects the true account balance at that point in time.
+        // For "Expenses" (Summary), it reflects the global total.
         java.util.Map<Long, Double> balanceAfterById = new java.util.HashMap<>();
+        String activeAccount = getSharedPreferences("ExpensesPrefs", MODE_PRIVATE).getString("ActiveAccount", "Expenses");
+        boolean isSummaryMode = activeAccount.equals("Expenses");
+        
         double running = 0;
         for (Transaction t : allAscending) {
+            // INDEPENDENCE: In Account mode, only count its own transactions
+            if (!isSummaryMode && (t.getAccount() == null || !t.getAccount().equals(activeAccount))) continue;
+            
+            // AGGREGATION FILTER: In Summary mode, hide individual "Income" lines (they are in Monthly Income)
+            if (isSummaryMode && "Income".equalsIgnoreCase(t.getTitle())) continue;
+            
+            // AGGREGATION FILTER: In Account mode, hide global "Monthly Income" summary line
+            if (!isSummaryMode && "Monthly Income".equalsIgnoreCase(t.getTitle())) continue;
+
             running += t.getSignedAmount();
             balanceAfterById.put(t.getId(), running);
         }
@@ -809,8 +916,18 @@ public class ExpensesActivity extends AppCompatActivity {
         Transaction monthlyIncome = null;
         for (int i = allAscending.size() - 1; i >= 0; i--) {
             Transaction t = allAscending.get(i);
+            
+            // INDEPENDENCE: Filter by account if not in summary mode
+            if (!isSummaryMode && (t.getAccount() == null || !t.getAccount().equals(activeAccount))) continue;
+
+            // AGGREGATION FILTER: In Summary mode, hide individual "Income" lines
+            if (isSummaryMode && "Income".equalsIgnoreCase(t.getTitle())) continue;
+
+            // AGGREGATION FILTER: In Account mode, hide global "Monthly Income" summary line
+            if (!isSummaryMode && "Monthly Income".equalsIgnoreCase(t.getTitle())) continue;
+
             if (matchesFilter(t) && matchesSearch(t)) {
-                if ("Monthly Income".equals(t.getTitle())) {
+                if ("Monthly Income".equalsIgnoreCase(t.getTitle())) {
                     monthlyIncome = t;
                 } else {
                     filtered.add(t);
@@ -818,8 +935,8 @@ public class ExpensesActivity extends AppCompatActivity {
             }
         }
 
-        // Always keep Monthly Income as the first line if it exists
-        if (monthlyIncome != null) {
+        // Always keep Monthly Income as the first line if it exists (only in summary mode)
+        if (isSummaryMode && monthlyIncome != null) {
             filtered.add(0, monthlyIncome);
         }
 
@@ -837,7 +954,7 @@ public class ExpensesActivity extends AppCompatActivity {
             Double balanceAfter = balanceAfterById.get(t.getId());
             grouped.add(TransactionListItem.transaction(t, balanceAfter != null ? balanceAfter : 0.0));
             if (t.isCashIn()) {
-                cashIn += t.getAmount();
+                if (isSummaryMode) cashIn += t.getAmount();
             } else {
                 cashOut += t.getAmount();
             }
@@ -847,9 +964,27 @@ public class ExpensesActivity extends AppCompatActivity {
         transactionsRecyclerView.setVisibility(filtered.isEmpty() ? View.GONE : View.VISIBLE);
         emptyStateText.setVisibility(filtered.isEmpty() ? View.VISIBLE : View.GONE);
 
-        cashInTotalText.setText(String.format(Locale.getDefault(), "%.2f", cashIn));
-        cashOutTotalText.setText(String.format(Locale.getDefault(), "%.2f", cashOut));
-        balanceTotalText.setText(String.format(Locale.getDefault(), "%.2f", cashIn - cashOut));
+        // BALANCE INTEGRATION: In Account mode, Income slot shows Account Balance
+        TextView labelTotalCashIn = findViewById(R.id.labelTotalCashIn);
+        if (!isSummaryMode) {
+            if (labelTotalCashIn != null) labelTotalCashIn.setText("Income");
+            double currentAccBalance = 0;
+            for (Account a : accountList) {
+                if (a.getName().equals(activeAccount)) {
+                    currentAccBalance = a.getBalance();
+                    break;
+                }
+            }
+            cashInTotalText.setText(String.format(Locale.getDefault(), "%.2f", currentAccBalance));
+            cashOutTotalText.setText(String.format(Locale.getDefault(), "%.2f", cashOut));
+            balanceTotalText.setText(String.format(Locale.getDefault(), "%.2f", currentAccBalance - cashOut));
+        } else {
+            if (labelTotalCashIn != null) labelTotalCashIn.setText("TOTAL Cash In");
+            // Global Summary totals
+            cashInTotalText.setText(String.format(Locale.getDefault(), "%.2f", cashIn));
+            cashOutTotalText.setText(String.format(Locale.getDefault(), "%.2f", cashOut));
+            balanceTotalText.setText(String.format(Locale.getDefault(), "%.2f", cashIn - cashOut));
+        }
 
         // --- Period Balance Calculations ---
         if (currentFilter == FILTER_ALL) {

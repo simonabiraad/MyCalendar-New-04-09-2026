@@ -25,8 +25,12 @@ color teal_700
 color text_secondary
 color unmellow_yellow
 color white
+drawable button_outline_green
 drawable calendar_logo_bg
+drawable circle_indicator
+drawable dialog_background_rounded
 drawable dialog_border
+drawable edit_text_outline
 drawable ic_add_circle
 drawable ic_banner_foreground
 drawable ic_cat_bill_color
@@ -181,6 +185,7 @@ id btnCalcOk
 id btnCalcSub
 id btnCalculator
 id btnCancel
+id btnCancelAccount
 id btnCashIn
 id btnCashOut
 id btnCrop
@@ -191,6 +196,7 @@ id btnEdit
 id btnMoveDown
 id btnMoveUp
 id btnOk
+id btnSaveAccount
 id btnSaveContinue
 id btnSaveExit
 id btnSelectCategory
@@ -240,6 +246,7 @@ id daily_expenses_main
 id dateNavigator
 id datePickerBox
 id dateRangeText
+id dateSelectionBox
 id dateTimeContainer
 id dayNumber
 id dayRemarksContainer
@@ -290,12 +297,15 @@ id headerTitle
 id imagePreview
 id income_main
 id indicator
+id indicatorMinus
+id indicatorPlus
 id itemIcon
 id itemText
 id item_date
 id item_text
 id item_title
 id itemsContainer
+id labelTotalCashIn
 id lineChart
 id lockExpensesSwitch
 id logo_container
@@ -456,8 +466,11 @@ id txNamesEmptyText
 id txNamesRecyclerView
 id txNamesSearchView
 id txNamesTopBar
+id txtAccountDate
 id txtDate
 id txtTime
+id typeMinusContainer
+id typePlusContainer
 id voiceNoteButton
 id voiceTaskButton
 id weekdayLayout

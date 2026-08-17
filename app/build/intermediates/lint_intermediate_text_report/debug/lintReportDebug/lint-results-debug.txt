@@ -1,0 +1,1855 @@
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_main.xml:165: Warning: The vertically scrolling ScrollView should not contain another vertically scrolling widget (GridView) [NestedScrolling]
+            <GridView
+             ~~~~~~~~
+
+   Explanation for issues of type "NestedScrolling":
+   A scrolling widget such as a ScrollView should not contain any nested
+   scrolling widgets since this has various usability issues
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\AccountAdapter.java:54: Warning: Implicitly using the default locale is a common source of bugs: Use String.format(Locale, ...) instead [DefaultLocale]
+        holder.balanceText.setText(String.format("%.2f", account.getBalance()));
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\AccountAdapter.java:112: Warning: Implicitly using the default locale is a common source of bugs: Use toLowerCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+                if (account.getName().toLowerCase().contains(query.toLowerCase())) {
+                                      ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\AccountAdapter.java:112: Warning: Implicitly using the default locale is a common source of bugs: Use toLowerCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+                if (account.getName().toLowerCase().contains(query.toLowerCase())) {
+                                                                   ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\CalendarWidget.java:25: Warning: Implicitly using the default locale is a common source of bugs: Use toUpperCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+        String month = new SimpleDateFormat("MMM", Locale.getDefault()).format(calendar.getTime()).toUpperCase();
+                                                                                                   ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\CategoryActivity.java:198: Warning: Implicitly using the default locale is a common source of bugs: Use toLowerCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+        String lower = name.toLowerCase();
+                            ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\CategoryActivity.java:301: Warning: Implicitly using the default locale is a common source of bugs: Use toLowerCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+                    if (item.name.toLowerCase().contains(query.toLowerCase())) {
+                                  ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\CategoryActivity.java:301: Warning: Implicitly using the default locale is a common source of bugs: Use toLowerCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+                    if (item.name.toLowerCase().contains(query.toLowerCase())) {
+                                                               ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ChartActivity.java:262: Warning: Implicitly using the default locale is a common source of bugs: Use toLowerCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+        String low = category.toLowerCase();
+                              ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesActivity.java:1163: Warning: Implicitly using the default locale is a common source of bugs: Use toLowerCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+        String cmd = command.toLowerCase().trim();
+                             ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesActivity.java:1194: Warning: Implicitly using the default locale is a common source of bugs: Use toLowerCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+        String lower = categoryName.toLowerCase();
+                                    ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\SARCalendarWidget4x4.java:30: Warning: Implicitly using the default locale is a common source of bugs: Use toUpperCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+        views.setTextViewText(R.id.widget_day_name, new SimpleDateFormat("EEEE", Locale.getDefault()).format(now.getTime()).toUpperCase());
+                                                                                                                            ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\SARCalendarWidget4x4.java:32: Warning: Implicitly using the default locale is a common source of bugs: Use toUpperCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+        views.setTextViewText(R.id.widget_month_year, new SimpleDateFormat("MMMM yyyy", Locale.getDefault()).format(now.getTime()).toUpperCase());
+                                                                                                                                   ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\SecureBoxActivity.java:239: Warning: Implicitly using the default locale is a common source of bugs: Use toUpperCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+                String n = categoryPrefs.getString(k, k.substring(0,1).toUpperCase() + k.substring(1).replace("_notes", ""));
+                                                                       ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\SecureBoxActivity.java:476: Warning: Implicitly using the default locale is a common source of bugs: Use toLowerCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+            String k = n.toLowerCase().replace(" ", "_") + "_notes_" + System.currentTimeMillis(); categoryPrefs.edit().putString(k, n).apply();
+                         ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\TransactionNamesActivity.java:136: Warning: Implicitly using the default locale is a common source of bugs: Use toLowerCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+                    if (e.name.toLowerCase().contains(query.toLowerCase())) {
+                               ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\TransactionNamesActivity.java:136: Warning: Implicitly using the default locale is a common source of bugs: Use toLowerCase(Locale) instead. For strings meant to be internal use Locale.ROOT, otherwise Locale.getDefault(). [DefaultLocale]
+                    if (e.name.toLowerCase().contains(query.toLowerCase())) {
+                                                            ~~~~~~~~~~~
+
+   Explanation for issues of type "DefaultLocale":
+   Calling String#toLowerCase() or #toUpperCase() without specifying an
+   explicit locale is a common source of bugs. The reason for that is that
+   those methods will use the current locale on the user's device, and even
+   though the code appears to work correctly when you are developing the app,
+   it will fail in some locales. For example, in the Turkish locale, the
+   uppercase replacement for i is not I.
+
+   If you want the methods to just perform ASCII replacement, for example to
+   convert an enum name, call String#toUpperCase(Locale.ROOT) instead. If you
+   really want to use the current locale, call
+   String#toUpperCase(Locale.getDefault()) instead.
+
+   https://developer.android.com/reference/java/util/Locale.html#default_locale
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\MainActivity.java:271: Warning: Reflective access to mPopup, which is not part of the public SDK and therefore likely to change in future Android releases [DiscouragedPrivateApi]
+                java.lang.reflect.Field field = popup.getClass().getDeclaredField("mPopup");
+                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\MainActivity.java:780: Warning: Reflective access to mPopup, which is not part of the public SDK and therefore likely to change in future Android releases [DiscouragedPrivateApi]
+                java.lang.reflect.Field field = popup.getClass().getDeclaredField("mPopup");
+                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\MainActivity.java:1736: Warning: Reflective access to mPopup, which is not part of the public SDK and therefore likely to change in future Android releases [DiscouragedPrivateApi]
+                        java.lang.reflect.Field field = popup.getClass().getDeclaredField("mPopup");
+                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\TaskActivity.java:104: Warning: Reflective access to mPopup, which is not part of the public SDK and therefore likely to change in future Android releases [DiscouragedPrivateApi]
+            java.lang.reflect.Field field = popup.getClass().getDeclaredField("mPopup");
+                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "DiscouragedPrivateApi":
+   Usage of restricted non-SDK interface may throw an exception at runtime.
+   Accessing non-SDK methods or fields through reflection has a high
+   likelihood to break your app between versions, and is being restricted to
+   facilitate future app compatibility.
+
+   https://developer.android.com/preview/restrictions-non-sdk-interfaces
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\build.gradle.kts:16: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+        targetSdk = 36
+        ~~~~~~~~~~~~~~
+
+   Explanation for issues of type "OldTargetApi":
+   When your application or sdk runs on a version of Android that is more
+   recent than your targetSdk specifies that it has been tested with, various
+   compatibility modes kick in. This ensures that your application continues
+   to work, but it may look out of place. For example, if the targetSdk is
+   less than 14, your app may get an option button in the UI.
+
+   To fix this issue, set the targetSdk to the highest available value. Then
+   test your app to make sure everything works correctly. You may want to
+   consult the compatibility notes to see what changes apply to each version
+   you are adding support for:
+   https://developer.android.com/reference/android/os/Build.VERSION_CODES.html
+   as well as follow this guide:
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.
+   html
+
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:21: Warning: Attribute enableOnBackInvokedCallback is only used in API level 33 and higher (current min is 31) [UnusedAttribute]
+        android:enableOnBackInvokedCallback="true">
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedAttribute":
+   This check finds attributes set in XML files that were introduced in a
+   version newer than the oldest version targeted by your application (with
+   the minSdkVersion attribute).
+
+   This is not an error; the application will simply ignore the attribute.
+   However, if the attribute is important to the appearance or functionality
+   of your application, you should consider finding an alternative way to
+   achieve the same result with only available attributes, and then you can
+   optionally create a copy of the layout in a layout-vNN folder which will be
+   used on API NN or higher where you can take advantage of the newer
+   attribute.
+
+   Note: This check does not only apply to attributes. For example, some tags
+   can be unused too, such as the new <tag> element in layouts introduced in
+   API 21.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesSettingsActivity.java:29: Warning: Use SwitchCompat from AppCompat or SwitchMaterial from Material library [UseSwitchCompatOrMaterialCode from androidx.appcompat]
+    private Switch lockSwitch;
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseSwitchCompatOrMaterialCode":
+   Use SwitchCompat from AppCompat or SwitchMaterial from Material library
+
+   Vendor: Android Open Source Project
+   Identifier: androidx.appcompat
+   Feedback: https://issuetracker.google.com/issues/new?component=460343
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_settings.xml:79: Warning: Use SwitchCompat from AppCompat or SwitchMaterial from Material library [UseSwitchCompatOrMaterialXml from androidx.appcompat]
+            <Switch
+            ^
+
+   Explanation for issues of type "UseSwitchCompatOrMaterialXml":
+   Use SwitchCompat from AppCompat or SwitchMaterial from Material library
+
+   Vendor: Android Open Source Project
+   Identifier: androidx.appcompat
+   Feedback: https://issuetracker.google.com/issues/new?component=460343
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\drawable\ic_banner_foreground.xml:3: Warning: Limit vector icons sizes to 200×200 to keep icon drawing fast; see https://developer.android.com/studio/write/vector-asset-studio#when for more [VectorRaster]
+    android:width="320dp"
+                   ~~~~~
+
+   Explanation for issues of type "VectorRaster":
+   Vector icons require API 21 or API 24 depending on used features, but when
+   minSdkVersion is less than 21 or 24 and Android Gradle plugin 1.4 or higher
+   is used, a vector drawable placed in the drawable folder is automatically
+   moved to drawable-anydpi-v21 or drawable-anydpi-v24 and bitmap images are
+   generated for different screen resolutions for backwards compatibility.
+
+   However, there are some limitations to this raster image generation, and
+   this lint check flags elements and attributes that are not fully supported.
+   You should manually check whether the generated output is acceptable for
+   those older devices.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\build.gradle.kts:8: Warning: A newer version of compileSdk than 36 is available: 37 [GradleDependency]
+        version = release(36) {
+                  ^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\gradle\libs.versions.toml:6: Warning: A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.8.0 [GradleDependency]
+appcompat = "1.6.1"
+            ~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\gradle\libs.versions.toml:7: Warning: A newer version of com.google.android.material:material than 1.10.0 is available: 1.14.0 [GradleDependency]
+material = "1.10.0"
+           ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\gradle\libs.versions.toml:9: Warning: A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.2 [GradleDependency]
+constraintlayout = "2.1.4"
+                   ~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:169: Warning: Formatting %d followed by words ("selected"): This should probably be a plural rather than a string [PluralsCandidate]
+    <string name="items_selected">%d selected</string>
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "PluralsCandidate":
+   This lint check looks for potential errors in internationalization where
+   you have translated a message which involves a quantity and it looks like
+   other parts of the string may need grammatical changes.
+
+   For example, rather than something like this:
+     <string name="try_again">Try again in %d seconds.</string>
+   you should be using a plural:
+      <plurals name="try_again">
+           <item quantity="one">Try again in %d second</item>
+           <item quantity="other">Try again in %d seconds</item>
+       </plurals>
+   This will ensure that in other languages the right set of translations are
+   provided for the different quantity classes.
+
+   (This check depends on some heuristics, so it may not accurately determine
+   whether a string really should be a quantity. You can use tools:ignore to
+   filter out false positives.
+
+   https://developer.android.com/guide/topics/resources/string-resource.html#Plurals
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ImageEditorActivity.java:161: Warning: Avoid object allocations during draw/layout operations (preallocate and reuse instead) [DrawAllocation]
+                Paint cropPaint = new Paint();
+                                  ~~~~~~~~~~~
+
+   Explanation for issues of type "DrawAllocation":
+   You should avoid allocating objects during a drawing or layout operation.
+   These are called frequently, so a smooth UI can be interrupted by garbage
+   collection pauses caused by the object allocations.
+
+   The way this is generally handled is to allocate the needed objects up
+   front and to reuse them for each drawing operation.
+
+   Some methods allocate memory on your behalf (such as Bitmap.create), and
+   these should be handled in the same way.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\AccountAdapter.java:36: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        notifyDataSetChanged();
+        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\AccountAdapter.java:117: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        notifyDataSetChanged();
+        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\AccountAdapter.java:123: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        notifyDataSetChanged();
+        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\CategoryActivity.java:306: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+            notifyDataSetChanged();
+            ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\SecureBoxActivity.java:304: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        activeCategoryKey = k; activeCategoryColor = c; categoryAdapter.notifyDataSetChanged();
+                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\SecureBoxActivity.java:337: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        isSelectionMode = false; selectedIndices.clear(); selectionBar.setVisibility(View.GONE); noteAdapter.notifyDataSetChanged();
+                                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\TaskActivity.java:159: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+                    adapter.notifyDataSetChanged();
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\TransactionAdapter.java:40: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        notifyDataSetChanged();
+        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\TransactionNamesActivity.java:141: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+            notifyDataSetChanged();
+            ~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "NotifyDataSetChanged":
+   The RecyclerView adapter's onNotifyDataSetChanged method does not specify
+   what about the data set has changed, forcing any observers to assume that
+   all existing items and structure may no longer be valid. `LayoutManager`s
+   will be forced to fully rebind and relayout all visible views.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\mipmap-anydpi-v26: Warning: This folder configuration (v26) is unnecessary; minSdkVersion is 31. Merge all the resources in this folder into mipmap-anydpi. [ObsoleteSdkInt]
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\calendar_day_item.xml:2: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ ~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_accounts.xml:16: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+        <LinearLayout
+         ~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:10: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+    <LinearLayout
+     ~~~~~~~~~~~~
+
+   Explanation for issues of type "UseCompoundDrawables":
+   A LinearLayout which contains an ImageView and a TextView can be more
+   efficiently handled as a compound drawable (a single TextView, using the
+   drawableTop, drawableLeft, drawableRight and/or drawableBottom attributes
+   to draw one or more images adjacent to the text).
+
+   If the two widgets are offset from each other with margins, this can be
+   replaced with a drawablePadding attribute.
+
+   There's a lint quickfix to perform this conversion in the Eclipse plugin.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:56: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+    <LinearLayout
+     ~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:457: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+            <LinearLayout
+             ~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:123: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+    <LinearLayout
+     ~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_settings.xml:86: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+        <LinearLayout
+         ~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_summary_stat_row.xml:2: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ ~~~~~~~~~~~~
+
+   Explanation for issues of type "DisableBaselineAlignment":
+   When a LinearLayout is used to distribute the space proportionally between
+   nested layouts, the baseline alignment property should be turned off to
+   make the layout computation faster.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:80: Warning: Nested weights are bad for performance [NestedWeights]
+                android:layout_weight="1"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:106: Warning: Nested weights are bad for performance [NestedWeights]
+                android:layout_weight="1"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "NestedWeights":
+   Layout weights require a widget to be measured twice. When a LinearLayout
+   with non-zero weights is nested inside another LinearLayout with non-zero
+   weights, then the number of measurements increase exponentially.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_account_summary.xml:7: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:8: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_category.xml:7: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_chart.xml:7: Warning: Possible overdraw: Root element paints background @color/black with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="@color/black">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_daily_expenses.xml:8: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme.MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_deleted_transactions.xml:7: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expense_type.xml:8: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:8: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_settings.xml:7: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_image_editor.xml:5: Warning: Possible overdraw: Root element paints background @color/black with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="@color/black"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_income.xml:8: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_monthly_expenses.xml:8: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme.MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_notebook.xml:7: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_report_all.xml:7: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:8: Warning: Possible overdraw: Root element paints background @color/black with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="@color/black"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_summary.xml:7: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_task.xml:7: Warning: Possible overdraw: Root element paints background @color/black with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="@color/black">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_transaction_names.xml:7: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_transfer.xml:8: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_weekly_expenses.xml:8: Warning: Possible overdraw: Root element paints background #000000 with a theme that also paints a background (inferred theme is @style/Theme.MyCalendar2026SAR) [Overdraw]
+    android:background="#000000"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_transaction.xml:8: Warning: Possible overdraw: Root element paints background @color/black with a theme that also paints a background (inferred theme is @style/Theme.MyCalendar2026SAR) [Overdraw]
+    android:background="@color/black">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:5: Warning: Possible overdraw: Root element paints background #1A1A1A with a theme that also paints a background (inferred theme is @style/Theme.MyCalendar2026SAR) [Overdraw]
+    android:background="#1A1A1A"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_media_picker.xml:5: Warning: Possible overdraw: Root element paints background @color/black with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="@color/black"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_account_summary_row.xml:8: Warning: Possible overdraw: Root element paints background @color/card_dark with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="@color/card_dark"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_category.xml:8: Warning: Possible overdraw: Root element paints background ?attr/selectableItemBackground with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="?attr/selectableItemBackground">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_category_chip.xml:9: Warning: Possible overdraw: Root element paints background ?attr/selectableItemBackground with a theme that also paints a background (inferred theme is @style/Theme.MyCalendar2026SAR) [Overdraw]
+    android:background="?attr/selectableItemBackground"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_deleted_transaction_row.xml:6: Warning: Possible overdraw: Root element paints background @color/card_dark with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="@color/card_dark"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_expenses_calendar_day.xml:6: Warning: Possible overdraw: Root element paints background #1A1A1A with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="#1A1A1A"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_notebook_note.xml:7: Warning: Possible overdraw: Root element paints background ?attr/selectableItemBackground with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="?attr/selectableItemBackground"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_transaction_name_row.xml:6: Warning: Possible overdraw: Root element paints background ?attr/selectableItemBackground with a theme that also paints a background (inferred theme is @style/Theme_MyCalendar2026SAR) [Overdraw]
+    android:background="?attr/selectableItemBackground"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\nav_header_expenses.xml:5: Warning: Possible overdraw: Root element paints background #222222 with a theme that also paints a background (inferred theme is @style/Theme.MyCalendar2026SAR) [Overdraw]
+    android:background="#222222"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\notification_widget.xml:6: Warning: Possible overdraw: Root element paints background @color/black with a theme that also paints a background (inferred theme is @style/Theme.MyCalendar2026SAR) [Overdraw]
+    android:background="@color/black"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\sticky_widget.xml:6: Warning: Possible overdraw: Root element paints background #FFF176 with a theme that also paints a background (inferred theme is @style/Theme.MyCalendar2026SAR) [Overdraw]
+    android:background="#FFF176"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "Overdraw":
+   If you set a background drawable on a root view, then you should use a
+   custom theme where the theme background is null. Otherwise, the theme
+   background will be painted first, only to have your custom background
+   completely cover it; this is called "overdraw".
+
+   NOTE: This detector relies on figuring out which layouts are associated
+   with which activities based on scanning the Java code, and it's currently
+   doing that using an inexact pattern matching algorithm. Therefore, it can
+   incorrectly conclude which activity the layout is associated with and then
+   wrongly complain that a background-theme is hidden.
+
+   If you want your custom background on multiple pages, then you should
+   consider making a custom theme with your custom background and just using
+   that theme instead of a root element background.
+
+   Of course it's possible that your custom drawable is translucent and you
+   want it to be mixed with the background. However, you will get better
+   performance if you pre-mix the background with your drawable and use that
+   resulting image or color as a custom theme background instead.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\drawable\button_outline_green.xml:2: Warning: The resource R.drawable.button_outline_green appears to be unused [UnusedResources]
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\xml\calendar_agenda_widget_info.xml:2: Warning: The resource R.xml.calendar_agenda_widget_info appears to be unused [UnusedResources]
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\xml\calendar_widget_info.xml:2: Warning: The resource R.xml.calendar_widget_info appears to be unused [UnusedResources]
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\colors.xml:10: Warning: The resource R.color.light_brown appears to be unused [UnusedResources]
+    <color name="light_brown">#D2B48C</color>
+           ~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\colors.xml:12: Warning: The resource R.color.orange appears to be unused [UnusedResources]
+    <color name="orange">#FF9800</color>
+           ~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\colors.xml:15: Warning: The resource R.color.light_orange appears to be unused [UnusedResources]
+    <color name="light_orange">#FFCC80</color>
+           ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\colors.xml:17: Warning: The resource R.color.gold appears to be unused [UnusedResources]
+    <color name="gold">#FFD700</color>
+           ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\colors.xml:20: Warning: The resource R.color.hunter_green appears to be unused [UnusedResources]
+    <color name="hunter_green">#355E3B</color>
+           ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_transaction.xml:2: Warning: The resource R.layout.dialog_add_transaction appears to be unused [UnusedResources]
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\drawable\ic_add_circle.xml:1: Warning: The resource R.drawable.ic_add_circle appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\mipmap-xhdpi\ic_banner.png: Warning: The resource R.mipmap.ic_banner appears to be unused [UnusedResources]
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\ic_banner_background.xml:3: Warning: The resource R.color.ic_banner_background appears to be unused [UnusedResources]
+    <color name="ic_banner_background">#FFFFFF</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\drawable\ic_banner_foreground.xml:1: Warning: The resource R.drawable.ic_banner_foreground appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\drawable\ic_cat_business_color.xml:1: Warning: The resource R.drawable.ic_cat_business_color appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\drawable\ic_cat_edu_color.xml:1: Warning: The resource R.drawable.ic_cat_edu_color appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\drawable\ic_cat_ent_color.xml:1: Warning: The resource R.drawable.ic_cat_ent_color appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\drawable\ic_cat_grocery_color.xml:1: Warning: The resource R.drawable.ic_cat_grocery_color appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\drawable\ic_cat_money_color.xml:1: Warning: The resource R.drawable.ic_cat_money_color appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\drawable\ic_cat_utility_color.xml:1: Warning: The resource R.drawable.ic_cat_utility_color appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\drawable\ic_launcher_foreground.xml:1: Warning: The resource R.drawable.ic_launcher_foreground appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\mipmap-hdpi\ic_launcher_monochrome.webp: Warning: The resource R.mipmap.ic_launcher_monochrome appears to be unused [UnusedResources]
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\drawable\ic_remove_circle.xml:1: Warning: The resource R.drawable.ic_remove_circle appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_category_chip.xml:2: Warning: The resource R.layout.item_category_chip appears to be unused [UnusedResources]
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\sticky_widget.xml:2: Warning: The resource R.layout.sticky_widget appears to be unused [UnusedResources]
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\xml\sticky_widget_info.xml:2: Warning: The resource R.xml.sticky_widget_info appears to be unused [UnusedResources]
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\xml\sticky_widget_large_info.xml:2: Warning: The resource R.xml.sticky_widget_large_info appears to be unused [UnusedResources]
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\xml\sticky_widget_medium_info.xml:2: Warning: The resource R.xml.sticky_widget_medium_info appears to be unused [UnusedResources]
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\xml\sticky_widget_small_info.xml:2: Warning: The resource R.xml.sticky_widget_small_info appears to be unused [UnusedResources]
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:4: Warning: The resource R.string.note_saved appears to be unused [UnusedResources]
+    <string name="note_saved">Note saved!</string>
+            ~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:31: Warning: The resource R.string.add_accounts_title appears to be unused [UnusedResources]
+    <string name="add_accounts_title">Add Accounts</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:32: Warning: The resource R.string.add_income appears to be unused [UnusedResources]
+    <string name="add_income">Add Income</string>
+            ~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:33: Warning: The resource R.string.add_expense appears to be unused [UnusedResources]
+    <string name="add_expense">Add Expenses</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:34: Warning: The resource R.string.transaction appears to be unused [UnusedResources]
+    <string name="transaction">Transaction</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:35: Warning: The resource R.string.menu_home appears to be unused [UnusedResources]
+    <string name="menu_home">Home</string>
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:36: Warning: The resource R.string.menu_chart appears to be unused [UnusedResources]
+    <string name="menu_chart">Chart</string>
+            ~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:37: Warning: The resource R.string.chart_placeholder_title appears to be unused [UnusedResources]
+    <string name="chart_placeholder_title">Chart Schema Placeholder</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:38: Warning: The resource R.string.chart_placeholder_desc appears to be unused [UnusedResources]
+    <string name="chart_placeholder_desc">Your expense analytics will be displayed here as a chart.</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:57: Warning: The resource R.string.search_expenses_hint appears to be unused [UnusedResources]
+    <string name="search_expenses_hint">Search expenses...</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:63: Warning: The resource R.string.delete_success appears to be unused [UnusedResources]
+    <string name="delete_success">Note moved to trash</string>
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:78: Warning: The resource R.string.deleted_notes_btn appears to be unused [UnusedResources]
+    <string name="deleted_notes_btn">Show Deleted Notes</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:86: Warning: The resource R.string.income_categories appears to be unused [UnusedResources]
+    <string name="income_categories">Income Categories</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:87: Warning: The resource R.string.expense_categories appears to be unused [UnusedResources]
+    <string name="expense_categories">Expense Categories</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:158: Warning: The resource R.string.sticky_widget_small_description appears to be unused [UnusedResources]
+    <string name="sticky_widget_small_description">Sticky Notes Summary</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:159: Warning: The resource R.string.sticky_widget_medium_description appears to be unused [UnusedResources]
+    <string name="sticky_widget_medium_description">Sticky Notes Grid (Medium)</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:160: Warning: The resource R.string.sticky_widget_large_description appears to be unused [UnusedResources]
+    <string name="sticky_widget_large_description">Sticky Notes Grid (Large)</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:161: Warning: The resource R.string.task_widget_small_description appears to be unused [UnusedResources]
+    <string name="task_widget_small_description">Tasks Summary</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:162: Warning: The resource R.string.task_widget_medium_description appears to be unused [UnusedResources]
+    <string name="task_widget_medium_description">Tasks List (Medium)</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:163: Warning: The resource R.string.task_widget_large_description appears to be unused [UnusedResources]
+    <string name="task_widget_large_description">Tasks List (Large)</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:164: Warning: The resource R.string.today_widget_small_description appears to be unused [UnusedResources]
+    <string name="today_widget_small_description">Today\'s Notes Summary</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:165: Warning: The resource R.string.today_widget_medium_description appears to be unused [UnusedResources]
+    <string name="today_widget_medium_description">Today\'s Notes List (Medium)</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:166: Warning: The resource R.string.today_widget_large_description appears to be unused [UnusedResources]
+    <string name="today_widget_large_description">Today\'s Notes List (Large)</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:170: Warning: The resource R.string.cancel appears to be unused [UnusedResources]
+    <string name="cancel">Cancel</string>
+            ~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:171: Warning: The resource R.string.next appears to be unused [UnusedResources]
+    <string name="next">Next</string>
+            ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:172: Warning: The resource R.string.save appears to be unused [UnusedResources]
+    <string name="save">Save</string>
+            ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:177: Warning: The resource R.string.enter_amount_for appears to be unused [UnusedResources]
+    <string name="enter_amount_for">Enter Amount for %s</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\xml\task_widget_large_info.xml:2: Warning: The resource R.xml.task_widget_large_info appears to be unused [UnusedResources]
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\xml\task_widget_medium_info.xml:2: Warning: The resource R.xml.task_widget_medium_info appears to be unused [UnusedResources]
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\xml\task_widget_small_info.xml:2: Warning: The resource R.xml.task_widget_small_info appears to be unused [UnusedResources]
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\xml\today_widget_large_info.xml:2: Warning: The resource R.xml.today_widget_large_info appears to be unused [UnusedResources]
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\xml\today_widget_medium_info.xml:2: Warning: The resource R.xml.today_widget_medium_info appears to be unused [UnusedResources]
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\xml\today_widget_small_info.xml:2: Warning: The resource R.xml.today_widget_small_info appears to be unused [UnusedResources]
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+^
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests=true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests=true.
+
+   Available options:
+
+   **skip-libraries** (default is true):
+   Whether the unused resource check should skip reporting unused resources in libraries.
+
+   Many libraries will declare resources that are part of the library surface; other modules depending on the library will also reference the resources. To avoid reporting all these resources as unused (in the context of a library), the unused resource check normally skips reporting unused resources in libraries. Instead, run the unused resource check on the consuming app module (along with `checkDependencies=true`).
+
+   However, there are cases where you want to check that all the resources declared in a library are used; in that case, you can disable the skip option.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UnusedResources">
+           <option name="skip-libraries" value="true" />
+       </issue>
+   </lint>
+   ```
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_settings.xml:99: Warning: This LinearLayout layout or its LinearLayout parent is unnecessary; transfer the background attribute to the other view [UselessParent]
+            <LinearLayout
+             ~~~~~~~~~~~~
+
+   Explanation for issues of type "UselessParent":
+   A layout with children that has no siblings, is not a scrollview or a root
+   layout, and does not have a background, can be removed and have its
+   children moved directly into the parent for a flatter and more efficient
+   layout hierarchy.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_accounts.xml:60: Warning: This namespace declaration is redundant [RedundantNamespace]
+            <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "RedundantNamespace":
+   In Android XML documents, only specify the namespace on the root/document
+   element. Namespace declarations elsewhere in the document are typically
+   accidental leftovers from copy/pasting XML from other files or
+   documentation.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_accounts.xml:60: Warning: Unused namespace declaration xmlns:app; already declared on the root element [UnusedNamespace]
+            <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedNamespace":
+   Unused namespace declarations take up space and require processing that is
+   not necessary
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:5: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="note_hint">Enter note here...</string>
+                             ~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\values\strings.xml:57: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="search_expenses_hint">Search expenses...</string>
+                                        ~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "TypographyEllipsis":
+   You can replace the string "..." with a dedicated ellipsis character,
+   ellipsis character (u2026, &#8230;). This can help make the text more
+   readable.
+
+   https://en.wikipedia.org/wiki/Ellipsis
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:34: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:45: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:239: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:251: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:262: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_category.xml:51: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_category.xml:60: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:110: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+            <Button
+             ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:123: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+            <Button
+             ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:136: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+            <Button
+             ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:149: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+            <Button
+             ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:162: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+            <Button
+             ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:417: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+            <Button
+             ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:429: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+            <Button
+             ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_image_editor.xml:74: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_image_editor.xml:82: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_main.xml:363: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+            <Button
+             ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_main.xml:376: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+            <Button
+             ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_main.xml:390: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+            <Button
+             ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_main.xml:404: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+            <Button
+             ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_report_all.xml:50: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_report_all.xml:60: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_report_all.xml:71: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_report_all.xml:94: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_report_all.xml:104: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_deleted_transaction_row.xml:49: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_deleted_transaction_row.xml:59: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+        <Button
+         ~~~~~~
+
+   Explanation for issues of type "ButtonStyle":
+   Button bars typically use a borderless style for the buttons. Set the
+   style="?android:attr/buttonBarButtonStyle" attribute on each of the
+   buttons, and set style="?android:attr/buttonBarStyle" on the parent layout
+
+   https://d.android.com/r/studio-ui/designer/material/dialogs
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:161: Warning: This text field does not specify an inputType [TextFields]
+        <EditText
+         ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:191: Warning: This text field does not specify an inputType [TextFields]
+        <EditText
+         ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_task.xml:94: Warning: This text field does not specify an inputType [TextFields]
+            <EditText
+             ~~~~~~~~
+
+   Explanation for issues of type "TextFields":
+   Providing an inputType attribute on a text field improves usability because
+   depending on the data to be input, optimized keyboards can be shown to the
+   user (such as just digits and parentheses for a phone number). 
+
+   The lint detector also looks at the id of the view, and if the id offers a
+   hint of the purpose of the field (for example, the id contains the phrase
+   phone or email), then lint will also ensure that the inputType contains the
+   corresponding type attributes.
+
+   If you really want to keep the text field generic, you can suppress this
+   warning by setting inputType="text".
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\agenda_widget_item.xml:13: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+        android:textSize="10sp"
+        ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\calendar_day_item.xml:16: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+        android:textSize="10sp"
+        ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:31: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+            android:textSize="10sp"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:44: Warning: Avoid using sizes smaller than 11sp: 8sp [SmallSp]
+        android:textSize="8sp"
+        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:121: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                android:textSize="9sp" />
+                ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:149: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                android:textSize="9sp" />
+                ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:177: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                android:textSize="9sp" />
+                ~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SmallSp":
+   Avoid using sizes smaller than 11sp.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:130: Warning: Missing autofillHints attribute [Autofill]
+        <EditText
+         ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:161: Warning: Missing autofillHints attribute [Autofill]
+        <EditText
+         ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:191: Warning: Missing autofillHints attribute [Autofill]
+        <EditText
+         ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:139: Warning: Missing autofillHints attribute [Autofill]
+            <EditText
+             ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:158: Warning: Missing autofillHints attribute [Autofill]
+            <EditText
+             ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_task.xml:94: Warning: Missing autofillHints attribute [Autofill]
+            <EditText
+             ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_account.xml:19: Warning: Missing autofillHints attribute [Autofill]
+    <EditText
+     ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_account.xml:32: Warning: Missing autofillHints attribute [Autofill]
+    <EditText
+     ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_transaction.xml:28: Warning: Missing autofillHints attribute [Autofill]
+    <EditText
+     ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_transaction.xml:48: Warning: Missing autofillHints attribute [Autofill]
+    <EditText
+     ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_notebook_note.xml:8: Warning: Missing autofillHints attribute [Autofill]
+    <EditText
+     ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_notebook_note.xml:17: Warning: Missing autofillHints attribute [Autofill]
+    <EditText
+     ~~~~~~~~
+
+   Explanation for issues of type "Autofill":
+   Specify an autofillHints attribute when targeting SDK version 26 or higher
+   or explicitly specify that the view is not important for autofill. Your app
+   can help an autofill service classify the data correctly by providing the
+   meaning of each view that could be autofillable, such as views representing
+   usernames, passwords, credit card fields, email addresses, etc.
+
+   The hints can have any value, but it is recommended to use predefined
+   values like 'username' for a username or 'creditCardNumber' for a credit
+   card number. For a list of all predefined autofill hint constants, see the
+   AUTOFILL_HINT_ constants in the View reference at
+   https://developer.android.com/reference/android/view/View.html.
+
+   You can mark a view unimportant for autofill by specifying an
+   importantForAutofill attribute on that view or a parent view. See
+   https://developer.android.com/reference/android/view/View.html#setImportant
+   ForAutofill(int).
+
+   https://developer.android.com/guide/topics/text/autofill.html
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\build.gradle.kts:42: Warning: Use version catalog instead [UseTomlInstead]
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseTomlInstead":
+   If your project is using a libs.versions.toml file, you should place all
+   Gradle dependencies in the TOML file. This lint check looks for version
+   declarations outside of the TOML file and suggests moving them (and in the
+   IDE, provides a quickfix to performing the operation automatically).
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ImageEditorActivity.java:183: Warning: Custom view DrawingView overrides onTouchEvent but not performClick [ClickableViewAccessibility]
+        public boolean onTouchEvent(MotionEvent event) {
+                       ~~~~~~~~~~~~
+
+   Explanation for issues of type "ClickableViewAccessibility":
+   If a View that overrides onTouchEvent or uses an OnTouchListener does not
+   also implement performClick and call it when clicks are detected, the View
+   may not handle accessibility actions properly. Logic handling the click
+   actions should ideally be placed in View#performClick as some accessibility
+   services invoke performClick when a click action should occur.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:85: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:111: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:142: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:172: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:202: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:61: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+         ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:80: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+         ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_image_editor.xml:17: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+         ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_image_editor.xml:34: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+         ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_image_editor.xml:41: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+         ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_image_editor.xml:54: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_main.xml:33: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+         ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_main.xml:41: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+         ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_main.xml:49: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+         ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:34: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+         ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:41: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+         ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:48: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+         ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_task.xml:17: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+         ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_task.xml:52: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+         ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_task.xml:120: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageButton
+             ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_account.xml:124: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_media_picker.xml:18: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_media_picker.xml:41: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_media_picker.xml:64: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_category.xml:10: Warning: Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+     ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_category_chip.xml:13: Warning: Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+     ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_chart_detail.xml:15: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\notification_widget.xml:28: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\notification_widget.xml:37: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\notification_widget.xml:46: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\notification_widget.xml:55: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\notification_widget.xml:64: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\notification_widget.xml:73: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\sticky_note_item.xml:56: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+
+   Explanation for issues of type "ContentDescription":
+   Non-textual widgets like ImageViews and ImageButtons should use the
+   contentDescription attribute to specify a textual description of the widget
+   such that screen readers and other accessibility tools can adequately
+   describe the user interface.
+
+   Note that elements in application screens that are purely decorative and do
+   not provide any content or enable a user action should not have
+   accessibility content descriptions. In this case, set their descriptions to
+   @null. If your app's minSdkVersion is 16 or higher, you can instead set
+   these graphical elements' android:importantForAccessibility attributes to
+   no.
+
+   Note that for text fields, you should not set both the hint and the
+   contentDescription attributes since the hint will never be shown. Just set
+   the hint.
+
+   https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\AddTransactionActivity.java:171: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            titleView.setText("Cach in");
+                              ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\AddTransactionActivity.java:176: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            titleView.setText("Cach out");
+                              ~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\CalculatorDialogFragment.java:131: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                    display.setText("Error");
+                                    ~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ChartActivity.java:244: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+            percent.setText(p + "%");
+                            ~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesActivity.java:265: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                subTodayButton.setText("Today");
+                                       ~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesActivity.java:306: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                subWeeklyRangeButton.setText("Weekly");
+                                             ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesActivity.java:345: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                subMonthlyRangeButton.setText("Monthly");
+                                              ~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesActivity.java:383: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                subYearlyRangeButton.setText("Yearly");
+                                             ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesActivity.java:441: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                    topExpensesButton.setText("Expenses");
+                                              ~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesActivity.java:833: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        titleTv.setText("Update Note");
+                        ~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesActivity.java:842: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        btnUpdate.setText("SAVE");
+                          ~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesActivity.java:843: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        btnDelete.setText("CANCEL");
+                          ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesActivity.java:970: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            if (labelTotalCashIn != null) labelTotalCashIn.setText("Income");
+                                                                   ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesActivity.java:982: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            if (labelTotalCashIn != null) labelTotalCashIn.setText("TOTAL Cash In");
+                                                                   ~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesSettingsActivity.java:45: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+            versionText.setText("Version " + versionName);
+                                ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\ExpensesSettingsActivity.java:45: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            versionText.setText("Version " + versionName);
+                                ~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\MainActivity.java:1355: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        dateButton.setText("Date: " + sdf.format(noteDate.getTime()));
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\MainActivity.java:1355: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        dateButton.setText("Date: " + sdf.format(noteDate.getTime()));
+                           ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\MainActivity.java:1362: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                dateButton.setText("Date: " + sdf.format(noteDate.getTime()));
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\MainActivity.java:1362: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                dateButton.setText("Date: " + sdf.format(noteDate.getTime()));
+                                   ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\SecureBoxActivity.java:407: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+            if (selectedIndices.isEmpty()) exitSelectionMode(); else { selectionCountText.setText(selectedIndices.size() + " selected"); notifyItemChanged(pos); }
+                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\SecureBoxActivity.java:407: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            if (selectedIndices.isEmpty()) exitSelectionMode(); else { selectionCountText.setText(selectedIndices.size() + " selected"); notifyItemChanged(pos); }
+                                                                                                                           ~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\SecureBoxActivity.java:529: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        LinearLayout bl = new LinearLayout(this); bl.setGravity(android.view.Gravity.END); Button can = new Button(this); can.setText("Cancel"); applyFontSettings(can, 16); can.setOnClickListener(v -> d.dismiss()); bl.addView(can);
+                                                                                                                                      ~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\SecureBoxActivity.java:531: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        Button sh = new Button(this); sh.setText("Share"); applyFontSettings(sh, 16);
+                                                 ~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\SecureBoxActivity.java:548: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        Button pr = new Button(this); pr.setText("Print"); applyFontSettings(pr, 16); pr.setOnClickListener(v -> { String p = te.getText().toString() + (fce != null ? "\n\n" + fce.getText().toString() : "\n\n[Image]"); printSingleNote(p); }); bl.addView(pr);
+                                                 ~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\java\com\example\mycalendar2026sar\SecureBoxActivity.java:549: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        Button sa = new Button(this); sa.setText("Save"); applyFontSettings(sa, 16); sa.setOnClickListener(v -> { String nt = te.getText().toString().trim(), nc = fce != null ? fce.getText().toString().trim() : c; if (fce != null && nc.isEmpty()) Toast.makeText(this, "Empty", Toast.LENGTH_SHORT).show(); else { updateNote(k, idx, (nt.isEmpty() ? "No Name" : nt) + TITLE_SEP + nc); d.dismiss(); } }); bl.addView(sa);
+                                                 ~~~~~~
+
+   Explanation for issues of type "SetTextI18n":
+   When calling TextView#setText
+   * Never call Number#toString() to format numbers; it will not handle
+   fraction separators and locale-specific digits properly. Consider using
+   String#format with proper format specifications (%d or %f) instead.
+   * Do not pass a string literal (e.g. "Hello") to display text. Hardcoded
+   text can not be properly translated to other languages. Consider using
+   Android resource strings instead.
+   * Do not build messages by concatenating text chunks. Such messages can not
+   be properly translated.
+
+   https://developer.android.com/guide/topics/resources/localization.html
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_account_summary.xml:25: Warning: Hardcoded string "Back", should use @string resource [HardcodedText]
+            android:contentDescription="Back"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_account_summary.xml:55: Warning: Hardcoded string "Total Balance (All Accounts)", should use @string resource [HardcodedText]
+            android:text="Total Balance (All Accounts)"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_account_summary.xml:64: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+            android:text="0.00"
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_account_summary.xml:84: Warning: Hardcoded string "No accounts yet. Add one from Accounts.", should use @string resource [HardcodedText]
+        android:text="No accounts yet. Add one from Accounts."
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:16: Warning: Hardcoded string "Cach in", should use @string resource [HardcodedText]
+        android:text="Cach in"
+        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:41: Warning: Hardcoded string "Cach In", should use @string resource [HardcodedText]
+            android:text="Cach In"
+            ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:51: Warning: Hardcoded string "Cach Out", should use @string resource [HardcodedText]
+            android:text="Cach Out"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:81: Warning: Hardcoded string "02-08-2026", should use @string resource [HardcodedText]
+                android:text="02-08-2026"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:107: Warning: Hardcoded string "15:00", should use @string resource [HardcodedText]
+                android:text="15:00"
+                ~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:136: Warning: Hardcoded string "Cash in amount", should use @string resource [HardcodedText]
+            android:hint="Cash in amount"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:167: Warning: Hardcoded string "Items", should use @string resource [HardcodedText]
+            android:hint="Items"
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:197: Warning: Hardcoded string "Notes", should use @string resource [HardcodedText]
+            android:hint="Notes"
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:224: Warning: Hardcoded string "Add Bills", should use @string resource [HardcodedText]
+            android:text="Add Bills"
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:246: Warning: Hardcoded string "Delete", should use @string resource [HardcodedText]
+            android:text="Delete"
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:258: Warning: Hardcoded string "Save And Continue", should use @string resource [HardcodedText]
+            android:text="Save And Continue"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:268: Warning: Hardcoded string "Save And Exit", should use @string resource [HardcodedText]
+            android:text="Save And Exit"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_chart.xml:21: Warning: Hardcoded string "Back", should use @string resource [HardcodedText]
+            android:contentDescription="Back"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_chart.xml:31: Warning: Hardcoded string "Spending by category", should use @string resource [HardcodedText]
+            android:text="Spending by category"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_chart.xml:57: Warning: Hardcoded string "Total Accounts Breakdown", should use @string resource [HardcodedText]
+                android:text="Total Accounts Breakdown"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_chart.xml:86: Warning: Hardcoded string "Spending by Category", should use @string resource [HardcodedText]
+                android:text="Spending by Category"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_chart.xml:115: Warning: Hardcoded string "Daily Balance Trend ", should use @string resource [HardcodedText]
+                android:text="Daily Balance Trend "
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_deleted_transactions.xml:25: Warning: Hardcoded string "Back", should use @string resource [HardcodedText]
+            android:contentDescription="Back"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_deleted_transactions.xml:44: Warning: Hardcoded string "Empty trash", should use @string resource [HardcodedText]
+            android:contentDescription="Empty trash"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_deleted_transactions.xml:61: Warning: Hardcoded string "Trash is empty.", should use @string resource [HardcodedText]
+        android:text="Trash is empty."
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:66: Warning: Hardcoded string "🎙", should use @string resource [HardcodedText]
+            android:text="🎙"
+            ~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:196: Warning: Hardcoded string "All", should use @string resource [HardcodedText]
+                android:text="All"
+                ~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:248: Warning: Hardcoded string "27-07-2026 to 02-08-2026", should use @string resource [HardcodedText]
+                android:text="27-07-2026 to 02-08-2026"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:274: Warning: Hardcoded string "01-07-2026 to 31-07-2026", should use @string resource [HardcodedText]
+                android:text="01-07-2026 to 31-07-2026"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:300: Warning: Hardcoded string "01-01-2026 to 31-12-2026", should use @string resource [HardcodedText]
+                android:text="01-01-2026 to 31-12-2026"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:323: Warning: Hardcoded string "Description", should use @string resource [HardcodedText]
+                android:text="Description"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:340: Warning: Hardcoded string "Cash In", should use @string resource [HardcodedText]
+                android:text="Cash In"
+                ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:357: Warning: Hardcoded string "Cash Out", should use @string resource [HardcodedText]
+                android:text="Cash Out"
+                ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:374: Warning: Hardcoded string "Balance", should use @string resource [HardcodedText]
+                android:text="Balance"
+                ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:397: Warning: Hardcoded string "No transactions yet", should use @string resource [HardcodedText]
+            android:text="No transactions yet"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:474: Warning: Hardcoded string "TOTAL Cash In", should use @string resource [HardcodedText]
+                        android:text="TOTAL Cash In"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:485: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+                        android:text="0.00" />
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:498: Warning: Hardcoded string "TOTAL Cash Out", should use @string resource [HardcodedText]
+                        android:text="TOTAL Cash Out"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:509: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+                        android:text="0.00" />
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:522: Warning: Hardcoded string "Balance", should use @string resource [HardcodedText]
+                        android:text="Balance"
+                        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:533: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+                        android:text="0.00" />
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:556: Warning: Hardcoded string "Previous Balance", should use @string resource [HardcodedText]
+                    android:text="Previous Balance"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:565: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+                    android:text="0.00"
+                    ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:583: Warning: Hardcoded string "Final Balance", should use @string resource [HardcodedText]
+                    android:text="Final Balance"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses.xml:592: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+                    android:text="0.00"
+                    ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:27: Warning: Hardcoded string "Back", should use @string resource [HardcodedText]
+            android:contentDescription="Back"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:36: Warning: Hardcoded string "Calendar", should use @string resource [HardcodedText]
+            android:text="Calendar"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:46: Warning: Hardcoded string "More", should use @string resource [HardcodedText]
+            android:contentDescription="More"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:75: Warning: Hardcoded string "01-Aug-2026 -> 31-Aug-2026", should use @string resource [HardcodedText]
+            android:text="01-Aug-2026 -> 31-Aug-2026"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:99: Warning: Hardcoded string "Mon", should use @string resource [HardcodedText]
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Mon" android:textColor="@color/white" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
+                                                                                                            ~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:100: Warning: Hardcoded string "Tue", should use @string resource [HardcodedText]
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Tue" android:textColor="@color/white" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
+                                                                                                            ~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:101: Warning: Hardcoded string "Wed", should use @string resource [HardcodedText]
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Wed" android:textColor="@color/white" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
+                                                                                                            ~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:102: Warning: Hardcoded string "Thu", should use @string resource [HardcodedText]
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Thu" android:textColor="@color/white" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
+                                                                                                            ~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:103: Warning: Hardcoded string "Fri", should use @string resource [HardcodedText]
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Fri" android:textColor="@color/white" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
+                                                                                                            ~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:104: Warning: Hardcoded string "Sat", should use @string resource [HardcodedText]
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Sat" android:textColor="@color/white" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
+                                                                                                            ~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:105: Warning: Hardcoded string "Sun", should use @string resource [HardcodedText]
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Sun" android:textColor="@color/white" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
+                                                                                                            ~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:141: Warning: Hardcoded string "Total Cash In", should use @string resource [HardcodedText]
+                android:text="Total Cash In"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:148: Warning: Hardcoded string "0", should use @string resource [HardcodedText]
+                android:text="0"
+                ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:164: Warning: Hardcoded string "Total Cash Out", should use @string resource [HardcodedText]
+                android:text="Total Cash Out"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:171: Warning: Hardcoded string "0", should use @string resource [HardcodedText]
+                android:text="0"
+                ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:187: Warning: Hardcoded string "Balance", should use @string resource [HardcodedText]
+                android:text="Balance"
+                ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_calendar.xml:194: Warning: Hardcoded string "0", should use @string resource [HardcodedText]
+                android:text="0"
+                ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_settings.xml:25: Warning: Hardcoded string "Back", should use @string resource [HardcodedText]
+            android:contentDescription="Back"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_settings.xml:66: Warning: Hardcoded string "Require Password for Expenses", should use @string resource [HardcodedText]
+                    android:text="Require Password for Expenses"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_settings.xml:74: Warning: Hardcoded string "Ask for the app password before opening Expenses", should use @string resource [HardcodedText]
+                    android:text="Ask for the app password before opening Expenses"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_settings.xml:108: Warning: Hardcoded string "Clear All Expense Data", should use @string resource [HardcodedText]
+                    android:text="Clear All Expense Data"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_settings.xml:116: Warning: Hardcoded string "Deletes every transaction. Accounts are kept.", should use @string resource [HardcodedText]
+                    android:text="Deletes every transaction. Accounts are kept."
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_expenses_settings.xml:143: Warning: Hardcoded string "Version 1.0", should use @string resource [HardcodedText]
+                android:text="Version 1.0"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_image_editor.xml:29: Warning: Hardcoded string "Edit Image", should use @string resource [HardcodedText]
+            android:text="Edit Image"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_image_editor.xml:78: Warning: Hardcoded string "Draw", should use @string resource [HardcodedText]
+            android:text="Draw"
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_image_editor.xml:87: Warning: Hardcoded string "Text", should use @string resource [HardcodedText]
+            android:text="Text"
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_main.xml:28: Warning: Hardcoded string "0 selected", should use @string resource [HardcodedText]
+            android:text="0 selected"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_main.xml:76: Warning: Hardcoded string "Menu", should use @string resource [HardcodedText]
+                android:contentDescription="Menu"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_main.xml:291: Warning: Hardcoded string "🎙", should use @string resource [HardcodedText]
+                android:text="🎙"
+                ~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_main.xml:351: Warning: Hardcoded string "Voice Note", should use @string resource [HardcodedText]
+                android:contentDescription="Voice Note"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_main.xml:373: Warning: Hardcoded string "Task", should use @string resource [HardcodedText]
+                android:text="Task"
+                ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_notebook.xml:25: Warning: Hardcoded string "Back", should use @string resource [HardcodedText]
+            android:contentDescription="Back"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_notebook.xml:44: Warning: Hardcoded string "Add note", should use @string resource [HardcodedText]
+            android:contentDescription="Add note"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_notebook.xml:62: Warning: Hardcoded string "No notes yet. Tap + to add one.", should use @string resource [HardcodedText]
+        android:text="No notes yet. Tap + to add one."
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_report_all.xml:25: Warning: Hardcoded string "Back", should use @string resource [HardcodedText]
+            android:contentDescription="Back"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_report_all.xml:56: Warning: Hardcoded string "Month", should use @string resource [HardcodedText]
+            android:text="Month"
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_report_all.xml:67: Warning: Hardcoded string "Year", should use @string resource [HardcodedText]
+            android:text="Year"
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_report_all.xml:78: Warning: Hardcoded string "All Time", should use @string resource [HardcodedText]
+            android:text="All Time"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_report_all.xml:123: Warning: Hardcoded string "Total: 0.00", should use @string resource [HardcodedText]
+        android:text="Total: 0.00"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_report_all.xml:142: Warning: Hardcoded string "No transactions in this period.", should use @string resource [HardcodedText]
+        android:text="No transactions in this period."
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:29: Warning: Hardcoded string "0 selected", should use @string resource [HardcodedText]
+            android:text="0 selected"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:69: Warning: Hardcoded string "Back", should use @string resource [HardcodedText]
+            android:contentDescription="Back"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:79: Warning: Hardcoded string "Secure Box", should use @string resource [HardcodedText]
+            android:text="Secure Box"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:94: Warning: Hardcoded string "+", should use @string resource [HardcodedText]
+            android:text="+"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:144: Warning: Hardcoded string "Title (Name)", should use @string resource [HardcodedText]
+                android:hint="Title (Name)"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:164: Warning: Hardcoded string "Enter note...", should use @string resource [HardcodedText]
+                android:hint="Enter note..."
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:185: Warning: Hardcoded string "Camera Note", should use @string resource [HardcodedText]
+                    android:contentDescription="Camera Note"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:193: Warning: Hardcoded string "Voice Note", should use @string resource [HardcodedText]
+                    android:contentDescription="Voice Note"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:202: Warning: Hardcoded string "Save Note", should use @string resource [HardcodedText]
+                    android:contentDescription="Save Note"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_summary.xml:25: Warning: Hardcoded string "Back", should use @string resource [HardcodedText]
+            android:contentDescription="Back"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_summary.xml:58: Warning: Hardcoded string "This Month", should use @string resource [HardcodedText]
+                android:text="This Month"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_summary.xml:71: Warning: Hardcoded string "This Year", should use @string resource [HardcodedText]
+                android:text="This Year"
+                ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_summary.xml:84: Warning: Hardcoded string "All Time", should use @string resource [HardcodedText]
+                android:text="All Time"
+                ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_task.xml:43: Warning: Hardcoded string "Tasks", should use @string resource [HardcodedText]
+            android:text="Tasks"
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_task.xml:101: Warning: Hardcoded string "Add a new task...", should use @string resource [HardcodedText]
+                android:hint="Add a new task..."
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_task.xml:118: Warning: Hardcoded string "Voice Input", should use @string resource [HardcodedText]
+                android:contentDescription="Voice Input" />
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_transaction_names.xml:25: Warning: Hardcoded string "Back", should use @string resource [HardcodedText]
+            android:contentDescription="Back"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_transaction_names.xml:44: Warning: Hardcoded string "Add name", should use @string resource [HardcodedText]
+            android:contentDescription="Add name"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_transaction_names.xml:73: Warning: Hardcoded string "No saved names yet. Tap + to add one.", should use @string resource [HardcodedText]
+        android:text="No saved names yet. Tap + to add one."
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\calendar_agenda_widget.xml:16: Warning: Hardcoded string "Upcoming SAR Notes", should use @string resource [HardcodedText]
+        android:text="Upcoming SAR Notes"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\calendar_agenda_widget.xml:35: Warning: Hardcoded string "No upcoming notes", should use @string resource [HardcodedText]
+        android:text="No upcoming notes"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_accounts.xml:27: Warning: Hardcoded string "Accounts Logo", should use @string resource [HardcodedText]
+                android:contentDescription="Accounts Logo"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_accounts.xml:56: Warning: Hardcoded string "Edit", should use @string resource [HardcodedText]
+                android:text="Edit"
+                ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_accounts.xml:63: Warning: Hardcoded string "Edit Logo", should use @string resource [HardcodedText]
+                android:contentDescription="Edit Logo"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_accounts.xml:99: Warning: Hardcoded string "Add Accounts", should use @string resource [HardcodedText]
+        android:text="Add Accounts"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_account.xml:14: Warning: Hardcoded string "Add Account", should use @string resource [HardcodedText]
+        android:text="Add Account"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_account.xml:25: Warning: Hardcoded string "Name", should use @string resource [HardcodedText]
+        android:hint="Name"
+        ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_account.xml:38: Warning: Hardcoded string "Opening Balance [Optional]", should use @string resource [HardcodedText]
+        android:hint="Opening Balance [Optional]"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_account.xml:71: Warning: Hardcoded string "+", should use @string resource [HardcodedText]
+                android:text="+"
+                ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_account.xml:96: Warning: Hardcoded string "-", should use @string resource [HardcodedText]
+                android:text="-"
+                ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_account.xml:119: Warning: Hardcoded string "15-Aug-2026", should use @string resource [HardcodedText]
+            android:text="15-Aug-2026"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_account.xml:144: Warning: Hardcoded string "Cancel", should use @string resource [HardcodedText]
+            android:text="Cancel"
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_account.xml:155: Warning: Hardcoded string "Save", should use @string resource [HardcodedText]
+            android:text="Save"
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_transaction.xml:14: Warning: Hardcoded string "Add Transaction", should use @string resource [HardcodedText]
+        android:text="Add Transaction"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_transaction.xml:23: Warning: Hardcoded string "Description", should use @string resource [HardcodedText]
+        android:text="Description"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_transaction.xml:33: Warning: Hardcoded string "e.g. Salary, Rent, Food", should use @string resource [HardcodedText]
+        android:hint="e.g. Salary, Rent, Food"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_transaction.xml:43: Warning: Hardcoded string "Amount", should use @string resource [HardcodedText]
+        android:text="Amount"
+        ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_transaction.xml:53: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+        android:hint="0.00"
+        ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_add_transaction.xml:63: Warning: Hardcoded string "Quick Selection", should use @string resource [HardcodedText]
+        android:text="Quick Selection"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:17: Warning: Hardcoded string "0", should use @string resource [HardcodedText]
+        android:text="0"
+        ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:34: Warning: Hardcoded string "C", should use @string resource [HardcodedText]
+            android:text="C"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:43: Warning: Hardcoded string "⌫", should use @string resource [HardcodedText]
+            android:text="⌫"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:52: Warning: Hardcoded string "÷", should use @string resource [HardcodedText]
+            android:text="÷"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:61: Warning: Hardcoded string "×", should use @string resource [HardcodedText]
+            android:text="×"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:71: Warning: Hardcoded string "7", should use @string resource [HardcodedText]
+            android:text="7"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:80: Warning: Hardcoded string "8", should use @string resource [HardcodedText]
+            android:text="8"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:89: Warning: Hardcoded string "9", should use @string resource [HardcodedText]
+            android:text="9"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:98: Warning: Hardcoded string "-", should use @string resource [HardcodedText]
+            android:text="-"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:108: Warning: Hardcoded string "4", should use @string resource [HardcodedText]
+            android:text="4"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:117: Warning: Hardcoded string "5", should use @string resource [HardcodedText]
+            android:text="5"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:126: Warning: Hardcoded string "6", should use @string resource [HardcodedText]
+            android:text="6"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:135: Warning: Hardcoded string "+", should use @string resource [HardcodedText]
+            android:text="+"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:145: Warning: Hardcoded string "1", should use @string resource [HardcodedText]
+            android:text="1"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:154: Warning: Hardcoded string "2", should use @string resource [HardcodedText]
+            android:text="2"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:163: Warning: Hardcoded string "3", should use @string resource [HardcodedText]
+            android:text="3"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:174: Warning: Hardcoded string "=", should use @string resource [HardcodedText]
+            android:text="="
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:186: Warning: Hardcoded string "0", should use @string resource [HardcodedText]
+            android:text="0"
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:195: Warning: Hardcoded string ".", should use @string resource [HardcodedText]
+            android:text="."
+            ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:213: Warning: Hardcoded string "Cancel", should use @string resource [HardcodedText]
+            android:text="Cancel"
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_calculator.xml:221: Warning: Hardcoded string "OK", should use @string resource [HardcodedText]
+            android:text="OK"
+            ~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_media_picker.xml:27: Warning: Hardcoded string "Camera (Take Document Photo)", should use @string resource [HardcodedText]
+            android:text="Camera (Take Document Photo)"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_media_picker.xml:50: Warning: Hardcoded string "Gallery (Choose Picture)", should use @string resource [HardcodedText]
+            android:text="Gallery (Choose Picture)"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_media_picker.xml:73: Warning: Hardcoded string "PDF (Convert Page to Note)", should use @string resource [HardcodedText]
+            android:text="PDF (Convert Page to Note)"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_notebook_note.xml:12: Warning: Hardcoded string "Title", should use @string resource [HardcodedText]
+        android:hint="Title"
+        ~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_notebook_note.xml:23: Warning: Hardcoded string "Note", should use @string resource [HardcodedText]
+        android:hint="Note"
+        ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_transaction_note.xml:13: Warning: Hardcoded string "Transaction Note", should use @string resource [HardcodedText]
+        android:text="Transaction Note"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_transaction_note.xml:38: Warning: Hardcoded string "UPDATE", should use @string resource [HardcodedText]
+            android:text="UPDATE"
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_transaction_note.xml:48: Warning: Hardcoded string "DELETE", should use @string resource [HardcodedText]
+            android:text="DELETE"
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_transaction_note.xml:58: Warning: Hardcoded string "EDIT", should use @string resource [HardcodedText]
+            android:text="EDIT"
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_account.xml:23: Warning: Hardcoded string "Account Icon", should use @string resource [HardcodedText]
+            android:contentDescription="Account Icon"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_account.xml:34: Warning: Hardcoded string "Move Up", should use @string resource [HardcodedText]
+            android:contentDescription="Move Up" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_account.xml:44: Warning: Hardcoded string "Move Down", should use @string resource [HardcodedText]
+            android:contentDescription="Move Down" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_account.xml:51: Warning: Hardcoded string "Account Name", should use @string resource [HardcodedText]
+            android:text="Account Name"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_account.xml:60: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+            android:text="0.00"
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_account.xml:74: Warning: Hardcoded string "Delete Account", should use @string resource [HardcodedText]
+            android:contentDescription="Delete Account"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_account_summary_row.xml:23: Warning: Hardcoded string "Account Name", should use @string resource [HardcodedText]
+            android:text="Account Name"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_account_summary_row.xml:32: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+            android:text="0.00"
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_account_summary_row.xml:49: Warning: Hardcoded string "This month In: 0.00", should use @string resource [HardcodedText]
+            android:text="This month In: 0.00"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_account_summary_row.xml:59: Warning: Hardcoded string "This month Out: 0.00", should use @string resource [HardcodedText]
+            android:text="This month Out: 0.00"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_category_chip.xml:24: Warning: Hardcoded string "Category", should use @string resource [HardcodedText]
+        android:text="Category"
+        ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_chart_detail.xml:29: Warning: Hardcoded string "Category", should use @string resource [HardcodedText]
+            android:text="Category"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_chart_detail.xml:38: Warning: Hardcoded string "0%", should use @string resource [HardcodedText]
+            android:text="0%"
+            ~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_chart_detail.xml:46: Warning: Hardcoded string "0.00 $", should use @string resource [HardcodedText]
+            android:text="0.00 $"
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_deleted_transaction_row.xml:20: Warning: Hardcoded string "Title", should use @string resource [HardcodedText]
+            android:text="Title"
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_deleted_transaction_row.xml:29: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+            android:text="0.00"
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_deleted_transaction_row.xml:39: Warning: Hardcoded string "Date", should use @string resource [HardcodedText]
+        android:text="Date"
+        ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_deleted_transaction_row.xml:55: Warning: Hardcoded string "Restore", should use @string resource [HardcodedText]
+            android:text="Restore"
+            ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_deleted_transaction_row.xml:66: Warning: Hardcoded string "Delete Forever", should use @string resource [HardcodedText]
+            android:text="Delete Forever"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_notebook_note.xml:23: Warning: Hardcoded string "Title", should use @string resource [HardcodedText]
+            android:text="Title"
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_notebook_note.xml:33: Warning: Hardcoded string "Delete note", should use @string resource [HardcodedText]
+            android:contentDescription="Delete note"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_notebook_note.xml:45: Warning: Hardcoded string "Note body", should use @string resource [HardcodedText]
+        android:text="Note body"
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_notebook_note.xml:54: Warning: Hardcoded string "Date", should use @string resource [HardcodedText]
+        android:text="Date"
+        ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_report_category_row.xml:20: Warning: Hardcoded string "Category", should use @string resource [HardcodedText]
+            android:text="Category"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_report_category_row.xml:29: Warning: Hardcoded string "0%", should use @string resource [HardcodedText]
+            android:text="0%"
+            ~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_report_category_row.xml:37: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+            android:text="0.00"
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_summary_stat_row.xml:19: Warning: Hardcoded string "Cash In", should use @string resource [HardcodedText]
+            android:text="Cash In"
+            ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_summary_stat_row.xml:28: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+            android:text="0.00"
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_summary_stat_row.xml:47: Warning: Hardcoded string "Cash Out", should use @string resource [HardcodedText]
+            android:text="Cash Out"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_summary_stat_row.xml:56: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+            android:text="0.00"
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_summary_stat_row.xml:74: Warning: Hardcoded string "Net", should use @string resource [HardcodedText]
+            android:text="Net"
+            ~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_summary_stat_row.xml:83: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+            android:text="0.00"
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_task.xml:29: Warning: Hardcoded string "Delete Task", should use @string resource [HardcodedText]
+        android:contentDescription="Delete Task"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_transaction_header.xml:15: Warning: Hardcoded string "Today", should use @string resource [HardcodedText]
+        android:text="Today"
+        ~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_transaction_name_row.xml:16: Warning: Hardcoded string "Name", should use @string resource [HardcodedText]
+        android:text="Name"
+        ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_transaction_name_row.xml:25: Warning: Hardcoded string "Edit", should use @string resource [HardcodedText]
+        android:contentDescription="Edit"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_transaction_name_row.xml:35: Warning: Hardcoded string "Delete", should use @string resource [HardcodedText]
+        android:contentDescription="Delete"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_transaction_row.xml:28: Warning: Hardcoded string "Transaction", should use @string resource [HardcodedText]
+            android:text="Transaction" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_transaction_row.xml:37: Warning: Hardcoded string "12:00 PM", should use @string resource [HardcodedText]
+            android:text="12:00 PM" />
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_transaction_row.xml:57: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+        android:text="0.00" />
+        ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_transaction_row.xml:75: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+        android:text="0.00" />
+        ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\item_transaction_row.xml:92: Warning: Hardcoded string "0.00", should use @string resource [HardcodedText]
+        android:text="0.00" />
+        ~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\menu\main_popup_menu.xml:6: Warning: Hardcoded string "New Note", should use @string resource [HardcodedText]
+        android:title="New Note" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\menu\main_popup_menu.xml:10: Warning: Hardcoded string "New Voice Note", should use @string resource [HardcodedText]
+        android:title="New Voice Note" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\menu\main_popup_menu.xml:14: Warning: Hardcoded string "New Sticky Note", should use @string resource [HardcodedText]
+        android:title="New Sticky Note" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\menu\main_popup_menu.xml:18: Warning: Hardcoded string "Secure Box", should use @string resource [HardcodedText]
+        android:title="Secure Box" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\menu\main_popup_menu.xml:22: Warning: Hardcoded string "Expenses", should use @string resource [HardcodedText]
+        android:title="Expenses" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\menu\main_popup_menu.xml:26: Warning: Hardcoded string "Change Password", should use @string resource [HardcodedText]
+        android:title="Change Password" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\menu\main_popup_menu.xml:30: Warning: Hardcoded string "Notification Settings", should use @string resource [HardcodedText]
+        android:title="Notification Settings" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\menu\main_popup_menu.xml:34: Warning: Hardcoded string "Toggle Quick Note Bar", should use @string resource [HardcodedText]
+        android:title="Toggle Quick Note Bar" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\menu\main_popup_menu.xml:38: Warning: Hardcoded string "Change Colors", should use @string resource [HardcodedText]
+        android:title="Change Colors" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\menu\main_popup_menu.xml:42: Warning: Hardcoded string "Change Font", should use @string resource [HardcodedText]
+        android:title="Change Font" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\menu\main_popup_menu.xml:46: Warning: Hardcoded string "Backup Data", should use @string resource [HardcodedText]
+        android:title="Backup Data" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\menu\main_popup_menu.xml:50: Warning: Hardcoded string "Print", should use @string resource [HardcodedText]
+        android:title="Print" />
+        ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\menu\main_popup_menu.xml:54: Warning: Hardcoded string "About", should use @string resource [HardcodedText]
+        android:title="About" />
+        ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\menu\main_popup_menu.xml:58: Warning: Hardcoded string "Exit", should use @string resource [HardcodedText]
+        android:title="Exit" />
+        ~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\notification_widget.xml:17: Warning: Hardcoded string "SAR Calendar", should use @string resource [HardcodedText]
+        android:text="SAR Calendar"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\sticky_widget.xml:14: Warning: Hardcoded string "Sticky Note", should use @string resource [HardcodedText]
+        android:text="Sticky Note"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\sticky_widget.xml:23: Warning: Hardcoded string "No note saved yet.", should use @string resource [HardcodedText]
+        android:text="No note saved yet."
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:23: Warning: Hardcoded string "SAR Logo", should use @string resource [HardcodedText]
+            android:contentDescription="SAR Logo" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:29: Warning: Hardcoded string "SAR CALENDAR", should use @string resource [HardcodedText]
+            android:text="SAR CALENDAR"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:42: Warning: Hardcoded string "2026 DASHBOARD", should use @string resource [HardcodedText]
+        android:text="2026 DASHBOARD"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:61: Warning: Hardcoded string "WEDNESDAY", should use @string resource [HardcodedText]
+            android:text="WEDNESDAY"
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:71: Warning: Hardcoded string "16", should use @string resource [HardcodedText]
+            android:text="16"
+            ~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:81: Warning: Hardcoded string "JULY 2026", should use @string resource [HardcodedText]
+            android:text="JULY 2026"
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:107: Warning: Hardcoded string "Today", should use @string resource [HardcodedText]
+                android:contentDescription="Today" />
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:112: Warning: Hardcoded string "3", should use @string resource [HardcodedText]
+                android:text="3"
+                ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:119: Warning: Hardcoded string "TODAY", should use @string resource [HardcodedText]
+                android:text="TODAY"
+                ~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:135: Warning: Hardcoded string "Sticky", should use @string resource [HardcodedText]
+                android:contentDescription="Sticky" />
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:140: Warning: Hardcoded string "5", should use @string resource [HardcodedText]
+                android:text="5"
+                ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:147: Warning: Hardcoded string "STICKY", should use @string resource [HardcodedText]
+                android:text="STICKY"
+                ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:163: Warning: Hardcoded string "Tasks", should use @string resource [HardcodedText]
+                android:contentDescription="Tasks" />
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:168: Warning: Hardcoded string "2", should use @string resource [HardcodedText]
+                android:text="2"
+                ~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\widget_sar_4x4.xml:175: Warning: Hardcoded string "TASKS", should use @string resource [HardcodedText]
+                android:text="TASKS"
+                ~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "HardcodedText":
+   Hardcoding text attributes directly in layout files is bad for several
+   reasons:
+
+   * When creating configuration variations (for example for landscape or
+   portrait) you have to repeat the actual text (and keep it up to date when
+   making changes)
+
+   * The application cannot be translated to other languages by just adding
+   new translations for existing string resources.
+
+   There are quickfixes to automatically extract this hardcoded string into a
+   resource lookup.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\dialog_accounts.xml:16: Warning: LinearLayout-1 can overlap @id/editAccountsButton if LinearLayout-1 grows due to localized text expansion [RelativeOverlap]
+        <LinearLayout
+         ~~~~~~~~~~~~
+
+   Explanation for issues of type "RelativeOverlap":
+   If relative layout has text or button items aligned to left and right sides
+   they can overlap each other due to localized text expansion unless they
+   have mutual constraints like toEndOf/toStartOf.
+
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_add_transaction.xml:223: Warning: When you define paddingStart you should probably also define paddingEnd for right-to-left symmetry [RtlSymmetry]
+            android:paddingStart="12dp"
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\res\layout\activity_secure_box.xml:177: Warning: When you define paddingEnd you should probably also define paddingStart for right-to-left symmetry [RtlSymmetry]
+                android:paddingEnd="4dp"
+                ~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "RtlSymmetry":
+   If you specify padding or margin on the left side of a layout, you should
+   probably also specify padding on the right side (and vice versa) for
+   right-to-left layout symmetry.
+
+0 errors, 492 warnings

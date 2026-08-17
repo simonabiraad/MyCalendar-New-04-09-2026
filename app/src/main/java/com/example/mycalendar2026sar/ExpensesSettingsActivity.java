@@ -107,6 +107,11 @@ public class ExpensesSettingsActivity extends AppCompatActivity {
                         @Override
                         public void onAuthenticationError(int errorCode, @androidx.annotation.NonNull CharSequence errString) {
                             super.onAuthenticationError(errorCode, errString);
+                            if (errorCode != BiometricPrompt.ERROR_USER_CANCELED && 
+                                errorCode != BiometricPrompt.ERROR_NEGATIVE_BUTTON &&
+                                errorCode != BiometricPrompt.ERROR_CANCELED) {
+                                Toast.makeText(ExpensesSettingsActivity.this, "Authentication error: " + errString, Toast.LENGTH_SHORT).show();
+                            }
                             refreshSwitchState();
                         }
 

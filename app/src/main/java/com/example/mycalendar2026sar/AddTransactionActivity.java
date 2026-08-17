@@ -168,12 +168,12 @@ public class AddTransactionActivity extends AppCompatActivity {
         int inactiveColor = ContextCompat.getColor(this, R.color.gray);
 
         if (Transaction.TYPE_CASH_IN.equals(type)) {
-            titleView.setText("Cach in");
+            titleView.setText("Cash in");
             btnCashIn.setBackgroundTintList(ColorStateList.valueOf(activeColor));
             btnCashOut.setBackgroundTintList(ColorStateList.valueOf(inactiveColor));
             editAmount.setHint("Cash in amount");
         } else {
-            titleView.setText("Cach out");
+            titleView.setText("Cash out");
             btnCashIn.setBackgroundTintList(ColorStateList.valueOf(inactiveColor));
             btnCashOut.setBackgroundTintList(ColorStateList.valueOf(activeColor));
             editAmount.setHint("Cash out amount");

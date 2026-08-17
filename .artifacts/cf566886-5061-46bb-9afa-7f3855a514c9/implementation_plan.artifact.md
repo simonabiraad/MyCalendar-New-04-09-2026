@@ -1,41 +1,49 @@
-# Implementation Plan - Task Voice Input and UI Expansion
+# Implementation Plan - Redesign Accounts List Dialog
 
-The goal is to enhance the Task page by making the "Add New Task" area larger for easier multi-line input and adding a voice-to-text button for hands-free task creation.
+The goal is to redesign the "Accounts" list dialog to match the professional dark-themed visual style of the app, including white text, an outlined "ADD ACCOUNTS" button, and a dark rounded background.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> The "Add a new task..." input box will now be taller to comfortably fit two lines of text. A new colored Voice button will be added next to the Add (+) button.
+> - The dialog background will change from green to dark gray/black.
+> - The "ADD ACCOUNTS" button will now have a green border instead of a solid green fill.
+> - All text and icons within the list will be updated to be legible in dark mode.
 
 ## Proposed Changes
 
-### Task Layout
+### [Component Name] UI Resources
 
-#### [MODIFY] [activity_task.xml](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/res/layout/activity_task.xml)
-- Update `taskInput` (`EditText`):
-    - Set `android:minLines="2"` and `android:gravity="top"` to support two lines of text.
-    - Adjust padding for better vertical alignment.
-- Add `voiceTaskButton` (`ImageButton`):
-    - Position it between `taskInput` and `addTaskButton`.
-    - Use `@drawable/ic_menu_voice_note_color` for a professional, colored look.
-    - Set `background="?attr/selectableItemBackgroundBorderless"`.
+#### [NEW] `drawable/button_outline_green.xml`
+- A shape drawable with a green stroke and rounded corners for the "Add Accounts" action.
 
-### Task Logic
+### [Component Name] Dialog Layouts
 
-#### [MODIFY] [TaskActivity.java](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/java/com/example/mycalendar2026sar/TaskActivity.java)
-- Implement `voiceRecognitionLauncher` using `ActivityResultContracts.StartActivityForResult()`.
-- Add `startVoiceRecognition()` method to launch the system speech recognizer.
-- Set an `OnClickListener` for the new `voiceTaskButton` to trigger `startVoiceRecognition()`.
-- Update the launcher callback to append the spoken text into the `taskInput` field.
+#### [MODIFY] [dialog_accounts.xml](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/res/layout/dialog_accounts.xml)
+- Change root background to `@drawable/dialog_background_rounded`.
+- Set title text color to `@color/white`.
+- Update `addAccountButton`:
+    - Set background to `@drawable/button_outline_green`.
+    - Set text color to `@color/light_green`.
+    - Set `textAllCaps="true"` for a professional look.
+
+#### [MODIFY] [item_account.xml](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/res/layout/item_account.xml)
+- Change `accountName` and `accountBalance` text color to `@color/white`.
+- Change `accountIcon` tint to `@color/text_secondary`.
+- Update edit mode icons (Move Up/Down) to have white tints for better visibility.
+
+### [Component Name] Logic Integration
+
+#### [MODIFY] [ExpensesActivity.java](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/java/com/example/mycalendar2026sar/ExpensesActivity.java)
+- In `showAccountsDialog()`:
+    - Set the dialog window background to transparent to properly show the rounded corners of the custom layout.
 
 ## Verification Plan
 
 ### Automated Tests
-- Perform a build to ensure XML and Java changes are valid.
+- Build the project to ensure XML validity and resource mapping.
 
 ### Manual Verification
-- Open the Task page.
-- Verify the input area is visibly taller.
-- Type two lines of text to ensure it wraps correctly and remains readable.
-- Tap the new Voice button.
-- Speak a task and verify that the text correctly appears in the input box.
+1. Open **Expenses** -> Tap the top button to open the **Accounts** list.
+2. Verify the dialog matches the "Dark Mode" aesthetic (Dark background, white text).
+3. Verify the **ADD ACCOUNTS** button is outlined with a green border.
+4. Verify account names and balances are clearly visible in the list.

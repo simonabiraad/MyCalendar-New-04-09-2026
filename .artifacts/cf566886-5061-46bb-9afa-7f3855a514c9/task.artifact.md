@@ -1,3 +1,10 @@
-- [x] Modify `activity_task.xml`: Make input area taller and add voice button
-- [x] Update `TaskActivity.java`: Implement voice recognition logic
-- [x] Verify build and functionality
+- [x] Create `edit_text_outline.xml` for outlined input fields
+- [x] Create `circle_indicator.xml` for transaction type selection
+- [x] Create `dialog_background_rounded.xml` for the dark rounded dialog
+- [x] Redesign `dialog_add_account.xml` to match the target design
+- [x] Update `ExpensesActivity.java` with new dialog logic
+    - [x] Implement custom title and buttons
+    - [x] Implement `+`/`-` type selector
+    - [x] Implement Date Picker
+    - [x] Set window background to transparent
+- [x] Build and verify

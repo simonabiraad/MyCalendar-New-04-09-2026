@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:text="Cach in"
+        android:text="Cash in"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -38,7 +38,7 @@
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:backgroundTint="@color/light_green"
-            android:text="Cach In"
+            android:text="Cash In"
             android:textAllCaps="false"
             app:cornerRadius="25dp" />
 
@@ -48,7 +48,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:backgroundTint="@color/gray"
-            android:text="Cach Out"
+            android:text="Cash Out"
             android:textAllCaps="false"
             app:cornerRadius="25dp" />
     </LinearLayout>

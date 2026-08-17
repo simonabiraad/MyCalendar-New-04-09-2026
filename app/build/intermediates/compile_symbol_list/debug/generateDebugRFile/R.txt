@@ -23,8 +23,12 @@ int color teal_700 0x0
 int color text_secondary 0x0
 int color unmellow_yellow 0x0
 int color white 0x0
+int drawable button_outline_green 0x0
 int drawable calendar_logo_bg 0x0
+int drawable circle_indicator 0x0
+int drawable dialog_background_rounded 0x0
 int drawable dialog_border 0x0
+int drawable edit_text_outline 0x0
 int drawable ic_add_circle 0x0
 int drawable ic_banner_foreground 0x0
 int drawable ic_cat_bill_color 0x0
@@ -179,6 +183,7 @@ int id btnCalcOk 0x0
 int id btnCalcSub 0x0
 int id btnCalculator 0x0
 int id btnCancel 0x0
+int id btnCancelAccount 0x0
 int id btnCashIn 0x0
 int id btnCashOut 0x0
 int id btnCrop 0x0
@@ -189,6 +194,7 @@ int id btnEdit 0x0
 int id btnMoveDown 0x0
 int id btnMoveUp 0x0
 int id btnOk 0x0
+int id btnSaveAccount 0x0
 int id btnSaveContinue 0x0
 int id btnSaveExit 0x0
 int id btnSelectCategory 0x0
@@ -238,6 +244,7 @@ int id daily_expenses_main 0x0
 int id dateNavigator 0x0
 int id datePickerBox 0x0
 int id dateRangeText 0x0
+int id dateSelectionBox 0x0
 int id dateTimeContainer 0x0
 int id dayNumber 0x0
 int id dayRemarksContainer 0x0
@@ -288,12 +295,15 @@ int id headerTitle 0x0
 int id imagePreview 0x0
 int id income_main 0x0
 int id indicator 0x0
+int id indicatorMinus 0x0
+int id indicatorPlus 0x0
 int id itemIcon 0x0
 int id itemText 0x0
 int id item_date 0x0
 int id item_text 0x0
 int id item_title 0x0
 int id itemsContainer 0x0
+int id labelTotalCashIn 0x0
 int id lineChart 0x0
 int id lockExpensesSwitch 0x0
 int id logo_container 0x0
@@ -454,8 +464,11 @@ int id txNamesEmptyText 0x0
 int id txNamesRecyclerView 0x0
 int id txNamesSearchView 0x0
 int id txNamesTopBar 0x0
+int id txtAccountDate 0x0
 int id txtDate 0x0
 int id txtTime 0x0
+int id typeMinusContainer 0x0
+int id typePlusContainer 0x0
 int id voiceNoteButton 0x0
 int id voiceTaskButton 0x0
 int id weekdayLayout 0x0

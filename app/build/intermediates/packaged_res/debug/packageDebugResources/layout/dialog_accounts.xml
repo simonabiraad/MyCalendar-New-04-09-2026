@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/hunter_green"
+    android:background="@drawable/dialog_background_rounded"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/menu_accounts"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -89,13 +89,15 @@
         android:layout_height="250dp"
         android:layout_marginTop="8dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/addAccountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/light_green"
-        android:text="Add Accounts" />
+        android:text="Add Accounts"
+        app:strokeColor="@color/white"
+        app:strokeWidth="2dp" />
 
 </LinearLayout>
