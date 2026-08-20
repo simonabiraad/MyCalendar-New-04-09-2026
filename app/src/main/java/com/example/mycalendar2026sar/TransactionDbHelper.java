@@ -234,16 +234,17 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String title = "Monthly Income";
         
-        // Check if "Monthly Income" exists
+        // Check if "Monthly Income" exists (including potentially deleted ones)
         Cursor c = db.query(TABLE_TRANSACTIONS, new String[]{COL_ID}, COL_TITLE + "=?", new String[]{title}, null, null, null);
         if (c != null && c.moveToFirst()) {
             long id = c.getLong(c.getColumnIndexOrThrow(COL_ID));
             c.close();
             
-            // Update existing
+            // Update existing and ensure it's active (not deleted)
             ContentValues values = new ContentValues();
             values.put(COL_AMOUNT, amount);
-            values.put(COL_TIMESTAMP, System.currentTimeMillis()); // Keep it recent or keep original? User said "putted in all in one line", suggesting update.
+            values.put(COL_TIMESTAMP, System.currentTimeMillis()); 
+            values.put(COL_DELETED, 0); 
             db.update(TABLE_TRANSACTIONS, values, COL_ID + "=?", new String[]{String.valueOf(id)});
         } else {
             if (c != null) c.close();

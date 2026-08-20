@@ -17,13 +17,27 @@
         android:textStyle="bold"
         tools:text="1" />
 
-    <!-- Space for potential indicators (dots) -->
-    <View
-        android:id="@+id/indicator"
-        android:layout_width="4dp"
-        android:layout_height="4dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/today_circle"
-        android:visibility="gone" />
+    <TextView
+        android:id="@+id/dayCashIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/light_green"
+        android:textSize="10sp"
+        android:visibility="gone"
+        tools:text="20.00"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/dayCashOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:textColor="@color/expense_red"
+        android:textSize="10sp"
+        android:visibility="gone"
+        tools:text="207.00"
+        tools:visibility="visible" />
 
 </LinearLayout>

@@ -3344,6 +3344,8 @@ int id btnCashOut 0x7f0900b3
 int id btnCrop 0x7f0900b4
 int id btnDelete 0x7f0900b5
 int id btnDeleteAccount 0x7f0900b6
+int id btnDialogCashIn 0x7f090378
+int id btnDialogCashOut 0x7f090379
 int id btnDraw 0x7f0900b7
 int id btnEdit 0x7f0900b8
 int id btnMoveDown 0x7f0900b9
@@ -3441,6 +3443,8 @@ int id dateRangeText 0x7f090114
 int id dateSelectionBox 0x7f090115
 int id dateTimeContainer 0x7f090116
 int id date_picker_actions 0x7f090117
+int id dayCashIn 0x7f09037a
+int id dayCashOut 0x7f09037b
 int id dayNumber 0x7f090118
 int id dayRemarksContainer 0x7f090119
 int id decelerate 0x7f09011a
@@ -3470,8 +3474,12 @@ int id design_menu_item_text 0x7f090131
 int id design_navigation_view 0x7f090132
 int id detailsContainer 0x7f090133
 int id detailsContainerAccount 0x7f090134
+int id dialogDateText 0x7f09037c
+int id dialogDayCashIn 0x7f09037d
+int id dialogDayCashOut 0x7f09037e
 int id dialogMessage 0x7f090135
 int id dialogTitle 0x7f090136
+int id dialogTransactionList 0x7f09037f
 int id dialog_button 0x7f090137
 int id dimensions 0x7f090138
 int id direct 0x7f090139
@@ -3578,7 +3586,6 @@ int id immediateStop 0x7f09019d
 int id included 0x7f09019e
 int id income_main 0x7f09019f
 int id indeterminate 0x7f0901a0
-int id indicator 0x7f0901a1
 int id indicatorMinus 0x7f0901a2
 int id indicatorPlus 0x7f0901a3
 int id info 0x7f0901a4
@@ -3974,7 +3981,6 @@ int id totalBalanceCard 0x7f090329
 int id totalBalanceText 0x7f09032a
 int id totalCashInText 0x7f09032b
 int id totalCashOutText 0x7f09032c
-int id totalsFooter 0x7f09032d
 int id totalsFooterContainer 0x7f09032e
 int id touch_outside 0x7f09032f
 int id transactionAmountInput 0x7f090330
@@ -3994,12 +4000,15 @@ int id transition_position 0x7f09033d
 int id transition_scene_layoutid_cache 0x7f09033e
 int id transition_transform 0x7f09033f
 int id triangle 0x7f090340
+int id txCashIn 0x7f090380
+int id txCashOut 0x7f090381
 int id txNamesAddButton 0x7f090341
 int id txNamesBackButton 0x7f090342
 int id txNamesEmptyText 0x7f090343
 int id txNamesRecyclerView 0x7f090344
 int id txNamesSearchView 0x7f090345
 int id txNamesTopBar 0x7f090346
+int id txNote 0x7f090382
 int id txtAccountDate 0x7f090347
 int id txtDate 0x7f090348
 int id txtTime 0x7f090349
@@ -4222,6 +4231,7 @@ int layout item_category 0x7f0c0053
 int layout item_category_chip 0x7f0c0054
 int layout item_chart_detail 0x7f0c0055
 int layout item_deleted_transaction_row 0x7f0c0056
+int layout item_dialog_transaction 0x7f0c00a4
 int layout item_expenses_calendar_day 0x7f0c0057
 int layout item_notebook_note 0x7f0c0058
 int layout item_report_category_row 0x7f0c0059
@@ -4230,6 +4240,7 @@ int layout item_task 0x7f0c005b
 int layout item_transaction_header 0x7f0c005c
 int layout item_transaction_name_row 0x7f0c005d
 int layout item_transaction_row 0x7f0c005e
+int layout layout_calendar_day_details 0x7f0c00a5
 int layout m3_alert_dialog 0x7f0c005f
 int layout m3_alert_dialog_actions 0x7f0c0060
 int layout m3_alert_dialog_title 0x7f0c0061

@@ -867,6 +867,7 @@ public class ExpensesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        loadAccounts();
         refreshTransactionsList();
     }
 

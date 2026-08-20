@@ -140,10 +140,19 @@ public class ExpensesSettingsActivity extends AppCompatActivity {
     private void confirmClearData() {
         new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
                 .setTitle("Clear All Expense Data")
-                .setMessage("This permanently deletes every transaction (accounts are kept). This cannot be undone.")
+                .setMessage("This permanently deletes every transaction and resets all account balances to 0.00. This cannot be undone.")
                 .setPositiveButton("Clear", (d, w) -> {
+                    // 1. Clear transactions
                     TransactionDbHelper.getInstance(this).clearAllTransactions();
-                    Toast.makeText(this, "All transactions cleared", Toast.LENGTH_SHORT).show();
+                    
+                    // 2. Reset accounts
+                    java.util.List<Account> accounts = BalanceManager.loadAccounts(this);
+                    for (Account a : accounts) {
+                        a.setBalance(0.00);
+                    }
+                    BalanceManager.saveAccounts(this, accounts);
+                    
+                    Toast.makeText(this, "All data cleared and accounts reset", Toast.LENGTH_SHORT).show();
                 })
                 .setNegativeButton("Cancel", null)
                 .show();

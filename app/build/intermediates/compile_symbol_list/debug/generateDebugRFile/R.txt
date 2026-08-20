@@ -189,6 +189,8 @@ int id btnCashOut 0x0
 int id btnCrop 0x0
 int id btnDelete 0x0
 int id btnDeleteAccount 0x0
+int id btnDialogCashIn 0x0
+int id btnDialogCashOut 0x0
 int id btnDraw 0x0
 int id btnEdit 0x0
 int id btnMoveDown 0x0
@@ -246,6 +248,8 @@ int id datePickerBox 0x0
 int id dateRangeText 0x0
 int id dateSelectionBox 0x0
 int id dateTimeContainer 0x0
+int id dayCashIn 0x0
+int id dayCashOut 0x0
 int id dayNumber 0x0
 int id dayRemarksContainer 0x0
 int id deleteSelectedBtn 0x0
@@ -264,8 +268,12 @@ int id deletedRowTitle 0x0
 int id deletedTopBar 0x0
 int id detailsContainer 0x0
 int id detailsContainerAccount 0x0
+int id dialogDateText 0x0
+int id dialogDayCashIn 0x0
+int id dialogDayCashOut 0x0
 int id dialogMessage 0x0
 int id dialogTitle 0x0
+int id dialogTransactionList 0x0
 int id drawer_layout 0x0
 int id drawingOverlay 0x0
 int id editAccountBalance 0x0
@@ -294,7 +302,6 @@ int id headerTextContainer 0x0
 int id headerTitle 0x0
 int id imagePreview 0x0
 int id income_main 0x0
-int id indicator 0x0
 int id indicatorMinus 0x0
 int id indicatorPlus 0x0
 int id itemIcon 0x0
@@ -447,7 +454,6 @@ int id totalBalanceCard 0x0
 int id totalBalanceText 0x0
 int id totalCashInText 0x0
 int id totalCashOutText 0x0
-int id totalsFooter 0x0
 int id totalsFooterContainer 0x0
 int id transactionAmountInput 0x0
 int id transactionBalance 0x0
@@ -458,12 +464,15 @@ int id transactionTitle 0x0
 int id transactionTitleInput 0x0
 int id transactionsRecyclerView 0x0
 int id transfer_main 0x0
+int id txCashIn 0x0
+int id txCashOut 0x0
 int id txNamesAddButton 0x0
 int id txNamesBackButton 0x0
 int id txNamesEmptyText 0x0
 int id txNamesRecyclerView 0x0
 int id txNamesSearchView 0x0
 int id txNamesTopBar 0x0
+int id txNote 0x0
 int id txtAccountDate 0x0
 int id txtDate 0x0
 int id txtTime 0x0
@@ -528,6 +537,7 @@ int layout item_category 0x0
 int layout item_category_chip 0x0
 int layout item_chart_detail 0x0
 int layout item_deleted_transaction_row 0x0
+int layout item_dialog_transaction 0x0
 int layout item_expenses_calendar_day 0x0
 int layout item_notebook_note 0x0
 int layout item_report_category_row 0x0
@@ -536,6 +546,7 @@ int layout item_task 0x0
 int layout item_transaction_header 0x0
 int layout item_transaction_name_row 0x0
 int layout item_transaction_row 0x0
+int layout layout_calendar_day_details 0x0
 int layout nav_header_expenses 0x0
 int layout notification_widget 0x0
 int layout sticky_note_item 0x0

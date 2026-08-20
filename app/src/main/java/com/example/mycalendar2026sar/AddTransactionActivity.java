@@ -108,6 +108,11 @@ public class AddTransactionActivity extends AppCompatActivity {
             } else {
                 setMode(Transaction.TYPE_CASH_IN);
             }
+
+            long initialTimestamp = getIntent().getLongExtra("timestamp", -1);
+            if (initialTimestamp != -1) {
+                selectedDateTime.setTimeInMillis(initialTimestamp);
+            }
         }
 
         updateDateTimeLabels();

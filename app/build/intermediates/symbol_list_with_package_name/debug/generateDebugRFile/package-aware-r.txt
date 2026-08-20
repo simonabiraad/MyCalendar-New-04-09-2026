@@ -190,6 +190,8 @@ id btnCashOut
 id btnCrop
 id btnDelete
 id btnDeleteAccount
+id btnDialogCashIn
+id btnDialogCashOut
 id btnDraw
 id btnEdit
 id btnMoveDown
@@ -247,6 +249,8 @@ id datePickerBox
 id dateRangeText
 id dateSelectionBox
 id dateTimeContainer
+id dayCashIn
+id dayCashOut
 id dayNumber
 id dayRemarksContainer
 id deleteSelectedBtn
@@ -265,8 +269,12 @@ id deletedRowTitle
 id deletedTopBar
 id detailsContainer
 id detailsContainerAccount
+id dialogDateText
+id dialogDayCashIn
+id dialogDayCashOut
 id dialogMessage
 id dialogTitle
+id dialogTransactionList
 id drawer_layout
 id drawingOverlay
 id editAccountBalance
@@ -295,7 +303,6 @@ id headerTextContainer
 id headerTitle
 id imagePreview
 id income_main
-id indicator
 id indicatorMinus
 id indicatorPlus
 id itemIcon
@@ -448,7 +455,6 @@ id totalBalanceCard
 id totalBalanceText
 id totalCashInText
 id totalCashOutText
-id totalsFooter
 id totalsFooterContainer
 id transactionAmountInput
 id transactionBalance
@@ -459,12 +465,15 @@ id transactionTitle
 id transactionTitleInput
 id transactionsRecyclerView
 id transfer_main
+id txCashIn
+id txCashOut
 id txNamesAddButton
 id txNamesBackButton
 id txNamesEmptyText
 id txNamesRecyclerView
 id txNamesSearchView
 id txNamesTopBar
+id txNote
 id txtAccountDate
 id txtDate
 id txtTime
@@ -529,6 +538,7 @@ layout item_category
 layout item_category_chip
 layout item_chart_detail
 layout item_deleted_transaction_row
+layout item_dialog_transaction
 layout item_expenses_calendar_day
 layout item_notebook_note
 layout item_report_category_row
@@ -537,6 +547,7 @@ layout item_task
 layout item_transaction_header
 layout item_transaction_name_row
 layout item_transaction_row
+layout layout_calendar_day_details
 layout nav_header_expenses
 layout notification_widget
 layout sticky_note_item

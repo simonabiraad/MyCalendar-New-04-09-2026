@@ -12,377 +12,377 @@
 9-->INJECTED
 10
 11    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-11-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:4:5-77
-11-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:4:22-74
+11-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:4:5-77
+11-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:4:22-74
 12    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-12-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:5:5-79
-12-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:5:22-76
+12-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:5:5-79
+12-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:5:22-76
 13    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
-13-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:6:5-74
-13-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:6:22-71
+13-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:6:5-74
+13-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:6:22-71
 14    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-14-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:7:5-77
-14-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:7:22-74
+14-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:7:5-77
+14-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:7:22-74
 15    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
-15-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:8:5-89
-15-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:8:22-86
+15-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:8:5-89
+15-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:8:22-86
 16    <uses-permission android:name="android.permission.CAMERA" />
-16-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:9:5-65
-16-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:9:22-62
+16-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:9:5-65
+16-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:9:22-62
 17
 18    <uses-feature
-18-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:10:5-85
+18-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:10:5-85
 19        android:name="android.hardware.camera"
-19-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:10:19-57
+19-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:10:19-57
 20        android:required="false" />
-20-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:10:58-82
+20-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:10:58-82
 21
 22    <uses-permission android:name="android.permission.USE_BIOMETRIC" /> <!-- suppress DeprecatedClassUsageInspection -->
-22-->[androidx.biometric:biometric:1.1.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\2e23e8c54d2cd0149779551f2cfa4024\transformed\biometric-1.1.0\AndroidManifest.xml:24:5-72
-22-->[androidx.biometric:biometric:1.1.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\2e23e8c54d2cd0149779551f2cfa4024\transformed\biometric-1.1.0\AndroidManifest.xml:24:22-69
+22-->[androidx.biometric:biometric:1.1.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\2e23e8c54d2cd0149779551f2cfa4024\transformed\biometric-1.1.0\AndroidManifest.xml:24:5-72
+22-->[androidx.biometric:biometric:1.1.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\2e23e8c54d2cd0149779551f2cfa4024\transformed\biometric-1.1.0\AndroidManifest.xml:24:22-69
 23    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-23-->[androidx.biometric:biometric:1.1.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\2e23e8c54d2cd0149779551f2cfa4024\transformed\biometric-1.1.0\AndroidManifest.xml:27:5-74
-23-->[androidx.biometric:biometric:1.1.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\2e23e8c54d2cd0149779551f2cfa4024\transformed\biometric-1.1.0\AndroidManifest.xml:27:22-71
+23-->[androidx.biometric:biometric:1.1.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\2e23e8c54d2cd0149779551f2cfa4024\transformed\biometric-1.1.0\AndroidManifest.xml:27:5-74
+23-->[androidx.biometric:biometric:1.1.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\2e23e8c54d2cd0149779551f2cfa4024\transformed\biometric-1.1.0\AndroidManifest.xml:27:22-71
 24
 25    <permission
-25-->[androidx.core:core:1.18.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\004a38f509eb2f72e38caf41635163c6\transformed\core-1.18.0\AndroidManifest.xml:22:5-24:47
+25-->[androidx.core:core:1.18.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\004a38f509eb2f72e38caf41635163c6\transformed\core-1.18.0\AndroidManifest.xml:22:5-24:47
 26        android:name="com.example.mycalendar2026sar.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-26-->[androidx.core:core:1.18.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\004a38f509eb2f72e38caf41635163c6\transformed\core-1.18.0\AndroidManifest.xml:23:9-81
+26-->[androidx.core:core:1.18.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\004a38f509eb2f72e38caf41635163c6\transformed\core-1.18.0\AndroidManifest.xml:23:9-81
 27        android:protectionLevel="signature" />
-27-->[androidx.core:core:1.18.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\004a38f509eb2f72e38caf41635163c6\transformed\core-1.18.0\AndroidManifest.xml:24:9-44
+27-->[androidx.core:core:1.18.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\004a38f509eb2f72e38caf41635163c6\transformed\core-1.18.0\AndroidManifest.xml:24:9-44
 28
 29    <uses-permission android:name="com.example.mycalendar2026sar.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-29-->[androidx.core:core:1.18.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\004a38f509eb2f72e38caf41635163c6\transformed\core-1.18.0\AndroidManifest.xml:26:5-97
-29-->[androidx.core:core:1.18.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\004a38f509eb2f72e38caf41635163c6\transformed\core-1.18.0\AndroidManifest.xml:26:22-94
+29-->[androidx.core:core:1.18.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\004a38f509eb2f72e38caf41635163c6\transformed\core-1.18.0\AndroidManifest.xml:26:5-97
+29-->[androidx.core:core:1.18.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\004a38f509eb2f72e38caf41635163c6\transformed\core-1.18.0\AndroidManifest.xml:26:22-94
 30
 31    <application
-31-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:12:5-133:19
+31-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:12:5-133:19
 32        android:allowBackup="true"
-32-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:13:9-35
+32-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:13:9-35
 33        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-33-->[androidx.core:core:1.18.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\004a38f509eb2f72e38caf41635163c6\transformed\core-1.18.0\AndroidManifest.xml:28:18-86
+33-->[androidx.core:core:1.18.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\004a38f509eb2f72e38caf41635163c6\transformed\core-1.18.0\AndroidManifest.xml:28:18-86
 34        android:dataExtractionRules="@xml/data_extraction_rules"
-34-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:14:9-65
+34-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:14:9-65
 35        android:debuggable="true"
 36        android:enableOnBackInvokedCallback="true"
-36-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:21:9-51
+36-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:21:9-51
 37        android:extractNativeLibs="false"
 37-->INJECTED
 38        android:fullBackupContent="@xml/backup_rules"
-38-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:15:9-54
+38-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:15:9-54
 39        android:icon="@mipmap/ic_launcher"
-39-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:16:9-43
+39-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:16:9-43
 40        android:label="@string/app_name"
-40-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:17:9-41
+40-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:17:9-41
 41        android:roundIcon="@mipmap/ic_launcher_round"
-41-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:18:9-54
+41-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:18:9-54
 42        android:supportsRtl="true"
-42-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:19:9-35
+42-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:19:9-35
 43        android:testOnly="true"
 44        android:theme="@style/Theme.MyCalendar2026SAR" >
-44-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:20:9-55
+44-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:20:9-55
 45        <activity
-45-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:22:9-31:20
+45-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:22:9-31:20
 46            android:name="com.example.mycalendar2026sar.MainActivity"
-46-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:23:13-41
+46-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:23:13-41
 47            android:exported="true"
-47-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:24:13-36
+47-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:24:13-36
 48            android:windowSoftInputMode="adjustResize" >
-48-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:25:13-55
+48-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:25:13-55
 49            <intent-filter>
-49-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:26:13-30:29
+49-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:26:13-30:29
 50                <action android:name="android.intent.action.MAIN" />
-50-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:27:17-69
-50-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:27:25-66
+50-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:27:17-69
+50-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:27:25-66
 51
 52                <category android:name="android.intent.category.LAUNCHER" />
-52-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:29:17-77
-52-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:29:27-74
+52-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:29:17-77
+52-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:29:27-74
 53            </intent-filter>
 54        </activity>
 55        <activity
-55-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:32:9-35:62
+55-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:32:9-35:62
 56            android:name="com.example.mycalendar2026sar.SecureBoxActivity"
-56-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:33:13-46
+56-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:33:13-46
 57            android:exported="false"
-57-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:34:13-37
+57-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:34:13-37
 58            android:theme="@style/Theme.MyCalendar2026SAR" />
-58-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:35:13-59
+58-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:35:13-59
 59        <activity
-59-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:36:9-39:62
+59-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:36:9-39:62
 60            android:name="com.example.mycalendar2026sar.CategoryActivity"
-60-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:37:13-45
+60-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:37:13-45
 61            android:exported="false"
-61-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:38:13-37
+61-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:38:13-37
 62            android:theme="@style/Theme.MyCalendar2026SAR" />
-62-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:39:13-59
+62-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:39:13-59
 63        <activity
-63-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:40:9-43:62
+63-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:40:9-43:62
 64            android:name="com.example.mycalendar2026sar.ExpensesActivity"
-64-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:41:13-45
+64-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:41:13-45
 65            android:exported="false"
-65-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:42:13-37
+65-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:42:13-37
 66            android:theme="@style/Theme.MyCalendar2026SAR" />
-66-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:43:13-59
+66-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:43:13-59
 67        <activity
-67-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:44:9-47:62
+67-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:44:9-47:62
 68            android:name="com.example.mycalendar2026sar.AddTransactionActivity"
-68-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:45:13-51
+68-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:45:13-51
 69            android:exported="false"
-69-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:46:13-37
+69-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:46:13-37
 70            android:theme="@style/Theme.MyCalendar2026SAR" />
-70-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:47:13-59
+70-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:47:13-59
 71        <activity
-71-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:48:9-51:62
+71-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:48:9-51:62
 72            android:name="com.example.mycalendar2026sar.IncomeActivity"
-72-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:49:13-43
+72-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:49:13-43
 73            android:exported="false"
-73-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:50:13-37
+73-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:50:13-37
 74            android:theme="@style/Theme.MyCalendar2026SAR" />
-74-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:51:13-59
+74-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:51:13-59
 75        <activity
-75-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:52:9-55:62
+75-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:52:9-55:62
 76            android:name="com.example.mycalendar2026sar.ExpenseTypeActivity"
-76-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:53:13-48
+76-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:53:13-48
 77            android:exported="false"
-77-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:54:13-37
+77-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:54:13-37
 78            android:theme="@style/Theme.MyCalendar2026SAR" />
-78-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:55:13-59
+78-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:55:13-59
 79        <activity
-79-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:56:9-59:62
+79-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:56:9-59:62
 80            android:name="com.example.mycalendar2026sar.TransferActivity"
-80-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:57:13-45
+80-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:57:13-45
 81            android:exported="false"
-81-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:58:13-37
+81-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:58:13-37
 82            android:theme="@style/Theme.MyCalendar2026SAR" />
-82-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:59:13-59
+82-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:59:13-59
 83        <activity
-83-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:60:9-63:62
+83-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:60:9-63:62
 84            android:name="com.example.mycalendar2026sar.AccountSummaryActivity"
-84-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:61:13-51
+84-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:61:13-51
 85            android:exported="false"
-85-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:62:13-37
+85-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:62:13-37
 86            android:theme="@style/Theme.MyCalendar2026SAR" />
-86-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:63:13-59
+86-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:63:13-59
 87        <activity
-87-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:64:9-67:62
+87-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:64:9-67:62
 88            android:name="com.example.mycalendar2026sar.TransactionNamesActivity"
-88-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:65:13-53
+88-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:65:13-53
 89            android:exported="false"
-89-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:66:13-37
+89-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:66:13-37
 90            android:theme="@style/Theme.MyCalendar2026SAR" />
-90-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:67:13-59
+90-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:67:13-59
 91        <activity
-91-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:68:9-71:62
+91-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:68:9-71:62
 92            android:name="com.example.mycalendar2026sar.SummaryActivity"
-92-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:69:13-44
+92-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:69:13-44
 93            android:exported="false"
-93-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:70:13-37
+93-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:70:13-37
 94            android:theme="@style/Theme.MyCalendar2026SAR" />
-94-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:71:13-59
+94-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:71:13-59
 95        <activity
-95-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:72:9-75:62
+95-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:72:9-75:62
 96            android:name="com.example.mycalendar2026sar.ReportAllActivity"
-96-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:73:13-46
+96-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:73:13-46
 97            android:exported="false"
-97-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:74:13-37
+97-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:74:13-37
 98            android:theme="@style/Theme.MyCalendar2026SAR" />
-98-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:75:13-59
+98-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:75:13-59
 99        <activity
-99-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:76:9-79:62
+99-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:76:9-79:62
 100            android:name="com.example.mycalendar2026sar.DeletedTransactionsActivity"
-100-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:77:13-56
+100-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:77:13-56
 101            android:exported="false"
-101-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:78:13-37
+101-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:78:13-37
 102            android:theme="@style/Theme.MyCalendar2026SAR" />
-102-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:79:13-59
+102-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:79:13-59
 103        <activity
-103-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:80:9-83:62
+103-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:80:9-83:62
 104            android:name="com.example.mycalendar2026sar.ExpensesSettingsActivity"
-104-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:81:13-53
+104-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:81:13-53
 105            android:exported="false"
-105-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:82:13-37
+105-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:82:13-37
 106            android:theme="@style/Theme.MyCalendar2026SAR" />
-106-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:83:13-59
+106-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:83:13-59
 107        <activity
-107-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:84:9-87:62
+107-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:84:9-87:62
 108            android:name="com.example.mycalendar2026sar.NotebookActivity"
-108-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:85:13-45
+108-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:85:13-45
 109            android:exported="false"
-109-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:86:13-37
+109-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:86:13-37
 110            android:theme="@style/Theme.MyCalendar2026SAR" />
-110-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:87:13-59
+110-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:87:13-59
 111        <activity
-111-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:88:9-91:62
+111-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:88:9-91:62
 112            android:name="com.example.mycalendar2026sar.ImageEditorActivity"
-112-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:89:13-48
+112-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:89:13-48
 113            android:exported="false"
-113-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:90:13-37
+113-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:90:13-37
 114            android:theme="@style/Theme.MyCalendar2026SAR" />
-114-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:91:13-59
+114-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:91:13-59
 115        <activity
-115-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:92:9-95:62
+115-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:92:9-95:62
 116            android:name="com.example.mycalendar2026sar.TaskActivity"
-116-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:93:13-41
+116-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:93:13-41
 117            android:exported="false"
-117-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:94:13-37
+117-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:94:13-37
 118            android:theme="@style/Theme.MyCalendar2026SAR" />
-118-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:95:13-59
+118-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:95:13-59
 119        <activity
-119-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:96:9-99:62
+119-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:96:9-99:62
 120            android:name="com.example.mycalendar2026sar.ExpensesCalendarActivity"
-120-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:97:13-53
+120-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:97:13-53
 121            android:exported="false"
-121-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:98:13-37
+121-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:98:13-37
 122            android:theme="@style/Theme.MyCalendar2026SAR" />
-122-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:99:13-59
+122-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:99:13-59
 123        <activity
-123-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:100:9-103:62
+123-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:100:9-103:62
 124            android:name="com.example.mycalendar2026sar.ChartActivity"
-124-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:101:13-42
+124-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:101:13-42
 125            android:exported="false"
-125-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:102:13-37
+125-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:102:13-37
 126            android:theme="@style/Theme.MyCalendar2026SAR" />
-126-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:103:13-59
+126-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:103:13-59
 127
 128        <service
-128-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:105:9-112:19
+128-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:105:9-112:19
 129            android:name="com.example.mycalendar2026sar.QuickNoteNotificationService"
-129-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:106:13-57
+129-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:106:13-57
 130            android:enabled="true"
-130-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:107:13-35
+130-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:107:13-35
 131            android:exported="false"
-131-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:108:13-37
+131-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:108:13-37
 132            android:foregroundServiceType="specialUse" >
-132-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:109:13-55
+132-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:109:13-55
 133            <property
-133-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:110:13-111:71
+133-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:110:13-111:71
 134                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-134-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:110:23-82
+134-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:110:23-82
 135                android:value="Persistent UI for quick note taking" />
-135-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:111:17-68
+135-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:111:17-68
 136        </service>
 137
 138        <receiver
-138-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:114:9-79
+138-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:114:9-79
 139            android:name="com.example.mycalendar2026sar.ReminderReceiver"
-139-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:114:19-51
+139-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:114:19-51
 140            android:exported="false" />
-140-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:114:52-76
+140-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:114:52-76
 141
 142        <!-- Professional 4x4 SAR Dashboard Widget -->
 143        <receiver
-143-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:117:9-120:20
+143-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:117:9-120:20
 144            android:name="com.example.mycalendar2026sar.SARCalendarWidget4x4"
-144-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:117:19-55
+144-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:117:19-55
 145            android:exported="false"
-145-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:117:56-80
+145-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:117:56-80
 146            android:label="SAR Dashboard (4x4)" >
-146-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:117:81-116
+146-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:117:81-116
 147            <intent-filter>
-147-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:118:13-111
+147-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:118:13-111
 148                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-148-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:118:28-95
-148-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:118:36-92
+148-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:118:28-95
+148-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:118:36-92
 149            </intent-filter>
 150
 151            <meta-data
-151-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:119:13-112
+151-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:119:13-112
 152                android:name="android.appwidget.provider"
-152-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:119:24-65
+152-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:119:24-65
 153                android:resource="@xml/sar_widget_4x4_info" />
-153-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:119:66-109
+153-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:119:66-109
 154        </receiver>
 155
 156        <service
-156-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:122:9-136
+156-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:122:9-136
 157            android:name="com.example.mycalendar2026sar.WidgetListService"
-157-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:122:18-51
+157-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:122:18-51
 158            android:exported="false"
-158-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:122:109-133
+158-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:122:109-133
 159            android:permission="android.permission.BIND_REMOTEVIEWS" />
-159-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:122:52-108
+159-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:122:52-108
 160
 161        <provider
 161-->INJECTED
 162            android:name="androidx.core.content.FileProvider"
-162-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:125:13-62
+162-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:125:13-62
 163            android:authorities="com.example.mycalendar2026sar.fileprovider"
 163-->INJECTED
 164            android:exported="false"
-164-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:127:13-37
+164-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:127:13-37
 165            android:grantUriPermissions="true" >
-165-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:128:13-47
+165-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:128:13-47
 166            <meta-data
-166-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:129:13-131:54
+166-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:129:13-131:54
 167                android:name="android.support.FILE_PROVIDER_PATHS"
-167-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:130:17-67
+167-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:130:17-67
 168                android:resource="@xml/file_paths" />
-168-->C:\Users\SAR\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:131:17-51
+168-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:131:17-51
 169        </provider>
 170        <provider
-170-->[androidx.emoji2:emoji2:1.2.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\a021a02c37fec568f5d3843dd7c19a79\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+170-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\a021a02c37fec568f5d3843dd7c19a79\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
 171            android:name="androidx.startup.InitializationProvider"
-171-->[androidx.emoji2:emoji2:1.2.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\a021a02c37fec568f5d3843dd7c19a79\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+171-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\a021a02c37fec568f5d3843dd7c19a79\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
 172            android:authorities="com.example.mycalendar2026sar.androidx-startup"
-172-->[androidx.emoji2:emoji2:1.2.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\a021a02c37fec568f5d3843dd7c19a79\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+172-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\a021a02c37fec568f5d3843dd7c19a79\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
 173            android:exported="false" >
-173-->[androidx.emoji2:emoji2:1.2.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\a021a02c37fec568f5d3843dd7c19a79\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+173-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\a021a02c37fec568f5d3843dd7c19a79\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
 174            <meta-data
-174-->[androidx.emoji2:emoji2:1.2.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\a021a02c37fec568f5d3843dd7c19a79\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+174-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\a021a02c37fec568f5d3843dd7c19a79\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
 175                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-175-->[androidx.emoji2:emoji2:1.2.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\a021a02c37fec568f5d3843dd7c19a79\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+175-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\a021a02c37fec568f5d3843dd7c19a79\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
 176                android:value="androidx.startup" />
-176-->[androidx.emoji2:emoji2:1.2.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\a021a02c37fec568f5d3843dd7c19a79\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+176-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\a021a02c37fec568f5d3843dd7c19a79\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
 177            <meta-data
-177-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\SAR\.gradle\caches\9.5.0\transforms\ff41405d2e162277948da2a2a28ad28e\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+177-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\simon\.gradle\caches\9.5.0\transforms\ff41405d2e162277948da2a2a28ad28e\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
 178                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-178-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\SAR\.gradle\caches\9.5.0\transforms\ff41405d2e162277948da2a2a28ad28e\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+178-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\simon\.gradle\caches\9.5.0\transforms\ff41405d2e162277948da2a2a28ad28e\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
 179                android:value="androidx.startup" />
-179-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\SAR\.gradle\caches\9.5.0\transforms\ff41405d2e162277948da2a2a28ad28e\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+179-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\simon\.gradle\caches\9.5.0\transforms\ff41405d2e162277948da2a2a28ad28e\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
 180            <meta-data
-180-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+180-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
 181                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-181-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+181-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
 182                android:value="androidx.startup" />
-182-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+182-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
 183        </provider>
 184
 185        <receiver
-185-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+185-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
 186            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-186-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+186-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
 187            android:directBootAware="false"
-187-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+187-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
 188            android:enabled="true"
-188-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+188-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
 189            android:exported="true"
-189-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+189-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
 190            android:permission="android.permission.DUMP" >
-190-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+190-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
 191            <intent-filter>
-191-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+191-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
 192                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-192-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
-192-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+192-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+192-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
 193            </intent-filter>
 194            <intent-filter>
-194-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+194-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
 195                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-195-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
-195-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+195-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+195-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
 196            </intent-filter>
 197            <intent-filter>
-197-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+197-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
 198                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-198-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
-198-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+198-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+198-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
 199            </intent-filter>
 200            <intent-filter>
-200-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+200-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
 201                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-201-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
-201-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\SAR\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+201-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+201-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\d7bd6e2ab8c767f2c881816908cadd95\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
 202            </intent-filter>
 203        </receiver>
 204    </application>
