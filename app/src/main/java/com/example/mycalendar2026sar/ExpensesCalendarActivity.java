@@ -10,8 +10,10 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -19,6 +21,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,12 +37,14 @@ import java.util.Map;
 public class ExpensesCalendarActivity extends AppCompatActivity {
 
     private GridView calendarGrid;
-    private TextView dateRangeText;
+    private TextView dateRangeText, accountSubtitle;
     private TextView totalCashInText, totalCashOutText, balanceText;
     private Calendar currentMonth;
     private CalendarAdapter adapter;
     private TransactionDbHelper dbHelper;
     private final Map<String, DaySummary> daySummaries = new HashMap<>();
+    private String activeAccount = "Expenses";
+    private List<Account> accountList = new ArrayList<>();
 
     private static class DaySummary {
         double cashIn = 0;
@@ -54,14 +61,17 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
         dbHelper = TransactionDbHelper.getInstance(this);
         currentMonth = Calendar.getInstance();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
+        
+        loadAccounts();
 
         calendarGrid = findViewById(R.id.calendarGrid);
         dateRangeText = findViewById(R.id.dateRangeText);
+        accountSubtitle = findViewById(R.id.calendarAccountSubtitle);
         totalCashInText = findViewById(R.id.totalCashInText);
         totalCashOutText = findViewById(R.id.totalCashOutText);
         balanceText = findViewById(R.id.balanceText);
 
-        findViewById(R.id.backButton).setOnClickListener(v -> finish());
+        findViewById(R.id.backButton).setOnClickListener(v -> handleBackNavigation());
         findViewById(R.id.prevMonth).setOnClickListener(v -> {
             currentMonth.add(Calendar.MONTH, -1);
             updateUI();
@@ -70,6 +80,8 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
             currentMonth.add(Calendar.MONTH, 1);
             updateUI();
         });
+        
+        findViewById(R.id.moreButton).setOnClickListener(this::showMoreMenu);
 
         calendarGrid.setOnItemClickListener((parent, view, position, id) -> {
             Date date = (Date) adapter.getItem(position);
@@ -82,7 +94,64 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
             return insets;
         });
 
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                handleBackNavigation();
+            }
+        });
+
         updateUI();
+    }
+
+    private void handleBackNavigation() {
+        if (!activeAccount.equals("Expenses")) {
+            activeAccount = "Expenses";
+            updateUI();
+        } else {
+            finish();
+        }
+    }
+
+    private void showMoreMenu(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.getMenu().add("Account");
+        popup.setOnMenuItemClickListener(item -> {
+            if ("Account".equals(item.getTitle())) {
+                showAccountSelectionDialog();
+                return true;
+            }
+            return false;
+        });
+        popup.show();
+    }
+
+    private void showAccountSelectionDialog() {
+        List<String> names = new ArrayList<>();
+        for (Account a : accountList) names.add(a.getName());
+        
+        String[] items = names.toArray(new String[0]);
+        new androidx.appcompat.app.AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                .setTitle("Select Account")
+                .setItems(items, (dialog, which) -> {
+                    activeAccount = items[which];
+                    updateUI();
+                })
+                .show();
+    }
+
+    private void loadAccounts() {
+        accountList = BalanceManager.loadAccounts(this);
+        boolean hasExpenses = false;
+        for (Account a : accountList) {
+            if (a.getName().equalsIgnoreCase("Expenses")) {
+                hasExpenses = true;
+                break;
+            }
+        }
+        if (!hasExpenses) {
+            accountList.add(0, new Account("Expenses", 0.0));
+        }
     }
 
     @Override
@@ -98,6 +167,10 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
         
         String range = sdf.format(currentMonth.getTime()) + " -> " + sdf.format(rangeEnd.getTime());
         dateRangeText.setText(range);
+        
+        if (accountSubtitle != null) {
+            accountSubtitle.setText(activeAccount);
+        }
 
         loadDaySummaries();
         updateCalendarGrid();
@@ -108,8 +181,14 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
         daySummaries.clear();
         SimpleDateFormat keySdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         List<Transaction> all = dbHelper.getAllTransactionsAscending();
+        
+        boolean isSummaryMode = activeAccount.equalsIgnoreCase("Expenses");
+        
         for (Transaction t : all) {
-            // Skip the aggregate row in calendar grid to avoid double counting and confusion
+            // INDEPENDENCE: Filter by account if not in summary mode
+            if (!isSummaryMode && (t.getAccount() == null || !t.getAccount().equals(activeAccount))) continue;
+            
+            // Skip the aggregate row in calendar grid
             if ("Monthly Income".equalsIgnoreCase(t.getTitle())) continue;
 
             String key = keySdf.format(new Date(t.getTimestamp()));
@@ -119,7 +198,7 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
                 daySummaries.put(key, summary);
             }
             summary.transactions.add(t);
-            if (t.getType().equals(Transaction.TYPE_CASH_IN)) {
+            if (t.isCashIn()) {
                 summary.cashIn += t.getAmount();
             } else {
                 summary.cashOut += t.getAmount();
@@ -149,13 +228,14 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
     }
 
     private void updateTotals() {
-        // We calculate global totals to match the "All" view in ExpensesActivity
         double globalCashIn = 0, globalCashOut = 0;
+        boolean isSummaryMode = activeAccount.equalsIgnoreCase("Expenses");
 
         List<Transaction> all = dbHelper.getAllTransactionsAscending();
         for (Transaction t : all) {
-            // Skip the aggregate row to avoid double counting with its sources (individual income items)
-            // This ensures we match the "All" summary in ExpensesActivity footer exactly.
+            // INDEPENDENCE: Filter by account if not in summary mode
+            if (!isSummaryMode && (t.getAccount() == null || !t.getAccount().equals(activeAccount))) continue;
+            
             if ("Monthly Income".equalsIgnoreCase(t.getTitle())) continue;
 
             if (t.isCashIn()) {
