@@ -132,6 +132,10 @@
             android:name="com.example.mycalendar2026sar.RecommendActivity"
             android:exported="false"
             android:theme="@style/Theme.MyCalendar2026SAR" />
+        <activity
+            android:name="com.example.mycalendar2026sar.TransactionsAllAccountsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MyCalendar2026SAR" />
 
         <service
             android:name="com.example.mycalendar2026sar.QuickNoteNotificationService"

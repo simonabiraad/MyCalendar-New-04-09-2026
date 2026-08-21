@@ -155,6 +155,12 @@ id agenda_title
 id aiAssistantButton
 id allButton
 id allTimeRow
+id allTxBackButton
+id allTxFooter
+id allTxHeaders
+id allTxRecyclerView
+id allTxTabsContainer
+id allTxToolbar
 id amountContainer
 id appVersionText
 id archiveHistoryContainer
@@ -251,6 +257,7 @@ id count_sticky
 id count_tasks
 id count_today
 id currentBalanceTrendText
+id currentTabLabel
 id dailyButton
 id daily_expenses_main
 id dateNavigator
@@ -307,7 +314,11 @@ id expenses_calendar_main
 id expenses_main
 id finalBalanceRow
 id finalBalanceTotalText
+id footerBalance
 id footerButtonsContainer
+id footerCashIn
+id footerCashOut
+id headerDateText
 id headerLayout
 id headerTextContainer
 id headerTitle
@@ -420,10 +431,14 @@ id reportTopBar
 id reportTotalText
 id reportTypeContainer
 id reportYearButton
+id rowAccount
 id rowAccountBalance
 id rowAccountIn
 id rowAccountName
 id rowAccountOut
+id rowAmount
+id rowTime
+id rowTitle
 id saveNoteButton
 id saveStickyNoteButton
 id sbCameraNoteButton
@@ -454,6 +469,11 @@ id subYearlyContainer
 id subYearlyRangeButton
 id summaryBackButton
 id summaryTopBar
+id tabAll
+id tabDaily
+id tabMonthly
+id tabWeekly
+id tabYearly
 id tableHeader
 id taskBackButton
 id taskButton
@@ -540,6 +560,7 @@ layout activity_secure_box
 layout activity_summary
 layout activity_task
 layout activity_transaction_names
+layout activity_transactions_all_accounts
 layout activity_transfer
 layout activity_weekly_expenses
 layout agenda_widget_item
@@ -566,6 +587,8 @@ layout item_notebook_note
 layout item_report_category_row
 layout item_summary_stat_row
 layout item_task
+layout item_transaction_all_accounts_date_header
+layout item_transaction_all_accounts_row
 layout item_transaction_header
 layout item_transaction_name_row
 layout item_transaction_row

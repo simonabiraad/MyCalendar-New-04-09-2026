@@ -204,12 +204,7 @@ public class ExpensesActivity extends AppCompatActivity {
             } else if (id == R.id.nav_account_summary) {
                 startActivity(new Intent(this, AccountSummaryActivity.class));
             } else if (id == R.id.nav_transaction_all) {
-                currentSearchQuery = "";
-                currentFilter = FILTER_ALL;
-                saveActiveAccount("Expenses");
-                topExpensesButton.setText("Expenses");
-                updateFilterButtonsUI();
-                refreshTransactionsList();
+                startActivity(new Intent(this, TransactionsAllAccountsActivity.class));
             } else if (id == R.id.nav_accounts) {
                 showAccountsDialog();
             } else if (id == R.id.nav_transfer) {
