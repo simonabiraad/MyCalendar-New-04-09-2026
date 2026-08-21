@@ -157,6 +157,15 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
         db.update(TABLE_TRANSACTIONS, values, COL_ID + "=?", new String[]{String.valueOf(id)});
     }
 
+    /** Soft-deletes all transactions associated with a specific account. */
+    public void deleteTransactionsByAccount(String accountName) {
+        if (accountName == null) return;
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_DELETED, 1);
+        db.update(TABLE_TRANSACTIONS, values, COL_ACCOUNT + "=?", new String[]{accountName});
+    }
+
     /** Moves a transaction back out of the Deleted Transactions folder. */
     public void restoreTransaction(long id) {
         SQLiteDatabase db = getWritableDatabase();

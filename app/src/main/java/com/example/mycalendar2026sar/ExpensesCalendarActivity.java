@@ -109,6 +109,9 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
         SimpleDateFormat keySdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         List<Transaction> all = dbHelper.getAllTransactionsAscending();
         for (Transaction t : all) {
+            // Skip the aggregate row in calendar grid to avoid double counting and confusion
+            if ("Monthly Income".equalsIgnoreCase(t.getTitle())) continue;
+
             String key = keySdf.format(new Date(t.getTimestamp()));
             DaySummary summary = daySummaries.get(key);
             if (summary == null) {
@@ -151,12 +154,10 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
 
         List<Transaction> all = dbHelper.getAllTransactionsAscending();
         for (Transaction t : all) {
-            // We want to skip individual "Income" lines if "Monthly Income" exists,
-            // OR just sum everything labeled "Monthly Income" or "Cash In".
-            // Actually, the most reliable way to match ExpensesActivity is to sum
-            // all IN types and all OUT types, but ExpensesActivity has aggregation logic.
+            // Skip the aggregate row to avoid double counting with its sources (individual income items)
+            // This ensures we match the "All" summary in ExpensesActivity footer exactly.
+            if ("Monthly Income".equalsIgnoreCase(t.getTitle())) continue;
 
-            // If the user wants it EXACTLY the same, we should use the same logic:
             if (t.isCashIn()) {
                 globalCashIn += t.getAmount();
             } else {

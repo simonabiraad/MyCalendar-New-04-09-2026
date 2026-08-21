@@ -532,11 +532,27 @@ public class ExpensesActivity extends AppCompatActivity {
             public void onDeleteClick(Account account, int position) {
                 new androidx.appcompat.app.AlertDialog.Builder(ExpensesActivity.this, R.style.CustomAlertDialogTheme)
                         .setTitle("Delete Account")
-                        .setMessage("Are you sure you want to delete " + account.getName() + "?")
+                        .setMessage("Are you sure you want to delete " + account.getName() + "?\n\nAll transactions associated with this account will also be removed.")
                         .setPositiveButton("Delete", (d, w) -> {
+                            String accountName = account.getName();
+                            
+                            // 1. Delete associated transactions from DB (Soft Delete)
+                            transactionDbHelper.deleteTransactionsByAccount(accountName);
+                            
+                            // 2. Remove account from list and save
                             accountList.remove(account);
                             adapter.updateList(accountList);
                             saveAccounts();
+                            
+                            // 3. Reset active account if it was deleted
+                            String activeAccount = getSharedPreferences("ExpensesPrefs", MODE_PRIVATE).getString("ActiveAccount", "Expenses");
+                            if (activeAccount.equals(accountName)) {
+                                topExpensesButton.setText("Expenses");
+                                saveActiveAccount("Expenses");
+                            }
+                            
+                            // 4. Update UI immediately
+                            refreshTransactionsList();
                         })
                         .setNegativeButton("Cancel", null)
                         .show();
