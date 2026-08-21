@@ -115,9 +115,9 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
 
     private void showMoreMenu(View v) {
         PopupMenu popup = new PopupMenu(this, v);
-        popup.getMenu().add("Account");
+        popup.getMenu().add("Accounts");
         popup.setOnMenuItemClickListener(item -> {
-            if ("Account".equals(item.getTitle())) {
+            if ("Accounts".equals(item.getTitle())) {
                 showAccountSelectionDialog();
                 return true;
             }
