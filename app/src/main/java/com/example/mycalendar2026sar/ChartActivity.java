@@ -20,6 +20,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.MarkerView;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -28,6 +31,9 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.utils.MPPointF;
+import androidx.core.content.ContextCompat;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.json.JSONArray;
@@ -48,6 +54,9 @@ public class ChartActivity extends AppCompatActivity {
     private LineChart lineChart;
     private LinearLayout detailsContainer, detailsContainerAccount;
     private TransactionDbHelper dbHelper;
+    private TextView currentBalanceTrendText;
+    private TextView btnToday, btn7Days, btn30Days;
+    private int selectedPeriodDays = 7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +69,46 @@ public class ChartActivity extends AppCompatActivity {
         lineChart = findViewById(R.id.lineChart);
         detailsContainer = findViewById(R.id.detailsContainer);
         detailsContainerAccount = findViewById(R.id.detailsContainerAccount);
+        currentBalanceTrendText = findViewById(R.id.currentBalanceTrendText);
+        btnToday = findViewById(R.id.btnPeriodToday);
+        btn7Days = findViewById(R.id.btnPeriod7Days);
+        btn30Days = findViewById(R.id.btnPeriod30Days);
+        
         ImageButton backButton = findViewById(R.id.chartBackButton);
-
         backButton.setOnClickListener(v -> finish());
 
+        btnToday.setOnClickListener(v -> selectPeriod(1)); // Change 0 to 1 for Today
+        btn7Days.setOnClickListener(v -> selectPeriod(7));
+        btn30Days.setOnClickListener(v -> selectPeriod(30));
+
         setupCharts();
+    }
+
+    private void selectPeriod(int days) {
+        selectedPeriodDays = days;
+        
+        // Reset button UI
+        int inactiveText = Color.parseColor("#888888");
+        btnToday.setBackgroundResource(0);
+        btnToday.setTextColor(inactiveText);
+        btn7Days.setBackgroundResource(0);
+        btn7Days.setTextColor(inactiveText);
+        btn30Days.setBackgroundResource(0);
+        btn30Days.setTextColor(inactiveText);
+
+        if (days == 1) {
+            btnToday.setBackgroundResource(R.drawable.bg_period_selected);
+            btnToday.setTextColor(Color.BLACK);
+        } else if (days == 7) {
+            btn7Days.setBackgroundResource(R.drawable.bg_period_selected);
+            btn7Days.setTextColor(Color.BLACK);
+        } else if (days == 30) {
+            btn30Days.setBackgroundResource(R.drawable.bg_period_selected);
+            btn30Days.setTextColor(Color.BLACK);
+        }
+
+        List<Transaction> transactions = dbHelper.getAllTransactionsAscending();
+        setupLineChart(transactions);
     }
 
     private void setupCharts() {
@@ -280,16 +324,21 @@ public class ChartActivity extends AppCompatActivity {
         double runningBalance = 0;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM", Locale.getDefault());
         
+        long cutoff = System.currentTimeMillis() - (selectedPeriodDays * 24L * 60 * 60 * 1000);
+        
         Map<String, Double> dailyBalances = new HashMap<>();
         List<String> dateKeys = new ArrayList<>();
         
         for (Transaction t : transactions) {
             runningBalance += t.getSignedAmount();
-            String dateKey = sdf.format(new Date(t.getTimestamp()));
-            if (!dailyBalances.containsKey(dateKey)) {
-                dateKeys.add(dateKey);
+            
+            if (t.getTimestamp() >= cutoff) {
+                String dateKey = sdf.format(new Date(t.getTimestamp()));
+                if (!dailyBalances.containsKey(dateKey)) {
+                    dateKeys.add(dateKey);
+                }
+                dailyBalances.put(dateKey, runningBalance);
             }
-            dailyBalances.put(dateKey, runningBalance);
         }
 
         for (int i = 0; i < dateKeys.size(); i++) {
@@ -298,27 +347,84 @@ public class ChartActivity extends AppCompatActivity {
             labels.add(key);
         }
 
-        LineDataSet dataSet = new LineDataSet(entries, "Balance Trend");
+        if (entries.isEmpty()) {
+            lineChart.setNoDataText("No trend data for this period");
+            lineChart.clear();
+            currentBalanceTrendText.setText("0.00 $");
+            return;
+        }
+
+        currentBalanceTrendText.setText(String.format(Locale.getDefault(), "%.2f $", runningBalance));
+
+        LineDataSet dataSet = new LineDataSet(entries, "Balance");
         dataSet.setColor(Color.parseColor("#34A853"));
         dataSet.setCircleColor(Color.parseColor("#34A853"));
-        dataSet.setLineWidth(2.5f);
+        dataSet.setLineWidth(3f);
         dataSet.setCircleRadius(4f);
         dataSet.setDrawValues(false);
         dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         dataSet.setDrawFilled(true);
-        dataSet.setFillAlpha(40);
-        dataSet.setFillColor(Color.parseColor("#34A853"));
+        dataSet.setFillDrawable(ContextCompat.getDrawable(this, R.drawable.chart_gradient));
+        dataSet.setHighLightColor(Color.WHITE);
+        dataSet.setDrawHorizontalHighlightIndicator(false);
 
         LineData data = new LineData(dataSet);
         lineChart.setData(data);
         lineChart.getDescription().setEnabled(false);
-        lineChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
-        lineChart.getXAxis().setTextColor(Color.LTGRAY);
-        lineChart.getXAxis().setGranularity(1f);
-        lineChart.getAxisLeft().setTextColor(Color.LTGRAY);
+        
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTextColor(Color.parseColor("#888888"));
+        xAxis.setDrawGridLines(true);
+        xAxis.setGridColor(Color.parseColor("#22FFFFFF"));
+        xAxis.setGridLineWidth(0.5f);
+        xAxis.enableGridDashedLine(10f, 10f, 0f);
+        xAxis.setGranularity(1f);
+        xAxis.setLabelCount(Math.min(labels.size(), 5));
+
+        YAxis leftAxis = lineChart.getAxisLeft();
+        leftAxis.setTextColor(Color.parseColor("#888888"));
+        leftAxis.setDrawGridLines(true);
+        leftAxis.setGridColor(Color.parseColor("#22FFFFFF"));
+        leftAxis.setGridLineWidth(0.5f);
+        leftAxis.enableGridDashedLine(10f, 10f, 0f);
+        
         lineChart.getAxisRight().setEnabled(false);
-        lineChart.getLegend().setTextColor(Color.LTGRAY);
-        lineChart.animateX(1000);
+        lineChart.getLegend().setEnabled(false);
+        
+        CustomMarkerView mv = new CustomMarkerView(this, R.layout.layout_chart_marker, labels);
+        mv.setChartView(lineChart);
+        lineChart.setMarker(mv);
+
+        lineChart.animateX(800);
         lineChart.invalidate();
+    }
+
+    private static class CustomMarkerView extends MarkerView {
+        private final TextView tvDate, tvValue;
+        private final List<String> labels;
+
+        public CustomMarkerView(android.content.Context context, int layoutResource, List<String> labels) {
+            super(context, layoutResource);
+            this.labels = labels;
+            tvDate = findViewById(R.id.markerDate);
+            tvValue = findViewById(R.id.markerValue);
+        }
+
+        @Override
+        public void refreshContent(Entry e, Highlight highlight) {
+            int index = (int) e.getX();
+            if (index >= 0 && index < labels.size()) {
+                tvDate.setText(labels.get(index));
+            }
+            tvValue.setText(String.format(Locale.getDefault(), "%.2f $", e.getY()));
+            super.refreshContent(e, highlight);
+        }
+
+        @Override
+        public MPPointF getOffset() {
+            return new MPPointF(-(getWidth() / 2f), -getHeight());
+        }
     }
 }

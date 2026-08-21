@@ -24,8 +24,10 @@ color teal_700
 color text_secondary
 color unmellow_yellow
 color white
+drawable bg_period_selected
 drawable button_outline_green
 drawable calendar_logo_bg
+drawable chart_gradient
 drawable circle_indicator
 drawable dialog_background_rounded
 drawable dialog_border
@@ -198,6 +200,9 @@ id btnMoveDown
 id btnMoveUp
 id btnOk
 id btnPerformTransfer
+id btnPeriod30Days
+id btnPeriod7Days
+id btnPeriodToday
 id btnSaveAccount
 id btnSaveContinue
 id btnSaveExit
@@ -244,6 +249,7 @@ id clearDataRow
 id count_sticky
 id count_tasks
 id count_today
+id currentBalanceTrendText
 id dailyButton
 id daily_expenses_main
 id dateNavigator
@@ -321,6 +327,8 @@ id logo_container
 id main
 id mainMenuButton
 id mainScrollView
+id markerDate
+id markerValue
 id modeSwitchContainer
 id monthRow
 id monthYearText
@@ -561,6 +569,7 @@ layout item_transaction_header
 layout item_transaction_name_row
 layout item_transaction_row
 layout layout_calendar_day_details
+layout layout_chart_marker
 layout nav_header_expenses
 layout notification_widget
 layout sticky_note_item

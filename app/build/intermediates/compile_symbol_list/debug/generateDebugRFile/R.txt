@@ -23,8 +23,10 @@ int color teal_700 0x0
 int color text_secondary 0x0
 int color unmellow_yellow 0x0
 int color white 0x0
+int drawable bg_period_selected 0x0
 int drawable button_outline_green 0x0
 int drawable calendar_logo_bg 0x0
+int drawable chart_gradient 0x0
 int drawable circle_indicator 0x0
 int drawable dialog_background_rounded 0x0
 int drawable dialog_border 0x0
@@ -197,6 +199,9 @@ int id btnMoveDown 0x0
 int id btnMoveUp 0x0
 int id btnOk 0x0
 int id btnPerformTransfer 0x0
+int id btnPeriod30Days 0x0
+int id btnPeriod7Days 0x0
+int id btnPeriodToday 0x0
 int id btnSaveAccount 0x0
 int id btnSaveContinue 0x0
 int id btnSaveExit 0x0
@@ -243,6 +248,7 @@ int id clearDataRow 0x0
 int id count_sticky 0x0
 int id count_tasks 0x0
 int id count_today 0x0
+int id currentBalanceTrendText 0x0
 int id dailyButton 0x0
 int id daily_expenses_main 0x0
 int id dateNavigator 0x0
@@ -320,6 +326,8 @@ int id logo_container 0x0
 int id main 0x0
 int id mainMenuButton 0x0
 int id mainScrollView 0x0
+int id markerDate 0x0
+int id markerValue 0x0
 int id modeSwitchContainer 0x0
 int id monthRow 0x0
 int id monthYearText 0x0
@@ -560,6 +568,7 @@ int layout item_transaction_header 0x0
 int layout item_transaction_name_row 0x0
 int layout item_transaction_row 0x0
 int layout layout_calendar_day_details 0x0
+int layout layout_chart_marker 0x0
 int layout nav_header_expenses 0x0
 int layout notification_widget 0x0
 int layout sticky_note_item 0x0
