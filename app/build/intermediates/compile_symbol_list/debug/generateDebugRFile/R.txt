@@ -196,6 +196,7 @@ int id btnEdit 0x0
 int id btnMoveDown 0x0
 int id btnMoveUp 0x0
 int id btnOk 0x0
+int id btnPerformTransfer 0x0
 int id btnSaveAccount 0x0
 int id btnSaveContinue 0x0
 int id btnSaveExit 0x0
@@ -282,6 +283,7 @@ int id editAccountsButton 0x0
 int id editAmount 0x0
 int id editItems 0x0
 int id editNotes 0x0
+int id editTransferAmount 0x0
 int id emptyStateText 0x0
 int id empty_view 0x0
 int id expense_type_main 0x0
@@ -383,6 +385,10 @@ int id pieChartAccount 0x0
 int id prevMonth 0x0
 int id previousBalanceRow 0x0
 int id previousBalanceTotalText 0x0
+int id ratesBackButton 0x0
+int id ratesTopBar 0x0
+int id recommendBackButton 0x0
+int id recommendTopBar 0x0
 int id remarkHistoryContainer 0x0
 int id remarkHistoryTitle 0x0
 int id remarkLabel 0x0
@@ -417,6 +423,8 @@ int id selectionBar 0x0
 int id selectionCountText 0x0
 int id settingsBackButton 0x0
 int id settingsTopBar 0x0
+int id spinnerFromAccount 0x0
+int id spinnerToAccount 0x0
 int id statInText 0x0
 int id statNetText 0x0
 int id statOutText 0x0
@@ -463,6 +471,8 @@ int id transactionTime 0x0
 int id transactionTitle 0x0
 int id transactionTitleInput 0x0
 int id transactionsRecyclerView 0x0
+int id transferBackButton 0x0
+int id transferTopBar 0x0
 int id transfer_main 0x0
 int id txCashIn 0x0
 int id txCashOut 0x0
@@ -512,6 +522,8 @@ int layout activity_income 0x0
 int layout activity_main 0x0
 int layout activity_monthly_expenses 0x0
 int layout activity_notebook 0x0
+int layout activity_rates 0x0
+int layout activity_recommend 0x0
 int layout activity_report_all 0x0
 int layout activity_secure_box 0x0
 int layout activity_summary 0x0

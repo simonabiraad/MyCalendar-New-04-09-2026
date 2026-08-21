@@ -3351,6 +3351,7 @@ int id btnEdit 0x7f0900ba
 int id btnMoveDown 0x7f0900bb
 int id btnMoveUp 0x7f0900bc
 int id btnOk 0x7f0900bd
+int id btnPerformTransfer 0x7f090381
 int id btnSaveAccount 0x7f0900be
 int id btnSaveContinue 0x7f0900bf
 int id btnSaveExit 0x7f0900c0
@@ -3510,6 +3511,7 @@ int id editAccountsButton 0x7f090159
 int id editAmount 0x7f09015a
 int id editItems 0x7f09015b
 int id editNotes 0x7f09015c
+int id editTransferAmount 0x7f090382
 int id edit_query 0x7f09015d
 int id edit_text_id 0x7f09015e
 int id elastic 0x7f09015f
@@ -3800,7 +3802,11 @@ int id previousBalanceTotalText 0x7f09027b
 int id progress_circular 0x7f09027c
 int id progress_horizontal 0x7f09027d
 int id radio 0x7f09027e
+int id ratesBackButton 0x7f090383
+int id ratesTopBar 0x7f090384
 int id ratio 0x7f09027f
+int id recommendBackButton 0x7f090385
+int id recommendTopBar 0x7f090386
 int id rectangles 0x7f090280
 int id remarkHistoryContainer 0x7f090281
 int id remarkHistoryTitle 0x7f090282
@@ -3884,6 +3890,8 @@ int id snapMargins 0x7f0902cf
 int id south 0x7f0902d0
 int id spacer 0x7f0902d1
 int id special_effects_controller_view_tag 0x7f0902d2
+int id spinnerFromAccount 0x7f090387
+int id spinnerToAccount 0x7f090388
 int id spline 0x7f0902d3
 int id split_action_bar 0x7f0902d4
 int id spread 0x7f0902d5
@@ -3991,6 +3999,8 @@ int id transactionTime 0x7f09033a
 int id transactionTitle 0x7f09033b
 int id transactionTitleInput 0x7f09033c
 int id transactionsRecyclerView 0x7f09033d
+int id transferBackButton 0x7f090389
+int id transferTopBar 0x7f09038a
 int id transfer_main 0x7f09033e
 int id transitionToEnd 0x7f09033f
 int id transitionToStart 0x7f090340
@@ -4187,6 +4197,8 @@ int layout activity_income 0x7f0c0027
 int layout activity_main 0x7f0c0028
 int layout activity_monthly_expenses 0x7f0c0029
 int layout activity_notebook 0x7f0c002a
+int layout activity_rates 0x7f0c00a6
+int layout activity_recommend 0x7f0c00a7
 int layout activity_report_all 0x7f0c002b
 int layout activity_secure_box 0x7f0c002c
 int layout activity_summary 0x7f0c002d

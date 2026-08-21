@@ -41,6 +41,9 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
+import androidx.core.util.Pair;
+
 public class ExpensesActivity extends AppCompatActivity {
 
     // Filter modes for the transaction list
@@ -49,6 +52,7 @@ public class ExpensesActivity extends AppCompatActivity {
     private static final int FILTER_WEEKLY = 2;
     private static final int FILTER_MONTHLY = 3;
     private static final int FILTER_YEARLY = 4;
+    private static final int FILTER_CUSTOM_RANGE = 5;
 
     private DrawerLayout drawerLayout;
     private List<Account> accountList = new ArrayList<>();
@@ -67,6 +71,11 @@ public class ExpensesActivity extends AppCompatActivity {
     private View previousBalanceRow, finalBalanceRow;
 
     private int currentFilter = FILTER_ALL;
+    private boolean isSortAscending = false;
+    private boolean filterOnlyCashIn = false;
+    private boolean filterOnlyCashOut = false;
+    private long customStartDate = -1;
+    private long customEndDate = -1;
 
     private final ActivityResultLauncher<Intent> backupExportLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -197,6 +206,8 @@ public class ExpensesActivity extends AppCompatActivity {
             } else if (id == R.id.nav_transaction_all) {
                 currentSearchQuery = "";
                 currentFilter = FILTER_ALL;
+                saveActiveAccount("Expenses");
+                topExpensesButton.setText("Expenses");
                 updateFilterButtonsUI();
                 refreshTransactionsList();
             } else if (id == R.id.nav_accounts) {
@@ -222,9 +233,9 @@ public class ExpensesActivity extends AppCompatActivity {
             } else if (id == R.id.nav_deleted_transactions) {
                 startActivity(new Intent(this, DeletedTransactionsActivity.class));
             } else if (id == R.id.nav_rate_us) {
-                Toast.makeText(this, "Thank you for wanting to rate us!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, RatesActivity.class));
             } else if (id == R.id.nav_recommend) {
-                Toast.makeText(this, "Recommendations feature coming soon", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, RecommendActivity.class));
             }
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
@@ -485,13 +496,35 @@ public class ExpensesActivity extends AppCompatActivity {
 
             popup.setOnMenuItemClickListener(item -> {
                 int id = item.getItemId();
-                String title = String.valueOf(item.getTitle());
-                if (id == R.id.action_date_asc || id == R.id.action_date_desc) {
-                    item.setChecked(true);
-                } else if (id == R.id.action_category) {
+                if (id == R.id.action_category) {
                     startActivity(new Intent(this, CategoryActivity.class));
+                } else if (id == R.id.action_notes) {
+                    startActivity(new Intent(this, NotebookActivity.class));
+                } else if (id == R.id.action_date) {
+                    showDatePicker();
+                } else if (id == R.id.action_date_range) {
+                    showDateRangePicker();
+                } else if (id == R.id.action_date_asc) {
+                    isSortAscending = true;
+                    refreshTransactionsList();
+                } else if (id == R.id.action_date_desc) {
+                    isSortAscending = false;
+                    refreshTransactionsList();
+                } else if (id == R.id.action_cash_in) {
+                    filterOnlyCashIn = !filterOnlyCashIn;
+                    filterOnlyCashOut = false;
+                    refreshTransactionsList();
+                } else if (id == R.id.action_cash_out) {
+                    filterOnlyCashOut = !filterOnlyCashOut;
+                    filterOnlyCashIn = false;
+                    refreshTransactionsList();
+                } else if (id == R.id.action_print) {
+                    findViewById(R.id.expensesExportButton).performClick();
+                } else if (id == R.id.action_name) {
+                    showUserInfoDialog("Name", "UserName");
+                } else if (id == R.id.action_address) {
+                    showUserInfoDialog("Address", "UserAddress");
                 }
-                Toast.makeText(this, title + " selected", Toast.LENGTH_SHORT).show();
                 return true;
             });
             popup.show();
@@ -509,6 +542,13 @@ public class ExpensesActivity extends AppCompatActivity {
         weeklyButton.setBackgroundTintList(android.content.res.ColorStateList.valueOf(currentFilter == FILTER_WEEKLY ? activeColor : inactiveColor));
         monthlyButton.setBackgroundTintList(android.content.res.ColorStateList.valueOf(currentFilter == FILTER_MONTHLY ? activeColor : inactiveColor));
         yearlyButton.setBackgroundTintList(android.content.res.ColorStateList.valueOf(currentFilter == FILTER_YEARLY ? activeColor : inactiveColor));
+
+        if (currentFilter == FILTER_CUSTOM_RANGE) {
+            // If custom range is active, we might want to show a toast or update a label
+            String start = new SimpleDateFormat("dd/MM", Locale.getDefault()).format(new java.util.Date(customStartDate));
+            String end = new SimpleDateFormat("dd/MM", Locale.getDefault()).format(new java.util.Date(customEndDate));
+            Toast.makeText(this, "Range: " + start + " - " + end, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void showAccountsDialog() {
@@ -928,11 +968,15 @@ public class ExpensesActivity extends AppCompatActivity {
             balanceAfterById.put(t.getId(), running);
         }
 
-        // Apply date filter + search, newest first
+        // Apply date filter + search
         List<Transaction> filtered = new ArrayList<>();
         Transaction monthlyIncome = null;
-        for (int i = allAscending.size() - 1; i >= 0; i--) {
-            Transaction t = allAscending.get(i);
+        
+        int count = allAscending.size();
+        for (int i = 0; i < count; i++) {
+            // If Ascending, use i; if Descending (default), use count - 1 - i
+            int index = isSortAscending ? i : (count - 1 - i);
+            Transaction t = allAscending.get(index);
             
             // INDEPENDENCE: Filter by account if not in summary mode
             if (!isSummaryMode && (t.getAccount() == null || !t.getAccount().equals(activeAccount))) continue;
@@ -1025,6 +1069,10 @@ public class ExpensesActivity extends AppCompatActivity {
     }
 
     private boolean matchesFilter(Transaction t) {
+        // Type filtering
+        if (filterOnlyCashIn && !t.isCashIn()) return false;
+        if (filterOnlyCashOut && t.isCashIn()) return false;
+
         if (currentFilter == FILTER_ALL) return true;
 
         Calendar now = Calendar.getInstance();
@@ -1041,6 +1089,11 @@ public class ExpensesActivity extends AppCompatActivity {
                         && now.get(Calendar.MONTH) == txCal.get(Calendar.MONTH);
             case FILTER_YEARLY:
                 return now.get(Calendar.YEAR) == txCal.get(Calendar.YEAR);
+            case FILTER_CUSTOM_RANGE:
+                long ts = t.getTimestamp();
+                if (customStartDate != -1 && ts < customStartDate) return false;
+                if (customEndDate != -1 && ts > customEndDate) return false;
+                return true;
             default:
                 return true;
         }
@@ -1278,5 +1331,66 @@ public class ExpensesActivity extends AppCompatActivity {
         if (lower.contains("water")) return "💧";
         
         return "📝";
+    }
+
+    private void showDateRangePicker() {
+        MaterialDatePicker<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker()
+                .setTitleText("Select Date Range")
+                .build();
+        builder.addOnPositiveButtonClickListener(selection -> {
+            if (selection.first != null && selection.second != null) {
+                // Adjust to cover the full end day
+                Calendar end = Calendar.getInstance();
+                end.setTimeInMillis(selection.second);
+                end.set(Calendar.HOUR_OF_DAY, 23);
+                end.set(Calendar.MINUTE, 59);
+                end.set(Calendar.SECOND, 59);
+                
+                customStartDate = selection.first;
+                customEndDate = end.getTimeInMillis();
+                currentFilter = FILTER_CUSTOM_RANGE;
+                updateFilterButtonsUI();
+                refreshTransactionsList();
+            }
+        });
+        builder.show(getSupportFragmentManager(), "date_range_picker");
+    }
+
+    private void showDatePicker() {
+        Calendar c = Calendar.getInstance();
+        new android.app.DatePickerDialog(this, (view, year, month, day) -> {
+            Calendar selected = Calendar.getInstance();
+            selected.set(year, month, day);
+            selected.set(Calendar.HOUR_OF_DAY, 0);
+            selected.set(Calendar.MINUTE, 0);
+            selected.set(Calendar.SECOND, 0);
+            selected.set(Calendar.MILLISECOND, 0);
+            customStartDate = selected.getTimeInMillis();
+            
+            selected.set(Calendar.HOUR_OF_DAY, 23);
+            selected.set(Calendar.MINUTE, 59);
+            selected.set(Calendar.SECOND, 59);
+            selected.set(Calendar.MILLISECOND, 999);
+            customEndDate = selected.getTimeInMillis();
+            
+            currentFilter = FILTER_CUSTOM_RANGE;
+            updateFilterButtonsUI();
+            refreshTransactionsList();
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    private void showUserInfoDialog(String title, String prefKey) {
+        EditText input = new EditText(this);
+        input.setText(getSharedPreferences("ExpensesPrefs", MODE_PRIVATE).getString(prefKey, ""));
+        new androidx.appcompat.app.AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                .setTitle("Edit " + title)
+                .setView(input)
+                .setPositiveButton("Save", (d, w) -> {
+                    String val = input.getText().toString().trim();
+                    getSharedPreferences("ExpensesPrefs", MODE_PRIVATE).edit().putString(prefKey, val).apply();
+                    Toast.makeText(this, title + " saved", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 }

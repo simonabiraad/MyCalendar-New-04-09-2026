@@ -117,8 +117,8 @@ public class ChartActivity extends AppCompatActivity {
         pieChartAccount.setUsePercentValues(true);
         pieChartAccount.getDescription().setEnabled(false);
         pieChartAccount.setDrawHoleEnabled(true);
-        pieChartAccount.setHoleRadius(65f);
-        pieChartAccount.setTransparentCircleRadius(70f);
+        pieChartAccount.setHoleRadius(50f);
+        pieChartAccount.setTransparentCircleRadius(55f);
         pieChartAccount.setHoleColor(Color.BLACK);
         pieChartAccount.setDrawEntryLabels(false);
         pieChartAccount.getLegend().setEnabled(false);
@@ -189,8 +189,8 @@ public class ChartActivity extends AppCompatActivity {
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.setDrawHoleEnabled(true);
-        pieChart.setHoleRadius(65f);
-        pieChart.setTransparentCircleRadius(70f);
+        pieChart.setHoleRadius(50f);
+        pieChart.setTransparentCircleRadius(55f);
         pieChart.setHoleColor(Color.BLACK);
         pieChart.setDrawEntryLabels(false);
         pieChart.getLegend().setEnabled(false);
@@ -209,11 +209,11 @@ public class ChartActivity extends AppCompatActivity {
         String bottom = String.format(Locale.getDefault(), "%.2f $", total);
         SpannableString s = new SpannableString(top + bottom);
         s.setSpan(new ForegroundColorSpan(Color.LTGRAY), 0, top.length(), 0);
-        s.setSpan(new RelativeSizeSpan(1.6f), 0, top.length(), 0);
+        s.setSpan(new RelativeSizeSpan(1.0f), 0, top.length(), 0);
         s.setSpan(new StyleSpan(Typeface.BOLD), 0, top.length(), 0);
         
         s.setSpan(new ForegroundColorSpan(Color.WHITE), top.length(), s.length(), 0);
-        s.setSpan(new RelativeSizeSpan(3.8f), top.length(), s.length(), 0);
+        s.setSpan(new RelativeSizeSpan(2.2f), top.length(), s.length(), 0);
         s.setSpan(new StyleSpan(Typeface.BOLD), top.length(), s.length(), 0);
         return s;
     }

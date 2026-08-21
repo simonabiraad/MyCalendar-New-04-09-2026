@@ -197,6 +197,7 @@ id btnEdit
 id btnMoveDown
 id btnMoveUp
 id btnOk
+id btnPerformTransfer
 id btnSaveAccount
 id btnSaveContinue
 id btnSaveExit
@@ -283,6 +284,7 @@ id editAccountsButton
 id editAmount
 id editItems
 id editNotes
+id editTransferAmount
 id emptyStateText
 id empty_view
 id expense_type_main
@@ -384,6 +386,10 @@ id pieChartAccount
 id prevMonth
 id previousBalanceRow
 id previousBalanceTotalText
+id ratesBackButton
+id ratesTopBar
+id recommendBackButton
+id recommendTopBar
 id remarkHistoryContainer
 id remarkHistoryTitle
 id remarkLabel
@@ -418,6 +424,8 @@ id selectionBar
 id selectionCountText
 id settingsBackButton
 id settingsTopBar
+id spinnerFromAccount
+id spinnerToAccount
 id statInText
 id statNetText
 id statOutText
@@ -464,6 +472,8 @@ id transactionTime
 id transactionTitle
 id transactionTitleInput
 id transactionsRecyclerView
+id transferBackButton
+id transferTopBar
 id transfer_main
 id txCashIn
 id txCashOut
@@ -513,6 +523,8 @@ layout activity_income
 layout activity_main
 layout activity_monthly_expenses
 layout activity_notebook
+layout activity_rates
+layout activity_recommend
 layout activity_report_all
 layout activity_secure_box
 layout activity_summary
