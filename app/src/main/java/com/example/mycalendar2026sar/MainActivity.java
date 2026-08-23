@@ -45,6 +45,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -298,6 +299,8 @@ public class MainActivity extends AppCompatActivity {
                     findViewById(R.id.notificationSettingsButton).performClick();
                 } else if (id == R.id.action_toggle_quick_bar) {
                     toggleQuickNoteBar();
+                } else if (id == R.id.action_themes) {
+                    showThemeOptionsDialog();
                 } else if (id == R.id.action_change_colors) {
                     showChangeColorsDialog();
                 } else if (id == R.id.action_change_font) {
@@ -386,6 +389,8 @@ public class MainActivity extends AppCompatActivity {
             launchExpenses();
         } else if (QuickNoteNotificationService.ACTION_SETTINGS.equals(intent.getAction())) {
             findViewById(R.id.notificationSettingsButton).performClick();
+        } else if (QuickNoteNotificationService.ACTION_THEMES.equals(intent.getAction())) {
+            showThemeOptionsDialog();
         }
     }
 
@@ -1111,7 +1116,7 @@ public class MainActivity extends AppCompatActivity {
                 pickedDate.set(Calendar.MINUTE, minute);
                 pickedDate.set(Calendar.SECOND, 0);
                 setReminder(pickedDate, noteText);
-            }, current.get(Calendar.HOUR_OF_DAY), current.get(Calendar.MINUTE), true).show();
+            }, current.get(Calendar.HOUR_OF_DAY), current.get(Calendar.MINUTE), false).show();
         }, current.get(Calendar.YEAR), current.get(Calendar.MONTH), current.get(Calendar.DAY_OF_MONTH)).show();
     }
 
@@ -2017,6 +2022,23 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(this, featureName + " now requires a password.", Toast.LENGTH_SHORT).show();
                     } else {
                         verifyThenDisablePassword(featureName, prefKey);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    private void showThemeOptionsDialog() {
+        String[] options = {"Dark Mode", "Light Mode", "Other (Custom Colors)"};
+        new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                .setTitle("Select Theme")
+                .setItems(options, (dialog, which) -> {
+                    if (which == 0) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    } else if (which == 1) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    } else if (which == 2) {
+                        showColorPicker(0);
                     }
                 })
                 .setNegativeButton("Cancel", null)

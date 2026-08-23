@@ -6,13 +6,13 @@
     android:layout_height="wrap_content"
     android:background="#000000"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/_12sdp">
 
     <View
-        android:layout_width="40dp"
-        android:layout_height="4dp"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_3sdp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/_12sdp"
         android:background="#333333" />
 
     <LinearLayout
@@ -23,8 +23,8 @@
         <Button
             android:id="@+id/btnDialogCashIn"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="@dimen/_38sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
             android:layout_weight="1"
             android:backgroundTint="@color/light_green"
             android:text="Cash In"
@@ -35,7 +35,7 @@
         <Button
             android:id="@+id/btnDialogCashOut"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/_38sdp"
             android:layout_weight="1"
             android:backgroundTint="@color/expense_red"
             android:text="Cash Out"
@@ -47,10 +47,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/_18sdp"
         android:background="@drawable/summary_border"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/_12sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -65,7 +65,7 @@
                 android:layout_weight="1"
                 android:text="Thu, 20-Aug-2026"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/_12ssp"
                 android:textStyle="bold" />
 
             <TextView
@@ -76,7 +76,7 @@
                 android:gravity="end"
                 android:text="0.00"
                 android:textColor="@color/light_green"
-                android:textSize="16sp"
+                android:textSize="@dimen/_12ssp"
                 android:textStyle="bold" />
 
             <TextView
@@ -87,14 +87,14 @@
                 android:gravity="end"
                 android:text="0.00"
                 android:textColor="@color/expense_red"
-                android:textSize="16sp"
+                android:textSize="@dimen/_12ssp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/_9sdp"
             android:orientation="horizontal">
 
             <TextView
@@ -103,7 +103,7 @@
                 android:layout_weight="1"
                 android:text="Notes"
                 android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textSize="@dimen/_11ssp"
                 android:textStyle="bold" />
 
             <TextView
@@ -113,17 +113,18 @@
                 android:gravity="end"
                 android:text="Cash In"
                 android:textColor="@color/light_green"
-                android:textSize="14sp"
+                android:textSize="@dimen/_11ssp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txtCashOutHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
                 android:gravity="end"
                 android:text="Cash Out"
                 android:textColor="@color/expense_red"
-                android:textSize="14sp"
+                android:textSize="@dimen/_11ssp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -131,8 +132,8 @@
             android:id="@+id/dialogTransactionList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="100dp"
-            android:layout_marginTop="8dp" />
+            android:minHeight="@dimen/_75sdp"
+            android:layout_marginTop="@dimen/_6sdp" />
 
     </LinearLayout>
 

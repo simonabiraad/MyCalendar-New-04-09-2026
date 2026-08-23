@@ -23,6 +23,15 @@ int color teal_700 0x0
 int color text_secondary 0x0
 int color unmellow_yellow 0x0
 int color white 0x0
+int dimen button_height_standard 0x0
+int dimen icon_size_medium 0x0
+int dimen margin_small 0x0
+int dimen margin_standard 0x0
+int dimen padding_standard 0x0
+int dimen text_header 0x0
+int dimen text_small 0x0
+int dimen text_standard 0x0
+int dimen text_title 0x0
 int drawable bg_period_selected 0x0
 int drawable button_outline_green 0x0
 int drawable calendar_logo_bg 0x0
@@ -142,6 +151,7 @@ int id action_pdf 0x0
 int id action_print 0x0
 int id action_report 0x0
 int id action_secure_box 0x0
+int id action_themes 0x0
 int id action_toggle_quick_bar 0x0
 int id addAccountButton 0x0
 int id addCategoryHeaderButton 0x0
@@ -397,6 +407,8 @@ int id notif_note_btn 0x0
 int id notif_sb_btn 0x0
 int id notif_settings_btn 0x0
 int id notif_task_btn 0x0
+int id notif_themes_btn 0x0
+int id notif_themes_text 0x0
 int id notif_title 0x0
 int id notif_voice_btn 0x0
 int id notificationSettingsButton 0x0
@@ -505,6 +517,8 @@ int id transactionTitle 0x0
 int id transactionTitleInput 0x0
 int id transactionsRecyclerView 0x0
 int id transferBackButton 0x0
+int id transferDatePickerBox 0x0
+int id transferTimePickerBox 0x0
 int id transferTopBar 0x0
 int id transfer_main 0x0
 int id txCashIn 0x0
@@ -517,8 +531,11 @@ int id txNamesSearchView 0x0
 int id txNamesTopBar 0x0
 int id txNote 0x0
 int id txtAccountDate 0x0
+int id txtCashOutHeader 0x0
 int id txtDate 0x0
 int id txtTime 0x0
+int id txtTransferDate 0x0
+int id txtTransferTime 0x0
 int id typeMinusContainer 0x0
 int id typePlusContainer 0x0
 int id voiceNoteButton 0x0

@@ -33,6 +33,10 @@
         android:icon="@drawable/ic_menu_quick_bar_color"
         android:title="Toggle Quick Note Bar" />
     <item
+        android:id="@+id/action_themes"
+        android:icon="@drawable/ic_menu_color_palette"
+        android:title="Themes" />
+    <item
         android:id="@+id/action_change_colors"
         android:icon="@drawable/ic_menu_color_palette"
         android:title="Change Colors" />

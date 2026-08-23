@@ -15,9 +15,9 @@
 
         <ImageButton
             android:id="@+id/expensesMenuButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="8dp"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_margin="@dimen/_6sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/menu_content_description"
             android:src="@android:drawable/ic_menu_sort_by_size"
@@ -27,14 +27,14 @@
 
         <Button
             android:id="@+id/topExpensesButton"
-            android:layout_width="100dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_6sdp"
             android:backgroundTint="@color/light_green"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="@string/expenses"
-            android:textSize="12sp"
+            android:textSize="@dimen/_9ssp"
             app:layout_constraintBottom_toBottomOf="@id/expensesMenuButton"
             app:layout_constraintStart_toEndOf="@id/expensesMenuButton"
             app:layout_constraintTop_toTopOf="@id/expensesMenuButton" />
@@ -71,12 +71,12 @@
 
         <ImageButton
             android:id="@+id/expensesChartButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="4dp"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_margin="@dimen/_3sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/chart_icon_description"
-            android:padding="8dp"
+            android:padding="@dimen/_6sdp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_report_logo"
             app:layout_constraintEnd_toStartOf="@id/expensesOverflowButton"
@@ -84,9 +84,9 @@
 
         <ImageButton
             android:id="@+id/expensesOverflowButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="4dp"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_margin="@dimen/_3sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/more_options_description"
             android:src="@drawable/ic_menu_tx_all_color"
@@ -110,66 +110,66 @@
             <Button
                 android:id="@+id/allButton"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/light_green"
                 android:insetLeft="0dp"
                 android:insetRight="0dp"
                 android:padding="0dp"
                 android:text="@string/all_expenses"
-                android:textSize="11sp"
+                android:textSize="@dimen/_8ssp"
                 app:cornerRadius="20dp" />
 
             <Button
                 android:id="@+id/dailyButton"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/green"
                 android:insetLeft="0dp"
                 android:insetRight="0dp"
                 android:padding="0dp"
                 android:text="@string/label_daily"
-                android:textSize="11sp"
+                android:textSize="@dimen/_8ssp"
                 app:cornerRadius="20dp" />
 
             <Button
                 android:id="@+id/weeklyButton"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_weight="1"
                 android:backgroundTint="@android:color/holo_orange_light"
                 android:insetLeft="0dp"
                 android:insetRight="0dp"
                 android:padding="0dp"
                 android:text="@string/label_weekly"
-                android:textSize="11sp"
+                android:textSize="@dimen/_8ssp"
                 app:cornerRadius="20dp" />
 
             <Button
                 android:id="@+id/monthlyButton"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_weight="1"
                 android:backgroundTint="@android:color/holo_blue_dark"
                 android:insetLeft="0dp"
                 android:insetRight="0dp"
                 android:padding="0dp"
                 android:text="@string/label_monthly"
-                android:textSize="11sp"
+                android:textSize="@dimen/_8ssp"
                 app:cornerRadius="20dp" />
 
             <Button
                 android:id="@+id/yearlyButton"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_weight="1"
                 android:backgroundTint="@android:color/holo_purple"
                 android:insetLeft="0dp"
                 android:insetRight="0dp"
                 android:padding="0dp"
                 android:text="@string/yearly"
-                android:textSize="11sp"
+                android:textSize="@dimen/_8ssp"
                 app:cornerRadius="20dp" />
 
         </LinearLayout>
@@ -473,14 +473,14 @@
                         android:layout_height="wrap_content"
                         android:text="TOTAL Cash In"
                         android:textColor="@color/text_secondary"
-                        android:textSize="11sp" />
+                        android:textSize="@dimen/_8ssp" />
 
                     <TextView
                         android:id="@+id/cashInTotalText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/income_green"
-                        android:textSize="13sp"
+                        android:textSize="@dimen/_10ssp"
                         android:textStyle="bold"
                         android:text="0.00" />
                 </LinearLayout>
@@ -497,14 +497,14 @@
                         android:layout_height="wrap_content"
                         android:text="TOTAL Cash Out"
                         android:textColor="@color/text_secondary"
-                        android:textSize="11sp" />
+                        android:textSize="@dimen/_8ssp" />
 
                     <TextView
                         android:id="@+id/cashOutTotalText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/expense_red"
-                        android:textSize="13sp"
+                        android:textSize="@dimen/_10ssp"
                         android:textStyle="bold"
                         android:text="0.00" />
                 </LinearLayout>
@@ -521,14 +521,14 @@
                         android:layout_height="wrap_content"
                         android:text="Balance"
                         android:textColor="@color/text_secondary"
-                        android:textSize="11sp" />
+                        android:textSize="@dimen/_8ssp" />
 
                     <TextView
                         android:id="@+id/balanceTotalText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
-                        android:textSize="13sp"
+                        android:textSize="@dimen/_10ssp"
                         android:textStyle="bold"
                         android:text="0.00" />
                 </LinearLayout>
@@ -555,7 +555,7 @@
                     android:layout_weight="1"
                     android:text="Previous Balance"
                     android:textColor="@color/light_green"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -564,7 +564,7 @@
                     android:layout_height="wrap_content"
                     android:text="0.00"
                     android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -582,7 +582,7 @@
                     android:layout_weight="1"
                     android:text="Final Balance"
                     android:textColor="@color/light_green"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -591,7 +591,7 @@
                     android:layout_height="wrap_content"
                     android:text="0.00"
                     android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
             </LinearLayout>
 

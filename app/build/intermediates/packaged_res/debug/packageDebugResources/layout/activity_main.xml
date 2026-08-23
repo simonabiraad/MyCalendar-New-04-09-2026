@@ -10,12 +10,12 @@
     <LinearLayout
         android:id="@+id/selectionBar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/_42sdp"
         android:background="#DD000000"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:paddingStart="@dimen/_12sdp"
+        android:paddingEnd="@dimen/_12sdp"
         android:visibility="gone"
         android:elevation="8dp"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,13 +27,13 @@
             android:layout_weight="1"
             android:text="0 selected"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="@dimen/_14ssp"
             android:textStyle="bold" />
 
         <ImageButton
             android:id="@+id/archiveSelectedBtn"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@android:drawable/ic_menu_save"
             app:tint="@color/white" />
@@ -70,8 +70,8 @@
 
             <ImageButton
                 android:id="@+id/mainMenuButton"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Menu"
                 android:src="@android:drawable/ic_menu_sort_by_size"
@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/title_calendar_2026"
                     android:textColor="@color/light_green"
-                    android:textSize="22sp"
+                    android:textSize="@dimen/_17ssp"
                     android:textStyle="bold" />
 
                 <TextClock
@@ -106,7 +106,7 @@
                     android:format12Hour="EEEE, MMMM dd, yyyy"
                     android:format24Hour="EEEE, MMMM dd, yyyy"
                     android:textColor="@color/light_green"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/_11ssp" />
             </LinearLayout>
 
             <LinearLayout
@@ -115,13 +115,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/_9sdp"
                 app:layout_constraintTop_toBottomOf="@id/headerTextContainer">
 
                 <ImageButton
                     android:id="@+id/prevMonth"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="@dimen/_36sdp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/prev_month"
                     android:src="@android:drawable/ic_media_previous" />
@@ -133,14 +133,14 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
                     tools:text="January 2026" />
 
                 <ImageButton
                     android:id="@+id/nextMonth"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="@dimen/_36sdp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/next_month"
                     android:src="@android:drawable/ic_media_next" />
@@ -165,8 +165,8 @@
             <GridView
                 android:id="@+id/calendarGrid"
                 android:layout_width="0dp"
-                android:layout_height="220dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="@dimen/_165sdp"
+                android:layout_marginTop="@dimen/_6sdp"
                 android:horizontalSpacing="0dp"
                 android:nestedScrollingEnabled="false"
                 android:numColumns="7"
@@ -281,29 +281,29 @@
 
             <Button
                 android:id="@+id/aiAssistantButton"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginEnd="8dp"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_6sdp"
                 android:backgroundTint="@color/light_green"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:padding="0dp"
                 android:text="🎙"
-                android:textSize="14sp"
+                android:textSize="@dimen/_11ssp"
                 app:layout_constraintBottom_toBottomOf="@id/headerTextContainer"
                 app:layout_constraintEnd_toStartOf="@id/notificationSettingsButton"
                 app:layout_constraintTop_toTopOf="@id/headerTextContainer" />
 
             <Button
                 android:id="@+id/notificationSettingsButton"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
                 android:backgroundTint="@color/light_green"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:padding="0dp"
                 android:text="@string/notification_icon"
-                android:textSize="11sp"
+                android:textSize="@dimen/_9ssp"
                 app:layout_constraintBottom_toBottomOf="@id/headerTextContainer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/headerTextContainer" />
@@ -317,18 +317,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#000000"
-        android:padding="16dp"
+        android:padding="@dimen/_12sdp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:id="@+id/noteInputContainer"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/_38sdp"
             android:background="@drawable/summary_border"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingStart="12dp"
-            android:paddingEnd="8dp">
+            android:paddingStart="@dimen/_9sdp"
+            android:paddingEnd="@dimen/_6sdp">
 
             <EditText
                 android:id="@+id/noteInput"
@@ -341,12 +341,12 @@
                 android:inputType="textMultiLine"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/_11ssp" />
 
             <ImageButton
                 android:id="@+id/voiceNoteButton"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Voice Note"
                 android:src="@android:drawable/ic_btn_speak_now"
@@ -357,13 +357,13 @@
             android:id="@+id/buttonContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/_6sdp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/taskButton"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/light_green"
                 android:insetTop="0dp"
@@ -371,12 +371,12 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="Task"
-                android:textSize="11sp" />
+                android:textSize="@dimen/_9ssp" />
 
             <Button
                 android:id="@+id/secureBoxButton"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/light_green"
@@ -385,12 +385,12 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="@string/secure_box"
-                android:textSize="12sp" />
+                android:textSize="@dimen/_10ssp" />
 
             <Button
                 android:id="@+id/expensesButton"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/light_green"
@@ -399,12 +399,12 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="@string/expenses"
-                android:textSize="11sp" />
+                android:textSize="@dimen/_9ssp" />
 
             <Button
                 android:id="@+id/saveNoteButton"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/light_green"
@@ -413,7 +413,7 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="@string/save_note"
-                android:textSize="11sp" />
+                android:textSize="@dimen/_9ssp" />
 
         </LinearLayout>
     </LinearLayout>

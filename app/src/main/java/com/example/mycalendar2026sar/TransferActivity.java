@@ -1,5 +1,7 @@
 package com.example.mycalendar2026sar;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,17 +12,24 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class TransferActivity extends AppCompatActivity {
 
     private Spinner spinnerFrom, spinnerTo;
     private EditText editAmount;
     private Button btnTransfer;
-    private List<Account> accountList;
+    private TextView txtDate, txtTime;
+    private Calendar selectedDateTime = Calendar.getInstance();
+    private SimpleDateFormat dateSdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+    private SimpleDateFormat timeSdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +47,16 @@ public class TransferActivity extends AppCompatActivity {
         spinnerTo = findViewById(R.id.spinnerToAccount);
         editAmount = findViewById(R.id.editTransferAmount);
         btnTransfer = findViewById(R.id.btnPerformTransfer);
+        txtDate = findViewById(R.id.txtTransferDate);
+        txtTime = findViewById(R.id.txtTransferTime);
 
         findViewById(R.id.transferBackButton).setOnClickListener(v -> finish());
+        findViewById(R.id.transferDatePickerBox).setOnClickListener(v -> showDatePicker());
+        findViewById(R.id.transferTimePickerBox).setOnClickListener(v -> showTimePicker());
 
-        accountList = BalanceManager.loadAccounts(this);
+        updateDateTimeLabels();
+
+        List<Account> accountList = BalanceManager.loadAccounts(this);
         List<String> accountNames = new ArrayList<>();
         for (Account a : accountList) {
             accountNames.add(a.getName());
@@ -53,6 +68,28 @@ public class TransferActivity extends AppCompatActivity {
         spinnerTo.setAdapter(adapter);
 
         btnTransfer.setOnClickListener(v -> performTransfer());
+    }
+
+    private void updateDateTimeLabels() {
+        txtDate.setText(dateSdf.format(selectedDateTime.getTime()));
+        txtTime.setText(timeSdf.format(selectedDateTime.getTime()));
+    }
+
+    private void showDatePicker() {
+        new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+            selectedDateTime.set(Calendar.YEAR, year);
+            selectedDateTime.set(Calendar.MONTH, month);
+            selectedDateTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateDateTimeLabels();
+        }, selectedDateTime.get(Calendar.YEAR), selectedDateTime.get(Calendar.MONTH), selectedDateTime.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    private void showTimePicker() {
+        new TimePickerDialog(this, (view, hourOfDay, minute) -> {
+            selectedDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            selectedDateTime.set(Calendar.MINUTE, minute);
+            updateDateTimeLabels();
+        }, selectedDateTime.get(Calendar.HOUR_OF_DAY), selectedDateTime.get(Calendar.MINUTE), false).show();
     }
 
     private void performTransfer() {
@@ -85,14 +122,14 @@ public class TransferActivity extends AppCompatActivity {
         }
 
         TransactionDbHelper dbHelper = TransactionDbHelper.getInstance(this);
-        long now = System.currentTimeMillis();
+        long timestamp = selectedDateTime.getTimeInMillis();
 
         // 1. Transaction: Transfer Out from 'from'
-        dbHelper.addTransaction("Transfer to " + to, amount, Transaction.TYPE_CASH_OUT, now, from);
+        dbHelper.addTransaction("Transfer to " + to, amount, Transaction.TYPE_CASH_OUT, timestamp, from);
         BalanceManager.updateAccountBalance(this, from, -amount);
 
         // 2. Transaction: Transfer In to 'to'
-        dbHelper.addTransaction("Transfer from " + from, amount, Transaction.TYPE_CASH_IN, now, to);
+        dbHelper.addTransaction("Transfer from " + from, amount, Transaction.TYPE_CASH_IN, timestamp, to);
         BalanceManager.updateAccountBalance(this, to, amount);
 
         Toast.makeText(this, "Transfer successful!", Toast.LENGTH_SHORT).show();

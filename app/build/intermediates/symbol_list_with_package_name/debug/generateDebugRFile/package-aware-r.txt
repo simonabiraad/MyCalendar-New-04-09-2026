@@ -24,6 +24,15 @@ color teal_700
 color text_secondary
 color unmellow_yellow
 color white
+dimen button_height_standard
+dimen icon_size_medium
+dimen margin_small
+dimen margin_standard
+dimen padding_standard
+dimen text_header
+dimen text_small
+dimen text_standard
+dimen text_title
 drawable bg_period_selected
 drawable button_outline_green
 drawable calendar_logo_bg
@@ -143,6 +152,7 @@ id action_pdf
 id action_print
 id action_report
 id action_secure_box
+id action_themes
 id action_toggle_quick_bar
 id addAccountButton
 id addCategoryHeaderButton
@@ -398,6 +408,8 @@ id notif_note_btn
 id notif_sb_btn
 id notif_settings_btn
 id notif_task_btn
+id notif_themes_btn
+id notif_themes_text
 id notif_title
 id notif_voice_btn
 id notificationSettingsButton
@@ -506,6 +518,8 @@ id transactionTitle
 id transactionTitleInput
 id transactionsRecyclerView
 id transferBackButton
+id transferDatePickerBox
+id transferTimePickerBox
 id transferTopBar
 id transfer_main
 id txCashIn
@@ -518,8 +532,11 @@ id txNamesSearchView
 id txNamesTopBar
 id txNote
 id txtAccountDate
+id txtCashOutHeader
 id txtDate
 id txtTime
+id txtTransferDate
+id txtTransferTime
 id typeMinusContainer
 id typePlusContainer
 id voiceNoteButton

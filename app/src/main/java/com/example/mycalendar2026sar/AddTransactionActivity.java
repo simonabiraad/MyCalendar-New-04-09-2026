@@ -45,7 +45,7 @@ public class AddTransactionActivity extends AppCompatActivity {
 
     private Calendar selectedDateTime = Calendar.getInstance();
     private SimpleDateFormat dateSdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-    private SimpleDateFormat timeSdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+    private SimpleDateFormat timeSdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
 
     private final ActivityResultLauncher<Intent> categoryLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -233,7 +233,7 @@ public class AddTransactionActivity extends AppCompatActivity {
             selectedDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
             selectedDateTime.set(Calendar.MINUTE, minute);
             updateDateTimeLabels();
-        }, selectedDateTime.get(Calendar.HOUR_OF_DAY), selectedDateTime.get(Calendar.MINUTE), true).show();
+        }, selectedDateTime.get(Calendar.HOUR_OF_DAY), selectedDateTime.get(Calendar.MINUTE), false).show();
     }
 
     private void startVoiceRecognition() {

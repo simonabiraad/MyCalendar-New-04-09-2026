@@ -20,6 +20,7 @@ public class QuickNoteNotificationService extends Service {
     public static final String ACTION_TASK = "com.example.mycalendar2026sar.ACTION_TASK";
     public static final String ACTION_EXPENSES = "com.example.mycalendar2026sar.ACTION_EXPENSES";
     public static final String ACTION_SETTINGS = "com.example.mycalendar2026sar.ACTION_SETTINGS";
+    public static final String ACTION_THEMES = "com.example.mycalendar2026sar.ACTION_THEMES";
 
     private static final String CHANNEL_ID = "quick_note_channel";
     private static final int NOTIF_ID = 1001;
@@ -76,9 +77,18 @@ public class QuickNoteNotificationService extends Service {
         PendingIntent settingsPendingIntent = PendingIntent.getActivity(this, 4, settingsIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         remoteViews.setOnClickPendingIntent(R.id.notif_settings_btn, settingsPendingIntent);
 
+        // Intent for Themes
+        Intent themesIntent = new Intent(this, MainActivity.class);
+        themesIntent.setAction(ACTION_THEMES);
+        themesIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent themesPendingIntent = PendingIntent.getActivity(this, 6, themesIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        remoteViews.setOnClickPendingIntent(R.id.notif_themes_btn, themesPendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.notif_themes_text, themesPendingIntent);
+
         return new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(android.R.drawable.ic_menu_edit)
                 .setCustomContentView(remoteViews)
+                .setCustomBigContentView(remoteViews)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
                 .setOngoing(true)
                 .setPriority(NotificationCompat.PRIORITY_LOW)

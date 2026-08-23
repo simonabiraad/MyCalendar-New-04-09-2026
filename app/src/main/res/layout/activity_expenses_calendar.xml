@@ -12,17 +12,17 @@
     <LinearLayout
         android:id="@+id/calendarToolbar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/_42sdp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:paddingStart="@dimen/_12sdp"
+        android:paddingEnd="@dimen/_12sdp"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/backButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Back"
             android:src="@android:drawable/ic_menu_revert"
@@ -31,7 +31,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/_12sdp"
             android:layout_weight="1"
             android:orientation="vertical">
             <TextView
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:text="Calendar"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="@dimen/_14ssp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/calendarAccountSubtitle"
@@ -47,13 +47,13 @@
                 android:layout_height="wrap_content"
                 android:text="Expenses"
                 android:textColor="@color/light_green"
-                android:textSize="12sp" />
+                android:textSize="@dimen/_9ssp" />
         </LinearLayout>
 
         <ImageButton
             android:id="@+id/moreButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="More"
             android:src="@android:drawable/ic_menu_more"
@@ -64,7 +64,7 @@
     <LinearLayout
         android:id="@+id/dateNavigator"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/_30sdp"
         android:background="#333333"
         android:gravity="center"
         android:orientation="horizontal"
@@ -72,7 +72,7 @@
 
         <ImageButton
             android:id="@+id/prevMonth"
-            android:layout_width="48dp"
+            android:layout_width="@dimen/_36sdp"
             android:layout_height="match_parent"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@android:drawable/ic_media_previous"
@@ -86,12 +86,12 @@
             android:gravity="center"
             android:text="01-Aug-2026 -> 31-Aug-2026"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/_11ssp"
             android:textStyle="bold" />
 
         <ImageButton
             android:id="@+id/nextMonth"
-            android:layout_width="48dp"
+            android:layout_width="@dimen/_36sdp"
             android:layout_height="match_parent"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@android:drawable/ic_media_next"
@@ -164,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:text="TOTAL Cash In"
                     android:textColor="@color/text_secondary"
-                    android:textSize="11sp" />
+                    android:textSize="@dimen/_8ssp" />
 
                 <TextView
                     android:id="@+id/totalCashInText"
@@ -172,7 +172,7 @@
                     android:layout_height="wrap_content"
                     android:text="0.00"
                     android:textColor="@color/income_green"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -188,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:text="TOTAL Cash Out"
                     android:textColor="@color/text_secondary"
-                    android:textSize="11sp" />
+                    android:textSize="@dimen/_8ssp" />
 
                 <TextView
                     android:id="@+id/totalCashOutText"
@@ -196,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:text="0.00"
                     android:textColor="@color/expense_red"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -212,7 +212,7 @@
                     android:layout_height="wrap_content"
                     android:text="Balance"
                     android:textColor="@color/text_secondary"
-                    android:textSize="11sp" />
+                    android:textSize="@dimen/_8ssp" />
 
                 <TextView
                     android:id="@+id/balanceText"
@@ -220,7 +220,7 @@
                     android:layout_height="wrap_content"
                     android:text="0.00"
                     android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
