@@ -157,8 +157,12 @@ id allTimeRow
 id allTxBackButton
 id allTxFooter
 id allTxHeaders
+id allTxMoreButton
 id allTxRecyclerView
+id allTxSaveButton
+id allTxSearchView
 id allTxTabsContainer
+id allTxTitle
 id allTxToolbar
 id amountContainer
 id appVersionText
@@ -779,6 +783,7 @@ string wed
 string yearly
 string yes
 style CustomAlertDialogTheme
+style CustomDatePickerTheme
 style GreenButtonStyle
 style Theme_MyCalendar2026SAR
 xml backup_rules

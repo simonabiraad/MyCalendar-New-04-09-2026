@@ -145,7 +145,7 @@ public class CalculatorDialogFragment extends DialogFragment {
         if (d == (long) d)
             return String.format(Locale.getDefault(), "%d", (long) d);
         else
-            return String.format(Locale.getDefault(), "%.2f", d);
+            return String.format(java.util.Locale.US, "%,.2f", d);
     }
 
     private void clear() {

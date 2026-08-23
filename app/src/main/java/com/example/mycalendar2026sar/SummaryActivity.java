@@ -72,9 +72,9 @@ public class SummaryActivity extends AppCompatActivity {
         TextView outText = row.findViewById(R.id.statOutText);
         TextView netText = row.findViewById(R.id.statNetText);
 
-        inText.setText(String.format(Locale.getDefault(), "%.2f", in));
-        outText.setText(String.format(Locale.getDefault(), "%.2f", out));
-        netText.setText(String.format(Locale.getDefault(), "%.2f", in - out));
+        inText.setText(String.format(Locale.US, "%,.2f", in));
+        outText.setText(String.format(Locale.US, "%,.2f", out));
+        netText.setText(String.format(Locale.US, "%,.2f", in - out));
     }
 
     private void zeroTime(Calendar cal) {

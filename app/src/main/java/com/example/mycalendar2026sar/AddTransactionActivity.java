@@ -189,7 +189,7 @@ public class AddTransactionActivity extends AppCompatActivity {
         Transaction t = TransactionDbHelper.getInstance(this).getTransactionById(editTransactionId);
         if (t != null) {
             setMode(t.getType());
-            editAmount.setText(String.format(Locale.getDefault(), "%.2f", t.getAmount()));
+            editAmount.setText(String.format(Locale.US, "%,.2f", t.getAmount()));
             editItems.setText(t.getTitle());
             editNotes.setText(t.getNotes());
             selectedDateTime.setTimeInMillis(t.getTimestamp());
@@ -307,7 +307,7 @@ public class AddTransactionActivity extends AppCompatActivity {
 
         double amount;
         try {
-            amount = Double.parseDouble(amountStr);
+            amount = Double.parseDouble(amountStr.replace(",", ""));
         } catch (NumberFormatException e) {
             Toast.makeText(this, "Invalid amount", Toast.LENGTH_SHORT).show();
             return false;

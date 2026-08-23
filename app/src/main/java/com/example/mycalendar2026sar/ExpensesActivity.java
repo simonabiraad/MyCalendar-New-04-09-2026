@@ -600,7 +600,7 @@ public class ExpensesActivity extends AppCompatActivity {
                 android.widget.EditText balanceInput = editView.findViewById(R.id.editAccountBalance);
                 
                 nameInput.setText(account.getName());
-                balanceInput.setText(String.format(Locale.getDefault(), "%.2f", account.getBalance()));
+                balanceInput.setText(String.format(Locale.US, "%,.2f", account.getBalance()));
                 
                 new androidx.appcompat.app.AlertDialog.Builder(ExpensesActivity.this, R.style.CustomAlertDialogTheme)
                         .setTitle("Edit Account")
@@ -612,7 +612,7 @@ public class ExpensesActivity extends AppCompatActivity {
                                 account.setName(newName);
                                 if (!balanceStr.isEmpty()) {
                                     try {
-                                        account.setBalance(Double.parseDouble(balanceStr));
+                                        account.setBalance(Double.parseDouble(balanceStr.replace(",", "")));
                                     } catch (NumberFormatException ignored) {}
                                 }
                                 adapter.notifyItemChanged(position);
@@ -705,7 +705,7 @@ public class ExpensesActivity extends AppCompatActivity {
                     double balance = 0.0;
                     if (!balanceStr.isEmpty()) {
                         try {
-                            balance = Double.parseDouble(balanceStr);
+                            balance = Double.parseDouble(balanceStr.replace(",", ""));
                         } catch (NumberFormatException ignored) {}
                     }
 
@@ -1031,15 +1031,15 @@ public class ExpensesActivity extends AppCompatActivity {
                     break;
                 }
             }
-            cashInTotalText.setText(String.format(Locale.getDefault(), "%.2f", currentAccBalance));
-            cashOutTotalText.setText(String.format(Locale.getDefault(), "%.2f", cashOut));
-            balanceTotalText.setText(String.format(Locale.getDefault(), "%.2f", currentAccBalance - cashOut));
+            cashInTotalText.setText(String.format(Locale.US, "%,.2f", currentAccBalance));
+            cashOutTotalText.setText(String.format(Locale.US, "%,.2f", cashOut));
+            balanceTotalText.setText(String.format(Locale.US, "%,.2f", currentAccBalance - cashOut));
         } else {
             if (labelTotalCashIn != null) labelTotalCashIn.setText("TOTAL Cash In");
             // Global Summary totals
-            cashInTotalText.setText(String.format(Locale.getDefault(), "%.2f", cashIn));
-            cashOutTotalText.setText(String.format(Locale.getDefault(), "%.2f", cashOut));
-            balanceTotalText.setText(String.format(Locale.getDefault(), "%.2f", cashIn - cashOut));
+            cashInTotalText.setText(String.format(Locale.US, "%,.2f", cashIn));
+            cashOutTotalText.setText(String.format(Locale.US, "%,.2f", cashOut));
+            balanceTotalText.setText(String.format(Locale.US, "%,.2f", cashIn - cashOut));
         }
 
         // --- Period Balance Calculations ---
@@ -1058,8 +1058,8 @@ public class ExpensesActivity extends AppCompatActivity {
             }
             previousBalanceRow.setVisibility(View.VISIBLE);
             finalBalanceRow.setVisibility(View.VISIBLE);
-            previousBalanceTotalText.setText(String.format(Locale.getDefault(), "%.2f", prevBalance));
-            finalBalanceTotalText.setText(String.format(Locale.getDefault(), "%.2f", totalBalance));
+            previousBalanceTotalText.setText(String.format(Locale.US, "%,.2f", prevBalance));
+            finalBalanceTotalText.setText(String.format(Locale.US, "%,.2f", totalBalance));
         }
     }
 
@@ -1331,6 +1331,7 @@ public class ExpensesActivity extends AppCompatActivity {
     private void showDateRangePicker() {
         MaterialDatePicker<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker()
                 .setTitleText("Select Date Range")
+                .setTheme(R.style.CustomDatePickerTheme)
                 .build();
         builder.addOnPositiveButtonClickListener(selection -> {
             if (selection.first != null && selection.second != null) {

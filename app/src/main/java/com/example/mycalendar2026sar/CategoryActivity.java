@@ -141,7 +141,7 @@ public class CategoryActivity extends AppCompatActivity {
                     String amountStr = amountInput.getText().toString().trim();
                     if (!amountStr.isEmpty()) {
                         try {
-                            double amount = Double.parseDouble(amountStr);
+                            double amount = Double.parseDouble(amountStr.replace(",", ""));
                             String account = getSharedPreferences("ExpensesPrefs", MODE_PRIVATE)
                                     .getString("ActiveAccount", "Expenses");
                             String type = isExpenseView ? Transaction.TYPE_CASH_OUT : Transaction.TYPE_CASH_IN;

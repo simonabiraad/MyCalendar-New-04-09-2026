@@ -1,5 +1,6 @@
 package com.example.mycalendar2026sar;
 
+import android.app.DatePickerDialog;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,22 +9,35 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
+import androidx.core.util.Pair;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import android.net.Uri;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.TreeSet;
+import android.content.Intent;
 
 public class TransactionsAllAccountsActivity extends AppCompatActivity {
 
@@ -39,6 +53,28 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TextView labelCurrentTab, footerCashIn, footerCashOut, footerBalance;
     private Button btnAll, btnDaily, btnWeekly, btnMonthly, btnYearly;
+
+    // Filters
+    private String searchQuery = "";
+    private Long filterDate = null;
+    private Long filterDateStart = null, filterDateEnd = null;
+    private String filterAccount = null;
+
+    private List<Transaction> currentFilteredTransactions = new ArrayList<>();
+    private double currentFilteredIn = 0, currentFilteredOut = 0;
+    private String pendingExportContent = "";
+
+    private final ActivityResultLauncher<Intent> saveFileLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    Uri uri = result.getData().getData();
+                    if (uri != null) {
+                        saveReportToUri(uri);
+                    }
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +97,37 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
 
         findViewById(R.id.allTxBackButton).setOnClickListener(v -> finish());
 
-        btnAll.setOnClickListener(v -> { currentTab = TAB_ALL; refresh(); });
+        // Toolbar Extras
+        SearchView searchView = findViewById(R.id.allTxSearchView);
+        ImageButton btnSave = findViewById(R.id.allTxSaveButton);
+        ImageButton btnMore = findViewById(R.id.allTxMoreButton);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchQuery = query;
+                refresh();
+                return true;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchQuery = newText;
+                refresh();
+                return true;
+            }
+        });
+
+        btnSave.setOnClickListener(this::showSavePopupMenu);
+        btnMore.setOnClickListener(this::showMorePopupMenu);
+
+        btnAll.setOnClickListener(v -> {
+            currentTab = TAB_ALL;
+            filterDate = null;
+            filterDateStart = null;
+            filterDateEnd = null;
+            filterAccount = null;
+            refresh();
+        });
         btnDaily.setOnClickListener(v -> { currentTab = TAB_DAILY; refresh(); });
         btnWeekly.setOnClickListener(v -> { currentTab = TAB_WEEKLY; refresh(); });
         btnMonthly.setOnClickListener(v -> { currentTab = TAB_MONTHLY; refresh(); });
@@ -80,13 +146,138 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
         refresh();
     }
 
+    private void showSavePopupMenu(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.getMenu().add("Report");
+        popup.getMenu().add("Save as PDF");
+        popup.getMenu().add("Save as Excel");
+        popup.getMenu().add("Print as PDF");
+        popup.getMenu().add("Print as Excel");
+        
+        popup.setOnMenuItemClickListener(item -> {
+            String title = item.getTitle().toString();
+            if (title.equals("Report")) {
+                startActivity(new android.content.Intent(this, ReportAllActivity.class));
+            } else if (title.contains("PDF")) {
+                handlePdfExport();
+            } else if (title.contains("Excel")) {
+                handleExcelExport();
+            }
+            return true;
+        });
+        popup.show();
+    }
+
+    private void handlePdfExport() {
+        if (currentFilteredTransactions.isEmpty()) {
+            Toast.makeText(this, "No data to export", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String html = ReportUtils.generateHtmlReport(currentFilteredTransactions, "Transaction Report", currentFilteredIn, currentFilteredOut);
+        ReportUtils.printHtml(this, html, "Transactions_Report");
+    }
+
+    private void handleExcelExport() {
+        if (currentFilteredTransactions.isEmpty()) {
+            Toast.makeText(this, "No data to export", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        pendingExportContent = ReportUtils.generateCsvReport(currentFilteredTransactions, currentFilteredIn, currentFilteredOut);
+        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("text/csv");
+        intent.putExtra(Intent.EXTRA_TITLE, "Transactions_Report.csv");
+        saveFileLauncher.launch(intent);
+    }
+
+    private void saveReportToUri(Uri uri) {
+        try {
+            java.io.OutputStream os = getContentResolver().openOutputStream(uri);
+            if (os != null) {
+                java.io.PrintWriter writer = new java.io.PrintWriter(new java.io.OutputStreamWriter(os));
+                writer.print(pendingExportContent);
+                writer.flush();
+                writer.close();
+                os.close();
+                Toast.makeText(this, "File saved successfully", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Failed to save file", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void showMorePopupMenu(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.getMenu().add("Date");
+        popup.getMenu().add("Select Date Range");
+        popup.getMenu().add("Accounts");
+        popup.setOnMenuItemClickListener(item -> {
+            String title = item.getTitle().toString();
+            if (title.equals("Date")) showDatePicker();
+            else if (title.equals("Select Date Range")) showDateRangePicker();
+            else if (title.equals("Accounts")) showAccountFilterDialog();
+            return true;
+        });
+        popup.show();
+    }
+
+    private void showDatePicker() {
+        Calendar c = Calendar.getInstance();
+        new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+            Calendar selected = Calendar.getInstance();
+            selected.set(year, month, dayOfMonth);
+            filterDate = selected.getTimeInMillis();
+            filterDateStart = null;
+            filterDateEnd = null;
+            refresh();
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    private void showDateRangePicker() {
+        MaterialDatePicker<Pair<Long, Long>> picker = MaterialDatePicker.Builder.dateRangePicker()
+                .setTitleText("Select Date Range")
+                .setTheme(R.style.CustomDatePickerTheme)
+                .build();
+        picker.addOnPositiveButtonClickListener(selection -> {
+            filterDateStart = selection.first;
+            filterDateEnd = selection.second != null ? selection.second + 86399999 : null;
+            filterDate = null;
+            refresh();
+        });
+        picker.show(getSupportFragmentManager(), "DATE_RANGE_PICKER");
+    }
+
+    private void showAccountFilterDialog() {
+        List<Account> accountsFromPrefs = BalanceManager.loadAccounts(this);
+        List<String> accountNames = new ArrayList<>();
+        accountNames.add("Expenses"); // Summary mode
+        for (Account a : accountsFromPrefs) {
+            accountNames.add(a.getName());
+        }
+
+        final String[] items = accountNames.toArray(new String[0]);
+        new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                .setTitle("Select Account")
+                .setItems(items, (dialog, which) -> {
+                    filterAccount = items[which];
+                    refresh();
+                })
+                .setNeutralButton("Clear Filter", (dialog, which) -> {
+                    filterAccount = null;
+                    refresh();
+                })
+                .show();
+    }
+
     private void refresh() {
         updateTabButtonsUI();
         
         List<Transaction> all = dbHelper.getAllTransactionsAscending();
-        List<Transaction> filtered = new ArrayList<>();
+        currentFilteredTransactions.clear();
         
-        double cashIn = 0, cashOut = 0;
+        currentFilteredIn = 0;
+        currentFilteredOut = 0;
         
         Calendar now = Calendar.getInstance();
         
@@ -94,24 +285,24 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
             Transaction t = all.get(i);
             if ("Monthly Income".equalsIgnoreCase(t.getTitle())) continue;
 
-            if (matchesTabFilter(t, now)) {
-                filtered.add(t);
+            if (matchesAllFilters(t, now)) {
+                currentFilteredTransactions.add(t);
                 if (t.isCashIn()) {
-                    cashIn += t.getAmount();
+                    currentFilteredIn += t.getAmount();
                 } else {
-                    cashOut += t.getAmount();
+                    currentFilteredOut += t.getAmount();
                 }
             }
         }
 
-        footerCashIn.setText(String.format(Locale.getDefault(), "%.2f", cashIn));
-        footerCashOut.setText(String.format(Locale.getDefault(), "%.2f", cashOut));
-        footerBalance.setText(String.format(Locale.getDefault(), "%.2f", cashIn - cashOut));
+        footerCashIn.setText(String.format(Locale.US, "%,.2f", currentFilteredIn));
+        footerCashOut.setText(String.format(Locale.US, "%,.2f", currentFilteredOut));
+        footerBalance.setText(String.format(Locale.US, "%,.2f", currentFilteredIn - currentFilteredOut));
 
         // Group by Date for display
         List<AllTxItem> displayItems = new ArrayList<>();
         String lastDate = "";
-        for (Transaction t : filtered) {
+        for (Transaction t : currentFilteredTransactions) {
             String date = DateFormat.format("EEE, dd MMM yyyy", t.getTimestamp()).toString();
             if (!date.equals(lastDate)) {
                 displayItems.add(new AllTxItem(date));
@@ -121,6 +312,46 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
         }
 
         adapter.setItems(displayItems);
+    }
+
+    private boolean matchesAllFilters(Transaction t, Calendar now) {
+        if (!matchesTabFilter(t, now)) return false;
+
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            String q = searchQuery.toLowerCase();
+            String title = t.getTitle().toLowerCase();
+            String account = (t.getAccount() != null ? t.getAccount() : "").toLowerCase();
+            if (!title.contains(q) && !account.contains(q)) return false;
+        }
+
+        if (filterDate != null) {
+            if (!isSameDay(t.getTimestamp(), filterDate)) return false;
+        }
+
+        if (filterDateStart != null && filterDateEnd != null) {
+            long time = t.getTimestamp();
+            if (time < filterDateStart || time > filterDateEnd) return false;
+        }
+
+        if (filterAccount != null) {
+            String txAccount = t.getAccount();
+            if (filterAccount.equals("Expenses")) {
+                // Summary mode filter: normally shows everything, but if explicitly selected, 
+                // maybe show transactions with no account or "Expenses" account
+                if (txAccount != null && !txAccount.equals("Expenses")) return false;
+            } else {
+                if (!filterAccount.equalsIgnoreCase(txAccount)) return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean isSameDay(long t1, long t2) {
+        Calendar c1 = Calendar.getInstance(); c1.setTimeInMillis(t1);
+        Calendar c2 = Calendar.getInstance(); c2.setTimeInMillis(t2);
+        return c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR) &&
+               c1.get(Calendar.DAY_OF_YEAR) == c2.get(Calendar.DAY_OF_YEAR);
     }
 
     private boolean matchesTabFilter(Transaction t, Calendar now) {
@@ -154,7 +385,13 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
             if (i == currentTab) {
                 btns[i].setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
                 btns[i].setTextColor(Color.BLACK);
-                labelCurrentTab.setText(labels[i]);
+                
+                String labelText = labels[i];
+                if (filterAccount != null) labelText += " (" + filterAccount + ")";
+                else if (filterDate != null) labelText += " (" + DateFormat.format("dd/MM", filterDate) + ")";
+                else if (filterDateStart != null) labelText += " (Custom Range)";
+                
+                labelCurrentTab.setText(labelText);
             } else {
                 btns[i].setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#333333")));
                 btns[i].setTextColor(Color.WHITE);
@@ -220,7 +457,7 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
                 row.title.setText(t.getTitle());
                 row.time.setText(DateFormat.format("hh:mm a", t.getTimestamp()));
                 row.account.setText(t.getAccount() != null ? t.getAccount() : "---");
-                row.amount.setText(String.format(Locale.getDefault(), "%.2f", t.getAmount()));
+                row.amount.setText(String.format(Locale.US, "%,.2f", t.getAmount()));
                 row.amount.setTextColor(ContextCompat.getColor(TransactionsAllAccountsActivity.this,
                         t.isCashIn() ? R.color.income_green : R.color.expense_red));
             }

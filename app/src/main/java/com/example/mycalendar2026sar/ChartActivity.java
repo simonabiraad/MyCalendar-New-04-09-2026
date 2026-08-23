@@ -250,7 +250,7 @@ public class ChartActivity extends AppCompatActivity {
 
     private SpannableString generateCenterText(String label, double total) {
         String top = label + "\n";
-        String bottom = String.format(Locale.getDefault(), "%.2f $", total);
+        String bottom = String.format(Locale.US, "%,.2f $", total);
         SpannableString s = new SpannableString(top + bottom);
         s.setSpan(new ForegroundColorSpan(Color.LTGRAY), 0, top.length(), 0);
         s.setSpan(new RelativeSizeSpan(1.0f), 0, top.length(), 0);
@@ -286,7 +286,7 @@ public class ChartActivity extends AppCompatActivity {
             int p = (int) Math.round((val / grandTotal) * 100);
             
             percent.setText(p + "%");
-            amount.setText(String.format(Locale.getDefault(), "%.2f $", val));
+            amount.setText(String.format(Locale.US, "%,.2f $", val));
             
             if (isAccount) {
                 icon.setImageResource(R.drawable.ic_menu_accounts_color);
@@ -354,7 +354,7 @@ public class ChartActivity extends AppCompatActivity {
             return;
         }
 
-        currentBalanceTrendText.setText(String.format(Locale.getDefault(), "%.2f $", runningBalance));
+        currentBalanceTrendText.setText(String.format(Locale.US, "%,.2f $", runningBalance));
 
         LineDataSet dataSet = new LineDataSet(entries, "Balance");
         dataSet.setColor(Color.parseColor("#34A853"));
@@ -418,7 +418,7 @@ public class ChartActivity extends AppCompatActivity {
             if (index >= 0 && index < labels.size()) {
                 tvDate.setText(labels.get(index));
             }
-            tvValue.setText(String.format(Locale.getDefault(), "%.2f $", e.getY()));
+            tvValue.setText(String.format(Locale.US, "%,.2f $", e.getY()));
             super.refreshContent(e, highlight);
         }
 

@@ -73,7 +73,7 @@ public class TransferActivity extends AppCompatActivity {
 
         double amount;
         try {
-            amount = Double.parseDouble(amountStr);
+            amount = Double.parseDouble(amountStr.replace(",", ""));
         } catch (NumberFormatException e) {
             Toast.makeText(this, "Invalid amount", Toast.LENGTH_SHORT).show();
             return;

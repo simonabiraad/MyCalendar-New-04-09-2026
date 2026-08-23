@@ -94,7 +94,7 @@ public class DeletedTransactionsActivity extends AppCompatActivity {
             holder.date.setText(DateFormat.format("dd MMM yyyy, hh:mm a", t.getTimestamp()));
 
             String sign = t.isCashIn() ? "+" : "-";
-            holder.amount.setText(String.format(Locale.getDefault(), "%s%.2f", sign, t.getAmount()));
+            holder.amount.setText(String.format(Locale.US, "%s%,.2f", sign, t.getAmount()));
             holder.amount.setTextColor(ContextCompat.getColor(holder.itemView.getContext(),
                     t.isCashIn() ? R.color.income_green : R.color.expense_red));
 

@@ -93,7 +93,7 @@ public class ReportAllActivity extends AppCompatActivity {
             grandTotal += t.getAmount();
         }
 
-        totalText.setText(String.format(Locale.getDefault(), "Total: %.2f", grandTotal));
+        totalText.setText(String.format(Locale.US, "Total: %,.2f", grandTotal));
 
         List<ReportRow> rows = new ArrayList<>();
         for (Map.Entry<String, Double> e : totals.entrySet()) {
@@ -178,7 +178,7 @@ public class ReportAllActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             ReportRow row = rows.get(position);
             holder.name.setText(row.category);
-            holder.amount.setText(String.format(Locale.getDefault(), "%.2f", row.amount));
+            holder.amount.setText(String.format(Locale.US, "%,.2f", row.amount));
             holder.percent.setText(String.format(Locale.getDefault(), "%.0f%%", row.percent));
 
             int fillWeight = Math.max(1, (int) Math.round(row.percent));

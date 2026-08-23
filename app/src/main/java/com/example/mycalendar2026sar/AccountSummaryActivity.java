@@ -62,7 +62,7 @@ public class AccountSummaryActivity extends AppCompatActivity {
         for (Account a : accounts) {
             totalBalance += a.getBalance();
         }
-        totalBalanceText.setText(String.format(Locale.getDefault(), "%.2f", totalBalance));
+        totalBalanceText.setText(String.format(Locale.US, "%,.2f", totalBalance));
 
         recyclerView.setVisibility(View.VISIBLE);
         emptyText.setVisibility(View.GONE);
@@ -128,13 +128,13 @@ public class AccountSummaryActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             Account account = accounts.get(position);
             holder.name.setText(account.getName());
-            holder.balance.setText(String.format(Locale.getDefault(), "%.2f", account.getBalance()));
+            holder.balance.setText(String.format(Locale.US, "%,.2f", account.getBalance()));
 
             double[] totals = monthTotals.get(account.getName());
             double in = totals != null ? totals[0] : 0;
             double out = totals != null ? totals[1] : 0;
-            holder.in.setText(String.format(Locale.getDefault(), "This month In: %.2f", in));
-            holder.out.setText(String.format(Locale.getDefault(), "This month Out: %.2f", out));
+            holder.in.setText(String.format(Locale.US, "This month In: %,.2f", in));
+            holder.out.setText(String.format(Locale.US, "This month Out: %,.2f", out));
 
             holder.itemView.setOnClickListener(v -> listener.onAccountClick(account));
         }

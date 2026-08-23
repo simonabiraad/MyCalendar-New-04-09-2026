@@ -245,9 +245,9 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
             }
         }
 
-        totalCashInText.setText(String.format(Locale.getDefault(), "%.2f", globalCashIn));
-        totalCashOutText.setText(String.format(Locale.getDefault(), "%.2f", globalCashOut));
-        balanceText.setText(String.format(Locale.getDefault(), "%.2f", globalCashIn - globalCashOut));
+        totalCashInText.setText(String.format(Locale.US, "%,.2f", globalCashIn));
+        totalCashOutText.setText(String.format(Locale.US, "%,.2f", globalCashOut));
+        balanceText.setText(String.format(Locale.US, "%,.2f", globalCashIn - globalCashOut));
     }
 
     private void showDayDetails(Date date) {
@@ -269,8 +269,8 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
         Button btnOut = view.findViewById(R.id.btnDialogCashOut);
 
         dateText.setText(sdf.format(date));
-        cashInText.setText(String.format(Locale.getDefault(), "%.2f", summary.cashIn));
-        cashOutText.setText(String.format(Locale.getDefault(), "%.2f", summary.cashOut));
+        cashInText.setText(String.format(Locale.US, "%,.2f", summary.cashIn));
+        cashOutText.setText(String.format(Locale.US, "%,.2f", summary.cashOut));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new DialogAdapter(summary.transactions));
@@ -337,13 +337,13 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
             if (summary != null) {
                 if (summary.cashIn > 0) {
                     cashIn.setVisibility(View.VISIBLE);
-                    cashIn.setText(String.format(Locale.getDefault(), "%.2f", summary.cashIn));
+                    cashIn.setText(String.format(Locale.US, "%,.2f", summary.cashIn));
                 } else {
                     cashIn.setVisibility(View.GONE);
                 }
                 if (summary.cashOut > 0) {
                     cashOut.setVisibility(View.VISIBLE);
-                    cashOut.setText(String.format(Locale.getDefault(), "%.2f", summary.cashOut));
+                    cashOut.setText(String.format(Locale.US, "%,.2f", summary.cashOut));
                 } else {
                     cashOut.setVisibility(View.GONE);
                 }
@@ -375,11 +375,11 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
             Transaction t = transactions.get(position);
             holder.note.setText(t.getTitle());
             if (t.getType().equals(Transaction.TYPE_CASH_IN)) {
-                holder.cashIn.setText(String.format(Locale.getDefault(), "%.2f", t.getAmount()));
+                holder.cashIn.setText(String.format(Locale.US, "%,.2f", t.getAmount()));
                 holder.cashOut.setText("");
             } else {
                 holder.cashIn.setText("");
-                holder.cashOut.setText(String.format(Locale.getDefault(), "%.2f", t.getAmount()));
+                holder.cashOut.setText(String.format(Locale.US, "%,.2f", t.getAmount()));
             }
         }
 
