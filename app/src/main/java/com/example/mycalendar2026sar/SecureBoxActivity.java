@@ -55,8 +55,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.Executor;
+
+import com.google.mlkit.nl.languageid.LanguageIdentification;
+import com.google.mlkit.nl.languageid.LanguageIdentifier;
+import com.google.mlkit.nl.translate.TranslateLanguage;
+import com.google.mlkit.nl.translate.Translation;
+import com.google.mlkit.nl.translate.Translator;
+import com.google.mlkit.nl.translate.TranslatorOptions;
+import com.google.mlkit.common.model.DownloadConditions;
 
 public class SecureBoxActivity extends AppCompatActivity {
 
@@ -109,11 +118,97 @@ public class SecureBoxActivity extends AppCompatActivity {
                     ArrayList<String> matches = result.getData().getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     if (matches != null && !matches.isEmpty()) {
                         String spokenText = matches.get(0);
-                        String existingText = noteContentInput.getText().toString();
-                        noteContentInput.setText(existingText.isEmpty() ? spokenText : existingText + " " + spokenText);
+                        SharedPreferences speechPrefs = getSharedPreferences("SpeechSettings", Context.MODE_PRIVATE);
+                        boolean translateEnabled = speechPrefs.getBoolean("speech_translate_enabled", true);
+                        if (translateEnabled) {
+                            translateText(spokenText);
+                        } else {
+                            handleRecognizedText(spokenText);
+                        }
                     }
                 }
             });
+
+    private void handleRecognizedText(String text) {
+        String existingText = noteContentInput.getText().toString();
+        noteContentInput.setText(existingText.isEmpty() ? text : existingText + " " + text);
+    }
+
+    private void translateText(final String text) {
+        SharedPreferences speechPrefs = getSharedPreferences("SpeechSettings", Context.MODE_PRIVATE);
+        boolean autoLang = speechPrefs.getBoolean("speech_auto_lang", true);
+        String sourceLang = speechPrefs.getString("speech_source_lang", "en-US");
+
+        if (autoLang) {
+            LanguageIdentifier languageIdentifier = LanguageIdentification.getClient();
+            languageIdentifier.identifyLanguage(text)
+                    .addOnSuccessListener(languageCode -> {
+                        if (languageCode.equals("und")) {
+                            performTranslation(text, getMLKitCode(sourceLang));
+                        } else {
+                            performTranslation(text, languageCode);
+                        }
+                    })
+                    .addOnFailureListener(e -> performTranslation(text, getMLKitCode(sourceLang)));
+        } else {
+            performTranslation(text, getMLKitCode(sourceLang));
+        }
+    }
+
+    private void performTranslation(final String text, String sourceCode) {
+        SharedPreferences speechPrefs = getSharedPreferences("SpeechSettings", Context.MODE_PRIVATE);
+        String targetLang = speechPrefs.getString("speech_target_lang", "ar");
+        String targetCode = getMLKitCode(targetLang);
+
+        if (sourceCode.equals(targetCode)) {
+            handleRecognizedText(text);
+            return;
+        }
+
+        TranslatorOptions options = new TranslatorOptions.Builder()
+                .setSourceLanguage(sourceCode)
+                .setTargetLanguage(targetCode)
+                .build();
+        final Translator translator = Translation.getClient(options);
+
+        DownloadConditions conditions = new DownloadConditions.Builder()
+                .requireWifi()
+                .build();
+        
+        translator.downloadModelIfNeeded(conditions)
+                .addOnSuccessListener(unused -> {
+                    translator.translate(text)
+                            .addOnSuccessListener(translatedText -> {
+                                handleRecognizedText(translatedText);
+                                translator.close();
+                            })
+                            .addOnFailureListener(e -> {
+                                handleRecognizedText(text);
+                                Toast.makeText(this, "Translation failed", Toast.LENGTH_SHORT).show();
+                                translator.close();
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    handleRecognizedText(text);
+                    Toast.makeText(this, "Failed to download translation model", Toast.LENGTH_SHORT).show();
+                    translator.close();
+                });
+    }
+
+    private String getMLKitCode(String bcpCode) {
+        if (bcpCode.startsWith("en")) return TranslateLanguage.ENGLISH;
+        if (bcpCode.startsWith("ar")) return TranslateLanguage.ARABIC;
+        if (bcpCode.startsWith("fr")) return TranslateLanguage.FRENCH;
+        if (bcpCode.startsWith("es")) return TranslateLanguage.SPANISH;
+        if (bcpCode.startsWith("de")) return TranslateLanguage.GERMAN;
+        if (bcpCode.startsWith("zh")) return TranslateLanguage.CHINESE;
+        if (bcpCode.startsWith("it")) return TranslateLanguage.ITALIAN;
+        if (bcpCode.startsWith("ja")) return TranslateLanguage.JAPANESE;
+        if (bcpCode.startsWith("ru")) return TranslateLanguage.RUSSIAN;
+        if (bcpCode.startsWith("pt")) return TranslateLanguage.PORTUGUESE;
+        return TranslateLanguage.ENGLISH;
+    }
+
 
     private static final String SEPARATOR = "###NOTE_SEP###";
     private static final String TITLE_SEP = "###TITLE_SEP###";
@@ -446,9 +541,29 @@ public class SecureBoxActivity extends AppCompatActivity {
     }
 
     private void startVoiceRecognition() {
-        Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH); i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM); i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak your note...");
-        try { voiceRecognitionLauncher.launch(i); } catch (Exception e) { Toast.makeText(this, "Not supported", Toast.LENGTH_SHORT).show(); }
+        SharedPreferences speechPrefs = getSharedPreferences("SpeechSettings", Context.MODE_PRIVATE);
+        boolean autoLang = speechPrefs.getBoolean("speech_auto_lang", true);
+        String sourceLang = speechPrefs.getString("speech_source_lang", "en-US");
+        String[] languageCodes = {"en-US", "ar", "fr", "es", "de", "zh", "it", "ja", "ru", "pt"};
+
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        
+        if (!autoLang) {
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, sourceLang);
+        } else {
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault().toString());
+            intent.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES", languageCodes);
+        }
+        
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak your note...");
+        try {
+            voiceRecognitionLauncher.launch(intent);
+        } catch (Exception e) {
+            Toast.makeText(this, "Voice recognition not supported", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     private void verifyCatAccess(String k, int c) {
         String p = securityPrefs.getString("custom_password", null);

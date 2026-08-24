@@ -25,6 +25,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.speech.RecognizerIntent;
+import com.google.mlkit.nl.languageid.LanguageIdentification;
+import com.google.mlkit.nl.languageid.LanguageIdentifier;
+import com.google.mlkit.nl.translate.TranslateLanguage;
+import com.google.mlkit.nl.translate.Translation;
+import com.google.mlkit.nl.translate.Translator;
+import com.google.mlkit.nl.translate.TranslatorOptions;
+import com.google.mlkit.common.model.DownloadConditions;
+import android.content.Context;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -50,12 +58,98 @@ public class TaskActivity extends AppCompatActivity {
                     ArrayList<String> matches = result.getData().getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     if (matches != null && !matches.isEmpty()) {
                         String spokenText = matches.get(0);
-                        String existingText = taskInput.getText().toString();
-                        taskInput.setText(existingText.isEmpty() ? spokenText : existingText + " " + spokenText);
-                        taskInput.setSelection(taskInput.getText().length());
+                        SharedPreferences speechPrefs = getSharedPreferences("SpeechSettings", Context.MODE_PRIVATE);
+                        boolean translateEnabled = speechPrefs.getBoolean("speech_translate_enabled", true);
+                        if (translateEnabled) {
+                            translateText(spokenText);
+                        } else {
+                            handleRecognizedText(spokenText);
+                        }
                     }
                 }
             });
+
+    private void handleRecognizedText(String text) {
+        String existingText = taskInput.getText().toString();
+        taskInput.setText(existingText.isEmpty() ? text : existingText + " " + text);
+        taskInput.setSelection(taskInput.getText().length());
+    }
+
+    private void translateText(final String text) {
+        SharedPreferences speechPrefs = getSharedPreferences("SpeechSettings", Context.MODE_PRIVATE);
+        boolean autoLang = speechPrefs.getBoolean("speech_auto_lang", true);
+        String sourceLang = speechPrefs.getString("speech_source_lang", "en-US");
+
+        if (autoLang) {
+            LanguageIdentifier languageIdentifier = LanguageIdentification.getClient();
+            languageIdentifier.identifyLanguage(text)
+                    .addOnSuccessListener(languageCode -> {
+                        if (languageCode.equals("und")) {
+                            performTranslation(text, getMLKitCode(sourceLang));
+                        } else {
+                            performTranslation(text, languageCode);
+                        }
+                    })
+                    .addOnFailureListener(e -> performTranslation(text, getMLKitCode(sourceLang)));
+        } else {
+            performTranslation(text, getMLKitCode(sourceLang));
+        }
+    }
+
+    private void performTranslation(final String text, String sourceCode) {
+        SharedPreferences speechPrefs = getSharedPreferences("SpeechSettings", Context.MODE_PRIVATE);
+        String targetLang = speechPrefs.getString("speech_target_lang", "ar");
+        String targetCode = getMLKitCode(targetLang);
+
+        if (sourceCode.equals(targetCode)) {
+            handleRecognizedText(text);
+            return;
+        }
+
+        TranslatorOptions options = new TranslatorOptions.Builder()
+                .setSourceLanguage(sourceCode)
+                .setTargetLanguage(targetCode)
+                .build();
+        final Translator translator = Translation.getClient(options);
+
+        DownloadConditions conditions = new DownloadConditions.Builder()
+                .requireWifi()
+                .build();
+        
+        translator.downloadModelIfNeeded(conditions)
+                .addOnSuccessListener(unused -> {
+                    translator.translate(text)
+                            .addOnSuccessListener(translatedText -> {
+                                handleRecognizedText(translatedText);
+                                translator.close();
+                            })
+                            .addOnFailureListener(e -> {
+                                handleRecognizedText(text);
+                                Toast.makeText(this, "Translation failed", Toast.LENGTH_SHORT).show();
+                                translator.close();
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    handleRecognizedText(text);
+                    Toast.makeText(this, "Failed to download translation model", Toast.LENGTH_SHORT).show();
+                    translator.close();
+                });
+    }
+
+    private String getMLKitCode(String bcpCode) {
+        if (bcpCode.startsWith("en")) return TranslateLanguage.ENGLISH;
+        if (bcpCode.startsWith("ar")) return TranslateLanguage.ARABIC;
+        if (bcpCode.startsWith("fr")) return TranslateLanguage.FRENCH;
+        if (bcpCode.startsWith("es")) return TranslateLanguage.SPANISH;
+        if (bcpCode.startsWith("de")) return TranslateLanguage.GERMAN;
+        if (bcpCode.startsWith("zh")) return TranslateLanguage.CHINESE;
+        if (bcpCode.startsWith("it")) return TranslateLanguage.ITALIAN;
+        if (bcpCode.startsWith("ja")) return TranslateLanguage.JAPANESE;
+        if (bcpCode.startsWith("ru")) return TranslateLanguage.RUSSIAN;
+        if (bcpCode.startsWith("pt")) return TranslateLanguage.PORTUGUESE;
+        return TranslateLanguage.ENGLISH;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,9 +279,21 @@ public class TaskActivity extends AppCompatActivity {
     }
 
     private void startVoiceRecognition() {
+        SharedPreferences speechPrefs = getSharedPreferences("SpeechSettings", Context.MODE_PRIVATE);
+        boolean autoLang = speechPrefs.getBoolean("speech_auto_lang", true);
+        String sourceLang = speechPrefs.getString("speech_source_lang", "en-US");
+        String[] languageCodes = {"en-US", "ar", "fr", "es", "de", "zh", "it", "ja", "ru", "pt"};
+
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        
+        if (!autoLang) {
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, sourceLang);
+        } else {
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault().toString());
+            intent.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES", languageCodes);
+        }
+        
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak your task...");
         try {
             voiceRecognitionLauncher.launch(intent);
@@ -195,6 +301,7 @@ public class TaskActivity extends AppCompatActivity {
             Toast.makeText(this, "Voice recognition not supported", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void addTask() {
         String text = taskInput.getText().toString().trim();

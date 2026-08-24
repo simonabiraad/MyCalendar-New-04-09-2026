@@ -41,6 +41,8 @@ dependencies {
     implementation(libs.biometric)
     implementation(libs.sdp.android)
     implementation(libs.ssp.android)
+    implementation(libs.mlkit.translate)
+    implementation(libs.mlkit.language.id)
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)

@@ -1,29 +1,21 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.mycalendar2026sar.app-mergeDebugResources-38:/values-v23/values-v23.xml",
+            "outputFile": "com.example.mycalendar2026sar.app-mergeDebugResources-41:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\caches\\9.5.0\\transforms\\f55ce6032ef40e1a5daf4c70471dbc0a\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\simon\\.gradle\\caches\\9.5.0\\transforms\\914b637d9a21dd69d35cda61b16af104\\transformed\\appcompat-1.6.1\\res\\values-v23\\values-v23.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "4",
-                        "endColumns": "12",
-                        "endOffsets": "200"
-                    },
-                    "to": {
-                        "startLines": "50",
-                        "startColumns": "4",
-                        "startOffsets": "3232",
-                        "endLines": "52",
-                        "endColumns": "12",
-                        "endOffsets": "3377"
+                        "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,190,325,400,487,1225,1975,2094,2221,2443,2667,2782,2889,3002",
+                        "endLines": "2,3,4,5,19,33,34,35,38,42,43,44,45,49",
+                        "endColumns": "134,134,74,86,12,12,118,126,12,12,114,106,112,12",
+                        "endOffsets": "185,320,395,482,1220,1970,2089,2216,2438,2662,2777,2884,2997,3227"
                     }
                 },
                 {
-                    "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\caches\\9.5.0\\transforms\\a08a7a761c818bfb79eb76b2c6c28ead\\transformed\\material-1.10.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\simon\\.gradle\\caches\\9.5.0\\transforms\\20c467edae80daf8c30a59fc31a2938d\\transformed\\material-1.10.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,5,9,13,16,21,25,28,31,34,39,42,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -42,14 +34,22 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\caches\\9.5.0\\transforms\\845618122474e6d22fdefb0e81dd5168\\transformed\\appcompat-1.6.1\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\simon\\.gradle\\caches\\9.5.0\\transforms\\5caa226d1338b894a45824c57b41baf7\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,190,325,400,487,1225,1975,2094,2221,2443,2667,2782,2889,3002",
-                        "endLines": "2,3,4,5,19,33,34,35,38,42,43,44,45,49",
-                        "endColumns": "134,134,74,86,12,12,118,126,12,12,114,106,112,12",
-                        "endOffsets": "185,320,395,482,1220,1970,2089,2216,2438,2662,2777,2884,2997,3227"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "200"
+                    },
+                    "to": {
+                        "startLines": "50",
+                        "startColumns": "4",
+                        "startOffsets": "3232",
+                        "endLines": "52",
+                        "endColumns": "12",
+                        "endOffsets": "3377"
                     }
                 }
             ]

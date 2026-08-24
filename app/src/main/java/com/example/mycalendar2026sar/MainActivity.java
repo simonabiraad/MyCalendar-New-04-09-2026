@@ -71,6 +71,17 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 
+import androidx.appcompat.widget.SwitchCompat;
+import com.google.mlkit.nl.languageid.LanguageIdentification;
+import com.google.mlkit.nl.languageid.LanguageIdentifier;
+import com.google.mlkit.nl.translate.TranslateLanguage;
+import com.google.mlkit.nl.translate.Translation;
+import com.google.mlkit.nl.translate.Translator;
+import com.google.mlkit.nl.translate.TranslatorOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.mlkit.common.model.DownloadConditions;
+
 public class MainActivity extends AppCompatActivity {
 
     private GridView calendarGrid;
@@ -102,6 +113,12 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences fontPrefs;
     private CalendarAdapter adapter;
 
+    private SharedPreferences speechPrefs;
+    private String speechSourceLang = "en-US";
+    private String speechTargetLang = "ar";
+    private boolean speechAutoLang = true;
+    private boolean speechTranslateEnabled = true;
+
     private String lastDeletedNote;
     private int lastDeletedIndex;
     private String lastDeletedDateKey;
@@ -118,20 +135,98 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<String> matches = result.getData().getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     if (matches != null && !matches.isEmpty()) {
                         String spokenText = matches.get(0);
-                        if (currentDialogInput != null) {
-                            String existingText = currentDialogInput.getText().toString();
-                            currentDialogInput.setText(existingText.isEmpty() ? spokenText : existingText + " " + spokenText);
-                        } else if (voiceTargetPrefs != null && voiceTargetDateKey != null && voiceTargetIndex != -1) {
-                            appendVoiceToNote(spokenText, voiceTargetIndex, voiceTargetDateKey, voiceTargetPrefs);
-                        } else if (noteInput.hasFocus()) {
-                            String existingText = noteInput.getText().toString();
-                            noteInput.setText(existingText.isEmpty() ? spokenText : existingText + " " + spokenText);
+                        if (speechTranslateEnabled) {
+                            translateText(spokenText);
                         } else {
-                            showNewNoteDialog(spokenText);
+                            handleRecognizedText(spokenText);
                         }
                     }
                 }
             });
+
+    private void translateText(final String text) {
+        if (speechAutoLang) {
+            LanguageIdentifier languageIdentifier = LanguageIdentification.getClient();
+            languageIdentifier.identifyLanguage(text)
+                    .addOnSuccessListener(languageCode -> {
+                        if (languageCode.equals("und")) {
+                            performTranslation(text, getMLKitCode(speechSourceLang));
+                        } else {
+                            performTranslation(text, languageCode);
+                        }
+                    })
+                    .addOnFailureListener(e -> performTranslation(text, getMLKitCode(speechSourceLang)));
+        } else {
+            performTranslation(text, getMLKitCode(speechSourceLang));
+        }
+    }
+
+    private void performTranslation(final String text, String sourceCode) {
+        String targetCode = getMLKitCode(speechTargetLang);
+
+        if (sourceCode.equals(targetCode)) {
+            handleRecognizedText(text);
+            return;
+        }
+
+        TranslatorOptions options = new TranslatorOptions.Builder()
+                .setSourceLanguage(sourceCode)
+                .setTargetLanguage(targetCode)
+                .build();
+        final Translator translator = Translation.getClient(options);
+
+        DownloadConditions conditions = new DownloadConditions.Builder()
+                .requireWifi()
+                .build();
+        
+        translator.downloadModelIfNeeded(conditions)
+                .addOnSuccessListener(unused -> {
+                    translator.translate(text)
+                            .addOnSuccessListener(translatedText -> {
+                                handleRecognizedText(translatedText);
+                                translator.close();
+                            })
+                            .addOnFailureListener(e -> {
+                                handleRecognizedText(text);
+                                Toast.makeText(this, "Translation failed", Toast.LENGTH_SHORT).show();
+                                translator.close();
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    handleRecognizedText(text);
+                    Toast.makeText(this, "Failed to download translation model", Toast.LENGTH_SHORT).show();
+                    translator.close();
+                });
+    }
+
+
+    private String getMLKitCode(String bcpCode) {
+        if (bcpCode.startsWith("en")) return TranslateLanguage.ENGLISH;
+        if (bcpCode.startsWith("ar")) return TranslateLanguage.ARABIC;
+        if (bcpCode.startsWith("fr")) return TranslateLanguage.FRENCH;
+        if (bcpCode.startsWith("es")) return TranslateLanguage.SPANISH;
+        if (bcpCode.startsWith("de")) return TranslateLanguage.GERMAN;
+        if (bcpCode.startsWith("zh")) return TranslateLanguage.CHINESE;
+        if (bcpCode.startsWith("it")) return TranslateLanguage.ITALIAN;
+        if (bcpCode.startsWith("ja")) return TranslateLanguage.JAPANESE;
+        if (bcpCode.startsWith("ru")) return TranslateLanguage.RUSSIAN;
+        if (bcpCode.startsWith("pt")) return TranslateLanguage.PORTUGUESE;
+        return TranslateLanguage.ENGLISH;
+    }
+
+    private void handleRecognizedText(String text) {
+        if (currentDialogInput != null) {
+            String existingText = currentDialogInput.getText().toString();
+            currentDialogInput.setText(existingText.isEmpty() ? text : existingText + " " + text);
+        } else if (voiceTargetPrefs != null && voiceTargetDateKey != null && voiceTargetIndex != -1) {
+            appendVoiceToNote(text, voiceTargetIndex, voiceTargetDateKey, voiceTargetPrefs);
+        } else if (noteInput.hasFocus()) {
+            String existingText = noteInput.getText().toString();
+            noteInput.setText(existingText.isEmpty() ? text : existingText + " " + text);
+        } else {
+            showNewNoteDialog(text);
+        }
+    }
 
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
@@ -215,6 +310,12 @@ public class MainActivity extends AppCompatActivity {
         securityPrefs = getSharedPreferences("SecuritySettings", Context.MODE_PRIVATE);
         colorPrefs = getSharedPreferences("AppColors", Context.MODE_PRIVATE);
         fontPrefs = getSharedPreferences("AppFonts", Context.MODE_PRIVATE);
+        speechPrefs = getSharedPreferences("SpeechSettings", Context.MODE_PRIVATE);
+
+        speechSourceLang = speechPrefs.getString("speech_source_lang", "en-US");
+        speechTargetLang = speechPrefs.getString("speech_target_lang", "ar");
+        speechAutoLang = speechPrefs.getBoolean("speech_auto_lang", true);
+        speechTranslateEnabled = speechPrefs.getBoolean("speech_translate_enabled", true);
 
         // Hide folders initially
         archiveHistoryContainer.setVisibility(View.GONE);
@@ -360,6 +461,8 @@ public class MainActivity extends AppCompatActivity {
             calendar.add(Calendar.MONTH, 1);
             updateCalendar();
         });
+
+        findViewById(R.id.aiAssistantButton).setOnClickListener(v -> showSpeechTranslationDialog());
 
         createNotificationChannel();
         handleIntent(getIntent());
@@ -1333,10 +1436,164 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startVoiceRecognition() {
+        startSpeechRecognitionWithSettings();
+    }
+
+    private void showSpeechTranslationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme);
+        
+        // Inflate custom layout or build programmatically
+        LinearLayout root = new LinearLayout(this);
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setPadding(60, 40, 60, 40);
+        root.setBackgroundColor(Color.parseColor("#1A1A1A"));
+
+        TextView title = new TextView(this);
+        title.setText("Speech & Translation");
+        title.setTextColor(Color.parseColor("#8BC34A"));
+        title.setTextSize(20);
+        title.setTypeface(null, Typeface.BOLD);
+        root.addView(title);
+
+        // Auto Language
+        LinearLayout autoLangLayout = new LinearLayout(this);
+        autoLangLayout.setOrientation(LinearLayout.HORIZONTAL);
+        autoLangLayout.setGravity(Gravity.CENTER_VERTICAL);
+        autoLangLayout.setPadding(0, 40, 0, 20);
+        
+        TextView autoLangText = new TextView(this);
+        autoLangText.setText("Auto language");
+        autoLangText.setTextColor(Color.WHITE);
+        autoLangText.setTextSize(16);
+        autoLangText.setTypeface(null, Typeface.BOLD);
+        autoLangText.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+        autoLangLayout.addView(autoLangText);
+
+        androidx.appcompat.widget.SwitchCompat autoLangSwitch = new androidx.appcompat.widget.SwitchCompat(this);
+        autoLangSwitch.setChecked(speechAutoLang);
+        autoLangLayout.addView(autoLangSwitch);
+        root.addView(autoLangLayout);
+
+        // Speaking Language Label
+        TextView speakingLabel = new TextView(this);
+        speakingLabel.setText("Speaking Language:");
+        speakingLabel.setTextColor(Color.WHITE);
+        speakingLabel.setPadding(0, 20, 0, 10);
+        root.addView(speakingLabel);
+
+        // Speaking Language Selector
+        TextView speakingSelector = new TextView(this);
+        speakingSelector.setText(getLanguageName(speechSourceLang));
+        speakingSelector.setTextColor(Color.WHITE);
+        speakingSelector.setBackgroundResource(R.drawable.summary_border);
+        speakingSelector.setPadding(30, 30, 30, 30);
+        speakingSelector.setOnClickListener(v -> {
+            new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                    .setTitle("Select Speaking Language")
+                    .setItems(languageNames, (dialog, which) -> {
+                        speechSourceLang = languageCodes[which];
+                        speakingSelector.setText(languageNames[which]);
+                    }).show();
+        });
+        root.addView(speakingSelector);
+
+        // Translate Toggle
+        LinearLayout translateLayout = new LinearLayout(this);
+        translateLayout.setOrientation(LinearLayout.HORIZONTAL);
+        translateLayout.setGravity(Gravity.CENTER_VERTICAL);
+        translateLayout.setPadding(0, 40, 0, 20);
+
+        TextView translateText = new TextView(this);
+        translateText.setText("Translate");
+        translateText.setTextColor(Color.WHITE);
+        translateText.setTextSize(16);
+        translateText.setTypeface(null, Typeface.BOLD);
+        translateText.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+        translateLayout.addView(translateText);
+
+        androidx.appcompat.widget.SwitchCompat translateSwitch = new androidx.appcompat.widget.SwitchCompat(this);
+        translateSwitch.setChecked(speechTranslateEnabled);
+        translateLayout.addView(translateSwitch);
+        root.addView(translateLayout);
+
+        // Translation Container
+        LinearLayout translationContainer = new LinearLayout(this);
+        translationContainer.setOrientation(LinearLayout.VERTICAL);
+        translationContainer.setVisibility(speechTranslateEnabled ? View.VISIBLE : View.GONE);
+        
+        // Translate to Label
+        TextView translateToLabel = new TextView(this);
+        translateToLabel.setText("Translate to:");
+        translateToLabel.setTextColor(Color.WHITE);
+        translateToLabel.setPadding(0, 20, 0, 10);
+        translationContainer.addView(translateToLabel);
+
+        // Translate to Selector
+        TextView translateToSelector = new TextView(this);
+        translateToSelector.setText(getLanguageName(speechTargetLang));
+        translateToSelector.setTextColor(Color.WHITE);
+        translateToSelector.setBackgroundResource(R.drawable.summary_border);
+        translateToSelector.setPadding(30, 30, 30, 30);
+        translateToSelector.setOnClickListener(v -> {
+            new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                    .setTitle("Select Translation Language")
+                    .setItems(languageNames, (dialog, which) -> {
+                        speechTargetLang = languageCodes[which];
+                        translateToSelector.setText(languageNames[which]);
+                    }).show();
+        });
+        translationContainer.addView(translateToSelector);
+        root.addView(translationContainer);
+
+        translateSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            translationContainer.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+        });
+
+        builder.setView(root);
+        builder.setPositiveButton("SAVE", (dialog, which) -> {
+            speechAutoLang = autoLangSwitch.isChecked();
+            speechTranslateEnabled = translateSwitch.isChecked();
+
+            SharedPreferences.Editor editor = speechPrefs.edit();
+            editor.putString("speech_source_lang", speechSourceLang);
+            editor.putString("speech_target_lang", speechTargetLang);
+            editor.putBoolean("speech_auto_lang", speechAutoLang);
+            editor.putBoolean("speech_translate_enabled", speechTranslateEnabled);
+            editor.apply();
+        });
+
+        builder.setNegativeButton("CANCEL", null);
+        
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Style positive button
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#8BC34A"));
+    }
+
+    private final String[] languageNames = {"English", "Arabic", "French", "Spanish", "German", "Chinese", "Italian", "Japanese", "Russian", "Portuguese"};
+    private final String[] languageCodes = {"en-US", "ar", "fr", "es", "de", "zh", "it", "ja", "ru", "pt"};
+
+    private String getLanguageName(String code) {
+        for (int i = 0; i < languageCodes.length; i++) {
+            if (languageCodes[i].equals(code)) return languageNames[i];
+        }
+        return "English";
+    }
+
+    private void startSpeechRecognitionWithSettings() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, isVoiceCommandMode ? "Listening for command..." : "Speak your note...");
+        
+        if (!speechAutoLang) {
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, speechSourceLang);
+        } else {
+            // If auto-lang is on, try to set a list or let it be
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault().toString());
+            intent.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES", languageCodes);
+        }
+        
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, isVoiceCommandMode ? "Listening for command..." : "Speak now...");
         try {
             voiceRecognitionLauncher.launch(intent);
         } catch (Exception e) {

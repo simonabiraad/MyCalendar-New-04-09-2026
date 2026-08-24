@@ -10,6 +10,8 @@ constraintlayout = "2.1.4"
 biometric = "1.1.0"
 sdp = "1.1.1"
 ssp = "1.1.1"
+mlkit-translate = "17.0.3"
+mlkit-language-id = "17.0.4"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -22,6 +24,8 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 biometric = { group = "androidx.biometric", name = "biometric", version.ref = "biometric" }
 sdp-android = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "sdp" }
 ssp-android = { group = "com.intuit.ssp", name = "ssp-android", version.ref = "ssp" }
+mlkit-translate = { group = "com.google.mlkit", name = "translate", version.ref = "mlkit-translate" }
+mlkit-language-id = { group = "com.google.mlkit", name = "language-id", version.ref = "mlkit-language-id" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.mycalendar2026sar.app-mergeDebugResources-38:/values-watch-v21/values-watch-v21.xml",
+            "outputFile": "com.example.mycalendar2026sar.app-mergeDebugResources-41:/values-watch-v21/values-watch-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\caches\\9.5.0\\transforms\\845618122474e6d22fdefb0e81dd5168\\transformed\\appcompat-1.6.1\\res\\values-watch-v21\\values-watch-v21.xml",
+                    "source": "C:\\Users\\simon\\.gradle\\caches\\9.5.0\\transforms\\914b637d9a21dd69d35cda61b16af104\\transformed\\appcompat-1.6.1\\res\\values-watch-v21\\values-watch-v21.xml",
                     "from": {
                         "startLines": "2,6,10",
                         "startColumns": "4,4,4",
