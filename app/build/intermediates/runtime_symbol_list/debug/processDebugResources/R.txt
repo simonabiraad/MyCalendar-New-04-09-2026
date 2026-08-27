@@ -4626,6 +4626,9 @@ int id optionPdf 0x7f090288
 int id outline 0x7f090289
 int id outward 0x7f09028a
 int id overshoot 0x7f09028b
+int id overviewBackButton 0x7f0903d4
+int id overviewRecyclerView 0x7f0903d5
+int id overviewTopBar 0x7f0903d6
 int id packed 0x7f09028c
 int id parallax 0x7f09028d
 int id parent 0x7f09028e
@@ -4856,6 +4859,8 @@ int id topExpensesButton 0x7f090361
 int id topPanel 0x7f090362
 int id totalCashInText 0x7f090365
 int id totalCashOutText 0x7f090366
+int id totalOverviewBalance 0x7f0903d7
+int id totalOverviewCard 0x7f0903d8
 int id totalsFooterContainer 0x7f090367
 int id touch_outside 0x7f090368
 int id transactionAmountInput 0x7f090369
@@ -5056,6 +5061,7 @@ int layout abc_search_view 0x7f0c0019
 int layout abc_select_dialog_material 0x7f0c001a
 int layout abc_tooltip 0x7f0c001b
 int layout activity_account_summary 0x7f0c001c
+int layout activity_accounts_overview 0x7f0c00b3
 int layout activity_add_transaction 0x7f0c001d
 int layout activity_category 0x7f0c001e
 int layout activity_chart 0x7f0c001f

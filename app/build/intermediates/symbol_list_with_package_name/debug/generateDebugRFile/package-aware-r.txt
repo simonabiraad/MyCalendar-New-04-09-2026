@@ -421,6 +421,9 @@ id notification_widget_root
 id optionCamera
 id optionGallery
 id optionPdf
+id overviewBackButton
+id overviewRecyclerView
+id overviewTopBar
 id pieChart
 id pieChartAccount
 id prevMonth
@@ -523,6 +526,8 @@ id titleTextView
 id topExpensesButton
 id totalCashInText
 id totalCashOutText
+id totalOverviewBalance
+id totalOverviewCard
 id totalsFooterContainer
 id transactionAmountInput
 id transactionBalance
@@ -573,6 +578,7 @@ id widget_subtitle
 id widget_title
 id yearlyButton
 layout activity_account_summary
+layout activity_accounts_overview
 layout activity_add_transaction
 layout activity_category
 layout activity_chart

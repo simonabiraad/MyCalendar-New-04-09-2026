@@ -576,7 +576,7 @@ public class ExpensesActivity extends AppCompatActivity {
         findViewById(R.id.aiAssistantButton).setOnClickListener(v -> showSpeechTranslationDialog());
 
         topExpensesButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AccountSummaryActivity.class);
+            Intent intent = new Intent(this, AccountsOverviewActivity.class);
             startActivity(intent);
         });
 

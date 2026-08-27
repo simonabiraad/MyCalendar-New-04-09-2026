@@ -65,7 +65,7 @@
 32-->[androidx.core:core:1.18.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\0ab2b736499c93bdbc3444438bb744e1\transformed\core-1.18.0\AndroidManifest.xml:26:22-94
 33
 34    <application
-34-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:14:5-147:19
+34-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:14:5-151:19
 35        android:allowBackup="true"
 35-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:15:9-35
 36        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -271,244 +271,252 @@
 137-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:113:13-59
 138        <activity
 138-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:114:9-117:62
-139            android:name="com.example.mycalendar2026sar.TransactionsAllAccountsActivity"
-139-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:115:13-60
+139            android:name="com.example.mycalendar2026sar.AccountsOverviewActivity"
+139-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:115:13-53
 140            android:exported="false"
 140-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:116:13-37
 141            android:theme="@style/Theme.MyCalendar2026SAR" />
 141-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:117:13-59
-142
-143        <service
-143-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:119:9-126:19
-144            android:name="com.example.mycalendar2026sar.QuickNoteNotificationService"
-144-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:120:13-57
-145            android:enabled="true"
-145-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:121:13-35
-146            android:exported="false"
-146-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:122:13-37
-147            android:foregroundServiceType="specialUse" >
-147-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:123:13-55
-148            <property
-148-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:124:13-125:71
-149                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-149-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:124:23-82
-150                android:value="Persistent UI for quick note taking" />
-150-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:125:17-68
-151        </service>
-152
-153        <receiver
-153-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:128:9-79
-154            android:name="com.example.mycalendar2026sar.ReminderReceiver"
-154-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:128:19-51
-155            android:exported="false" />
-155-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:128:52-76
+142        <activity
+142-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:118:9-121:62
+143            android:name="com.example.mycalendar2026sar.TransactionsAllAccountsActivity"
+143-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:119:13-60
+144            android:exported="false"
+144-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:120:13-37
+145            android:theme="@style/Theme.MyCalendar2026SAR" />
+145-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:121:13-59
+146
+147        <service
+147-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:123:9-130:19
+148            android:name="com.example.mycalendar2026sar.QuickNoteNotificationService"
+148-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:124:13-57
+149            android:enabled="true"
+149-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:125:13-35
+150            android:exported="false"
+150-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:126:13-37
+151            android:foregroundServiceType="specialUse" >
+151-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:127:13-55
+152            <property
+152-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:128:13-129:71
+153                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+153-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:128:23-82
+154                android:value="Persistent UI for quick note taking" />
+154-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:129:17-68
+155        </service>
 156
-157        <!-- Professional 4x4 SAR Dashboard Widget -->
-158        <receiver
-158-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:131:9-134:20
-159            android:name="com.example.mycalendar2026sar.SARCalendarWidget4x4"
-159-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:131:19-55
-160            android:exported="false"
-160-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:131:56-80
-161            android:label="SAR Dashboard (4x4)" >
-161-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:131:81-116
-162            <intent-filter>
-162-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:132:13-111
-163                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-163-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:132:28-95
-163-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:132:36-92
-164            </intent-filter>
-165
-166            <meta-data
-166-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:133:13-112
-167                android:name="android.appwidget.provider"
-167-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:133:24-65
-168                android:resource="@xml/sar_widget_4x4_info" />
-168-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:133:66-109
-169        </receiver>
-170
-171        <service
-171-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:136:9-136
-172            android:name="com.example.mycalendar2026sar.WidgetListService"
-172-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:136:18-51
-173            android:exported="false"
-173-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:136:109-133
-174            android:permission="android.permission.BIND_REMOTEVIEWS" />
-174-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:136:52-108
-175
-176        <provider
-176-->INJECTED
-177            android:name="androidx.core.content.FileProvider"
-177-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:139:13-62
-178            android:authorities="com.example.mycalendar2026sar.fileprovider"
-178-->INJECTED
-179            android:exported="false"
-179-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:141:13-37
-180            android:grantUriPermissions="true" >
-180-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:142:13-47
-181            <meta-data
-181-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:143:13-145:54
-182                android:name="android.support.FILE_PROVIDER_PATHS"
-182-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:144:17-67
-183                android:resource="@xml/file_paths" />
-183-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:145:17-51
-184        </provider>
-185
-186        <service
-186-->[com.google.mlkit:translate:17.0.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\4df2912889847873b556ab6a327248c5\transformed\translate-17.0.3\AndroidManifest.xml:11:9-17:19
-187            android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
-187-->[com.google.mlkit:translate:17.0.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\4df2912889847873b556ab6a327248c5\transformed\translate-17.0.3\AndroidManifest.xml:12:13-91
-188            android:directBootAware="true"
-188-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:17:13-43
-189            android:exported="false" >
-189-->[com.google.mlkit:translate:17.0.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\4df2912889847873b556ab6a327248c5\transformed\translate-17.0.3\AndroidManifest.xml:13:13-37
-190            <meta-data
-190-->[com.google.mlkit:translate:17.0.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\4df2912889847873b556ab6a327248c5\transformed\translate-17.0.3\AndroidManifest.xml:14:13-16:85
-191                android:name="com.google.firebase.components:com.google.mlkit.nl.translate.NaturalLanguageTranslateRegistrar"
-191-->[com.google.mlkit:translate:17.0.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\4df2912889847873b556ab6a327248c5\transformed\translate-17.0.3\AndroidManifest.xml:15:17-126
-192                android:value="com.google.firebase.components.ComponentRegistrar" />
-192-->[com.google.mlkit:translate:17.0.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\4df2912889847873b556ab6a327248c5\transformed\translate-17.0.3\AndroidManifest.xml:16:17-82
-193            <meta-data
-193-->[com.google.mlkit:language-id:17.0.4] C:\Users\simon\.gradle\caches\9.5.0\transforms\a88794e574e5979c1e6e15aca413a4bd\transformed\language-id-17.0.4\AndroidManifest.xml:11:13-13:85
-194                android:name="com.google.firebase.components:com.google.mlkit.nl.languageid.bundled.internal.ThickLanguageIdRegistrar"
-194-->[com.google.mlkit:language-id:17.0.4] C:\Users\simon\.gradle\caches\9.5.0\transforms\a88794e574e5979c1e6e15aca413a4bd\transformed\language-id-17.0.4\AndroidManifest.xml:12:17-135
-195                android:value="com.google.firebase.components.ComponentRegistrar" />
-195-->[com.google.mlkit:language-id:17.0.4] C:\Users\simon\.gradle\caches\9.5.0\transforms\a88794e574e5979c1e6e15aca413a4bd\transformed\language-id-17.0.4\AndroidManifest.xml:13:17-82
-196            <meta-data
-196-->[com.google.mlkit:language-id-common:16.0.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\72c54ccf28f3a4261d6cefd6b022ce1a\transformed\language-id-common-16.0.0\AndroidManifest.xml:26:13-28:85
-197                android:name="com.google.firebase.components:com.google.mlkit.nl.languageid.internal.LanguageIdRegistrar"
-197-->[com.google.mlkit:language-id-common:16.0.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\72c54ccf28f3a4261d6cefd6b022ce1a\transformed\language-id-common-16.0.0\AndroidManifest.xml:27:17-122
-198                android:value="com.google.firebase.components.ComponentRegistrar" />
-198-->[com.google.mlkit:language-id-common:16.0.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\72c54ccf28f3a4261d6cefd6b022ce1a\transformed\language-id-common-16.0.0\AndroidManifest.xml:28:17-82
-199            <meta-data
-199-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:20:13-22:85
-200                android:name="com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar"
-200-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:21:17-120
-201                android:value="com.google.firebase.components.ComponentRegistrar" />
-201-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:22:17-82
-202        </service>
-203
-204        <provider
-204-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:9:9-13:38
-205            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
-205-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:10:13-78
-206            android:authorities="com.example.mycalendar2026sar.mlkitinitprovider"
-206-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:11:13-69
-207            android:exported="false"
-207-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:12:13-37
-208            android:initOrder="99" />
-208-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:13:13-35
-209
-210        <activity
-210-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\70089e905d00908d4e74c26f35721547\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:9-173
-211            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-211-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\70089e905d00908d4e74c26f35721547\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:19-85
-212            android:exported="false"
-212-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\70089e905d00908d4e74c26f35721547\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:146-170
-213            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-213-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\70089e905d00908d4e74c26f35721547\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:86-145
-214
-215        <meta-data
-215-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\ca149c9a6bf8f2b24d658aed01544552\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:9-122
-216            android:name="com.google.android.gms.version"
-216-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\ca149c9a6bf8f2b24d658aed01544552\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:20-65
-217            android:value="@integer/google_play_services_version" />
-217-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\ca149c9a6bf8f2b24d658aed01544552\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:66-119
+157        <receiver
+157-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:132:9-79
+158            android:name="com.example.mycalendar2026sar.ReminderReceiver"
+158-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:132:19-51
+159            android:exported="false" />
+159-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:132:52-76
+160
+161        <!-- Professional 4x4 SAR Dashboard Widget -->
+162        <receiver
+162-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:135:9-138:20
+163            android:name="com.example.mycalendar2026sar.SARCalendarWidget4x4"
+163-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:135:19-55
+164            android:exported="false"
+164-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:135:56-80
+165            android:label="SAR Dashboard (4x4)" >
+165-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:135:81-116
+166            <intent-filter>
+166-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:136:13-111
+167                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+167-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:136:28-95
+167-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:136:36-92
+168            </intent-filter>
+169
+170            <meta-data
+170-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:137:13-112
+171                android:name="android.appwidget.provider"
+171-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:137:24-65
+172                android:resource="@xml/sar_widget_4x4_info" />
+172-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:137:66-109
+173        </receiver>
+174
+175        <service
+175-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:140:9-136
+176            android:name="com.example.mycalendar2026sar.WidgetListService"
+176-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:140:18-51
+177            android:exported="false"
+177-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:140:109-133
+178            android:permission="android.permission.BIND_REMOTEVIEWS" />
+178-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:140:52-108
+179
+180        <provider
+180-->INJECTED
+181            android:name="androidx.core.content.FileProvider"
+181-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:143:13-62
+182            android:authorities="com.example.mycalendar2026sar.fileprovider"
+182-->INJECTED
+183            android:exported="false"
+183-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:145:13-37
+184            android:grantUriPermissions="true" >
+184-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:146:13-47
+185            <meta-data
+185-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:147:13-149:54
+186                android:name="android.support.FILE_PROVIDER_PATHS"
+186-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:148:17-67
+187                android:resource="@xml/file_paths" />
+187-->C:\Users\simon\StudioProjects\MyCalendar-New-09-08-2026\app\src\main\AndroidManifest.xml:149:17-51
+188        </provider>
+189
+190        <service
+190-->[com.google.mlkit:translate:17.0.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\4df2912889847873b556ab6a327248c5\transformed\translate-17.0.3\AndroidManifest.xml:11:9-17:19
+191            android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
+191-->[com.google.mlkit:translate:17.0.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\4df2912889847873b556ab6a327248c5\transformed\translate-17.0.3\AndroidManifest.xml:12:13-91
+192            android:directBootAware="true"
+192-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:17:13-43
+193            android:exported="false" >
+193-->[com.google.mlkit:translate:17.0.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\4df2912889847873b556ab6a327248c5\transformed\translate-17.0.3\AndroidManifest.xml:13:13-37
+194            <meta-data
+194-->[com.google.mlkit:translate:17.0.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\4df2912889847873b556ab6a327248c5\transformed\translate-17.0.3\AndroidManifest.xml:14:13-16:85
+195                android:name="com.google.firebase.components:com.google.mlkit.nl.translate.NaturalLanguageTranslateRegistrar"
+195-->[com.google.mlkit:translate:17.0.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\4df2912889847873b556ab6a327248c5\transformed\translate-17.0.3\AndroidManifest.xml:15:17-126
+196                android:value="com.google.firebase.components.ComponentRegistrar" />
+196-->[com.google.mlkit:translate:17.0.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\4df2912889847873b556ab6a327248c5\transformed\translate-17.0.3\AndroidManifest.xml:16:17-82
+197            <meta-data
+197-->[com.google.mlkit:language-id:17.0.4] C:\Users\simon\.gradle\caches\9.5.0\transforms\a88794e574e5979c1e6e15aca413a4bd\transformed\language-id-17.0.4\AndroidManifest.xml:11:13-13:85
+198                android:name="com.google.firebase.components:com.google.mlkit.nl.languageid.bundled.internal.ThickLanguageIdRegistrar"
+198-->[com.google.mlkit:language-id:17.0.4] C:\Users\simon\.gradle\caches\9.5.0\transforms\a88794e574e5979c1e6e15aca413a4bd\transformed\language-id-17.0.4\AndroidManifest.xml:12:17-135
+199                android:value="com.google.firebase.components.ComponentRegistrar" />
+199-->[com.google.mlkit:language-id:17.0.4] C:\Users\simon\.gradle\caches\9.5.0\transforms\a88794e574e5979c1e6e15aca413a4bd\transformed\language-id-17.0.4\AndroidManifest.xml:13:17-82
+200            <meta-data
+200-->[com.google.mlkit:language-id-common:16.0.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\72c54ccf28f3a4261d6cefd6b022ce1a\transformed\language-id-common-16.0.0\AndroidManifest.xml:26:13-28:85
+201                android:name="com.google.firebase.components:com.google.mlkit.nl.languageid.internal.LanguageIdRegistrar"
+201-->[com.google.mlkit:language-id-common:16.0.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\72c54ccf28f3a4261d6cefd6b022ce1a\transformed\language-id-common-16.0.0\AndroidManifest.xml:27:17-122
+202                android:value="com.google.firebase.components.ComponentRegistrar" />
+202-->[com.google.mlkit:language-id-common:16.0.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\72c54ccf28f3a4261d6cefd6b022ce1a\transformed\language-id-common-16.0.0\AndroidManifest.xml:28:17-82
+203            <meta-data
+203-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:20:13-22:85
+204                android:name="com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar"
+204-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:21:17-120
+205                android:value="com.google.firebase.components.ComponentRegistrar" />
+205-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:22:17-82
+206        </service>
+207
+208        <provider
+208-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:9:9-13:38
+209            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
+209-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:10:13-78
+210            android:authorities="com.example.mycalendar2026sar.mlkitinitprovider"
+210-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:11:13-69
+211            android:exported="false"
+211-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:12:13-37
+212            android:initOrder="99" />
+212-->[com.google.mlkit:common:18.11.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\462d023d910c93de8b6afac10bfa7d31\transformed\common-18.11.0\AndroidManifest.xml:13:13-35
+213
+214        <activity
+214-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\70089e905d00908d4e74c26f35721547\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:9-173
+215            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+215-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\70089e905d00908d4e74c26f35721547\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:19-85
+216            android:exported="false"
+216-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\70089e905d00908d4e74c26f35721547\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:146-170
+217            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+217-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\70089e905d00908d4e74c26f35721547\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:86-145
 218
-219        <provider
-219-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\61295b07fb832c1ac8b9bbd268805b64\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-220            android:name="androidx.startup.InitializationProvider"
-220-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\61295b07fb832c1ac8b9bbd268805b64\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
-221            android:authorities="com.example.mycalendar2026sar.androidx-startup"
-221-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\61295b07fb832c1ac8b9bbd268805b64\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
-222            android:exported="false" >
-222-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\61295b07fb832c1ac8b9bbd268805b64\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
-223            <meta-data
-223-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\61295b07fb832c1ac8b9bbd268805b64\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-224                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-224-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\61295b07fb832c1ac8b9bbd268805b64\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
-225                android:value="androidx.startup" />
-225-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\61295b07fb832c1ac8b9bbd268805b64\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
-226            <meta-data
-226-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\simon\.gradle\caches\9.5.0\transforms\735538a54eba1c515631d0aaefe012fb\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
-227                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-227-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\simon\.gradle\caches\9.5.0\transforms\735538a54eba1c515631d0aaefe012fb\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
-228                android:value="androidx.startup" />
-228-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\simon\.gradle\caches\9.5.0\transforms\735538a54eba1c515631d0aaefe012fb\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
-229            <meta-data
-229-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
-230                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-230-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
-231                android:value="androidx.startup" />
-231-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
-232        </provider>
-233
-234        <service
-234-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\ea8657dfd8c54638d47be6a3ac802655\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:29:9-35:19
-235            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-235-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\ea8657dfd8c54638d47be6a3ac802655\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:30:13-103
-236            android:exported="false" >
-236-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\ea8657dfd8c54638d47be6a3ac802655\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:31:13-37
-237            <meta-data
-237-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\ea8657dfd8c54638d47be6a3ac802655\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:32:13-34:39
-238                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-238-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\ea8657dfd8c54638d47be6a3ac802655\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:33:17-94
-239                android:value="cct" />
-239-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\ea8657dfd8c54638d47be6a3ac802655\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:34:17-36
-240        </service>
-241        <service
-241-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\simon\.gradle\caches\9.5.0\transforms\415762f1bd5ecdfa5fb8d5ccfce0c700\transformed\transport-runtime-2.2.6\AndroidManifest.xml:26:9-30:19
-242            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-242-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\simon\.gradle\caches\9.5.0\transforms\415762f1bd5ecdfa5fb8d5ccfce0c700\transformed\transport-runtime-2.2.6\AndroidManifest.xml:27:13-117
-243            android:exported="false"
-243-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\simon\.gradle\caches\9.5.0\transforms\415762f1bd5ecdfa5fb8d5ccfce0c700\transformed\transport-runtime-2.2.6\AndroidManifest.xml:28:13-37
-244            android:permission="android.permission.BIND_JOB_SERVICE" >
-244-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\simon\.gradle\caches\9.5.0\transforms\415762f1bd5ecdfa5fb8d5ccfce0c700\transformed\transport-runtime-2.2.6\AndroidManifest.xml:29:13-69
-245        </service>
-246
-247        <receiver
-247-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\simon\.gradle\caches\9.5.0\transforms\415762f1bd5ecdfa5fb8d5ccfce0c700\transformed\transport-runtime-2.2.6\AndroidManifest.xml:32:9-34:40
-248            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-248-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\simon\.gradle\caches\9.5.0\transforms\415762f1bd5ecdfa5fb8d5ccfce0c700\transformed\transport-runtime-2.2.6\AndroidManifest.xml:33:13-132
-249            android:exported="false" />
-249-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\simon\.gradle\caches\9.5.0\transforms\415762f1bd5ecdfa5fb8d5ccfce0c700\transformed\transport-runtime-2.2.6\AndroidManifest.xml:34:13-37
-250        <receiver
-250-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
-251            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-251-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
-252            android:directBootAware="false"
-252-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
-253            android:enabled="true"
-253-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
-254            android:exported="true"
-254-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
-255            android:permission="android.permission.DUMP" >
-255-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
-256            <intent-filter>
-256-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
-257                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-257-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
-257-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
-258            </intent-filter>
-259            <intent-filter>
-259-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
-260                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-260-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
-260-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
-261            </intent-filter>
-262            <intent-filter>
-262-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
-263                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-263-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
-263-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
-264            </intent-filter>
-265            <intent-filter>
-265-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
-266                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-266-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
-266-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
-267            </intent-filter>
-268        </receiver>
-269    </application>
-270
-271</manifest>
+219        <meta-data
+219-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\ca149c9a6bf8f2b24d658aed01544552\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:9-122
+220            android:name="com.google.android.gms.version"
+220-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\ca149c9a6bf8f2b24d658aed01544552\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:20-65
+221            android:value="@integer/google_play_services_version" />
+221-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\ca149c9a6bf8f2b24d658aed01544552\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:66-119
+222
+223        <provider
+223-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\61295b07fb832c1ac8b9bbd268805b64\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+224            android:name="androidx.startup.InitializationProvider"
+224-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\61295b07fb832c1ac8b9bbd268805b64\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+225            android:authorities="com.example.mycalendar2026sar.androidx-startup"
+225-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\61295b07fb832c1ac8b9bbd268805b64\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+226            android:exported="false" >
+226-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\61295b07fb832c1ac8b9bbd268805b64\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+227            <meta-data
+227-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\61295b07fb832c1ac8b9bbd268805b64\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+228                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+228-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\61295b07fb832c1ac8b9bbd268805b64\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+229                android:value="androidx.startup" />
+229-->[androidx.emoji2:emoji2:1.2.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\61295b07fb832c1ac8b9bbd268805b64\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+230            <meta-data
+230-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\simon\.gradle\caches\9.5.0\transforms\735538a54eba1c515631d0aaefe012fb\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+231                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+231-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\simon\.gradle\caches\9.5.0\transforms\735538a54eba1c515631d0aaefe012fb\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+232                android:value="androidx.startup" />
+232-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\simon\.gradle\caches\9.5.0\transforms\735538a54eba1c515631d0aaefe012fb\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+233            <meta-data
+233-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+234                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+234-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+235                android:value="androidx.startup" />
+235-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+236        </provider>
+237
+238        <service
+238-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\ea8657dfd8c54638d47be6a3ac802655\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:29:9-35:19
+239            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+239-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\ea8657dfd8c54638d47be6a3ac802655\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:30:13-103
+240            android:exported="false" >
+240-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\ea8657dfd8c54638d47be6a3ac802655\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:31:13-37
+241            <meta-data
+241-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\ea8657dfd8c54638d47be6a3ac802655\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:32:13-34:39
+242                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+242-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\ea8657dfd8c54638d47be6a3ac802655\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:33:17-94
+243                android:value="cct" />
+243-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\simon\.gradle\caches\9.5.0\transforms\ea8657dfd8c54638d47be6a3ac802655\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:34:17-36
+244        </service>
+245        <service
+245-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\simon\.gradle\caches\9.5.0\transforms\415762f1bd5ecdfa5fb8d5ccfce0c700\transformed\transport-runtime-2.2.6\AndroidManifest.xml:26:9-30:19
+246            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+246-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\simon\.gradle\caches\9.5.0\transforms\415762f1bd5ecdfa5fb8d5ccfce0c700\transformed\transport-runtime-2.2.6\AndroidManifest.xml:27:13-117
+247            android:exported="false"
+247-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\simon\.gradle\caches\9.5.0\transforms\415762f1bd5ecdfa5fb8d5ccfce0c700\transformed\transport-runtime-2.2.6\AndroidManifest.xml:28:13-37
+248            android:permission="android.permission.BIND_JOB_SERVICE" >
+248-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\simon\.gradle\caches\9.5.0\transforms\415762f1bd5ecdfa5fb8d5ccfce0c700\transformed\transport-runtime-2.2.6\AndroidManifest.xml:29:13-69
+249        </service>
+250
+251        <receiver
+251-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\simon\.gradle\caches\9.5.0\transforms\415762f1bd5ecdfa5fb8d5ccfce0c700\transformed\transport-runtime-2.2.6\AndroidManifest.xml:32:9-34:40
+252            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+252-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\simon\.gradle\caches\9.5.0\transforms\415762f1bd5ecdfa5fb8d5ccfce0c700\transformed\transport-runtime-2.2.6\AndroidManifest.xml:33:13-132
+253            android:exported="false" />
+253-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\simon\.gradle\caches\9.5.0\transforms\415762f1bd5ecdfa5fb8d5ccfce0c700\transformed\transport-runtime-2.2.6\AndroidManifest.xml:34:13-37
+254        <receiver
+254-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+255            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+255-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+256            android:directBootAware="false"
+256-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+257            android:enabled="true"
+257-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+258            android:exported="true"
+258-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+259            android:permission="android.permission.DUMP" >
+259-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+260            <intent-filter>
+260-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+261                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+261-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+261-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+262            </intent-filter>
+263            <intent-filter>
+263-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+264                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+264-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+264-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+265            </intent-filter>
+266            <intent-filter>
+266-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+267                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+267-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+267-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+268            </intent-filter>
+269            <intent-filter>
+269-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+270                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+270-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+270-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\simon\.gradle\caches\9.5.0\transforms\41678002063d25ecc5114aef97742f32\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+271            </intent-filter>
+272        </receiver>
+273    </application>
+274
+275</manifest>

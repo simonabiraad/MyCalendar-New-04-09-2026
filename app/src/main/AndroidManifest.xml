@@ -112,6 +112,10 @@
             android:exported="false"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
+            android:name=".AccountsOverviewActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MyCalendar2026SAR" />
+        <activity
             android:name=".TransactionsAllAccountsActivity"
             android:exported="false"
             android:theme="@style/Theme.MyCalendar2026SAR" />
