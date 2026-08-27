@@ -55,7 +55,7 @@ public class SummaryActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.summaryRecyclerView);
         emptyText = findViewById(R.id.summaryEmptyText);
         filterLabel = findViewById(R.id.summaryFilterLabel);
-        
+
         footerCashIn = findViewById(R.id.footerCashIn);
         footerCashOut = findViewById(R.id.footerCashOut);
         footerBalance = findViewById(R.id.footerBalance);
@@ -68,7 +68,7 @@ public class SummaryActivity extends AppCompatActivity {
 
         findViewById(R.id.summaryBackButton).setOnClickListener(v -> finish());
         findViewById(R.id.btnSummaryCalendar).setOnClickListener(v -> showDatePicker());
-        
+
         btnAll.setOnClickListener(v -> { currentFilter = FILTER_ALL; selectedTimestamp = null; loadData(); });
         btnDaily.setOnClickListener(v -> { currentFilter = FILTER_DAILY; loadData(); });
         btnWeekly.setOnClickListener(v -> { currentFilter = FILTER_WEEKLY; loadData(); });

@@ -122,7 +122,6 @@ int id accountName 0x0
 int id accountSummaryBackButton 0x0
 int id accountSummaryEmptyText 0x0
 int id accountSummaryRecyclerView 0x0
-int id accountSummaryTopBar 0x0
 int id accountsRecyclerView 0x0
 int id accountsSearchView 0x0
 int id actionButtonsContainer 0x0
@@ -456,6 +455,10 @@ int id rowAccountIn 0x0
 int id rowAccountName 0x0
 int id rowAccountOut 0x0
 int id rowAmount 0x0
+int id rowCashIn 0x0
+int id rowCashOut 0x0
+int id rowDate 0x0
+int id rowSavings 0x0
 int id rowTime 0x0
 int id rowTitle 0x0
 int id saveNoteButton 0x0
@@ -486,11 +489,15 @@ int id subWeeklyContainer 0x0
 int id subWeeklyRangeButton 0x0
 int id subYearlyContainer 0x0
 int id subYearlyRangeButton 0x0
+int id summaryAccountPicker 0x0
+int id summaryAccountTitle 0x0
 int id summaryBackButton 0x0
 int id summaryEmptyText 0x0
 int id summaryFilterLabel 0x0
 int id summaryFooter 0x0
+int id summaryNav 0x0
 int id summaryRecyclerView 0x0
+int id summaryTableHeaders 0x0
 int id summaryTabsContainer 0x0
 int id summaryToolbar 0x0
 int id tabAll 0x0
@@ -513,8 +520,6 @@ int id textClockDate 0x0
 int id timePickerBox 0x0
 int id titleTextView 0x0
 int id topExpensesButton 0x0
-int id totalBalanceCard 0x0
-int id totalBalanceText 0x0
 int id totalCashInText 0x0
 int id totalCashOutText 0x0
 int id totalsFooterContainer 0x0
@@ -615,6 +620,7 @@ int layout item_notebook_note 0x0
 int layout item_report_category_row 0x0
 int layout item_summary_account_card 0x0
 int layout item_summary_stat_row 0x0
+int layout item_summary_table_row 0x0
 int layout item_task 0x0
 int layout item_transaction_all_accounts_date_header 0x0
 int layout item_transaction_all_accounts_row 0x0

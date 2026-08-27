@@ -4025,7 +4025,6 @@ int id accountName 0x7f090032
 int id accountSummaryBackButton 0x7f090033
 int id accountSummaryEmptyText 0x7f090034
 int id accountSummaryRecyclerView 0x7f090035
-int id accountSummaryTopBar 0x7f090036
 int id accountsRecyclerView 0x7f090037
 int id accountsSearchView 0x7f090038
 int id actionButtonsContainer 0x7f090039
@@ -4689,6 +4688,10 @@ int id rowAccountIn 0x7f0902c6
 int id rowAccountName 0x7f0902c7
 int id rowAccountOut 0x7f0902c8
 int id rowAmount 0x7f0902c9
+int id rowCashIn 0x7f0903cc
+int id rowCashOut 0x7f0903cd
+int id rowDate 0x7f0903ce
+int id rowSavings 0x7f0903cf
 int id rowTime 0x7f0902ca
 int id rowTitle 0x7f0902cb
 int id row_index_key 0x7f0902cc
@@ -4780,11 +4783,15 @@ int id subYearlyContainer 0x7f090321
 int id subYearlyRangeButton 0x7f090322
 int id submenuarrow 0x7f090323
 int id submit_area 0x7f090324
+int id summaryAccountPicker 0x7f0903d0
+int id summaryAccountTitle 0x7f0903d3
 int id summaryBackButton 0x7f090325
 int id summaryEmptyText 0x7f0903c7
 int id summaryFilterLabel 0x7f0903c3
 int id summaryFooter 0x7f0903c4
+int id summaryNav 0x7f0903d1
 int id summaryRecyclerView 0x7f0903c8
+int id summaryTableHeaders 0x7f0903d2
 int id summaryTabsContainer 0x7f0903c5
 int id summaryToolbar 0x7f0903c9
 int id supportScrollUp 0x7f090327
@@ -4847,8 +4854,6 @@ int id toggle 0x7f09035f
 int id top 0x7f090360
 int id topExpensesButton 0x7f090361
 int id topPanel 0x7f090362
-int id totalBalanceCard 0x7f090363
-int id totalBalanceText 0x7f090364
 int id totalCashInText 0x7f090365
 int id totalCashOutText 0x7f090366
 int id totalsFooterContainer 0x7f090367
@@ -5119,6 +5124,7 @@ int layout item_notebook_note 0x7f0c005d
 int layout item_report_category_row 0x7f0c005e
 int layout item_summary_account_card 0x7f0c00b1
 int layout item_summary_stat_row 0x7f0c005f
+int layout item_summary_table_row 0x7f0c00b2
 int layout item_task 0x7f0c0060
 int layout item_transaction_all_accounts_date_header 0x7f0c0061
 int layout item_transaction_all_accounts_row 0x7f0c0062

@@ -123,7 +123,6 @@ id accountName
 id accountSummaryBackButton
 id accountSummaryEmptyText
 id accountSummaryRecyclerView
-id accountSummaryTopBar
 id accountsRecyclerView
 id accountsSearchView
 id actionButtonsContainer
@@ -457,6 +456,10 @@ id rowAccountIn
 id rowAccountName
 id rowAccountOut
 id rowAmount
+id rowCashIn
+id rowCashOut
+id rowDate
+id rowSavings
 id rowTime
 id rowTitle
 id saveNoteButton
@@ -487,11 +490,15 @@ id subWeeklyContainer
 id subWeeklyRangeButton
 id subYearlyContainer
 id subYearlyRangeButton
+id summaryAccountPicker
+id summaryAccountTitle
 id summaryBackButton
 id summaryEmptyText
 id summaryFilterLabel
 id summaryFooter
+id summaryNav
 id summaryRecyclerView
+id summaryTableHeaders
 id summaryTabsContainer
 id summaryToolbar
 id tabAll
@@ -514,8 +521,6 @@ id textClockDate
 id timePickerBox
 id titleTextView
 id topExpensesButton
-id totalBalanceCard
-id totalBalanceText
 id totalCashInText
 id totalCashOutText
 id totalsFooterContainer
@@ -616,6 +621,7 @@ layout item_notebook_note
 layout item_report_category_row
 layout item_summary_account_card
 layout item_summary_stat_row
+layout item_summary_table_row
 layout item_task
 layout item_transaction_all_accounts_date_header
 layout item_transaction_all_accounts_row

@@ -1,37 +1,43 @@
-# Implementation Plan - Account-Specific Totals in Expenses
+# Implementation Plan - Redesign Account Summary
 
-This plan ensures that individual account screens in the Expenses section show their own separate "Total Cash In", "Total Cash Out", and "Balance" at the bottom, while preserving the existing global "Expenses" summary functionality.
+Redesign the **Account Summary** screen to match the user's specific reference image, featuring a detailed table report with filtering and account selection. Crucially, this only affects the Account Summary page; the Summary and Expenses pages remain unchanged.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> The bottom totals for individual accounts will now be calculated based on the transactions visible in that account's ledger for the selected period, rather than showing the overall account balance. The "Expenses" summary view will remain unchanged.
+> - The **Account Summary** will be converted from a card-based account list to a **detailed table report** showing daily/periodic breakdowns (Date, Cash In, Cash Out, Savings).
+> - It will include an **Account Picker** in the title to switch between different accounts (e.g., "Cash Book").
+> - The design will feature oval filter buttons (All, Weekly, etc.), a gray navigation bar, and a boxed footer for totals.
 
 ## Proposed Changes
 
-### Expenses Module
+### UI Components
 
-#### [MODIFY] [ExpensesActivity.java](file:///C:/Users/simon/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/java/com/example/mycalendar2026sar/ExpensesActivity.java)
+#### [NEW] [item_summary_table_row.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/res/layout/item_summary_table_row.xml)
+- Define a table-style row layout with 4 columns: Date, Cash In (Green), Cash Out (Red), and Savings (White).
 
-- In `refreshTransactionsList()`:
-    - Update the loop that groups transactions to calculate `cashIn` for all accounts (removing the `isSummaryMode` check for income summation).
-    - Update the footer logic:
-        - For individual accounts (`!isSummaryMode`), set the label to "TOTAL Cash In" (or "Total Cash In").
-        - Use the calculated `cashIn` and `cashOut` sums to display "Total Cash In", "Total Cash Out", and "Balance".
-        - The balance will be calculated as `cashIn - cashOut`.
-    - Ensure the "Expenses" summary mode (`isSummaryMode == true`) continues to use its existing logic for global aggregation.
+#### [MODIFY] [activity_account_summary.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/res/layout/activity_account_summary.xml)
+- **Toolbar**: Add back arrow, Title with dropdown arrow, Calendar icon, and Report icon.
+- **Filters**: Add oval buttons for All, Weekly, Monthly, Yearly.
+- **Sub-header**: Add a gray banner for the current filter/period label.
+- **Table Headers**: Add labels for Date, Cash In, Cash Out, Savings.
+- **RecyclerView**: Update to display the table rows.
+- **Footer**: Add the boxed layout for Total Cash In, Total Cash Out, and Balance.
+
+### Activity Logic
+
+#### [MODIFY] [AccountSummaryActivity.java](file:///C:/Users/simon/StudioProjects/MyCalendar-New-09-08-2026/app/src/main/java/com/example/mycalendar2026sar/AccountSummaryActivity.java)
+- **Account Selection**: Implement a `PopupMenu` click listener on the title to select accounts.
+- **Filtering**: Implement logic for All, Weekly, Monthly, Yearly filters.
+- **Data Aggregation**: Group transactions for the selected account by date (or period) and calculate daily totals for In, Out, and Savings.
+- **Footer Updates**: Dynamically update the grand totals at the bottom.
 
 ## Verification Plan
 
 ### Manual Verification
-1.  **Expenses Summary Check**: Open the Expenses section. By default, it should show aggregated totals for all accounts. Verify "TOTAL Cash In", "TOTAL Cash Out", and "Balance" reflect the global state.
-2.  **Individual Account Check**:
-    - Select an account (e.g., "Main" or a custom account).
-    - Observe the footer. It should now show "TOTAL Cash In", "TOTAL Cash Out", and "Balance".
-    - Add a "Cash In" transaction (e.g., 500) and a "Cash Out" transaction (e.g., 200) to this specific account.
-    - Verify the footer shows:
-        - Total Cash In: 500.00
-        - Total Cash Out: 200.00
-        - Balance: 300.00
-3.  **Account Independence Check**: Switch to a different individual account. Verify that its footer totals are independent of the transactions added to the first account.
-4.  **Filter Check**: Apply a date filter (e.g., "Today"). Verify the account-specific totals update to reflect only transactions within that period for that account.
+- Open **Menu -> Account Summary**.
+- Verify the interface exactly matches Image 1.
+- Select different accounts from the title dropdown and ensure data updates correctly.
+- Test the filter buttons (All, Weekly, Monthly, Yearly) and verify the period labels and table data change.
+- Verify colors: Cash In is Green, Cash Out is Red. Savings/Balance is Green for positive and Red for negative.
+- Confirm that **Menu -> Summary** still opens the old card-based view (or whatever its current state is).
