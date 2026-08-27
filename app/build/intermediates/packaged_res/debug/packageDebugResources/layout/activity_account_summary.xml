@@ -12,7 +12,6 @@
         android:id="@+id/summaryToolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginTop="24dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="16dp"
@@ -43,7 +42,7 @@
                 android:id="@+id/summaryAccountTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Summary"
+                android:text="Account Summary"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -52,9 +51,9 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="4dp"
+                android:contentDescription="Select Account"
                 android:src="@android:drawable/arrow_down_float"
-                app:tint="@color/white"
-                android:contentDescription="Select Account" />
+                app:tint="@color/white" />
         </LinearLayout>
 
         <ImageButton

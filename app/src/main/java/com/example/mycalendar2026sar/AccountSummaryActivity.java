@@ -41,7 +41,7 @@ public class AccountSummaryActivity extends AppCompatActivity {
 
     private int currentFilter = FILTER_ALL;
     private final Calendar currentBaseDate = Calendar.getInstance();
-    private String selectedAccount = "All Accounts";
+    private String selectedAccount = "Account Summary";
 
     private RecyclerView recyclerView;
     private TextView emptyText, filterLabel, accountTitle;
@@ -88,7 +88,7 @@ public class AccountSummaryActivity extends AppCompatActivity {
 
     private void showAccountPicker(View v) {
         PopupMenu popup = new PopupMenu(this, v);
-        popup.getMenu().add("All Accounts");
+        popup.getMenu().add("Account Summary");
         List<Account> accounts = BalanceManager.loadAccounts(this);
         for (Account a : accounts) popup.getMenu().add(a.getName());
         
@@ -199,7 +199,7 @@ public class AccountSummaryActivity extends AppCompatActivity {
         for (Transaction t : all) {
             if ("Monthly Income".equalsIgnoreCase(t.getTitle())) continue;
             if (currentFilter != FILTER_ALL && (t.getTimestamp() < startTs || t.getTimestamp() > endTs)) continue;
-            if (!selectedAccount.equals("All Accounts") && !selectedAccount.equalsIgnoreCase(t.getAccount())) continue;
+            if (!selectedAccount.equals("Account Summary") && !selectedAccount.equalsIgnoreCase(t.getAccount())) continue;
 
             String key = rowSdf.format(new Date(t.getTimestamp()));
             SummaryRow s = map.get(key);
