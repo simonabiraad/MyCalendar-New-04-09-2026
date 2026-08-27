@@ -148,19 +148,34 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
 
     private void showSavePopupMenu(View v) {
         PopupMenu popup = new PopupMenu(this, v);
-        popup.getMenu().add("Report");
-        popup.getMenu().add("Save as PDF");
-        popup.getMenu().add("Save as Excel");
-        popup.getMenu().add("Print as PDF");
-        popup.getMenu().add("Print as Excel");
+        popup.getMenu().add(0, 1, 0, "Report").setIcon(R.drawable.ic_report_logo);
+        popup.getMenu().add(0, 2, 0, "Save as PDF").setIcon(R.drawable.ic_pdf_logo);
+        popup.getMenu().add(0, 3, 0, "Save as Excel").setIcon(R.drawable.ic_excel_logo);
+        popup.getMenu().add(0, 4, 0, "Print as PDF").setIcon(R.drawable.ic_menu_print_color);
+        popup.getMenu().add(0, 5, 0, "Print as Excel").setIcon(R.drawable.ic_menu_print_color);
+
+        try {
+            java.lang.reflect.Field field = popup.getClass().getDeclaredField("mPopup");
+            field.setAccessible(true);
+            Object menuHelper = field.get(popup);
+            if (menuHelper != null) {
+                Class<?> classPopupHelper = menuHelper.getClass();
+                java.lang.reflect.Method setForceIcons = classPopupHelper.getMethod("setForceShowIcon", boolean.class);
+                setForceIcons.invoke(menuHelper, true);
+            }
+        } catch (Exception ignored) {}
         
         popup.setOnMenuItemClickListener(item -> {
-            String title = item.getTitle().toString();
-            if (title.equals("Report")) {
+            int id = item.getItemId();
+            if (id == 1) {
                 startActivity(new android.content.Intent(this, ReportAllActivity.class));
-            } else if (title.contains("PDF")) {
+            } else if (id == 2) {
                 handlePdfExport();
-            } else if (title.contains("Excel")) {
+            } else if (id == 3) {
+                handleExcelExport();
+            } else if (id == 4) {
+                handlePdfExport(); // Reusing the same for now as per current logic
+            } else if (id == 5) {
                 handleExcelExport();
             }
             return true;
@@ -209,14 +224,26 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
 
     private void showMorePopupMenu(View v) {
         PopupMenu popup = new PopupMenu(this, v);
-        popup.getMenu().add("Date");
-        popup.getMenu().add("Select Date Range");
-        popup.getMenu().add("Accounts");
+        popup.getMenu().add(0, 1, 0, "Date").setIcon(R.drawable.ic_menu_calendar_color);
+        popup.getMenu().add(0, 2, 0, "Select Date Range").setIcon(R.drawable.ic_menu_calendar_color);
+        popup.getMenu().add(0, 3, 0, "Accounts").setIcon(R.drawable.ic_menu_accounts_color);
+
+        try {
+            java.lang.reflect.Field field = popup.getClass().getDeclaredField("mPopup");
+            field.setAccessible(true);
+            Object menuHelper = field.get(popup);
+            if (menuHelper != null) {
+                Class<?> classPopupHelper = menuHelper.getClass();
+                java.lang.reflect.Method setForceIcons = classPopupHelper.getMethod("setForceShowIcon", boolean.class);
+                setForceIcons.invoke(menuHelper, true);
+            }
+        } catch (Exception ignored) {}
+
         popup.setOnMenuItemClickListener(item -> {
-            String title = item.getTitle().toString();
-            if (title.equals("Date")) showDatePicker();
-            else if (title.equals("Select Date Range")) showDateRangePicker();
-            else if (title.equals("Accounts")) showAccountFilterDialog();
+            int id = item.getItemId();
+            if (id == 1) showDatePicker();
+            else if (id == 2) showDateRangePicker();
+            else if (id == 3) showAccountFilterDialog();
             return true;
         });
         popup.show();
