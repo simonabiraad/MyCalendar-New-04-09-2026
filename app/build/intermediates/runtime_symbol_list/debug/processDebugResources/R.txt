@@ -3755,6 +3755,7 @@ int drawable abc_textfield_search_activated_mtrl_alpha 0x7f080075
 int drawable abc_textfield_search_default_mtrl_alpha 0x7f080076
 int drawable abc_textfield_search_material 0x7f080077
 int drawable abc_vector_test 0x7f080078
+int drawable account_card_border 0x7f080150
 int drawable avd_hide_password 0x7f080079
 int drawable avd_show_password 0x7f08007a
 int drawable bg_period_selected 0x7f08007b
@@ -4094,7 +4095,6 @@ int id aligned 0x7f090078
 int id all 0x7f090079
 int id allButton 0x7f09007a
 int id allStates 0x7f09007b
-int id allTimeRow 0x7f09007c
 int id allTxBackButton 0x7f09007d
 int id allTxFooter 0x7f09007e
 int id allTxHeaders 0x7f09007f
@@ -4181,6 +4181,8 @@ int id btnSaveAccount 0x7f0900cf
 int id btnSaveContinue 0x7f0900d0
 int id btnSaveExit 0x7f0900d1
 int id btnSelectCategory 0x7f0900d2
+int id btnSummaryCalendar 0x7f0903bd
+int id btnSummaryReport 0x7f0903be
 int id btnText 0x7f0900d3
 int id btnUpdate 0x7f0900d4
 int id btnVoice 0x7f0900d5
@@ -4195,6 +4197,10 @@ int id calendarToolbar 0x7f0900dd
 int id callMeasure 0x7f0900de
 int id cancelSelectionBtn 0x7f0900df
 int id cancel_button 0x7f0900e0
+int id cardAccountBalance 0x7f0903bf
+int id cardAccountIn 0x7f0903c0
+int id cardAccountName 0x7f0903c1
+int id cardAccountOut 0x7f0903c2
 int id cardView 0x7f0900e1
 int id carryVelocity 0x7f0900e2
 int id cashButtonsContainer 0x7f0900e3
@@ -4491,7 +4497,6 @@ int id message 0x7f090205
 int id middle 0x7f090206
 int id mini 0x7f090207
 int id modeSwitchContainer 0x7f090208
-int id monthRow 0x7f090209
 int id monthYearText 0x7f09020a
 int id month_grid 0x7f09020b
 int id month_navigation_bar 0x7f09020c
@@ -4776,7 +4781,12 @@ int id subYearlyRangeButton 0x7f090322
 int id submenuarrow 0x7f090323
 int id submit_area 0x7f090324
 int id summaryBackButton 0x7f090325
-int id summaryTopBar 0x7f090326
+int id summaryEmptyText 0x7f0903c7
+int id summaryFilterLabel 0x7f0903c3
+int id summaryFooter 0x7f0903c4
+int id summaryRecyclerView 0x7f0903c8
+int id summaryTabsContainer 0x7f0903c5
+int id summaryToolbar 0x7f0903c9
 int id supportScrollUp 0x7f090327
 int id tabAll 0x7f090328
 int id tabDaily 0x7f090329
@@ -4924,7 +4934,6 @@ int id wrap_content 0x7f0903b6
 int id wrap_content_constrained 0x7f0903b7
 int id x_left 0x7f0903b8
 int id x_right 0x7f0903b9
-int id yearRow 0x7f0903ba
 int id yearlyButton 0x7f0903bb
 int integer abc_config_activityDefaultDur 0x7f0a0000
 int integer abc_config_activityShortDur 0x7f0a0001
@@ -5108,6 +5117,7 @@ int layout item_dialog_transaction 0x7f0c005b
 int layout item_expenses_calendar_day 0x7f0c005c
 int layout item_notebook_note 0x7f0c005d
 int layout item_report_category_row 0x7f0c005e
+int layout item_summary_account_card 0x7f0c00b1
 int layout item_summary_stat_row 0x7f0c005f
 int layout item_task 0x7f0c0060
 int layout item_transaction_all_accounts_date_header 0x7f0c0061

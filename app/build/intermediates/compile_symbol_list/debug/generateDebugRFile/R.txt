@@ -32,6 +32,7 @@ int dimen text_header 0x0
 int dimen text_small 0x0
 int dimen text_standard 0x0
 int dimen text_title 0x0
+int drawable account_card_border 0x0
 int drawable bg_period_selected 0x0
 int drawable button_outline_green 0x0
 int drawable calendar_logo_bg 0x0
@@ -162,7 +163,6 @@ int id agenda_list 0x0
 int id agenda_title 0x0
 int id aiAssistantButton 0x0
 int id allButton 0x0
-int id allTimeRow 0x0
 int id allTxBackButton 0x0
 int id allTxFooter 0x0
 int id allTxHeaders 0x0
@@ -226,6 +226,8 @@ int id btnSaveAccount 0x0
 int id btnSaveContinue 0x0
 int id btnSaveExit 0x0
 int id btnSelectCategory 0x0
+int id btnSummaryCalendar 0x0
+int id btnSummaryReport 0x0
 int id btnText 0x0
 int id btnUpdate 0x0
 int id btnVoice 0x0
@@ -236,6 +238,10 @@ int id calendarGrid 0x0
 int id calendarHeader 0x0
 int id calendarToolbar 0x0
 int id cancelSelectionBtn 0x0
+int id cardAccountBalance 0x0
+int id cardAccountIn 0x0
+int id cardAccountName 0x0
+int id cardAccountOut 0x0
 int id cardView 0x0
 int id cashButtonsContainer 0x0
 int id cashInButton 0x0
@@ -354,7 +360,6 @@ int id mainScrollView 0x0
 int id markerDate 0x0
 int id markerValue 0x0
 int id modeSwitchContainer 0x0
-int id monthRow 0x0
 int id monthYearText 0x0
 int id monthlyButton 0x0
 int id monthly_expenses_main 0x0
@@ -482,7 +487,12 @@ int id subWeeklyRangeButton 0x0
 int id subYearlyContainer 0x0
 int id subYearlyRangeButton 0x0
 int id summaryBackButton 0x0
-int id summaryTopBar 0x0
+int id summaryEmptyText 0x0
+int id summaryFilterLabel 0x0
+int id summaryFooter 0x0
+int id summaryRecyclerView 0x0
+int id summaryTabsContainer 0x0
+int id summaryToolbar 0x0
 int id tabAll 0x0
 int id tabDaily 0x0
 int id tabMonthly 0x0
@@ -555,7 +565,6 @@ int id widget_month_year 0x0
 int id widget_root 0x0
 int id widget_subtitle 0x0
 int id widget_title 0x0
-int id yearRow 0x0
 int id yearlyButton 0x0
 int layout activity_account_summary 0x0
 int layout activity_add_transaction 0x0
@@ -604,6 +613,7 @@ int layout item_dialog_transaction 0x0
 int layout item_expenses_calendar_day 0x0
 int layout item_notebook_note 0x0
 int layout item_report_category_row 0x0
+int layout item_summary_account_card 0x0
 int layout item_summary_stat_row 0x0
 int layout item_task 0x0
 int layout item_transaction_all_accounts_date_header 0x0

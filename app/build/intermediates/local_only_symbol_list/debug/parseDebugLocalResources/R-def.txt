@@ -34,6 +34,7 @@ dimen text_header
 dimen text_small
 dimen text_standard
 dimen text_title
+drawable account_card_border
 drawable bg_period_selected
 drawable button_outline_green
 drawable calendar_logo_bg
@@ -164,7 +165,6 @@ id agenda_list
 id agenda_title
 id aiAssistantButton
 id allButton
-id allTimeRow
 id allTxBackButton
 id allTxFooter
 id allTxHeaders
@@ -228,6 +228,8 @@ id btnSaveAccount
 id btnSaveContinue
 id btnSaveExit
 id btnSelectCategory
+id btnSummaryCalendar
+id btnSummaryReport
 id btnText
 id btnUpdate
 id btnVoice
@@ -238,6 +240,10 @@ id calendarGrid
 id calendarHeader
 id calendarToolbar
 id cancelSelectionBtn
+id cardAccountBalance
+id cardAccountIn
+id cardAccountName
+id cardAccountOut
 id cardView
 id cashButtonsContainer
 id cashInButton
@@ -356,7 +362,6 @@ id mainScrollView
 id markerDate
 id markerValue
 id modeSwitchContainer
-id monthRow
 id monthYearText
 id monthlyButton
 id monthly_expenses_main
@@ -484,7 +489,12 @@ id subWeeklyRangeButton
 id subYearlyContainer
 id subYearlyRangeButton
 id summaryBackButton
-id summaryTopBar
+id summaryEmptyText
+id summaryFilterLabel
+id summaryFooter
+id summaryRecyclerView
+id summaryTabsContainer
+id summaryToolbar
 id tabAll
 id tabDaily
 id tabMonthly
@@ -557,7 +567,6 @@ id widget_month_year
 id widget_root
 id widget_subtitle
 id widget_title
-id yearRow
 id yearlyButton
 layout activity_account_summary
 layout activity_add_transaction
@@ -606,6 +615,7 @@ layout item_dialog_transaction
 layout item_expenses_calendar_day
 layout item_notebook_note
 layout item_report_category_row
+layout item_summary_account_card
 layout item_summary_stat_row
 layout item_task
 layout item_transaction_all_accounts_date_header
