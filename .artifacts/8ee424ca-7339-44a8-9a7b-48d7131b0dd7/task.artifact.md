@@ -1,0 +1,3 @@
+- [x] Update `refreshTransactionsList` in `ExpensesActivity.java` to calculate account-specific totals
+- [x] Standardize footer labels for all account views
+- [x] Verify global summary still works as intended

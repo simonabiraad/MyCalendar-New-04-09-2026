@@ -1273,7 +1273,7 @@ public class ExpensesActivity extends AppCompatActivity {
             Double balanceAfter = balanceAfterById.get(t.getId());
             grouped.add(TransactionListItem.transaction(t, balanceAfter != null ? balanceAfter : 0.0));
             if (t.isCashIn()) {
-                if (isSummaryMode) cashIn += t.getAmount();
+                cashIn += t.getAmount();
             } else {
                 cashOut += t.getAmount();
             }
@@ -1283,27 +1283,13 @@ public class ExpensesActivity extends AppCompatActivity {
         transactionsRecyclerView.setVisibility(filtered.isEmpty() ? View.GONE : View.VISIBLE);
         emptyStateText.setVisibility(filtered.isEmpty() ? View.VISIBLE : View.GONE);
 
-        // BALANCE INTEGRATION: In Account mode, Income slot shows Account Balance
+        // BALANCE INTEGRATION: Uniformly show Total Cash In, Total Cash Out, and Balance
         TextView labelTotalCashIn = findViewById(R.id.labelTotalCashIn);
-        if (!isSummaryMode) {
-            if (labelTotalCashIn != null) labelTotalCashIn.setText("Income");
-            double currentAccBalance = 0;
-            for (Account a : accountList) {
-                if (a.getName().equals(activeAccount)) {
-                    currentAccBalance = a.getBalance();
-                    break;
-                }
-            }
-            cashInTotalText.setText(String.format(Locale.US, "%,.2f", currentAccBalance));
-            cashOutTotalText.setText(String.format(Locale.US, "%,.2f", cashOut));
-            balanceTotalText.setText(String.format(Locale.US, "%,.2f", currentAccBalance - cashOut));
-        } else {
-            if (labelTotalCashIn != null) labelTotalCashIn.setText("TOTAL Cash In");
-            // Global Summary totals
-            cashInTotalText.setText(String.format(Locale.US, "%,.2f", cashIn));
-            cashOutTotalText.setText(String.format(Locale.US, "%,.2f", cashOut));
-            balanceTotalText.setText(String.format(Locale.US, "%,.2f", cashIn - cashOut));
-        }
+        if (labelTotalCashIn != null) labelTotalCashIn.setText("TOTAL Cash In");
+
+        cashInTotalText.setText(String.format(Locale.US, "%,.2f", cashIn));
+        cashOutTotalText.setText(String.format(Locale.US, "%,.2f", cashOut));
+        balanceTotalText.setText(String.format(Locale.US, "%,.2f", cashIn - cashOut));
 
         // --- Period Balance Calculations ---
         if (currentFilter == FILTER_ALL) {
