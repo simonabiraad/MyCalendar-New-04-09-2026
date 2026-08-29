@@ -486,8 +486,6 @@ public class MainActivity extends AppCompatActivity {
             showNewNoteDialog("");
         } else if (QuickNoteNotificationService.ACTION_SECURE_BOX.equals(intent.getAction())) {
             launchSecureBox(false);
-        } else if (QuickNoteNotificationService.ACTION_TASK.equals(intent.getAction())) {
-            startActivity(new Intent(this, TaskActivity.class));
         } else if (QuickNoteNotificationService.ACTION_EXPENSES.equals(intent.getAction())) {
             launchExpenses();
         } else if (QuickNoteNotificationService.ACTION_SETTINGS.equals(intent.getAction())) {
@@ -573,6 +571,76 @@ public class MainActivity extends AppCompatActivity {
                     .setNegativeButton("No", null)
                     .show();
         });
+
+        findViewById(R.id.copySelectedBtn).setOnClickListener(v -> {
+            showCopyDatePicker();
+        });
+    }
+
+    private void showCopyDatePicker() {
+        Calendar cal = Calendar.getInstance();
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            Date d = sdf.parse(currentDateKey);
+            if (d != null) cal.setTime(d);
+        } catch (Exception ignored) {}
+
+        new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+            Calendar target = Calendar.getInstance();
+            target.set(year, month, dayOfMonth);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            String newDateKey = sdf.format(target.getTime());
+
+            processBatchCopy(newDateKey);
+            exitSelectionMode();
+        }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    private void processBatchCopy(String targetDateKey) {
+        // We only copy from the CURRENT visible list's source prefs to the same source prefs on a new date.
+        // Or actually, if multiple are selected from history, we should preserve their type.
+        
+        java.util.Map<String, java.util.Map<String, java.util.List<Integer>>> grouped = new java.util.HashMap<>();
+        for (String id : selectedNotes) {
+            String[] parts = id.split(":");
+            String prefsName = parts[0];
+            String dateKey = parts[1];
+            int index = Integer.parseInt(parts[2]);
+            
+            grouped.computeIfAbsent(prefsName, k -> new java.util.HashMap<>())
+                   .computeIfAbsent(dateKey, k -> new java.util.ArrayList<>())
+                   .add(index);
+        }
+
+        for (Map.Entry<String, java.util.Map<String, java.util.List<Integer>>> prefsEntry : grouped.entrySet()) {
+            SharedPreferences prefs = getSharedPreferences(prefsEntry.getKey(), Context.MODE_PRIVATE);
+            
+            // For copying, we append to the target date
+            String targetText = prefs.getString(targetDateKey, "");
+            java.util.List<String> targetList = new java.util.ArrayList<>();
+            if (!targetText.isEmpty()) targetList.addAll(java.util.Arrays.asList(targetText.split("\n")));
+
+            for (Map.Entry<String, java.util.List<Integer>> dateEntry : prefsEntry.getValue().entrySet()) {
+                String dateKey = dateEntry.getKey();
+                java.util.List<Integer> indices = dateEntry.getValue();
+                
+                String sourceText = prefs.getString(dateKey, "");
+                if (sourceText.isEmpty()) continue;
+                java.util.List<String> sourceList = java.util.Arrays.asList(sourceText.split("\n"));
+                
+                for (int index : indices) {
+                    if (index >= 0 && index < sourceList.size()) {
+                        targetList.add(sourceList.get(index));
+                    }
+                }
+            }
+            
+            if (!targetList.isEmpty()) {
+                prefs.edit().putString(targetDateKey, String.join("\n", targetList)).apply();
+            }
+        }
+        
+        Toast.makeText(this, "Notes copied to " + targetDateKey, Toast.LENGTH_SHORT).show();
     }
 
     private void exitSelectionMode() {

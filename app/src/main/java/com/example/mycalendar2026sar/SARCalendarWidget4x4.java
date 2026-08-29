@@ -34,7 +34,6 @@ public class SARCalendarWidget4x4 extends AppWidgetProvider {
         // 2. Calculate Counts
         views.setTextViewText(R.id.count_today, String.valueOf(getTodayCount(context)));
         views.setTextViewText(R.id.count_sticky, String.valueOf(getStickyCount(context)));
-        views.setTextViewText(R.id.count_tasks, String.valueOf(getTaskCount(context)));
 
         // 3. Set Click Intent to open App
         Intent intent = new Intent(context, MainActivity.class);
@@ -66,17 +65,4 @@ public class SARCalendarWidget4x4 extends AppWidgetProvider {
         return count;
     }
 
-    private int getTaskCount(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences("TaskPrefs", Context.MODE_PRIVATE);
-        String json = prefs.getString("tasks", null);
-        if (json == null) return 0;
-        try {
-            JSONArray arr = new JSONArray(json);
-            int pending = 0;
-            for (int i = 0; i < arr.length(); i++) {
-                if (!arr.getJSONObject(i).getBoolean("completed")) pending++;
-            }
-            return pending;
-        } catch (Exception e) { return 0; }
-    }
 }

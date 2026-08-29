@@ -56,12 +56,6 @@ public class QuickNoteNotificationService extends Service {
         PendingIntent sbPendingIntent = PendingIntent.getActivity(this, 2, sbIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         remoteViews.setOnClickPendingIntent(R.id.notif_sb_btn, sbPendingIntent);
 
-        // Intent for Task
-        Intent taskIntent = new Intent(this, MainActivity.class);
-        taskIntent.setAction(ACTION_TASK);
-        taskIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent taskPendingIntent = PendingIntent.getActivity(this, 5, taskIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-        remoteViews.setOnClickPendingIntent(R.id.notif_task_btn, taskPendingIntent);
 
         // Intent for Expenses
         Intent expIntent = new Intent(this, MainActivity.class);

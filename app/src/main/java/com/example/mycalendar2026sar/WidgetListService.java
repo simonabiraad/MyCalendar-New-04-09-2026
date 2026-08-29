@@ -43,7 +43,6 @@ class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory 
         titles.clear();
         if ("today".equals(type)) loadToday();
         else if ("sticky".equals(type)) loadSticky();
-        else if ("task".equals(type)) loadTask();
     }
 
     private void loadToday() {
@@ -87,20 +86,6 @@ class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory 
         }
     }
 
-    private void loadTask() {
-        SharedPreferences prefs = context.getSharedPreferences("TaskPrefs", Context.MODE_PRIVATE);
-        String json = prefs.getString("tasks", null);
-        if (json == null) return;
-        try {
-            JSONArray arr = new JSONArray(json);
-            for (int i = 0; i < arr.length(); i++) {
-                JSONObject obj = arr.getJSONObject(i);
-                boolean done = obj.getBoolean("completed");
-                items.add((done ? "✓ " : "□ ") + obj.getString("text"));
-                titles.add("");
-            }
-        } catch (Exception ignored) {}
-    }
 
     @Override
     public RemoteViews getViewAt(int position) {
