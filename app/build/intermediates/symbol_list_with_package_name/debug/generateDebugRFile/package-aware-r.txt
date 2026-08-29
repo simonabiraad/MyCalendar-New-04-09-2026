@@ -116,6 +116,8 @@ drawable ic_pdf_logo
 drawable ic_remove_circle
 drawable ic_report_logo
 drawable rounded_search_bg
+drawable status_dot_off
+drawable status_dot_on
 drawable summary_border
 drawable task_input_border
 drawable today_circle
@@ -131,6 +133,7 @@ id accountsRecyclerView
 id accountsSearchView
 id actionButtonsContainer
 id action_about
+id action_add_remove_denom
 id action_address
 id action_backup_data
 id action_cash_in
@@ -156,6 +159,8 @@ id action_pdf
 id action_print
 id action_report
 id action_secure_box
+id action_select_currency
+id action_show_online
 id action_themes
 id action_toggle_quick_bar
 id addAccountButton
@@ -188,6 +193,7 @@ id balanceTotalText
 id bottomContainer
 id bottomStickyContainer
 id btnAddBills
+id btnAddDenom
 id btnCalc0
 id btnCalc1
 id btnCalc2
@@ -313,6 +319,7 @@ id deletedRowForeverButton
 id deletedRowRestoreButton
 id deletedRowTitle
 id deletedTopBar
+id denomRecyclerView
 id detailsContainer
 id detailsContainerAccount
 id dialogDateText
@@ -323,6 +330,7 @@ id dialogTitle
 id dialogTransactionList
 id drawer_layout
 id drawingOverlay
+id dynamicRowsContainer
 id editAccountBalance
 id editAccountName
 id editAccountsButton
@@ -433,6 +441,7 @@ id notif_title
 id notif_voice_btn
 id notificationSettingsButton
 id notification_widget_root
+id onlineStatusIndicator
 id optionCamera
 id optionGallery
 id optionPdf
@@ -480,14 +489,6 @@ id rowDate
 id rowSavings
 id rowTime
 id rowTitle
-id row_1000
-id row_10000
-id row_100000
-id row_20000
-id row_250
-id row_500
-id row_5000
-id row_50000
 id saveNoteButton
 id saveStickyNoteButton
 id sbCameraNoteButton
@@ -527,6 +528,7 @@ id summaryRecyclerView
 id summaryTableHeaders
 id summaryTabsContainer
 id summaryToolbar
+id switchDenom
 id tabAll
 id tabDaily
 id tabMonthly
@@ -546,6 +548,7 @@ id taskTitle
 id textClockDate
 id timePickerBox
 id titleTextView
+id toolbar
 id topExpensesButton
 id totalCashInText
 id totalCashOutText
@@ -575,8 +578,10 @@ id txNamesSearchView
 id txNamesTopBar
 id txNote
 id txtAccountDate
+id txtCashCalcTitle
 id txtCashOutHeader
 id txtDate
+id txtDenomValue
 id txtDenomination
 id txtRowTotal
 id txtTime
@@ -604,6 +609,7 @@ id widget_title
 id yearlyButton
 layout activity_account_summary
 layout activity_accounts_overview
+layout activity_add_remove_currency
 layout activity_add_transaction
 layout activity_cash_calculator
 layout activity_category
@@ -648,6 +654,7 @@ layout item_category
 layout item_category_chip
 layout item_chart_detail
 layout item_deleted_transaction_row
+layout item_denom_setting
 layout item_dialog_transaction
 layout item_expenses_calendar_day
 layout item_notebook_note
@@ -672,6 +679,7 @@ layout widget_list_view
 layout widget_sar_4x4
 layout widget_small_summary
 menu main_popup_menu
+menu menu_cash_calculator
 menu menu_expenses_drawer
 menu menu_expenses_export
 menu menu_expenses_overflow

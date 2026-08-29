@@ -28,6 +28,7 @@
             app:tint="@color/white" />
 
         <TextView
+            android:id="@+id/txtCashCalcTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -36,6 +37,14 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+        <View
+            android:id="@+id/onlineStatusIndicator"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/status_dot_off"
+            android:visibility="gone" />
 
         <ImageButton
             android:id="@+id/cashCalcMoreButton"
@@ -80,22 +89,12 @@
                     android:textStyle="bold"
                     android:layout_marginBottom="12dp" />
 
-                <!-- Row 100,000 -->
-                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_100000" />
-                <!-- Row 50,000 -->
-                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_50000" />
-                <!-- Row 20,000 -->
-                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_20000" />
-                <!-- Row 10,000 -->
-                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_10000" />
-                <!-- Row 5,000 -->
-                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_5000" />
-                <!-- Row 1,000 -->
-                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_1000" />
-                <!-- Row 500 -->
-                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_500" />
-                <!-- Row 250 -->
-                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_250" />
+                <!-- Dynamic Rows Container -->
+                <LinearLayout
+                    android:id="@+id/dynamicRowsContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
 
                 <!-- Footer Total Row -->
                 <LinearLayout
@@ -123,12 +122,13 @@
                         android:id="@+id/footerTotalCount"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:text="0"
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/footerGrandTotal"
                         android:layout_width="0dp"

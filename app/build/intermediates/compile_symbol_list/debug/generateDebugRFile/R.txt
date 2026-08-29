@@ -115,6 +115,8 @@ int drawable ic_pdf_logo 0x0
 int drawable ic_remove_circle 0x0
 int drawable ic_report_logo 0x0
 int drawable rounded_search_bg 0x0
+int drawable status_dot_off 0x0
+int drawable status_dot_on 0x0
 int drawable summary_border 0x0
 int drawable task_input_border 0x0
 int drawable today_circle 0x0
@@ -130,6 +132,7 @@ int id accountsRecyclerView 0x0
 int id accountsSearchView 0x0
 int id actionButtonsContainer 0x0
 int id action_about 0x0
+int id action_add_remove_denom 0x0
 int id action_address 0x0
 int id action_backup_data 0x0
 int id action_cash_in 0x0
@@ -155,6 +158,8 @@ int id action_pdf 0x0
 int id action_print 0x0
 int id action_report 0x0
 int id action_secure_box 0x0
+int id action_select_currency 0x0
+int id action_show_online 0x0
 int id action_themes 0x0
 int id action_toggle_quick_bar 0x0
 int id addAccountButton 0x0
@@ -187,6 +192,7 @@ int id balanceTotalText 0x0
 int id bottomContainer 0x0
 int id bottomStickyContainer 0x0
 int id btnAddBills 0x0
+int id btnAddDenom 0x0
 int id btnCalc0 0x0
 int id btnCalc1 0x0
 int id btnCalc2 0x0
@@ -312,6 +318,7 @@ int id deletedRowForeverButton 0x0
 int id deletedRowRestoreButton 0x0
 int id deletedRowTitle 0x0
 int id deletedTopBar 0x0
+int id denomRecyclerView 0x0
 int id detailsContainer 0x0
 int id detailsContainerAccount 0x0
 int id dialogDateText 0x0
@@ -322,6 +329,7 @@ int id dialogTitle 0x0
 int id dialogTransactionList 0x0
 int id drawer_layout 0x0
 int id drawingOverlay 0x0
+int id dynamicRowsContainer 0x0
 int id editAccountBalance 0x0
 int id editAccountName 0x0
 int id editAccountsButton 0x0
@@ -432,6 +440,7 @@ int id notif_title 0x0
 int id notif_voice_btn 0x0
 int id notificationSettingsButton 0x0
 int id notification_widget_root 0x0
+int id onlineStatusIndicator 0x0
 int id optionCamera 0x0
 int id optionGallery 0x0
 int id optionPdf 0x0
@@ -479,14 +488,6 @@ int id rowDate 0x0
 int id rowSavings 0x0
 int id rowTime 0x0
 int id rowTitle 0x0
-int id row_1000 0x0
-int id row_10000 0x0
-int id row_100000 0x0
-int id row_20000 0x0
-int id row_250 0x0
-int id row_500 0x0
-int id row_5000 0x0
-int id row_50000 0x0
 int id saveNoteButton 0x0
 int id saveStickyNoteButton 0x0
 int id sbCameraNoteButton 0x0
@@ -526,6 +527,7 @@ int id summaryRecyclerView 0x0
 int id summaryTableHeaders 0x0
 int id summaryTabsContainer 0x0
 int id summaryToolbar 0x0
+int id switchDenom 0x0
 int id tabAll 0x0
 int id tabDaily 0x0
 int id tabMonthly 0x0
@@ -545,6 +547,7 @@ int id taskTitle 0x0
 int id textClockDate 0x0
 int id timePickerBox 0x0
 int id titleTextView 0x0
+int id toolbar 0x0
 int id topExpensesButton 0x0
 int id totalCashInText 0x0
 int id totalCashOutText 0x0
@@ -574,8 +577,10 @@ int id txNamesSearchView 0x0
 int id txNamesTopBar 0x0
 int id txNote 0x0
 int id txtAccountDate 0x0
+int id txtCashCalcTitle 0x0
 int id txtCashOutHeader 0x0
 int id txtDate 0x0
+int id txtDenomValue 0x0
 int id txtDenomination 0x0
 int id txtRowTotal 0x0
 int id txtTime 0x0
@@ -603,6 +608,7 @@ int id widget_title 0x0
 int id yearlyButton 0x0
 int layout activity_account_summary 0x0
 int layout activity_accounts_overview 0x0
+int layout activity_add_remove_currency 0x0
 int layout activity_add_transaction 0x0
 int layout activity_cash_calculator 0x0
 int layout activity_category 0x0
@@ -647,6 +653,7 @@ int layout item_category 0x0
 int layout item_category_chip 0x0
 int layout item_chart_detail 0x0
 int layout item_deleted_transaction_row 0x0
+int layout item_denom_setting 0x0
 int layout item_dialog_transaction 0x0
 int layout item_expenses_calendar_day 0x0
 int layout item_notebook_note 0x0
@@ -671,6 +678,7 @@ int layout widget_list_view 0x0
 int layout widget_sar_4x4 0x0
 int layout widget_small_summary 0x0
 int menu main_popup_menu 0x0
+int menu menu_cash_calculator 0x0
 int menu menu_expenses_drawer 0x0
 int menu menu_expenses_export 0x0
 int menu menu_expenses_overflow 0x0
