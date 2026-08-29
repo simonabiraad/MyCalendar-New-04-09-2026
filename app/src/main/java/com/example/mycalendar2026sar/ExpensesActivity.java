@@ -327,9 +327,7 @@ public class ExpensesActivity extends AppCompatActivity {
             } else if (id == R.id.nav_calendar) {
                 startActivity(new Intent(this, ExpensesCalendarActivity.class));
             } else if (id == R.id.nav_cash_calculator) {
-                CalculatorDialogFragment.newInstance(result ->
-                        Toast.makeText(this, "Result: " + result, Toast.LENGTH_LONG).show())
-                        .show(getSupportFragmentManager(), "cash_calculator");
+                startActivity(new Intent(this, CashCalculatorActivity.class));
             } else if (id == R.id.nav_backup_restore) {
                 showBackupRestoreDialog();
             } else if (id == R.id.nav_setting) {

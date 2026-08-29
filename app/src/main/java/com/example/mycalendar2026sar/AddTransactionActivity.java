@@ -422,8 +422,12 @@ public class AddTransactionActivity extends AppCompatActivity {
             return false;
         }
 
-        String account = getSharedPreferences("ExpensesPrefs", MODE_PRIVATE)
-                .getString("ActiveAccount", "Expenses");
+        // PRIORITIZE intent context (from Calendar) if available
+        String account = getIntent().getStringExtra("account_context");
+        if (account == null) {
+            account = getSharedPreferences("ExpensesPrefs", MODE_PRIVATE)
+                    .getString("ActiveAccount", "Expenses");
+        }
         
         String type = currentType;
         

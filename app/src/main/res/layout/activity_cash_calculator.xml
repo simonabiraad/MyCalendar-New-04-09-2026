@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".CashCalculatorActivity">
+
+    <!-- Toolbar -->
+    <LinearLayout
+        android:id="@+id/cashCalcToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/cashCalcBackButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:src="@android:drawable/ic_menu_revert"
+            app:tint="@color/white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="Cash Calculator"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/cashCalcMoreButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_more"
+            app:tint="@color/white" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/bottomContainer"
+        app:layout_constraintTop_toBottomOf="@id/cashCalcToolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <!-- Main Container with Green Border -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cash_calc_border"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <!-- Header Result Display -->
+                <TextView
+                    android:id="@+id/headerTotalDisplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/cash_calc_input_bg"
+                    android:gravity="center"
+                    android:text="0.00"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Row 100,000 -->
+                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_100000" />
+                <!-- Row 50,000 -->
+                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_50000" />
+                <!-- Row 20,000 -->
+                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_20000" />
+                <!-- Row 10,000 -->
+                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_10000" />
+                <!-- Row 5,000 -->
+                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_5000" />
+                <!-- Row 1,000 -->
+                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_1000" />
+                <!-- Row 500 -->
+                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_500" />
+                <!-- Row 250 -->
+                <include layout="@layout/item_cash_denom_row" android:id="@+id/row_250" />
+
+                <!-- Footer Total Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="4dp"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:background="@drawable/cash_calc_top_border">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:text="Total"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/footerTotalCount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/footerGrandTotal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.8"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:gravity="end" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottomContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1A1A1A"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btnCashCalcDelete"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="#C8E6C9"
+            android:text="Delete"
+            android:textAllCaps="false"
+            android:textColor="#2E7D32"
+            android:textStyle="bold"
+            app:cornerRadius="8dp" />
+
+        <Button
+            android:id="@+id/btnCashCalcShare"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/light_green"
+            android:text="Share"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:cornerRadius="8dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

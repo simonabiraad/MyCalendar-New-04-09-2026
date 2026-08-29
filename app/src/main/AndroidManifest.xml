@@ -119,6 +119,10 @@
             android:name=".TransactionsAllAccountsActivity"
             android:exported="false"
             android:theme="@style/Theme.MyCalendar2026SAR" />
+        <activity
+            android:name=".CashCalculatorActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MyCalendar2026SAR" />
 
         <service
             android:name=".QuickNoteNotificationService"

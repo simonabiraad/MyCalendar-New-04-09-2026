@@ -292,6 +292,8 @@ public class ExpensesCalendarActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddTransactionActivity.class);
         intent.putExtra("type", type);
         intent.putExtra("timestamp", date.getTime());
+        // Pass the current active account to AddTransactionActivity
+        intent.putExtra("account_context", activeAccount);
         startActivity(intent);
     }
 

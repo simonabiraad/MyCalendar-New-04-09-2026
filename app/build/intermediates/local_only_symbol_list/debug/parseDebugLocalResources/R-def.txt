@@ -38,6 +38,10 @@ drawable account_card_border
 drawable bg_period_selected
 drawable button_outline_green
 drawable calendar_logo_bg
+drawable cash_calc_border
+drawable cash_calc_button_bg
+drawable cash_calc_input_bg
+drawable cash_calc_top_border
 drawable chart_gradient
 drawable circle_indicator
 drawable dialog_background_rounded
@@ -182,6 +186,7 @@ id archiveSelectedBtn
 id backButton
 id balanceText
 id balanceTotalText
+id bottomContainer
 id bottomStickyContainer
 id btnAddBills
 id btnCalc0
@@ -207,6 +212,8 @@ id btnCalcSub
 id btnCalculator
 id btnCancel
 id btnCancelAccount
+id btnCashCalcDelete
+id btnCashCalcShare
 id btnCashIn
 id btnCashOut
 id btnCrop
@@ -216,6 +223,7 @@ id btnDialogCashIn
 id btnDialogCashOut
 id btnDraw
 id btnEdit
+id btnMinus
 id btnMoveDown
 id btnMoveUp
 id btnOk
@@ -223,6 +231,7 @@ id btnPerformTransfer
 id btnPeriod30Days
 id btnPeriod7Days
 id btnPeriodToday
+id btnPlus
 id btnSaveAccount
 id btnSaveContinue
 id btnSaveExit
@@ -245,6 +254,9 @@ id cardAccountName
 id cardAccountOut
 id cardView
 id cashButtonsContainer
+id cashCalcBackButton
+id cashCalcMoreButton
+id cashCalcToolbar
 id cashInButton
 id cashInTotalText
 id cashOutButton
@@ -316,6 +328,7 @@ id editAccountBalance
 id editAccountName
 id editAccountsButton
 id editAmount
+id editCount
 id editItems
 id editNotes
 id editTransferAmount
@@ -337,10 +350,13 @@ id footerBalance
 id footerButtonsContainer
 id footerCashIn
 id footerCashOut
+id footerGrandTotal
+id footerTotalCount
 id headerDateText
 id headerLayout
 id headerTextContainer
 id headerTitle
+id headerTotalDisplay
 id imagePreview
 id income_main
 id indicatorMinus
@@ -465,6 +481,14 @@ id rowDate
 id rowSavings
 id rowTime
 id rowTitle
+id row_1000
+id row_10000
+id row_100000
+id row_20000
+id row_250
+id row_500
+id row_5000
+id row_50000
 id saveNoteButton
 id saveStickyNoteButton
 id sbCameraNoteButton
@@ -554,6 +578,8 @@ id txNote
 id txtAccountDate
 id txtCashOutHeader
 id txtDate
+id txtDenomination
+id txtRowTotal
 id txtTime
 id txtTransferDate
 id txtTransferTime
@@ -580,6 +606,7 @@ id yearlyButton
 layout activity_account_summary
 layout activity_accounts_overview
 layout activity_add_transaction
+layout activity_cash_calculator
 layout activity_category
 layout activity_chart
 layout activity_daily_expenses
@@ -617,6 +644,7 @@ layout dialog_notebook_note
 layout dialog_transaction_note
 layout item_account
 layout item_account_summary_row
+layout item_cash_denom_row
 layout item_category
 layout item_category_chip
 layout item_chart_detail
