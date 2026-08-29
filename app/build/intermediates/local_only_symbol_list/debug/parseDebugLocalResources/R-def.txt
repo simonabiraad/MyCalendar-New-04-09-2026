@@ -272,8 +272,8 @@ id chartBackButton
 id chartHeader
 id chartTitle
 id clearDataRow
+id copySelectedBtn
 id count_sticky
-id count_tasks
 id count_today
 id currentBalanceTrendText
 id currentTabLabel
@@ -412,7 +412,6 @@ id notif_expenses_btn
 id notif_note_btn
 id notif_sb_btn
 id notif_settings_btn
-id notif_task_btn
 id notif_themes_btn
 id notif_themes_text
 id notif_title

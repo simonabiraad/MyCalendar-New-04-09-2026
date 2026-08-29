@@ -31,28 +31,41 @@
             android:textStyle="bold" />
 
         <ImageButton
+            android:id="@+id/copySelectedBtn"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_menu_transfer_color"
+            android:padding="8dp"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
             android:id="@+id/archiveSelectedBtn"
             android:layout_width="@dimen/_36sdp"
             android:layout_height="@dimen/_36sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@android:drawable/ic_menu_save"
-            app:tint="@color/white" />
+            android:src="@drawable/ic_menu_archive_color"
+            android:padding="8dp"
+            android:scaleType="fitCenter" />
 
         <ImageButton
             android:id="@+id/deleteSelectedBtn"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@android:drawable/ic_menu_delete"
-            app:tint="@color/white" />
+            android:src="@drawable/ic_menu_trash_color"
+            android:padding="8dp"
+            android:scaleType="fitCenter" />
 
         <ImageButton
             android:id="@+id/cancelSelectionBtn"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@android:drawable/ic_menu_close_clear_cancel"
-            app:tint="@color/white" />
+            app:tint="@color/red"
+            android:padding="8dp"
+            android:scaleType="fitCenter" />
     </LinearLayout>
 
     <ScrollView

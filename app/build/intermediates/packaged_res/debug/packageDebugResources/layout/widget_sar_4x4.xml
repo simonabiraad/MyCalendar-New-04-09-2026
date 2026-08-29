@@ -149,33 +149,6 @@
                 android:textSize="9sp" />
         </LinearLayout>
 
-        <!-- Tasks Column -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_menu_task_color"
-                android:contentDescription="Tasks" />
-            <TextView
-                android:id="@+id/count_tasks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2"
-                android:textColor="@color/light_green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TASKS"
-                android:textColor="#AAAAAA"
-                android:textSize="9sp" />
-        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

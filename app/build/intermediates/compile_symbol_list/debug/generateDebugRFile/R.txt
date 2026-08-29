@@ -270,8 +270,8 @@ int id chartBackButton 0x0
 int id chartHeader 0x0
 int id chartTitle 0x0
 int id clearDataRow 0x0
+int id copySelectedBtn 0x0
 int id count_sticky 0x0
-int id count_tasks 0x0
 int id count_today 0x0
 int id currentBalanceTrendText 0x0
 int id currentTabLabel 0x0
@@ -410,7 +410,6 @@ int id notif_expenses_btn 0x0
 int id notif_note_btn 0x0
 int id notif_sb_btn 0x0
 int id notif_settings_btn 0x0
-int id notif_task_btn 0x0
 int id notif_themes_btn 0x0
 int id notif_themes_text 0x0
 int id notif_title 0x0

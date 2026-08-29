@@ -97,14 +97,6 @@
                 android:src="@drawable/ic_menu_color_palette" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/notif_task_btn"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:layout_marginEnd="8dp"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:padding="8dp"
-            android:src="@drawable/ic_menu_task_color" />
 
         <ImageView
             android:id="@+id/notif_expenses_btn"
