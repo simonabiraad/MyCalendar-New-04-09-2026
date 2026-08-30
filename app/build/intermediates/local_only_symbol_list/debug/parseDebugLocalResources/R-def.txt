@@ -232,6 +232,8 @@ id btnEdit
 id btnMinus
 id btnMoveDown
 id btnMoveUp
+id btnNavNext
+id btnNavPrev
 id btnOk
 id btnPerformTransfer
 id btnPeriod30Days

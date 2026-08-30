@@ -312,6 +312,10 @@
         "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\layout\\layout_calendar_day_details.xml"
     },
     {
+        "merged": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\layout_layout_date_range_picker.xml.flat",
+        "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\layout\\layout_date_range_picker.xml"
+    },
+    {
         "merged": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\layout_activity_expense_type.xml.flat",
         "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\layout\\activity_expense_type.xml"
     },
@@ -416,10 +420,6 @@
         "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\drawable\\ic_menu_save_color.xml"
     },
     {
-        "merged": "com.example.mycalendar2026sar.app-debug-43:/layout_item_cash_denom_row.xml.flat",
-        "source": "com.example.mycalendar2026sar.app-main-45:/layout/item_cash_denom_row.xml"
-    },
-    {
         "merged": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\xml_today_widget_medium_info.xml.flat",
         "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\xml\\today_widget_medium_info.xml"
     },
@@ -434,6 +434,10 @@
     {
         "merged": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\layout_item_task.xml.flat",
         "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\layout\\item_task.xml"
+    },
+    {
+        "merged": "com.example.mycalendar2026sar.app-debug-43:/layout_activity_account_summary.xml.flat",
+        "source": "com.example.mycalendar2026sar.app-main-45:/layout/activity_account_summary.xml"
     },
     {
         "merged": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\drawable_ic_menu_no_ads.xml.flat",
@@ -650,10 +654,6 @@
     {
         "merged": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\layout_item_account_summary_row.xml.flat",
         "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\layout\\item_account_summary_row.xml"
-    },
-    {
-        "merged": "com.example.mycalendar2026sar.app-debug-43:/layout_activity_cash_calculator.xml.flat",
-        "source": "com.example.mycalendar2026sar.app-main-45:/layout/activity_cash_calculator.xml"
     },
     {
         "merged": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\layout_activity_accounts_overview.xml.flat",

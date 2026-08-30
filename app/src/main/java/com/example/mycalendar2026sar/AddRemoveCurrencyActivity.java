@@ -21,6 +21,7 @@ public class AddRemoveCurrencyActivity extends AppCompatActivity {
 
     private List<DenomManager.Denomination> denomList;
     private DenomAdapter adapter;
+    private String countryCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,8 @@ public class AddRemoveCurrencyActivity extends AppCompatActivity {
         findViewById(R.id.backButton).setOnClickListener(v -> finish());
         findViewById(R.id.btnAddDenom).setOnClickListener(v -> showAddEditDialog(null));
 
-        denomList = DenomManager.getDenominations(this);
+        countryCode = CountryManager.getSelectedCountry(this).code;
+        denomList = DenomManager.getDenominations(this, countryCode);
         sortList();
 
         RecyclerView recyclerView = findViewById(R.id.denomRecyclerView);
@@ -41,7 +43,7 @@ public class AddRemoveCurrencyActivity extends AppCompatActivity {
 
     private void sortList() {
         if (denomList != null) {
-            denomList.sort((d1, d2) -> Integer.compare(d2.value, d1.value));
+            denomList.sort((d1, d2) -> Double.compare(d2.value, d1.value));
         }
     }
 
@@ -51,8 +53,8 @@ public class AddRemoveCurrencyActivity extends AppCompatActivity {
         layout.setPadding(60, 40, 60, 10);
 
         final EditText input = new EditText(this);
-        input.setHint("Value (e.g. 500)");
-        input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+        input.setHint("Value (e.g. 0.50)");
+        input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
         input.setTextColor(android.graphics.Color.WHITE);
         if (item != null) input.setText(String.valueOf(item.value));
         layout.addView(input);
@@ -63,19 +65,29 @@ public class AddRemoveCurrencyActivity extends AppCompatActivity {
                 .setPositiveButton("Save", (dialog, which) -> {
                     String valStr = input.getText().toString();
                     if (!valStr.isEmpty()) {
-                        int val = Integer.parseInt(valStr);
-                        if (item == null) {
-                            denomList.add(new DenomManager.Denomination(val, true));
-                        } else {
-                            item.value = val;
-                        }
-                        sortList();
-                        DenomManager.saveDenominations(this, denomList);
-                        adapter.notifyDataSetChanged();
+                        try {
+                            double val = Double.parseDouble(valStr);
+                            if (item == null) {
+                                denomList.add(new DenomManager.Denomination(val, true));
+                            } else {
+                                item.value = val;
+                            }
+                            sortList();
+                            DenomManager.saveDenominations(this, countryCode, denomList);
+                            adapter.notifyDataSetChanged();
+                        } catch (NumberFormatException ignored) {}
                     }
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
+    }
+
+    private String formatValue(double value) {
+        if (value == (long) value) {
+            return String.format(Locale.US, "%,d", (long) value);
+        } else {
+            return String.format(Locale.US, "%,.2f", value);
+        }
     }
 
     private class DenomAdapter extends RecyclerView.Adapter<DenomAdapter.ViewHolder> {
@@ -89,12 +101,12 @@ public class AddRemoveCurrencyActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             DenomManager.Denomination d = denomList.get(position);
-            holder.txtValue.setText(String.format(Locale.US, "%,d", d.value));
+            holder.txtValue.setText(formatValue(d.value));
             holder.sw.setOnCheckedChangeListener(null);
             holder.sw.setChecked(d.enabled);
             holder.sw.setOnCheckedChangeListener((btn, isChecked) -> {
                 d.enabled = isChecked;
-                DenomManager.saveDenominations(AddRemoveCurrencyActivity.this, denomList);
+                DenomManager.saveDenominations(AddRemoveCurrencyActivity.this, countryCode, denomList);
             });
             
             // Allow tap on text to edit as well
@@ -103,10 +115,10 @@ public class AddRemoveCurrencyActivity extends AppCompatActivity {
             holder.btnDelete.setOnClickListener(v -> {
                 new AlertDialog.Builder(AddRemoveCurrencyActivity.this, R.style.CustomAlertDialogTheme)
                         .setTitle("Delete")
-                        .setMessage("Delete " + d.value + "?")
+                        .setMessage("Delete " + formatValue(d.value) + "?")
                         .setPositiveButton("Delete", (dialog, which) -> {
                             denomList.remove(position);
-                            DenomManager.saveDenominations(AddRemoveCurrencyActivity.this, denomList);
+                            DenomManager.saveDenominations(AddRemoveCurrencyActivity.this, countryCode, denomList);
                             adapter.notifyDataSetChanged();
                         })
                         .setNegativeButton("Cancel", null)

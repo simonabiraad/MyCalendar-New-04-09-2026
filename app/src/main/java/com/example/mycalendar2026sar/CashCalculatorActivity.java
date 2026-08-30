@@ -31,8 +31,8 @@ public class CashCalculatorActivity extends AppCompatActivity {
     private EditText editOnlineAmount;
     private LinearLayout dynamicRowsContainer;
     
-    private final Map<Integer, Integer> rowData = new HashMap<>();
-    private final Map<Integer, View> rowViews = new HashMap<>();
+    private final Map<Double, Integer> rowData = new HashMap<>();
+    private final Map<Double, View> rowViews = new HashMap<>();
     private List<DenomManager.Denomination> denominations;
 
     @Override
@@ -89,7 +89,8 @@ public class CashCalculatorActivity extends AppCompatActivity {
     }
 
     private void refreshDenominations() {
-        denominations = DenomManager.getDenominations(this);
+        String countryCode = CountryManager.getSelectedCountry(this).code;
+        denominations = DenomManager.getDenominations(this, countryCode);
         dynamicRowsContainer.removeAllViews();
         rowViews.clear();
         
@@ -101,7 +102,7 @@ public class CashCalculatorActivity extends AppCompatActivity {
             rowViews.put(d.value, row);
 
             TextView txtDenom = row.findViewById(R.id.txtDenomination);
-            txtDenom.setText(String.format(Locale.US, "%,d", d.value));
+            txtDenom.setText(formatValue(d.value));
 
             EditText editCount = row.findViewById(R.id.editCount);
             TextView txtRowTotal = row.findViewById(R.id.txtRowTotal);
@@ -111,7 +112,7 @@ public class CashCalculatorActivity extends AppCompatActivity {
             Integer currentQty = rowData.get(d.value);
             int existingQty = (currentQty != null) ? currentQty : 0;
             if (existingQty > 0) editCount.setText(String.valueOf(existingQty));
-            txtRowTotal.setText(String.format(Locale.US, "%,d", (long) existingQty * d.value));
+            txtRowTotal.setText(formatValue(existingQty * d.value));
 
             editCount.addTextChangedListener(new TextWatcher() {
                 @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -123,7 +124,7 @@ public class CashCalculatorActivity extends AppCompatActivity {
                         if (s.length() > 0) val = Integer.parseInt(s.toString());
                     } catch (NumberFormatException ignored) {}
                     rowData.put(d.value, val);
-                    txtRowTotal.setText(String.format(Locale.US, "%,d", (long) val * d.value));
+                    txtRowTotal.setText(formatValue(val * d.value));
                     calculateGrandTotal();
                 }
             });
@@ -144,9 +145,9 @@ public class CashCalculatorActivity extends AppCompatActivity {
     }
 
     private void calculateGrandTotal() {
-        long cashSubTotal = 0;
+        double cashSubTotal = 0;
         int totalQty = 0;
-        for (Map.Entry<Integer, Integer> entry : rowData.entrySet()) {
+        for (Map.Entry<Double, Integer> entry : rowData.entrySet()) {
             boolean found = false;
             for(DenomManager.Denomination d : denominations) {
                 if (d.value == entry.getKey() && d.enabled) {
@@ -155,7 +156,7 @@ public class CashCalculatorActivity extends AppCompatActivity {
                 }
             }
             if (found) {
-                cashSubTotal += (long) entry.getValue() * entry.getKey();
+                cashSubTotal += entry.getValue() * entry.getKey();
                 totalQty += entry.getValue();
             }
         }
@@ -172,7 +173,7 @@ public class CashCalculatorActivity extends AppCompatActivity {
 
         headerTotalDisplay.setText(formatValue(grandTotal));
         footerTotalCount.setText(String.valueOf(totalQty));
-        footerSubTotalAmount.setText(formatValue((double) cashSubTotal));
+        footerSubTotalAmount.setText(formatValue(cashSubTotal));
         footerGrandTotalAmount.setText(formatValue(grandTotal));
     }
 
@@ -260,6 +261,11 @@ public class CashCalculatorActivity extends AppCompatActivity {
                 .setPositiveButton("OK", (dialog, which) -> {
                     CountryManager.saveSelectedCountry(this, selected[0]);
                     Toast.makeText(this, "Currency set to " + selected[0].currency, Toast.LENGTH_SHORT).show();
+                    
+                    // Force refresh denominations immediately
+                    rowData.clear();
+                    refreshDenominations();
+                    updateOnlineStatusIndicator();
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
@@ -355,20 +361,30 @@ public class CashCalculatorActivity extends AppCompatActivity {
 
     private void shareBreakdown() {
         StringBuilder sb = new StringBuilder("Cash Calculator Breakdown:\n\n");
-        long total = 0;
-        List<Integer> keys = new ArrayList<>(rowViews.keySet());
+        double total = 0;
+        List<Double> keys = new ArrayList<>(rowViews.keySet());
         keys.sort(Collections.reverseOrder());
 
-        for (int denom : keys) {
+        for (double denom : keys) {
             Integer q = rowData.get(denom);
             int qty = (q != null) ? q : 0;
             if (qty > 0) {
-                long rowTotal = (long) qty * denom;
-                sb.append(String.format(Locale.US, "%,d x %d = %,d\n", denom, qty, rowTotal));
+                double rowTotal = (double) qty * denom;
+                sb.append(String.format(Locale.US, "%s x %d = %s\n", formatValue(denom), qty, formatValue(rowTotal)));
                 total += rowTotal;
             }
         }
-        sb.append("\nTotal: ").append(String.format(Locale.US, "%,d", total));
+        
+        double onlineAmount = 0;
+        String onlineStr = editOnlineAmount.getText().toString();
+        if (!onlineStr.isEmpty()) {
+            try {
+                onlineAmount = Double.parseDouble(onlineStr);
+                sb.append(String.format(Locale.US, "\nOnline: %s\n", formatValue(onlineAmount)));
+            } catch (NumberFormatException ignored) {}
+        }
+
+        sb.append("\nTotal: ").append(formatValue(total + onlineAmount));
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");

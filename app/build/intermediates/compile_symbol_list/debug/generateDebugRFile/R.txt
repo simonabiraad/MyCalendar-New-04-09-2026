@@ -230,6 +230,8 @@ int id btnEdit 0x0
 int id btnMinus 0x0
 int id btnMoveDown 0x0
 int id btnMoveUp 0x0
+int id btnNavNext 0x0
+int id btnNavPrev 0x0
 int id btnOk 0x0
 int id btnPerformTransfer 0x0
 int id btnPeriod30Days 0x0
