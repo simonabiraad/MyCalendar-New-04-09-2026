@@ -27,12 +27,12 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnMinus"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
         android:background="@drawable/cash_calc_button_bg"
         android:text="-"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:padding="0dp"
         android:gravity="center"
@@ -40,24 +40,24 @@
 
     <EditText
         android:id="@+id/editCount"
-        android:layout_width="70dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="60dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         android:background="@drawable/cash_calc_input_bg"
         android:gravity="center"
         android:inputType="number"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnPlus"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
         android:background="@drawable/cash_calc_button_bg"
         android:text="+"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:padding="0dp"
         android:gravity="center"

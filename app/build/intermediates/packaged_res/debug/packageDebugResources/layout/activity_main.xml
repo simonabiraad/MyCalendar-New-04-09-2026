@@ -112,6 +112,7 @@
                     android:textSize="@dimen/_17ssp"
                     android:textStyle="bold" />
 
+
                 <TextClock
                     android:id="@+id/textClockDate"
                     android:layout_width="wrap_content"
@@ -398,7 +399,7 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="@string/secure_box"
-                android:textSize="@dimen/_10ssp" />
+                android:textSize="@dimen/_9ssp" />
 
             <Button
                 android:id="@+id/expensesButton"

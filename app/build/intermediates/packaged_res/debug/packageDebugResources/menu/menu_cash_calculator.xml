@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/action_show_online"
-        android:title="Online"
-        android:checkable="true" />
-    <item
         android:id="@+id/action_add_remove_denom"
-        android:title="Add/Remove Currency" />
+        android:title="Add/Remove Currency"
+        android:icon="@drawable/ic_menu_transfer_color" />
     <item
         android:id="@+id/action_select_currency"
-        android:title="Select Currency" />
+        android:title="Select Currency"
+        android:icon="@drawable/ic_menu_accounts_color" />
 </menu>

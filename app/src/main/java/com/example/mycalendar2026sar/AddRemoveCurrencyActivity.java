@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -30,11 +31,18 @@ public class AddRemoveCurrencyActivity extends AppCompatActivity {
         findViewById(R.id.btnAddDenom).setOnClickListener(v -> showAddEditDialog(null));
 
         denomList = DenomManager.getDenominations(this);
+        sortList();
 
         RecyclerView recyclerView = findViewById(R.id.denomRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new DenomAdapter();
         recyclerView.setAdapter(adapter);
+    }
+
+    private void sortList() {
+        if (denomList != null) {
+            denomList.sort((d1, d2) -> Integer.compare(d2.value, d1.value));
+        }
     }
 
     private void showAddEditDialog(DenomManager.Denomination item) {
@@ -61,6 +69,7 @@ public class AddRemoveCurrencyActivity extends AppCompatActivity {
                         } else {
                             item.value = val;
                         }
+                        sortList();
                         DenomManager.saveDenominations(this, denomList);
                         adapter.notifyDataSetChanged();
                     }
@@ -87,9 +96,11 @@ public class AddRemoveCurrencyActivity extends AppCompatActivity {
                 d.enabled = isChecked;
                 DenomManager.saveDenominations(AddRemoveCurrencyActivity.this, denomList);
             });
-
-            holder.itemView.setOnClickListener(v -> showAddEditDialog(d));
-            holder.itemView.setOnLongClickListener(v -> {
+            
+            // Allow tap on text to edit as well
+            holder.txtValue.setOnClickListener(v -> showAddEditDialog(d));
+            
+            holder.btnDelete.setOnClickListener(v -> {
                 new AlertDialog.Builder(AddRemoveCurrencyActivity.this, R.style.CustomAlertDialogTheme)
                         .setTitle("Delete")
                         .setMessage("Delete " + d.value + "?")
@@ -100,7 +111,6 @@ public class AddRemoveCurrencyActivity extends AppCompatActivity {
                         })
                         .setNegativeButton("Cancel", null)
                         .show();
-                return true;
             });
         }
 
@@ -109,10 +119,12 @@ public class AddRemoveCurrencyActivity extends AppCompatActivity {
         class ViewHolder extends RecyclerView.ViewHolder {
             TextView txtValue;
             Switch sw;
+            ImageButton btnDelete;
             ViewHolder(View v) {
                 super(v);
                 txtValue = v.findViewById(R.id.txtDenomValue);
                 sw = v.findViewById(R.id.switchDenom);
+                btnDelete = v.findViewById(R.id.btnDeleteDenom);
             }
         }
     }

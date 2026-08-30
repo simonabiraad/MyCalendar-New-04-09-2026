@@ -161,7 +161,6 @@ id action_print
 id action_report
 id action_secure_box
 id action_select_currency
-id action_show_online
 id action_themes
 id action_toggle_quick_bar
 id addAccountButton
@@ -225,6 +224,7 @@ id btnCashOut
 id btnCrop
 id btnDelete
 id btnDeleteAccount
+id btnDeleteDenom
 id btnDialogCashIn
 id btnDialogCashOut
 id btnDraw
@@ -258,6 +258,7 @@ id cardAccountBalance
 id cardAccountIn
 id cardAccountName
 id cardAccountOut
+id cardOnlineStatus
 id cardView
 id cashButtonsContainer
 id cashCalcBackButton
@@ -293,6 +294,8 @@ id clearDataRow
 id copySelectedBtn
 id count_sticky
 id count_today
+id countryRecyclerView
+id countrySelectorBox
 id currentBalanceTrendText
 id currentTabLabel
 id dailyButton
@@ -329,6 +332,7 @@ id dialogDayCashOut
 id dialogMessage
 id dialogTitle
 id dialogTransactionList
+id dotOnline
 id drawer_layout
 id drawingOverlay
 id dynamicRowsContainer
@@ -339,6 +343,7 @@ id editAmount
 id editCount
 id editItems
 id editNotes
+id editOnlineAmount
 id editTransferAmount
 id emptyStateText
 id empty_view
@@ -358,8 +363,10 @@ id footerBalance
 id footerButtonsContainer
 id footerCashIn
 id footerCashOut
-id footerGrandTotal
+id footerGrandTotalAmount
+id footerSubTotalAmount
 id footerTotalCount
+id grandTotalRow
 id headerDateText
 id headerLayout
 id headerTextContainer
@@ -442,6 +449,7 @@ id notif_title
 id notif_voice_btn
 id notificationSettingsButton
 id notification_widget_root
+id onlineAmountRow
 id onlineStatusIndicator
 id optionCamera
 id optionGallery
@@ -494,6 +502,7 @@ id saveNoteButton
 id saveStickyNoteButton
 id sbCameraNoteButton
 id sbVoiceNoteButton
+id searchCountry
 id secureBoxButton
 id secureBoxTitle
 id selectionBar
@@ -518,6 +527,7 @@ id subWeeklyContainer
 id subWeeklyRangeButton
 id subYearlyContainer
 id subYearlyRangeButton
+id subtotalRow
 id summaryAccountPicker
 id summaryAccountTitle
 id summaryBackButton
@@ -581,10 +591,15 @@ id txNote
 id txtAccountDate
 id txtCashCalcTitle
 id txtCashOutHeader
+id txtCountryFlag
+id txtCountryName
 id txtDate
 id txtDenomValue
 id txtDenomination
+id txtOnlineStatus
 id txtRowTotal
+id txtSelectedCountryName
+id txtSelectedFlag
 id txtTime
 id txtTransferDate
 id txtTransferTime
@@ -644,9 +659,11 @@ layout dialog_accounts
 layout dialog_add_account
 layout dialog_add_transaction
 layout dialog_calculator
+layout dialog_country_list
 layout dialog_item_with_icon
 layout dialog_media_picker
 layout dialog_notebook_note
+layout dialog_select_country
 layout dialog_transaction_note
 layout item_account
 layout item_account_summary_row
@@ -654,6 +671,7 @@ layout item_cash_denom_row
 layout item_category
 layout item_category_chip
 layout item_chart_detail
+layout item_country
 layout item_deleted_transaction_row
 layout item_denom_setting
 layout item_dialog_transaction

@@ -159,7 +159,6 @@ int id action_print 0x0
 int id action_report 0x0
 int id action_secure_box 0x0
 int id action_select_currency 0x0
-int id action_show_online 0x0
 int id action_themes 0x0
 int id action_toggle_quick_bar 0x0
 int id addAccountButton 0x0
@@ -223,6 +222,7 @@ int id btnCashOut 0x0
 int id btnCrop 0x0
 int id btnDelete 0x0
 int id btnDeleteAccount 0x0
+int id btnDeleteDenom 0x0
 int id btnDialogCashIn 0x0
 int id btnDialogCashOut 0x0
 int id btnDraw 0x0
@@ -256,6 +256,7 @@ int id cardAccountBalance 0x0
 int id cardAccountIn 0x0
 int id cardAccountName 0x0
 int id cardAccountOut 0x0
+int id cardOnlineStatus 0x0
 int id cardView 0x0
 int id cashButtonsContainer 0x0
 int id cashCalcBackButton 0x0
@@ -291,6 +292,8 @@ int id clearDataRow 0x0
 int id copySelectedBtn 0x0
 int id count_sticky 0x0
 int id count_today 0x0
+int id countryRecyclerView 0x0
+int id countrySelectorBox 0x0
 int id currentBalanceTrendText 0x0
 int id currentTabLabel 0x0
 int id dailyButton 0x0
@@ -327,6 +330,7 @@ int id dialogDayCashOut 0x0
 int id dialogMessage 0x0
 int id dialogTitle 0x0
 int id dialogTransactionList 0x0
+int id dotOnline 0x0
 int id drawer_layout 0x0
 int id drawingOverlay 0x0
 int id dynamicRowsContainer 0x0
@@ -337,6 +341,7 @@ int id editAmount 0x0
 int id editCount 0x0
 int id editItems 0x0
 int id editNotes 0x0
+int id editOnlineAmount 0x0
 int id editTransferAmount 0x0
 int id emptyStateText 0x0
 int id empty_view 0x0
@@ -356,8 +361,10 @@ int id footerBalance 0x0
 int id footerButtonsContainer 0x0
 int id footerCashIn 0x0
 int id footerCashOut 0x0
-int id footerGrandTotal 0x0
+int id footerGrandTotalAmount 0x0
+int id footerSubTotalAmount 0x0
 int id footerTotalCount 0x0
+int id grandTotalRow 0x0
 int id headerDateText 0x0
 int id headerLayout 0x0
 int id headerTextContainer 0x0
@@ -440,6 +447,7 @@ int id notif_title 0x0
 int id notif_voice_btn 0x0
 int id notificationSettingsButton 0x0
 int id notification_widget_root 0x0
+int id onlineAmountRow 0x0
 int id onlineStatusIndicator 0x0
 int id optionCamera 0x0
 int id optionGallery 0x0
@@ -492,6 +500,7 @@ int id saveNoteButton 0x0
 int id saveStickyNoteButton 0x0
 int id sbCameraNoteButton 0x0
 int id sbVoiceNoteButton 0x0
+int id searchCountry 0x0
 int id secureBoxButton 0x0
 int id secureBoxTitle 0x0
 int id selectionBar 0x0
@@ -516,6 +525,7 @@ int id subWeeklyContainer 0x0
 int id subWeeklyRangeButton 0x0
 int id subYearlyContainer 0x0
 int id subYearlyRangeButton 0x0
+int id subtotalRow 0x0
 int id summaryAccountPicker 0x0
 int id summaryAccountTitle 0x0
 int id summaryBackButton 0x0
@@ -579,10 +589,15 @@ int id txNote 0x0
 int id txtAccountDate 0x0
 int id txtCashCalcTitle 0x0
 int id txtCashOutHeader 0x0
+int id txtCountryFlag 0x0
+int id txtCountryName 0x0
 int id txtDate 0x0
 int id txtDenomValue 0x0
 int id txtDenomination 0x0
+int id txtOnlineStatus 0x0
 int id txtRowTotal 0x0
+int id txtSelectedCountryName 0x0
+int id txtSelectedFlag 0x0
 int id txtTime 0x0
 int id txtTransferDate 0x0
 int id txtTransferTime 0x0
@@ -642,9 +657,11 @@ int layout dialog_accounts 0x0
 int layout dialog_add_account 0x0
 int layout dialog_add_transaction 0x0
 int layout dialog_calculator 0x0
+int layout dialog_country_list 0x0
 int layout dialog_item_with_icon 0x0
 int layout dialog_media_picker 0x0
 int layout dialog_notebook_note 0x0
+int layout dialog_select_country 0x0
 int layout dialog_transaction_note 0x0
 int layout item_account 0x0
 int layout item_account_summary_row 0x0
@@ -652,6 +669,7 @@ int layout item_cash_denom_row 0x0
 int layout item_category 0x0
 int layout item_category_chip 0x0
 int layout item_chart_detail 0x0
+int layout item_country 0x0
 int layout item_deleted_transaction_row 0x0
 int layout item_denom_setting 0x0
 int layout item_dialog_transaction 0x0
