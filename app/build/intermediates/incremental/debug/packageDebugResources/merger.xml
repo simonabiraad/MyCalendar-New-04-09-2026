@@ -11,6 +11,8 @@
         
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
 
+        <item name="colorControlActivated">@color/light_green</item>
+
         
         <item name="materialAlertDialogTheme">@style/CustomAlertDialogTheme</item>
         <item name="alertDialogTheme">@style/CustomAlertDialogTheme</item>

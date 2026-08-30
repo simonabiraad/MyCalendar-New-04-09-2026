@@ -593,6 +593,10 @@ public class ExpensesActivity extends AppCompatActivity {
                 }
             } catch (Exception ignored) {}
 
+            // Mark the currently active sorting method
+            popup.getMenu().findItem(R.id.action_date_asc).setChecked(isSortAscending);
+            popup.getMenu().findItem(R.id.action_date_desc).setChecked(!isSortAscending);
+
             popup.setOnMenuItemClickListener(item -> {
                 int id = item.getItemId();
                 if (id == R.id.action_category) {
@@ -605,9 +609,11 @@ public class ExpensesActivity extends AppCompatActivity {
                     showDateRangePicker();
                 } else if (id == R.id.action_date_asc) {
                     isSortAscending = true;
+                    item.setChecked(true);
                     refreshTransactionsList();
                 } else if (id == R.id.action_date_desc) {
                     isSortAscending = false;
+                    item.setChecked(true);
                     refreshTransactionsList();
                 } else if (id == R.id.action_cash_in) {
                     filterOnlyCashIn = !filterOnlyCashIn;

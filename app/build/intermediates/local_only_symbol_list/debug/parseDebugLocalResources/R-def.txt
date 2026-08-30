@@ -444,9 +444,7 @@ id notesSection
 id notif_expenses_btn
 id notif_note_btn
 id notif_sb_btn
-id notif_settings_btn
-id notif_themes_btn
-id notif_themes_text
+id notif_task_btn
 id notif_title
 id notif_voice_btn
 id notificationSettingsButton

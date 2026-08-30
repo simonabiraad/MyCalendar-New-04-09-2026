@@ -442,9 +442,7 @@ int id notesSection 0x0
 int id notif_expenses_btn 0x0
 int id notif_note_btn 0x0
 int id notif_sb_btn 0x0
-int id notif_settings_btn 0x0
-int id notif_themes_btn 0x0
-int id notif_themes_text 0x0
+int id notif_task_btn 0x0
 int id notif_title 0x0
 int id notif_voice_btn 0x0
 int id notificationSettingsButton 0x0

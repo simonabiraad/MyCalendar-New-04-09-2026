@@ -486,6 +486,8 @@ public class MainActivity extends AppCompatActivity {
             showNewNoteDialog("");
         } else if (QuickNoteNotificationService.ACTION_SECURE_BOX.equals(intent.getAction())) {
             launchSecureBox(false);
+        } else if (QuickNoteNotificationService.ACTION_TASK.equals(intent.getAction())) {
+            startActivity(new Intent(this, TaskActivity.class));
         } else if (QuickNoteNotificationService.ACTION_EXPENSES.equals(intent.getAction())) {
             launchExpenses();
         } else if (QuickNoteNotificationService.ACTION_SETTINGS.equals(intent.getAction())) {
@@ -1728,10 +1730,12 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Note cannot be empty", Toast.LENGTH_SHORT).show();
             }
+            if (getIntent() != null && getIntent().getAction() != null) finishAndRemoveTask();
         });
         builder.setNegativeButton("Cancel", (dialog, which) -> {
             currentDialogInput = null;
             dialog.cancel();
+            if (getIntent() != null && getIntent().getAction() != null) finishAndRemoveTask();
         });
         builder.show();
     }
