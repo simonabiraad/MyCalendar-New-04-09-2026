@@ -17,7 +17,7 @@ import java.util.List;
 public class TransactionDbHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "mycalendar.db";
-    private static final int DB_VERSION = 4;
+    private static final int DB_VERSION = 5;
 
     public static final String TABLE_TRANSACTIONS = "transactions";
     public static final String COL_ID = "_id";
@@ -34,6 +34,23 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
     public static final String TABLE_TX_NAMES = "transaction_names";
     public static final String COL_NAME_ID = "_id";
     public static final String COL_NAME_TEXT = "name";
+
+    public static final String TABLE_NOTIFICATIONS = "notifications";
+    public static final String COL_NOTIF_ID = "_id";
+    public static final String COL_NOTIF_TITLE = "title";
+    public static final String COL_NOTIF_NOTES = "notes";
+    public static final String COL_NOTIF_DATE = "date";
+    public static final String COL_NOTIF_START_TIME = "start_time";
+    public static final String COL_NOTIF_END_TIME = "end_time";
+    public static final String COL_NOTIF_PRIORITY = "priority";
+    public static final String COL_NOTIF_STATUS = "status";
+    public static final String COL_NOTIF_REPEAT = "repeat";
+    public static final String COL_NOTIF_REMINDER = "reminder";
+    public static final String COL_NOTIF_LOCATION = "location";
+    public static final String COL_NOTIF_ATTACHMENTS = "attachments";
+    public static final String COL_NOTIF_VOICE_PATH = "voice_path";
+    public static final String COL_NOTIF_HISTORY = "history";
+    public static final String COL_NOTIF_DELETED = "deleted";
 
     private static TransactionDbHelper instance;
 
@@ -64,6 +81,22 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_TX_NAMES + " (" +
                 COL_NAME_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_NAME_TEXT + " TEXT UNIQUE NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_NOTIFICATIONS + " (" +
+                COL_NOTIF_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COL_NOTIF_TITLE + " TEXT NOT NULL, " +
+                COL_NOTIF_NOTES + " TEXT, " +
+                COL_NOTIF_DATE + " TEXT NOT NULL, " +
+                COL_NOTIF_START_TIME + " TEXT, " +
+                COL_NOTIF_END_TIME + " TEXT, " +
+                COL_NOTIF_PRIORITY + " TEXT, " +
+                COL_NOTIF_STATUS + " TEXT, " +
+                COL_NOTIF_REPEAT + " TEXT, " +
+                COL_NOTIF_REMINDER + " TEXT, " +
+                COL_NOTIF_LOCATION + " TEXT, " +
+                COL_NOTIF_ATTACHMENTS + " TEXT, " +
+                COL_NOTIF_VOICE_PATH + " TEXT, " +
+                COL_NOTIF_HISTORY + " TEXT, " +
+                COL_NOTIF_DELETED + " INTEGER DEFAULT 0)");
     }
 
     @Override
@@ -80,6 +113,24 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
         }
         if (oldVersion < 4) {
             db.execSQL("ALTER TABLE " + TABLE_TRANSACTIONS + " ADD COLUMN " + COL_DELETED + " INTEGER DEFAULT 0");
+        }
+        if (oldVersion < 5) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_NOTIFICATIONS + " (" +
+                    COL_NOTIF_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COL_NOTIF_TITLE + " TEXT NOT NULL, " +
+                    COL_NOTIF_NOTES + " TEXT, " +
+                    COL_NOTIF_DATE + " TEXT NOT NULL, " +
+                    COL_NOTIF_START_TIME + " TEXT, " +
+                    COL_NOTIF_END_TIME + " TEXT, " +
+                    COL_NOTIF_PRIORITY + " TEXT, " +
+                    COL_NOTIF_STATUS + " TEXT, " +
+                    COL_NOTIF_REPEAT + " TEXT, " +
+                    COL_NOTIF_REMINDER + " TEXT, " +
+                    COL_NOTIF_LOCATION + " TEXT, " +
+                    COL_NOTIF_ATTACHMENTS + " TEXT, " +
+                    COL_NOTIF_VOICE_PATH + " TEXT, " +
+                    COL_NOTIF_HISTORY + " TEXT, " +
+                    COL_NOTIF_DELETED + " INTEGER DEFAULT 0)");
         }
     }
 
@@ -277,7 +328,101 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
         return list;
     }
 
-    /** Maps the current cursor row to a Transaction. Cursor position is left unchanged by the caller. */
+    public long addNotification(NotificationEvent event) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_NOTIF_TITLE, event.getTitle());
+        values.put(COL_NOTIF_NOTES, event.getNotes());
+        values.put(COL_NOTIF_DATE, event.getDate());
+        values.put(COL_NOTIF_START_TIME, event.getStartTime());
+        values.put(COL_NOTIF_END_TIME, event.getEndTime());
+        values.put(COL_NOTIF_PRIORITY, event.getPriority());
+        values.put(COL_NOTIF_STATUS, event.getStatus());
+        values.put(COL_NOTIF_REPEAT, event.getRepeat());
+        values.put(COL_NOTIF_REMINDER, event.getReminder());
+        values.put(COL_NOTIF_LOCATION, event.getLocation());
+        values.put(COL_NOTIF_ATTACHMENTS, event.getAttachments());
+        values.put(COL_NOTIF_VOICE_PATH, event.getVoiceNotePath());
+        values.put(COL_NOTIF_HISTORY, event.getHistory());
+        values.put(COL_NOTIF_DELETED, 0);
+        return db.insert(TABLE_NOTIFICATIONS, null, values);
+    }
+
+    public void updateNotification(NotificationEvent event) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_NOTIF_TITLE, event.getTitle());
+        values.put(COL_NOTIF_NOTES, event.getNotes());
+        values.put(COL_NOTIF_DATE, event.getDate());
+        values.put(COL_NOTIF_START_TIME, event.getStartTime());
+        values.put(COL_NOTIF_END_TIME, event.getEndTime());
+        values.put(COL_NOTIF_PRIORITY, event.getPriority());
+        values.put(COL_NOTIF_STATUS, event.getStatus());
+        values.put(COL_NOTIF_REPEAT, event.getRepeat());
+        values.put(COL_NOTIF_REMINDER, event.getReminder());
+        values.put(COL_NOTIF_LOCATION, event.getLocation());
+        values.put(COL_NOTIF_ATTACHMENTS, event.getAttachments());
+        values.put(COL_NOTIF_VOICE_PATH, event.getVoiceNotePath());
+        values.put(COL_NOTIF_HISTORY, event.getHistory());
+        db.update(TABLE_NOTIFICATIONS, values, COL_NOTIF_ID + "=?", new String[]{String.valueOf(event.getId())});
+    }
+
+    public void deleteNotification(long id) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_NOTIF_DELETED, 1);
+        db.update(TABLE_NOTIFICATIONS, values, COL_NOTIF_ID + "=?", new String[]{String.valueOf(id)});
+    }
+
+    public void permanentlyDeleteNotification(long id) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_NOTIFICATIONS, COL_NOTIF_ID + "=?", new String[]{String.valueOf(id)});
+    }
+
+    public List<NotificationEvent> getNotificationsByDate(String date) {
+        List<NotificationEvent> list = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.query(TABLE_NOTIFICATIONS, null, COL_NOTIF_DATE + "=? AND " + COL_NOTIF_DELETED + "=0", new String[]{date}, null, null, COL_NOTIF_START_TIME + " ASC");
+        if (c != null) {
+            while (c.moveToNext()) {
+                list.add(readNotification(c));
+            }
+            c.close();
+        }
+        return list;
+    }
+
+    public NotificationEvent getNotificationById(long id) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.query(TABLE_NOTIFICATIONS, null, COL_NOTIF_ID + "=?", new String[]{String.valueOf(id)}, null, null, null);
+        if (c != null && c.moveToFirst()) {
+            NotificationEvent e = readNotification(c);
+            c.close();
+            return e;
+        }
+        if (c != null) c.close();
+        return null;
+    }
+
+    private NotificationEvent readNotification(Cursor c) {
+        return new NotificationEvent(
+                c.getLong(c.getColumnIndexOrThrow(COL_NOTIF_ID)),
+                c.getString(c.getColumnIndexOrThrow(COL_NOTIF_TITLE)),
+                c.getString(c.getColumnIndexOrThrow(COL_NOTIF_NOTES)),
+                c.getString(c.getColumnIndexOrThrow(COL_NOTIF_DATE)),
+                c.getString(c.getColumnIndexOrThrow(COL_NOTIF_START_TIME)),
+                c.getString(c.getColumnIndexOrThrow(COL_NOTIF_END_TIME)),
+                c.getString(c.getColumnIndexOrThrow(COL_NOTIF_PRIORITY)),
+                c.getString(c.getColumnIndexOrThrow(COL_NOTIF_STATUS)),
+                c.getString(c.getColumnIndexOrThrow(COL_NOTIF_REPEAT)),
+                c.getString(c.getColumnIndexOrThrow(COL_NOTIF_REMINDER)),
+                c.getString(c.getColumnIndexOrThrow(COL_NOTIF_LOCATION)),
+                c.getString(c.getColumnIndexOrThrow(COL_NOTIF_ATTACHMENTS)),
+                c.getString(c.getColumnIndexOrThrow(COL_NOTIF_VOICE_PATH)),
+                c.getString(c.getColumnIndexOrThrow(COL_NOTIF_HISTORY))
+        );
+    }
+
     private Transaction readTransaction(Cursor c) {
         return new Transaction(
                 c.getLong(c.getColumnIndexOrThrow(COL_ID)),
@@ -291,4 +436,5 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
                 c.getString(c.getColumnIndexOrThrow(COL_BILLS))
         );
     }
+
 }

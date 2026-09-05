@@ -375,9 +375,23 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/eventButton"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_weight="1"
+                android:backgroundTint="#444444"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="@string/save_note"
+                android:textSize="@dimen/_9ssp" />
+
+            <Button
                 android:id="@+id/taskButton"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="4dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/light_green"
                 android:insetTop="0dp"
@@ -413,20 +427,6 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="@string/expenses"
-                android:textSize="@dimen/_9ssp" />
-
-            <Button
-                android:id="@+id/saveNoteButton"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/light_green"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:text="@string/save_note"
                 android:textSize="@dimen/_9ssp" />
 
         </LinearLayout>

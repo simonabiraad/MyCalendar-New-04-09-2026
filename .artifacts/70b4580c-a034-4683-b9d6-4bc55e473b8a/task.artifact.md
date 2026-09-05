@@ -1,0 +1,22 @@
+# Task List - Notification Details Page Implementation
+
+- [ ] Modify `TransactionDbHelper.java` to include the `notifications` table
+- [ ] Create `NotificationEvent.java` data model
+- [ ] Create layouts:
+    - [ ] `activity_day_details.xml`
+    - [ ] `activity_notification_details.xml`
+    - [ ] `item_notification_event.xml`
+- [ ] Implement `DayDetailsActivity.java`
+- [ ] Implement `NotificationDetailsActivity.java`
+    - [ ] Basic fields and persistence
+    - [ ] Priority and Status logic
+    - [ ] Recurrence (Repeat) logic
+    - [ ] Reminder & Snooze logic
+    - [ ] Attachments and Voice Notes
+    - [ ] History tracking
+    - [ ] Quick Actions
+    - [ ] "Convert to Task" integration
+- [ ] Integrate with `MainActivity.java` and `CalendarAdapter`
+- [ ] Update `ReminderReceiver.java` for detailed notifications
+- [ ] Register new activities in `AndroidManifest.xml`
+- [ ] Final verification and cleanup

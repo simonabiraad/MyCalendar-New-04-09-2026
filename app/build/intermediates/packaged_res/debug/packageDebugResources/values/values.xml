@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="priority_options">
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+    </string-array>
+    <string-array name="reminder_options">
+        <item>At event time</item>
+        <item>5 minutes before</item>
+        <item>10 minutes before</item>
+        <item>15 minutes before</item>
+        <item>30 minutes before</item>
+        <item>1 hour before</item>
+        <item>1 day before</item>
+        <item>Custom</item>
+    </string-array>
+    <string-array name="repeat_options">
+        <item>Does not repeat</item>
+        <item>Every day</item>
+        <item>Every week</item>
+        <item>Every month</item>
+        <item>Every year</item>
+        <item>Custom</item>
+    </string-array>
     <color name="black">#FF000000</color>
     <color name="blue">#2196F3</color>
     <color name="card_dark">#1A1A1A</color>
@@ -181,7 +204,7 @@
     <string name="remark_for">Notes for: %s</string>
     <string name="sat">Sat</string>
     <string name="save">Save</string>
-    <string name="save_note">Add Note</string>
+    <string name="save_note">Event</string>
     <string name="search_expenses_hint">Search expenses...</string>
     <string name="secure_box">Secure Box</string>
     <string name="sticky_widget_large_description">Sticky Notes Grid (Large)</string>

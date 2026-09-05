@@ -128,6 +128,21 @@
             android:exported="false"
             android:theme="@style/Theme.MyCalendar2026SAR" />
 
+        <activity
+            android:name=".DayDetailsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MyCalendar2026SAR" />
+
+        <activity
+            android:name=".NotificationDetailsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MyCalendar2026SAR" />
+
+        <activity
+            android:name=".EventsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MyCalendar2026SAR" />
+
         <service
             android:name=".QuickNoteNotificationService"
             android:enabled="true"

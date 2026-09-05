@@ -299,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
 
         initSelectionBar();
 
-        Button saveNoteButton = findViewById(R.id.saveNoteButton);
+        Button eventButton = findViewById(R.id.eventButton);
         ImageButton prevMonth = findViewById(R.id.prevMonth);
         ImageButton nextMonth = findViewById(R.id.nextMonth);
 
@@ -358,7 +358,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         
-        saveNoteButton.setOnClickListener(v -> saveNote());
+        eventButton.setOnClickListener(v -> {
+            startActivity(new Intent(this, EventsActivity.class));
+        });
+
+        noteInput.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE || 
+                (event != null && event.getKeyCode() == android.view.KeyEvent.KEYCODE_ENTER)) {
+                saveNote();
+                return true;
+            }
+            return false;
+        });
 
         findViewById(R.id.voiceNoteButton).setOnClickListener(v -> {
             noteInput.requestFocus();
@@ -424,7 +435,9 @@ public class MainActivity extends AppCompatActivity {
             popup.show();
         });
 
-        findViewById(R.id.secureBoxButton).setOnClickListener(v -> launchSecureBox(false));
+        findViewById(R.id.secureBoxButton).setOnClickListener(v -> {
+            startActivity(new Intent(this, SecureBoxActivity.class));
+        });
         findViewById(R.id.secureBoxButton).setOnLongClickListener(v -> {
             showSecurityToggleDialog("Secure Box", "sb_password_disabled");
             return true;
@@ -434,7 +447,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, TaskActivity.class));
         });
 
-        findViewById(R.id.expensesButton).setOnClickListener(v -> launchExpenses());
+        findViewById(R.id.expensesButton).setOnClickListener(v -> {
+            startActivity(new Intent(this, ExpensesActivity.class));
+        });
         findViewById(R.id.expensesButton).setOnLongClickListener(v -> {
             showSecurityToggleDialog("Expenses", "exp_password_disabled");
             return true;
@@ -504,6 +519,7 @@ public class MainActivity extends AppCompatActivity {
         // Automatically scan and archive past notes every time the user enters the app
         archiveAllPastNotesSilent();
         autoCleanArchive();
+        updateCalendar();
         updateRemarkHistory();
         updateAllWidgets();
     }
@@ -2625,7 +2641,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Buttons
-        Button saveBtn = findViewById(R.id.saveNoteButton);
+        Button saveBtn = findViewById(R.id.eventButton);
         if (saveBtn != null) {
             saveBtn.setBackgroundTintList(ColorStateList.valueOf(mainTheme));
             applyFontSettings(saveBtn, 11);
@@ -2848,6 +2864,12 @@ public class MainActivity extends AppCompatActivity {
 
             itemView.setOnClickListener(v -> {
                 selectedDate.set(cellCal.get(Calendar.YEAR), cellCal.get(Calendar.MONTH), cellCal.get(Calendar.DAY_OF_MONTH));
+                SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                String dateStr = sdfDate.format(cellCal.getTime());
+
+                Intent intent = new Intent(MainActivity.this, DayDetailsActivity.class);
+                intent.putExtra("selectedDate", dateStr);
+                startActivity(intent);
 
                 if (cellCal.get(Calendar.MONTH) != currentMonth.get(Calendar.MONTH)) {
                     calendar.set(Calendar.MONTH, cellCal.get(Calendar.MONTH));

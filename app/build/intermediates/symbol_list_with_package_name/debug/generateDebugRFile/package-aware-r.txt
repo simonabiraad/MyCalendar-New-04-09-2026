@@ -1,4 +1,7 @@
 com.example.mycalendar2026sar
+array priority_options
+array reminder_options
+array repeat_options
 color black
 color blue
 color card_dark
@@ -164,6 +167,7 @@ id action_themes
 id action_toggle_quick_bar
 id addAccountButton
 id addCategoryHeaderButton
+id addEventButton
 id addTaskButton
 id addTransactionMain
 id addTransactionTitle
@@ -171,6 +175,7 @@ id agenda_list
 id agenda_title
 id aiAssistantButton
 id allButton
+id allEventsRecyclerView
 id allTxBackButton
 id allTxFooter
 id allTxHeaders
@@ -186,11 +191,14 @@ id appVersionText
 id archiveHistoryContainer
 id archiveHistoryTitle
 id archiveSelectedBtn
+id attachmentsRecyclerView
 id backButton
 id balanceText
 id balanceTotalText
+id bottomActions
 id bottomContainer
 id bottomStickyContainer
+id btnAddAttachment
 id btnAddBills
 id btnAddDenom
 id btnCalc0
@@ -239,6 +247,7 @@ id btnPeriod30Days
 id btnPeriod7Days
 id btnPeriodToday
 id btnPlus
+id btnRecordVoice
 id btnSaveAccount
 id btnSaveContinue
 id btnSaveExit
@@ -292,6 +301,7 @@ id chartBackButton
 id chartHeader
 id chartTitle
 id clearDataRow
+id completeAction
 id copySelectedBtn
 id count_sticky
 id count_today
@@ -310,8 +320,11 @@ id dayCashIn
 id dayCashOut
 id dayNumber
 id dayRemarksContainer
+id dayTitle
+id deleteAction
 id deleteSelectedBtn
 id deleteTaskButton
+id deleteVoiceBtn
 id deletedBackButton
 id deletedEmptyButton
 id deletedEmptyText
@@ -325,6 +338,15 @@ id deletedRowRestoreButton
 id deletedRowTitle
 id deletedTopBar
 id denomRecyclerView
+id detailDate
+id detailLocation
+id detailNotes
+id detailPriority
+id detailReminder
+id detailRepeat
+id detailStatus
+id detailTime
+id detailTitle
 id detailsContainer
 id detailsContainerAccount
 id dialogDateText
@@ -340,14 +362,29 @@ id dynamicRowsContainer
 id editAccountBalance
 id editAccountName
 id editAccountsButton
+id editAction
 id editAmount
 id editCount
+id editDate
+id editEndTime
 id editItems
+id editLocation
 id editNotes
 id editOnlineAmount
+id editStartTime
+id editTitle
+id editTopButton
 id editTransferAmount
 id emptyStateText
 id empty_view
+id eventBackButton
+id eventButton
+id eventDate
+id eventStatus
+id eventTime
+id eventTitle
+id eventsHeader
+id eventsRecyclerView
 id expense_type_main
 id expensesButton
 id expensesButtonContainer
@@ -373,6 +410,7 @@ id headerLayout
 id headerTextContainer
 id headerTitle
 id headerTotalDisplay
+id historyContainer
 id imagePreview
 id income_main
 id indicatorMinus
@@ -397,6 +435,7 @@ id monthYearText
 id monthlyButton
 id monthly_expenses_main
 id moreButton
+id moreOptionsButton
 id moveSelectedBtn
 id nameRowDeleteButton
 id nameRowEditButton
@@ -418,6 +457,7 @@ id nav_transaction_all
 id nav_transaction_names
 id nav_transfer
 id nextMonth
+id noEventsText
 id noteBodyInput
 id noteContentInput
 id noteFlag
@@ -458,9 +498,12 @@ id overviewRecyclerView
 id overviewTopBar
 id pieChart
 id pieChartAccount
+id playVoiceBtn
 id prevMonth
 id previousBalanceRow
 id previousBalanceTotalText
+id priorityIndicator
+id prioritySpinner
 id ratesBackButton
 id ratesTopBar
 id recommendBackButton
@@ -468,6 +511,8 @@ id recommendTopBar
 id remarkHistoryContainer
 id remarkHistoryTitle
 id remarkLabel
+id reminderSpinner
+id repeatSpinner
 id reportAllButton
 id reportBackButton
 id reportEmptyText
@@ -497,7 +542,6 @@ id rowDate
 id rowSavings
 id rowTime
 id rowTitle
-id saveNoteButton
 id saveStickyNoteButton
 id sbCameraNoteButton
 id sbVoiceNoteButton
@@ -508,6 +552,7 @@ id selectionBar
 id selectionCountText
 id settingsBackButton
 id settingsTopBar
+id snoozeAction
 id spinnerFromAccount
 id spinnerToAccount
 id statInText
@@ -559,7 +604,9 @@ id textClockDate
 id timePickerBox
 id titleTextView
 id toolbar
+id topBar
 id topExpensesButton
+id topTitle
 id totalCashInText
 id totalCashOutText
 id totalOverviewBalance
@@ -605,6 +652,7 @@ id txtTransferTime
 id typeMinusContainer
 id typePlusContainer
 id voiceNoteButton
+id voiceNoteContainer
 id voiceTaskButton
 id weekdayLayout
 id weeklyButton
@@ -630,7 +678,9 @@ layout activity_cash_calculator
 layout activity_category
 layout activity_chart
 layout activity_daily_expenses
+layout activity_day_details
 layout activity_deleted_transactions
+layout activity_events
 layout activity_expense_type
 layout activity_expenses
 layout activity_expenses_calendar
@@ -640,6 +690,7 @@ layout activity_income
 layout activity_main
 layout activity_monthly_expenses
 layout activity_notebook
+layout activity_notification_details
 layout activity_rates
 layout activity_recommend
 layout activity_report_all
@@ -659,6 +710,7 @@ layout dialog_add_account
 layout dialog_add_transaction
 layout dialog_calculator
 layout dialog_country_list
+layout dialog_edit_notification
 layout dialog_item_with_icon
 layout dialog_media_picker
 layout dialog_notebook_note
@@ -676,6 +728,7 @@ layout item_denom_setting
 layout item_dialog_transaction
 layout item_expenses_calendar_day
 layout item_notebook_note
+layout item_notification_event
 layout item_report_category_row
 layout item_summary_account_card
 layout item_summary_stat_row

@@ -186,6 +186,14 @@ public class TaskActivity extends AppCompatActivity {
         adapter = new TaskAdapter(taskList);
         recyclerView.setAdapter(adapter);
 
+        if (getIntent().getBooleanExtra("fromNotification", false)) {
+            String title = getIntent().getStringExtra("title");
+            String notes = getIntent().getStringExtra("notes");
+            String taskText = title + (notes != null && !notes.isEmpty() ? ": " + notes : "");
+            taskInput.setText(taskText);
+            addTask();
+        }
+
         setupDragAndDrop();
     }
 

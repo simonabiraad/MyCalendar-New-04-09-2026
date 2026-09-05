@@ -3,7 +3,7 @@
     <string name="title_calendar_2026">SAR Calendar</string>
     <string name="note_saved">Note saved!</string>
     <string name="note_hint">Enter note here...</string>
-    <string name="save_note">Add Note</string>
+    <string name="save_note">Event</string>
     <string name="expenses">Expenses</string>
     <string name="income">Income</string>
     <string name="expense_type">Expense</string>
