@@ -9,6 +9,10 @@
         android:icon="@drawable/ic_menu_voice_note_color"
         android:title="New Voice Note" />
     <item
+        android:id="@+id/action_event"
+        android:icon="@drawable/ic_menu_calendar_color"
+        android:title="@string/action_event" />
+    <item
         android:id="@+id/action_new_sticky_note"
         android:icon="@drawable/ic_menu_sticky_note_color"
         android:title="New Sticky Note" />
@@ -52,6 +56,10 @@
         android:id="@+id/action_print"
         android:icon="@drawable/ic_menu_print_color"
         android:title="Print" />
+    <item
+        android:id="@+id/action_privacy_policy"
+        android:icon="@drawable/ic_menu_info_color"
+        android:title="@string/action_privacy_policy" />
     <item
         android:id="@+id/action_about"
         android:icon="@drawable/ic_menu_info_color"

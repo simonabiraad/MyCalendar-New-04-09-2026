@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settingsPanelContainer"
+    android:layout_width="@dimen/_150sdp"
+    android:layout_height="wrap_content"
+    android:background="#1A1A1A"
+    android:elevation="12dp"
+    android:orientation="vertical"
+    android:padding="6dp"
+    android:visibility="gone">
+
+    <!-- Change Password -->
+    <LinearLayout
+        android:id="@+id/menuChangePassword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/action_change_password"
+            android:src="@drawable/ic_menu_password_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/action_change_password"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- Notification Settings -->
+    <LinearLayout
+        android:id="@+id/menuNotificationSettings"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/action_notification_settings"
+            android:src="@drawable/ic_menu_settings_color"
+            android:padding="2dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/action_notification_settings"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- Toggle Quick Note Bar -->
+    <LinearLayout
+        android:id="@+id/menuToggleQuickBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/action_toggle_quick_bar"
+            android:src="@drawable/ic_menu_quick_bar_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/action_toggle_quick_bar"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- Themes -->
+    <LinearLayout
+        android:id="@+id/menuThemes"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/action_themes"
+            android:src="@drawable/ic_menu_color_palette" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/action_themes"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- Change Colors -->
+    <LinearLayout
+        android:id="@+id/menuChangeColors"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/action_change_colors"
+            android:src="@drawable/ic_menu_color_palette" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/action_change_colors"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- Change Font -->
+    <LinearLayout
+        android:id="@+id/menuChangeFont"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/action_change_font"
+            android:src="@drawable/ic_menu_font_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/action_change_font"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- Backup Data -->
+    <LinearLayout
+        android:id="@+id/menuBackupData"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/action_backup_data"
+            android:src="@drawable/ic_menu_backup_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/action_backup_data"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- Print -->
+    <LinearLayout
+        android:id="@+id/menuPrint"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/action_print"
+            android:src="@drawable/ic_menu_print_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/action_print"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+</LinearLayout>

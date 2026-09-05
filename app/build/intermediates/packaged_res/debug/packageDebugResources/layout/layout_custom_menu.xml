@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/customMenuContainer"
+    android:layout_width="@dimen/_150sdp"
+    android:layout_height="wrap_content"
+    android:background="#1A1A1A"
+    android:elevation="12dp"
+    android:orientation="vertical"
+    android:padding="6dp"
+    android:visibility="gone">
+
+    <!-- Add Note -->
+    <LinearLayout
+        android:id="@+id/menuNewNote"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/add_note"
+            android:src="@drawable/ic_menu_new_note_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/add_note"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- New Voice Note -->
+    <LinearLayout
+        android:id="@+id/menuNewVoiceNote"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="New Voice Note"
+            android:src="@drawable/ic_menu_voice_note_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="New Voice Note"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- Events -->
+    <LinearLayout
+        android:id="@+id/menuEvents"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/action_event"
+            android:src="@drawable/ic_menu_calendar_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/action_event"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- New Sticky Note -->
+    <LinearLayout
+        android:id="@+id/menuNewStickyNote"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="New Sticky Note"
+            android:src="@drawable/ic_menu_sticky_note_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="New Sticky Note"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- Secure Box -->
+    <LinearLayout
+        android:id="@+id/menuSecureBox"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/secure_box"
+            android:src="@drawable/ic_menu_accounts_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/secure_box"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- Expenses -->
+    <LinearLayout
+        android:id="@+id/menuExpenses"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/expenses"
+            android:src="@drawable/ic_menu_cash_in_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/expenses"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- Settings Row -->
+    <LinearLayout
+        android:id="@+id/menuSettings"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/action_settings"
+            android:src="@drawable/ic_menu_settings_color" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="@string/action_settings"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+        <ImageView
+            android:id="@+id/settingsArrow"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:contentDescription="Toggle Settings"
+            android:src="@drawable/ic_arrow_down" />
+    </LinearLayout>
+
+    <!-- Privacy Policy -->
+    <LinearLayout
+        android:id="@+id/menuPrivacyPolicy"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/action_privacy_policy"
+            android:src="@drawable/ic_menu_info_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/action_privacy_policy"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- About -->
+    <LinearLayout
+        android:id="@+id/menuAbout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/action_about"
+            android:src="@drawable/ic_menu_info_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/action_about"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+    <!-- Exit -->
+    <LinearLayout
+        android:id="@+id/menuExit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/action_exit"
+            android:src="@drawable/ic_menu_exit_color" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/action_exit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+    </LinearLayout>
+
+</LinearLayout>

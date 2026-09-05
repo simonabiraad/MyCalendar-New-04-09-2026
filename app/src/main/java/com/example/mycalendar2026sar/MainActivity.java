@@ -119,6 +119,12 @@ public class MainActivity extends AppCompatActivity {
     private boolean speechAutoLang = true;
     private boolean speechTranslateEnabled = true;
 
+    // Custom Menu
+    private View menuDimmer;
+    private View customMenuContainer;
+    private View settingsPanelContainer;
+    private ImageView settingsArrow;
+
     private String lastDeletedNote;
     private int lastDeletedIndex;
     private String lastDeletedDateKey;
@@ -277,6 +283,10 @@ public class MainActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
+                if (customMenuContainer != null && customMenuContainer.getVisibility() == View.VISIBLE) {
+                    hideCustomMenu();
+                    return;
+                }
                 new AlertDialog.Builder(MainActivity.this, R.style.CustomAlertDialogTheme)
                         .setTitle(R.string.close_app)
                         .setMessage(R.string.close_app_msg)
@@ -376,64 +386,9 @@ public class MainActivity extends AppCompatActivity {
             startVoiceRecognition();
         });
 
-        findViewById(R.id.mainMenuButton).setOnClickListener(v -> {
-            android.widget.PopupMenu popup = new android.widget.PopupMenu(this, v);
-            popup.getMenuInflater().inflate(R.menu.main_popup_menu, popup.getMenu());
+        findViewById(R.id.addNoteIconButton).setOnClickListener(v -> saveNote());
 
-            try {
-                java.lang.reflect.Field field = popup.getClass().getDeclaredField("mPopup");
-                field.setAccessible(true);
-                Object menuHelper = field.get(popup);
-                if (menuHelper != null) {
-                    Class<?> classPopupHelper = menuHelper.getClass();
-                    java.lang.reflect.Method setForceIcons = classPopupHelper.getMethod("setForceShowIcon", boolean.class);
-                    setForceIcons.invoke(menuHelper, true);
-                }
-            } catch (Exception ignored) {}
-
-            popup.setOnMenuItemClickListener(item -> {
-                int id = item.getItemId();
-                if (id == R.id.action_new_note) {
-                    currentDialogInput = null;
-                    showNewNoteDialog("");
-                } else if (id == R.id.action_new_voice_note) {
-                    currentDialogInput = null;
-                    startVoiceRecognition();
-                } else if (id == R.id.action_new_sticky_note) {
-                    launchSecureBox(true);
-                } else if (id == R.id.action_secure_box) {
-                    launchSecureBox(false);
-                } else if (id == R.id.action_expenses) {
-                    launchExpenses();
-                } else if (id == R.id.action_change_password) {
-                    showChangePasswordDialog();
-                } else if (id == R.id.action_notification_settings) {
-                    findViewById(R.id.notificationSettingsButton).performClick();
-                } else if (id == R.id.action_toggle_quick_bar) {
-                    toggleQuickNoteBar();
-                } else if (id == R.id.action_themes) {
-                    showThemeOptionsDialog();
-                } else if (id == R.id.action_change_colors) {
-                    showChangeColorsDialog();
-                } else if (id == R.id.action_change_font) {
-                    showFontDialog();
-                } else if (id == R.id.action_backup_data) {
-                    showBackupDataDialog();
-                } else if (id == R.id.action_print) {
-                    showPrintDialog();
-                } else if (id == R.id.action_about) {
-                    new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
-                            .setTitle("About SAR Calendar")
-                            .setMessage("SAR Calendar 2026\nVersion 1.0\nCreated by SAR")
-                            .setPositiveButton("OK", null)
-                            .show();
-                } else if (id == R.id.action_exit) {
-                    finish();
-                }
-                return true;
-            });
-            popup.show();
-        });
+        findViewById(R.id.mainMenuButton).setOnClickListener(v -> toggleCustomMenu());
 
         findViewById(R.id.secureBoxButton).setOnClickListener(v -> {
             startActivity(new Intent(this, SecureBoxActivity.class));
@@ -480,7 +435,81 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.aiAssistantButton).setOnClickListener(v -> showSpeechTranslationDialog());
 
         createNotificationChannel();
+        setupCustomMenu();
         handleIntent(getIntent());
+    }
+
+    private void setupCustomMenu() {
+        menuDimmer = findViewById(R.id.menuDimmer);
+        customMenuContainer = findViewById(R.id.customMenuContainer);
+        settingsPanelContainer = findViewById(R.id.settingsPanelContainer);
+        settingsArrow = findViewById(R.id.settingsArrow);
+
+        menuDimmer.setOnClickListener(v -> hideCustomMenu());
+
+        // Main Menu Items
+        findViewById(R.id.menuNewNote).setOnClickListener(v -> { hideCustomMenu(); showNewNoteDialog(""); });
+        findViewById(R.id.menuNewVoiceNote).setOnClickListener(v -> { hideCustomMenu(); startVoiceRecognition(); });
+        findViewById(R.id.menuEvents).setOnClickListener(v -> { hideCustomMenu(); startActivity(new Intent(this, EventsActivity.class)); });
+        findViewById(R.id.menuNewStickyNote).setOnClickListener(v -> { hideCustomMenu(); launchSecureBox(true); });
+        findViewById(R.id.menuSecureBox).setOnClickListener(v -> { hideCustomMenu(); launchSecureBox(false); });
+        findViewById(R.id.menuExpenses).setOnClickListener(v -> { hideCustomMenu(); launchExpenses(); });
+        
+        findViewById(R.id.menuSettings).setOnClickListener(v -> toggleSettingsPanel());
+        
+        findViewById(R.id.menuPrivacyPolicy).setOnClickListener(v -> {
+            hideCustomMenu();
+            new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                    .setTitle("Privacy Policy")
+                    .setMessage("Your data is stored locally on your device. We do not collect any personal information.")
+                    .setPositiveButton("OK", null)
+                    .show();
+        });
+        findViewById(R.id.menuAbout).setOnClickListener(v -> {
+            hideCustomMenu();
+            new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                    .setTitle("About SAR Calendar")
+                    .setMessage("SAR Calendar 2026\nVersion 1.0\nCreated by SAR")
+                    .setPositiveButton("OK", null)
+                    .show();
+        });
+        findViewById(R.id.menuExit).setOnClickListener(v -> finish());
+
+        // Settings Panel Items
+        findViewById(R.id.menuChangePassword).setOnClickListener(v -> { hideCustomMenu(); showChangePasswordDialog(); });
+        findViewById(R.id.menuNotificationSettings).setOnClickListener(v -> { hideCustomMenu(); findViewById(R.id.notificationSettingsButton).performClick(); });
+        findViewById(R.id.menuToggleQuickBar).setOnClickListener(v -> { hideCustomMenu(); toggleQuickNoteBar(); });
+        findViewById(R.id.menuThemes).setOnClickListener(v -> { hideCustomMenu(); showThemeOptionsDialog(); });
+        findViewById(R.id.menuChangeColors).setOnClickListener(v -> { hideCustomMenu(); showChangeColorsDialog(); });
+        findViewById(R.id.menuChangeFont).setOnClickListener(v -> { hideCustomMenu(); showFontDialog(); });
+        findViewById(R.id.menuBackupData).setOnClickListener(v -> { hideCustomMenu(); showBackupDataDialog(); });
+        findViewById(R.id.menuPrint).setOnClickListener(v -> { hideCustomMenu(); showPrintDialog(); });
+    }
+
+    private void toggleCustomMenu() {
+        if (customMenuContainer.getVisibility() == View.VISIBLE) {
+            hideCustomMenu();
+        } else {
+            customMenuContainer.setVisibility(View.VISIBLE);
+            menuDimmer.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hideCustomMenu() {
+        customMenuContainer.setVisibility(View.GONE);
+        settingsPanelContainer.setVisibility(View.GONE);
+        menuDimmer.setVisibility(View.GONE);
+        settingsArrow.setRotation(0);
+    }
+
+    private void toggleSettingsPanel() {
+        if (settingsPanelContainer.getVisibility() == View.VISIBLE) {
+            settingsPanelContainer.setVisibility(View.GONE);
+            settingsArrow.setRotation(0);
+        } else {
+            settingsPanelContainer.setVisibility(View.VISIBLE);
+            settingsArrow.setRotation(180);
+        }
     }
 
     @Override
@@ -2670,6 +2699,8 @@ public class MainActivity extends AppCompatActivity {
         if (menuBtn != null) menuBtn.setImageTintList(ColorStateList.valueOf(mainTheme));
         ImageButton voiceBtn = findViewById(R.id.voiceNoteButton);
         if (voiceBtn != null) voiceBtn.setImageTintList(ColorStateList.valueOf(mainTheme));
+        ImageButton addNoteBtn = findViewById(R.id.addNoteIconButton);
+        if (addNoteBtn != null) addNoteBtn.setImageTintList(ColorStateList.valueOf(mainTheme));
 
         // History
         updateRemarkHistory(); // This will use the new colors/fonts during redraw

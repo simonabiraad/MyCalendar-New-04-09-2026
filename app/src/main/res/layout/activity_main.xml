@@ -365,6 +365,16 @@
                 android:contentDescription="Voice Note"
                 android:src="@android:drawable/ic_btn_speak_now"
                 app:tint="@color/light_green" />
+
+            <ImageButton
+                android:id="@+id/addNoteIconButton"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/add_note"
+                android:src="@drawable/ic_notif_plus_color"
+                app:tint="@color/light_green" />
         </LinearLayout>
 
         <LinearLayout
@@ -431,5 +441,31 @@
 
         </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:id="@+id/menuDimmer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        android:elevation="10dp"/>
+
+    <include
+        layout="@layout/layout_custom_menu"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:elevation="12dp"/>
+
+    <include
+        layout="@layout/layout_settings_panel"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/customMenuContainer"
+        app:layout_constraintTop_toTopOf="@id/customMenuContainer"
+        android:elevation="12dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

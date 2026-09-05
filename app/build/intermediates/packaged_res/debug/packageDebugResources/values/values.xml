@@ -57,9 +57,23 @@
     <dimen name="text_small">@dimen/_9ssp</dimen>
     <dimen name="text_standard">@dimen/_11ssp</dimen>
     <dimen name="text_title">@dimen/_17ssp</dimen>
+    <string name="action_about">About</string>
+    <string name="action_backup_data">Backup Data</string>
+    <string name="action_change_colors">Change Colors</string>
+    <string name="action_change_font">Change Font</string>
+    <string name="action_change_password">Change Password</string>
+    <string name="action_event">Events</string>
+    <string name="action_exit">Exit</string>
+    <string name="action_notification_settings">Notification Settings</string>
+    <string name="action_print">Print</string>
+    <string name="action_privacy_policy">Privacy Policy</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_themes">Themes</string>
+    <string name="action_toggle_quick_bar">Toggle Quick Note Bar</string>
     <string name="add_accounts_title">Add Accounts</string>
     <string name="add_expense">Add Expenses</string>
     <string name="add_income">Add Income</string>
+    <string name="add_note">Add Note</string>
     <string name="all_expenses">All</string>
     <string name="all_personal_notes">All Personal Notes:</string>
     <string name="app_name">SAR Calendar</string>
@@ -239,6 +253,13 @@
         <item name="colorPrimary">@color/light_green</item>
         <item name="colorOnPrimary">@color/white</item>
     </style>
+    <style name="CustomMenuTextAppearance" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="CustomPopupMenuStyle" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:minWidth">@dimen/_110sdp</item>
+    </style>
     <style name="GreenButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textColor">@color/light_green</item>
     </style>
@@ -255,6 +276,12 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
 
         <item name="colorControlActivated">@color/light_green</item>
+
+        <item name="android:listPreferredItemPaddingStart">8dp</item>
+        <item name="android:listPreferredItemPaddingEnd">8dp</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/CustomMenuTextAppearance</item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/CustomMenuTextAppearance</item>
+        <item name="android:popupMenuStyle">@style/CustomPopupMenuStyle</item>
 
         
         <item name="materialAlertDialogTheme">@style/CustomAlertDialogTheme</item>
