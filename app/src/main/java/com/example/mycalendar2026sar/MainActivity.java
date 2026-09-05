@@ -2914,21 +2914,20 @@ public class MainActivity extends AppCompatActivity {
             List<NotificationEvent> events = eventMap.get(key);
             if (events != null) {
                 for (NotificationEvent e : events) {
-                    TextView eventLabel = new TextView(itemView.getContext());
-                    eventLabel.setText(e.getTitle());
-                    eventLabel.setTextSize(8);
-                    eventLabel.setPadding(4, 0, 4, 0);
-                    eventLabel.setSingleLine(true);
-                    eventLabel.setEllipsize(android.text.TextUtils.TruncateAt.END);
+                    View eventLine = new View(itemView.getContext());
+                    float density = itemView.getContext().getResources().getDisplayMetrics().density;
+                    int height = (int) (3 * density);
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT, height);
+                    lp.setMargins(0, (int) (1 * density), 0, (int) (1 * density));
+                    eventLine.setLayoutParams(lp);
                     
                     int priorityColor = Color.GREEN; // Low
                     if ("High".equalsIgnoreCase(e.getPriority())) priorityColor = Color.RED;
                     else if ("Medium".equalsIgnoreCase(e.getPriority())) priorityColor = Color.YELLOW;
                     
-                    eventLabel.setTextColor(priorityColor);
-                    eventLabel.setTypeface(null, Typeface.BOLD);
-                    
-                    eventContainer.addView(eventLabel);
+                    eventLine.setBackgroundColor(priorityColor);
+                    eventContainer.addView(eventLine);
                 }
             }
 
@@ -2956,13 +2955,7 @@ public class MainActivity extends AppCompatActivity {
 
             itemView.setOnClickListener(v -> {
                 selectedDate.set(cellCal.get(Calendar.YEAR), cellCal.get(Calendar.MONTH), cellCal.get(Calendar.DAY_OF_MONTH));
-                SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                String dateStr = sdfDate.format(cellCal.getTime());
-
-                Intent intent = new Intent(MainActivity.this, DayDetailsActivity.class);
-                intent.putExtra("selectedDate", dateStr);
-                startActivity(intent);
-
+                
                 if (cellCal.get(Calendar.MONTH) != currentMonth.get(Calendar.MONTH)) {
                     calendar.set(Calendar.MONTH, cellCal.get(Calendar.MONTH));
                     calendar.set(Calendar.YEAR, cellCal.get(Calendar.YEAR));
@@ -2971,6 +2964,21 @@ public class MainActivity extends AppCompatActivity {
                     updateDateInfo(selectedDate.get(Calendar.YEAR), selectedDate.get(Calendar.MONTH), selectedDate.get(Calendar.DAY_OF_MONTH));
                     notifyDataSetChanged();
                 }
+            });
+
+            itemView.setOnLongClickListener(v -> {
+                selectedDate.set(cellCal.get(Calendar.YEAR), cellCal.get(Calendar.MONTH), cellCal.get(Calendar.DAY_OF_MONTH));
+                updateDateInfo(selectedDate.get(Calendar.YEAR), selectedDate.get(Calendar.MONTH), selectedDate.get(Calendar.DAY_OF_MONTH));
+                notifyDataSetChanged();
+
+                SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                String dateStr = sdfDate.format(cellCal.getTime());
+                
+                Intent intent = new Intent(MainActivity.this, NotificationDetailsActivity.class);
+                intent.putExtra("mode", "add");
+                intent.putExtra("date", dateStr);
+                startActivity(intent);
+                return true;
             });
 
             return itemView;

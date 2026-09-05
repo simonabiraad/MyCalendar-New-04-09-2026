@@ -126,7 +126,7 @@
             android:layout_height="20dp"
             android:layout_marginStart="12dp"
             android:src="@drawable/ic_menu_calendar_color"
-            app:tint="@color/blue" />
+            app:tint="@color/light_green" />
     </LinearLayout>
 
     <LinearLayout
@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:padding="12dp"
             android:text="Cancel"
-            android:textColor="@color/blue"
+            android:textColor="@color/light_green"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -153,7 +153,7 @@
             android:layout_marginStart="16dp"
             android:padding="12dp"
             android:text="Save"
-            android:textColor="@color/blue"
+            android:textColor="@color/light_green"
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
