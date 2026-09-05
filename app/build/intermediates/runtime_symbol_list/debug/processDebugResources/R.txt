@@ -4420,6 +4420,7 @@ int id enterAlways 0x7f0901aa
 int id enterAlwaysCollapsed 0x7f0901ab
 int id eventBackButton 0x7f0901ac
 int id eventButton 0x7f0901ad
+int id eventContainer 0x7f09045f
 int id eventDate 0x7f0901ae
 int id eventStatus 0x7f0901af
 int id eventTime 0x7f0901b0
@@ -5525,6 +5526,7 @@ int string deleted_notes_title 0x7f120098
 int string enter_amount_for 0x7f120099
 int string error_a11y_label 0x7f12009a
 int string error_icon_content_description 0x7f12009b
+int string exit_confirm_msg 0x7f120187
 int string expense_categories 0x7f12009c
 int string expense_type 0x7f12009d
 int string expenses 0x7f12009e

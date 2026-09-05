@@ -473,7 +473,14 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("OK", null)
                     .show();
         });
-        findViewById(R.id.menuExit).setOnClickListener(v -> finish());
+        findViewById(R.id.menuExit).setOnClickListener(v -> {
+            new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                    .setTitle(R.string.action_exit)
+                    .setMessage(R.string.exit_confirm_msg)
+                    .setPositiveButton(R.string.yes, (dialog, which) -> finish())
+                    .setNegativeButton(R.string.no, null)
+                    .show();
+        });
 
         // Settings Panel Items
         findViewById(R.id.menuChangePassword).setOnClickListener(v -> { hideCustomMenu(); showChangePasswordDialog(); });
@@ -870,24 +877,49 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateCalendar() {
-
-
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
         monthYearText.setText(sdf.format(calendar.getTime()));
 
         ArrayList<Date> days = new ArrayList<>();
         Calendar tempCal = (Calendar) calendar.clone();
         tempCal.set(Calendar.DAY_OF_MONTH, 1);
+        int targetMonth = tempCal.get(Calendar.MONTH);
         
-        int firstDayOfWeek = tempCal.get(Calendar.DAY_OF_WEEK) - 1;
+        int firstDayOfWeek = (tempCal.get(Calendar.DAY_OF_WEEK) + 5) % 7;
         tempCal.add(Calendar.DAY_OF_MONTH, -firstDayOfWeek);
 
-        while (days.size() < 42) {
+        while (days.size() < 35) {
             days.add(tempCal.getTime());
             tempCal.add(Calendar.DAY_OF_MONTH, 1);
         }
 
-        adapter = new CalendarAdapter(this, days, calendar);
+        if (tempCal.get(Calendar.MONTH) == targetMonth) {
+            while (days.size() < 42) {
+                days.add(tempCal.getTime());
+                tempCal.add(Calendar.DAY_OF_MONTH, 1);
+            }
+        }
+
+        int rowCount = days.size() / 7;
+        float density = getResources().getDisplayMetrics().density;
+        int gridHeightPx = (int) ((rowCount * 60 + rowCount - 1) * density);
+        android.view.ViewGroup.LayoutParams params = calendarGrid.getLayoutParams();
+        if (params != null) {
+            params.height = gridHeightPx;
+            calendarGrid.setLayoutParams(params);
+        }
+
+        Map<String, List<NotificationEvent>> eventMap = new java.util.HashMap<>();
+        List<NotificationEvent> allEvents = TransactionDbHelper.getInstance(this).getAllActiveNotifications();
+        for (NotificationEvent e : allEvents) {
+            String date = e.getDate();
+            if (!eventMap.containsKey(date)) {
+                eventMap.put(date, new ArrayList<>());
+            }
+            eventMap.get(date).add(e);
+        }
+
+        adapter = new CalendarAdapter(this, days, calendar, eventMap);
         calendarGrid.setAdapter(adapter);
         
         updateDateInfo(selectedDate.get(Calendar.YEAR), selectedDate.get(Calendar.MONTH), selectedDate.get(Calendar.DAY_OF_MONTH));
@@ -2826,11 +2858,13 @@ public class MainActivity extends AppCompatActivity {
         private final ArrayList<Date> days;
         private final Calendar currentMonth;
         private final LayoutInflater inflater;
+        private final Map<String, List<NotificationEvent>> eventMap;
 
-        public CalendarAdapter(Context context, ArrayList<Date> days, Calendar currentMonth) {
+        public CalendarAdapter(Context context, ArrayList<Date> days, Calendar currentMonth, Map<String, List<NotificationEvent>> eventMap) {
             this.days = days;
             this.currentMonth = currentMonth;
             this.inflater = LayoutInflater.from(context);
+            this.eventMap = eventMap;
         }
 
         @Override
@@ -2849,7 +2883,10 @@ public class MainActivity extends AppCompatActivity {
 
             TextView dayText = itemView.findViewById(R.id.dayNumber);
             applyFontSettings(dayText, 14);
+            dayText.setTypeface(dayText.getTypeface(), Typeface.BOLD);
             ImageView flag = itemView.findViewById(R.id.noteFlag);
+            LinearLayout eventContainer = itemView.findViewById(R.id.eventContainer);
+            eventContainer.removeAllViews();
 
             Date date = days.get(position);
             Calendar cellCal = Calendar.getInstance();
@@ -2865,7 +2902,7 @@ public class MainActivity extends AppCompatActivity {
             boolean hasArchivedNotes = !archivedNotes.isEmpty();
             boolean hasNotes = hasPersonalNotes || hasArchivedNotes;
 
-            flag.setVisibility(hasNotes ? View.VISIBLE : View.INVISIBLE);
+            flag.setVisibility(hasNotes ? View.VISIBLE : View.GONE);
 
             if (hasPersonalNotes) {
                 flag.setImageTintList(ColorStateList.valueOf(colorPrefs.getInt("color_main_theme", getColor(R.color.light_green))));
@@ -2873,20 +2910,44 @@ public class MainActivity extends AppCompatActivity {
                 flag.setImageTintList(ColorStateList.valueOf(colorPrefs.getInt("color_archive", Color.YELLOW)));
             }
 
-            if (cellCal.get(Calendar.MONTH) != currentMonth.get(Calendar.MONTH)) {
-                dayText.setTextColor(Color.GRAY);
-            } else {
-                dayText.setTextColor(Color.WHITE);
+            // Display Events
+            List<NotificationEvent> events = eventMap.get(key);
+            if (events != null) {
+                for (NotificationEvent e : events) {
+                    TextView eventLabel = new TextView(itemView.getContext());
+                    eventLabel.setText(e.getTitle());
+                    eventLabel.setTextSize(8);
+                    eventLabel.setPadding(4, 0, 4, 0);
+                    eventLabel.setSingleLine(true);
+                    eventLabel.setEllipsize(android.text.TextUtils.TruncateAt.END);
+                    
+                    int priorityColor = Color.GREEN; // Low
+                    if ("High".equalsIgnoreCase(e.getPriority())) priorityColor = Color.RED;
+                    else if ("Medium".equalsIgnoreCase(e.getPriority())) priorityColor = Color.YELLOW;
+                    
+                    eventLabel.setTextColor(priorityColor);
+                    eventLabel.setTypeface(null, Typeface.BOLD);
+                    
+                    eventContainer.addView(eventLabel);
+                }
             }
 
-            dayText.setBackgroundColor(Color.TRANSPARENT);
-            itemView.setBackgroundColor(Color.TRANSPARENT);
+            int currentMonthDatesColor = colorPrefs.getInt("color_note_text", Color.WHITE);
+            if (cellCal.get(Calendar.MONTH) != currentMonth.get(Calendar.MONTH)) {
+                dayText.setTextColor(Color.WHITE);
+                itemView.setBackgroundColor(Color.BLACK);
+            } else {
+                dayText.setTextColor(currentMonthDatesColor);
+                itemView.setBackgroundColor(Color.parseColor("#1A1A1A"));
+            }
 
+            dayText.setBackgroundResource(0);
             Calendar today = Calendar.getInstance();
             if (cellCal.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
                 cellCal.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
                 cellCal.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH)) {
                 dayText.setBackgroundResource(R.drawable.today_circle);
+                dayText.setGravity(Gravity.CENTER);
             } else if (cellCal.get(Calendar.YEAR) == selectedDate.get(Calendar.YEAR) &&
                 cellCal.get(Calendar.MONTH) == selectedDate.get(Calendar.MONTH) &&
                 cellCal.get(Calendar.DAY_OF_MONTH) == selectedDate.get(Calendar.DAY_OF_MONTH)) {

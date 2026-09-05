@@ -158,6 +158,7 @@
     <string name="deleted_notes_btn">Show Deleted Notes</string>
     <string name="deleted_notes_title">Deleted Notes:</string>
     <string name="enter_amount_for">Enter Amount for %s</string>
+    <string name="exit_confirm_msg">Are you sure you want to exit?</string>
     <string name="expense_categories">Expense Categories</string>
     <string name="expense_type">Expense</string>
     <string name="expenses">Expenses</string>

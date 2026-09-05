@@ -385,6 +385,7 @@ id emptyStateText
 id empty_view
 id eventBackButton
 id eventButton
+id eventContainer
 id eventDate
 id eventStatus
 id eventTime
@@ -889,6 +890,7 @@ string delete_success
 string deleted_notes_btn
 string deleted_notes_title
 string enter_amount_for
+string exit_confirm_msg
 string expense_categories
 string expense_type
 string expenses
