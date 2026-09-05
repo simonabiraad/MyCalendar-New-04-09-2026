@@ -22,6 +22,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -112,6 +113,9 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences colorPrefs;
     private SharedPreferences fontPrefs;
     private CalendarAdapter adapter;
+
+    private Calendar lastSelectedDateBeforeKeyboard;
+    private boolean isKeyboardModeActive = false;
 
     private SharedPreferences speechPrefs;
     private String speechSourceLang = "en-US";
@@ -263,6 +267,60 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+    private void openNotificationSettings() {
+        Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
+        intent.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
+        intent.putExtra(Settings.EXTRA_CHANNEL_ID, "calendar_reminder_channel");
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Intent fallback = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+            fallback.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
+            startActivity(fallback);
+        }
+    }
+
+    private void setKeyboardMode(boolean isOpen) {
+        if (isOpen && !isKeyboardModeActive) {
+            isKeyboardModeActive = true;
+            lastSelectedDateBeforeKeyboard = (Calendar) selectedDate.clone();
+            selectedDate = Calendar.getInstance();
+
+            setViewsVisibility(View.GONE);
+            updateRemarkLabelAndHistory();
+        } else if (!isOpen && isKeyboardModeActive) {
+            isKeyboardModeActive = false;
+            if (lastSelectedDateBeforeKeyboard != null) {
+                selectedDate = (Calendar) lastSelectedDateBeforeKeyboard.clone();
+            }
+
+            setViewsVisibility(View.VISIBLE);
+            updateRemarkLabelAndHistory();
+        }
+    }
+
+    private void setViewsVisibility(int visibility) {
+        int[] ids = {
+                R.id.headerTextContainer, R.id.mainMenuButton, R.id.aiAssistantButton,
+                R.id.notificationSettingsButton, R.id.calendarHeader, R.id.weekdayLayout,
+                R.id.calendarGrid, R.id.remarkHistoryTitle, R.id.remarkHistoryContainer,
+                R.id.archiveHistoryTitle, R.id.archiveHistoryContainer, R.id.deletedHistoryTitle,
+                R.id.deletedHistoryContainer
+        };
+        for (int id : ids) {
+            View v = findViewById(id);
+            if (v != null) v.setVisibility(visibility);
+        }
+    }
+
+    private void updateRemarkLabelAndHistory() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        currentDateKey = sdf.format(selectedDate.getTime());
+        SimpleDateFormat displaySdf = new SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault());
+        remarkLabel.setText(getString(R.string.remark_for, displaySdf.format(selectedDate.getTime())));
+        loadRemarksForSelectedDate();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -276,6 +334,8 @@ public class MainActivity extends AppCompatActivity {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             Insets ime = insets.getInsets(WindowInsetsCompat.Type.ime());
+            boolean isKeyboardVisible = insets.isVisible(WindowInsetsCompat.Type.ime());
+            setKeyboardMode(isKeyboardVisible);
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, Math.max(systemBars.bottom, ime.bottom));
             return insets;
         });
@@ -411,15 +471,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.notificationSettingsButton).setOnClickListener(v -> {
-            Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
-            intent.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
-            intent.putExtra(Settings.EXTRA_CHANNEL_ID, "calendar_reminder_channel");
-            try {
-                startActivity(intent);
-            } catch (Exception e) {
-                Intent fallback = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-                fallback.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
-                startActivity(fallback);
+            noteInput.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                imm.showSoftInput(noteInput, InputMethodManager.SHOW_IMPLICIT);
             }
         });
 
@@ -484,7 +539,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Settings Panel Items
         findViewById(R.id.menuChangePassword).setOnClickListener(v -> { hideCustomMenu(); showChangePasswordDialog(); });
-        findViewById(R.id.menuNotificationSettings).setOnClickListener(v -> { hideCustomMenu(); findViewById(R.id.notificationSettingsButton).performClick(); });
+        findViewById(R.id.menuNotificationSettings).setOnClickListener(v -> { hideCustomMenu(); openNotificationSettings(); });
         findViewById(R.id.menuToggleQuickBar).setOnClickListener(v -> { hideCustomMenu(); toggleQuickNoteBar(); });
         findViewById(R.id.menuThemes).setOnClickListener(v -> { hideCustomMenu(); showThemeOptionsDialog(); });
         findViewById(R.id.menuChangeColors).setOnClickListener(v -> { hideCustomMenu(); showChangeColorsDialog(); });
@@ -542,7 +597,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (QuickNoteNotificationService.ACTION_EXPENSES.equals(intent.getAction())) {
             launchExpenses();
         } else if (QuickNoteNotificationService.ACTION_SETTINGS.equals(intent.getAction())) {
-            findViewById(R.id.notificationSettingsButton).performClick();
+            openNotificationSettings();
         } else if (QuickNoteNotificationService.ACTION_THEMES.equals(intent.getAction())) {
             showThemeOptionsDialog();
         }
@@ -934,7 +989,9 @@ public class MainActivity extends AppCompatActivity {
         remarkLabel.setText(getString(R.string.remark_for, displaySdf.format(selectedDate.getTime())));
 
         loadRemarksForSelectedDate();
-        noteInput.setText("");
+        if (!noteInput.hasFocus() && !isKeyboardModeActive) {
+            noteInput.setText("");
+        }
     }
 
     private void loadRemarksForSelectedDate() {
