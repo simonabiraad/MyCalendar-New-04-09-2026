@@ -173,6 +173,7 @@ int id action_toggle_quick_bar 0x0
 int id addAccountButton 0x0
 int id addCategoryHeaderButton 0x0
 int id addEventButton 0x0
+int id addEventHeaderButton 0x0
 int id addNoteIconButton 0x0
 int id addTaskButton 0x0
 int id addTransactionMain 0x0
@@ -207,6 +208,7 @@ int id bottomStickyContainer 0x0
 int id btnAddAttachment 0x0
 int id btnAddBills 0x0
 int id btnAddDenom 0x0
+int id btnBackEdit 0x0
 int id btnCalc0 0x0
 int id btnCalc1 0x0
 int id btnCalc2 0x0
@@ -230,6 +232,7 @@ int id btnCalcSub 0x0
 int id btnCalculator 0x0
 int id btnCancel 0x0
 int id btnCancelAccount 0x0
+int id btnCancelEdit 0x0
 int id btnCashCalcDelete 0x0
 int id btnCashCalcShare 0x0
 int id btnCashIn 0x0
@@ -256,6 +259,7 @@ int id btnPlus 0x0
 int id btnRecordVoice 0x0
 int id btnSaveAccount 0x0
 int id btnSaveContinue 0x0
+int id btnSaveEdit 0x0
 int id btnSaveExit 0x0
 int id btnSelectCategory 0x0
 int id btnSummaryCalendar 0x0
@@ -372,6 +376,7 @@ int id editAccountName 0x0
 int id editAccountsButton 0x0
 int id editAction 0x0
 int id editAmount 0x0
+int id editBottomActions 0x0
 int id editCount 0x0
 int id editDate 0x0
 int id editEndTime 0x0
@@ -381,6 +386,8 @@ int id editNotes 0x0
 int id editOnlineAmount 0x0
 int id editStartTime 0x0
 int id editTitle 0x0
+int id editTitleHeader 0x0
+int id editTopBar 0x0
 int id editTopButton 0x0
 int id editTransferAmount 0x0
 int id emptyStateText 0x0
@@ -579,6 +586,7 @@ int id rowTitle 0x0
 int id saveStickyNoteButton 0x0
 int id sbCameraNoteButton 0x0
 int id sbVoiceNoteButton 0x0
+int id scrollView2 0x0
 int id searchCountry 0x0
 int id secureBoxButton 0x0
 int id secureBoxTitle 0x0
@@ -730,6 +738,7 @@ int layout activity_main 0x0
 int layout activity_monthly_expenses 0x0
 int layout activity_notebook 0x0
 int layout activity_notification_details 0x0
+int layout activity_notification_edit 0x0
 int layout activity_rates 0x0
 int layout activity_recommend 0x0
 int layout activity_report_all 0x0

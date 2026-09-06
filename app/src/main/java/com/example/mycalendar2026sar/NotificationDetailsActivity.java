@@ -77,13 +77,148 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         if ("add".equals(mode)) {
             String date = getIntent().getStringExtra("date");
             currentEvent = new NotificationEvent(-1, "", "", date, "", "", "Medium", "Pending", "None", "None", "", "[]", "", "[]");
-            showEditDialog();
+            setupEditUI();
         } else {
             loadEvent();
         }
     }
 
+    private void setupEditUI() {
+        setContentView(R.layout.activity_notification_edit);
+        
+        TextView editDate = findViewById(R.id.editDate);
+        TextView editStartTime = findViewById(R.id.editStartTime);
+        TextView editEndTime = findViewById(R.id.editEndTime);
+        android.widget.EditText editTitle = findViewById(R.id.editTitle);
+        android.widget.EditText editNotesField = findViewById(R.id.editNotes);
+        android.widget.EditText editLocationField = findViewById(R.id.editLocation);
+        android.widget.Spinner prioritySpinner = findViewById(R.id.prioritySpinner);
+        android.widget.Spinner repeatSpinner = findViewById(R.id.repeatSpinner);
+        android.widget.Spinner reminderSpinner = findViewById(R.id.reminderSpinner);
+        Button btnAddAttachment = findViewById(R.id.btnAddAttachment);
+        Button btnRecordVoice = findViewById(R.id.btnRecordVoice);
+        TextView btnCancel = findViewById(R.id.btnCancelEdit);
+        TextView btnSave = findViewById(R.id.btnSaveEdit);
+        TextView headerTitle = findViewById(R.id.editTitleHeader);
+        ImageButton btnBack = findViewById(R.id.btnBackEdit);
+
+        headerTitle.setText(currentEvent.getId() == -1 ? "New Event" : "Edit Event");
+
+        if (btnBack != null) {
+            btnBack.setOnClickListener(v -> {
+                if (currentEvent.getId() == -1) {
+                    finish();
+                } else {
+                    initViews();
+                    setupClickListeners();
+                    bindData();
+                }
+            });
+        }
+
+        btnRecordVoice.setOnClickListener(v -> {
+            if (!isRecording) {
+                startRecording();
+                btnRecordVoice.setText("Stop Recording");
+                isRecording = true;
+            } else {
+                stopRecording();
+                btnRecordVoice.setText("Record Voice Note");
+                isRecording = false;
+            }
+        });
+
+        btnAddAttachment.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("*/*");
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            filePickerLauncher.launch(intent);
+        });
+
+        // Pre-fill
+        editTitle.setText(currentEvent.getTitle());
+        editNotesField.setText(currentEvent.getNotes());
+        editLocationField.setText(currentEvent.getLocation());
+        editDate.setText(currentEvent.getDate());
+        editStartTime.setText(currentEvent.getStartTime());
+        editEndTime.setText(currentEvent.getEndTime());
+
+        // Set spinner selections
+        setSpinnerSelection(prioritySpinner, currentEvent.getPriority(), R.array.priority_options);
+        setSpinnerSelection(repeatSpinner, currentEvent.getRepeat(), R.array.repeat_options);
+        setSpinnerSelection(reminderSpinner, currentEvent.getReminder(), R.array.reminder_options);
+
+        editDate.setOnClickListener(v -> {
+            Calendar cal = Calendar.getInstance();
+            new DatePickerDialog(this, (d, y, m, day) -> {
+                String date = String.format(Locale.getDefault(), "%02d/%02d/%d", day, m + 1, y);
+                editDate.setText(date);
+            }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
+        });
+
+        editStartTime.setOnClickListener(v -> {
+            new TimePickerDialog(this, (t, h, min) -> {
+                editStartTime.setText(String.format(Locale.getDefault(), "%02d:%02d", h, min));
+            }, 10, 0, false).show();
+        });
+
+        editEndTime.setOnClickListener(v -> {
+            new TimePickerDialog(this, (t, h, min) -> {
+                editEndTime.setText(String.format(Locale.getDefault(), "%02d:%02d", h, min));
+            }, 11, 0, false).show();
+        });
+
+        btnSave.setOnClickListener(v -> {
+            currentEvent.setTitle(editTitle.getText().toString());
+            currentEvent.setNotes(editNotesField.getText().toString());
+            currentEvent.setLocation(editLocationField.getText().toString());
+            currentEvent.setDate(editDate.getText().toString());
+            currentEvent.setStartTime(editStartTime.getText().toString());
+            currentEvent.setEndTime(editEndTime.getText().toString());
+            currentEvent.setPriority(prioritySpinner.getSelectedItem().toString());
+            currentEvent.setRepeat(repeatSpinner.getSelectedItem().toString());
+            currentEvent.setReminder(reminderSpinner.getSelectedItem().toString());
+
+            if (currentEvent.getId() == -1) {
+                addHistoryLog("Created");
+                long id = dbHelper.addNotification(currentEvent);
+                currentEvent.setId(id);
+                eventId = id;
+            } else {
+                addHistoryLog("Edited");
+                dbHelper.updateNotification(currentEvent);
+            }
+            NotificationUtils.scheduleNotification(this, currentEvent);
+            
+            // Re-init main view
+            initViews();
+            setupClickListeners();
+            bindData();
+        });
+
+        btnCancel.setOnClickListener(v -> {
+            if (currentEvent.getId() == -1) {
+                finish();
+            } else {
+                initViews();
+                setupClickListeners();
+                bindData();
+            }
+        });
+    }
+
+    private void setSpinnerSelection(android.widget.Spinner spinner, String value, int arrayRes) {
+        String[] options = getResources().getStringArray(arrayRes);
+        for (int i = 0; i < options.length; i++) {
+            if (options[i].equalsIgnoreCase(value)) {
+                spinner.setSelection(i);
+                break;
+            }
+        }
+    }
+
     private void initViews() {
+        setContentView(R.layout.activity_notification_details);
         topTitle = findViewById(R.id.topTitle);
         detailTitle = findViewById(R.id.detailTitle);
         detailStatus = findViewById(R.id.detailStatus);
@@ -303,102 +438,7 @@ public class NotificationDetailsActivity extends AppCompatActivity {
     }
 
     private void showEditDialog() {
-        // For now, I'll use a simple builder or a new activity. 
-        // User requirements suggest full editing.
-        // I will implement a custom dialog for editing all fields.
-        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme);
-        builder.setTitle(currentEvent.getId() == -1 ? "New Event" : "Edit Event");
-
-        View view = getLayoutInflater().inflate(R.layout.dialog_edit_notification, null);
-        builder.setView(view);
-
-        TextView editDate = view.findViewById(R.id.editDate);
-        TextView editStartTime = view.findViewById(R.id.editStartTime);
-        TextView editEndTime = view.findViewById(R.id.editEndTime);
-        android.widget.EditText editTitle = view.findViewById(R.id.editTitle);
-        android.widget.EditText editNotesField = view.findViewById(R.id.editNotes);
-        android.widget.EditText editLocationField = view.findViewById(R.id.editLocation);
-        android.widget.Spinner prioritySpinner = view.findViewById(R.id.prioritySpinner);
-        android.widget.Spinner repeatSpinner = view.findViewById(R.id.repeatSpinner);
-        android.widget.Spinner reminderSpinner = view.findViewById(R.id.reminderSpinner);
-        Button btnAddAttachment = view.findViewById(R.id.btnAddAttachment);
-        Button btnRecordVoice = view.findViewById(R.id.btnRecordVoice);
-
-        btnRecordVoice.setOnClickListener(v -> {
-            if (!isRecording) {
-                startRecording();
-                btnRecordVoice.setText("Stop Recording");
-                isRecording = true;
-            } else {
-                stopRecording();
-                btnRecordVoice.setText("Record Voice Note");
-                isRecording = false;
-            }
-        });
-
-        btnAddAttachment.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("*/*");
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            filePickerLauncher.launch(intent);
-        });
-
-        // Pre-fill
-        editTitle.setText(currentEvent.getTitle());
-        editNotesField.setText(currentEvent.getNotes());
-        editLocationField.setText(currentEvent.getLocation());
-        editDate.setText(currentEvent.getDate());
-        editStartTime.setText(currentEvent.getStartTime());
-        editEndTime.setText(currentEvent.getEndTime());
-
-        editDate.setOnClickListener(v -> {
-            Calendar cal = Calendar.getInstance();
-            new DatePickerDialog(this, (d, y, m, day) -> {
-                String date = String.format(Locale.getDefault(), "%02d/%02d/%d", day, m + 1, y);
-                editDate.setText(date);
-            }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
-        });
-
-        editStartTime.setOnClickListener(v -> {
-            new TimePickerDialog(this, (t, h, min) -> {
-                editStartTime.setText(String.format(Locale.getDefault(), "%02d:%02d", h, min));
-            }, 10, 0, false).show();
-        });
-
-        editEndTime.setOnClickListener(v -> {
-            new TimePickerDialog(this, (t, h, min) -> {
-                editEndTime.setText(String.format(Locale.getDefault(), "%02d:%02d", h, min));
-            }, 11, 0, false).show();
-        });
-
-        builder.setPositiveButton("Save", (dialog, which) -> {
-            currentEvent.setTitle(editTitle.getText().toString());
-            currentEvent.setNotes(editNotesField.getText().toString());
-            currentEvent.setLocation(editLocationField.getText().toString());
-            currentEvent.setDate(editDate.getText().toString());
-            currentEvent.setStartTime(editStartTime.getText().toString());
-            currentEvent.setEndTime(editEndTime.getText().toString());
-            currentEvent.setPriority(prioritySpinner.getSelectedItem().toString());
-            currentEvent.setRepeat(repeatSpinner.getSelectedItem().toString());
-            currentEvent.setReminder(reminderSpinner.getSelectedItem().toString());
-
-            if (currentEvent.getId() == -1) {
-                addHistoryLog("Created");
-                long id = dbHelper.addNotification(currentEvent);
-                currentEvent.setId(id);
-                eventId = id;
-            } else {
-                addHistoryLog("Edited");
-                dbHelper.updateNotification(currentEvent);
-            }
-            NotificationUtils.scheduleNotification(this, currentEvent);
-            bindData();
-        });
-        builder.setNegativeButton("Cancel", (dialog, which) -> {
-            if (currentEvent.getId() == -1) finish();
-        });
-
-        builder.show();
+        setupEditUI();
     }
 
     private void startRecording() {

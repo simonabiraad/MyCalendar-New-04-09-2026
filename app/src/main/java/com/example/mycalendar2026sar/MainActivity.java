@@ -2799,6 +2799,36 @@ public class MainActivity extends AppCompatActivity {
         if (adapter != null) adapter.notifyDataSetChanged();
     }
 
+    private void showEventsPopup(String date, List<NotificationEvent> events) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme);
+        builder.setTitle("Events for " + date);
+
+        String[] eventTitles = new String[events.size()];
+        for (int i = 0; i < events.size(); i++) {
+            String title = events.get(i).getTitle();
+            String time = events.get(i).getStartTime();
+            eventTitles[i] = (time != null ? time + ": " : "") + title;
+        }
+
+        builder.setItems(eventTitles, (dialog, which) -> {
+            NotificationEvent selectedEvent = events.get(which);
+            Intent intent = new Intent(MainActivity.this, NotificationDetailsActivity.class);
+            intent.putExtra("mode", "view");
+            intent.putExtra("eventId", selectedEvent.getId());
+            startActivity(intent);
+        });
+
+        builder.setPositiveButton("Add New", (dialog, which) -> {
+            Intent intent = new Intent(MainActivity.this, NotificationDetailsActivity.class);
+            intent.putExtra("mode", "add");
+            intent.putExtra("date", date);
+            startActivity(intent);
+        });
+
+        builder.setNegativeButton("Close", null);
+        builder.show();
+    }
+
     private void showPrintDialog() {
         String[] options = {"Selected Date's Notes", "All Personal Notes", "All Archived Notes", "All Deleted Notes"};
         new AlertDialog.Builder(this)
@@ -3049,11 +3079,16 @@ public class MainActivity extends AppCompatActivity {
 
                 SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
                 String dateStr = sdfDate.format(cellCal.getTime());
-                
-                Intent intent = new Intent(MainActivity.this, NotificationDetailsActivity.class);
-                intent.putExtra("mode", "add");
-                intent.putExtra("date", dateStr);
-                startActivity(intent);
+
+                List<NotificationEvent> dayEvents = eventMap.get(dateStr);
+                if (dayEvents != null && !dayEvents.isEmpty()) {
+                    showEventsPopup(dateStr, dayEvents);
+                } else {
+                    Intent intent = new Intent(MainActivity.this, NotificationDetailsActivity.class);
+                    intent.putExtra("mode", "add");
+                    intent.putExtra("date", dateStr);
+                    startActivity(intent);
+                }
                 return true;
             });
 

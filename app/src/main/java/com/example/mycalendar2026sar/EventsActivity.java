@@ -55,7 +55,7 @@ public class EventsActivity extends AppCompatActivity {
 
         loadAllEvents();
 
-        findViewById(R.id.addEventButton).setOnClickListener(v -> {
+        findViewById(R.id.addEventHeaderButton).setOnClickListener(v -> {
             Intent intent = new Intent(this, NotificationDetailsActivity.class);
             intent.putExtra("mode", "add");
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());

@@ -175,6 +175,7 @@ id action_toggle_quick_bar
 id addAccountButton
 id addCategoryHeaderButton
 id addEventButton
+id addEventHeaderButton
 id addNoteIconButton
 id addTaskButton
 id addTransactionMain
@@ -209,6 +210,7 @@ id bottomStickyContainer
 id btnAddAttachment
 id btnAddBills
 id btnAddDenom
+id btnBackEdit
 id btnCalc0
 id btnCalc1
 id btnCalc2
@@ -232,6 +234,7 @@ id btnCalcSub
 id btnCalculator
 id btnCancel
 id btnCancelAccount
+id btnCancelEdit
 id btnCashCalcDelete
 id btnCashCalcShare
 id btnCashIn
@@ -258,6 +261,7 @@ id btnPlus
 id btnRecordVoice
 id btnSaveAccount
 id btnSaveContinue
+id btnSaveEdit
 id btnSaveExit
 id btnSelectCategory
 id btnSummaryCalendar
@@ -374,6 +378,7 @@ id editAccountName
 id editAccountsButton
 id editAction
 id editAmount
+id editBottomActions
 id editCount
 id editDate
 id editEndTime
@@ -383,6 +388,8 @@ id editNotes
 id editOnlineAmount
 id editStartTime
 id editTitle
+id editTitleHeader
+id editTopBar
 id editTopButton
 id editTransferAmount
 id emptyStateText
@@ -581,6 +588,7 @@ id rowTitle
 id saveStickyNoteButton
 id sbCameraNoteButton
 id sbVoiceNoteButton
+id scrollView2
 id searchCountry
 id secureBoxButton
 id secureBoxTitle
@@ -732,6 +740,7 @@ layout activity_main
 layout activity_monthly_expenses
 layout activity_notebook
 layout activity_notification_details
+layout activity_notification_edit
 layout activity_rates
 layout activity_recommend
 layout activity_report_all

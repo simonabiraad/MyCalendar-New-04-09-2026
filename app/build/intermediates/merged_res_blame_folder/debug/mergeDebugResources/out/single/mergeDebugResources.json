@@ -184,10 +184,6 @@
         "source": "C:\\Users\\SAR\\.gradle\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\drawable\\cash_calc_border.xml"
     },
     {
-        "merged": "com.example.mycalendar2026sar.app-debug-43:/layout_activity_main.xml.flat",
-        "source": "com.example.mycalendar2026sar.app-main-45:/layout/activity_main.xml"
-    },
-    {
         "merged": "C:\\Users\\SAR\\.gradle\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\xml_today_widget_large_info.xml.flat",
         "source": "C:\\Users\\SAR\\.gradle\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\xml\\today_widget_large_info.xml"
     },
@@ -298,6 +294,10 @@
     {
         "merged": "C:\\Users\\SAR\\.gradle\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\xml_data_extraction_rules.xml.flat",
         "source": "C:\\Users\\SAR\\.gradle\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.mycalendar2026sar.app-debug-43:/layout_activity_notification_edit.xml.flat",
+        "source": "com.example.mycalendar2026sar.app-main-45:/layout/activity_notification_edit.xml"
     },
     {
         "merged": "C:\\Users\\SAR\\.gradle\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\drawable_ic_menu_backup_color.xml.flat",
@@ -678,6 +678,10 @@
     {
         "merged": "C:\\Users\\SAR\\.gradle\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\drawable_ic_menu_task_color.xml.flat",
         "source": "C:\\Users\\SAR\\.gradle\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\drawable\\ic_menu_task_color.xml"
+    },
+    {
+        "merged": "C:\\Users\\SAR\\.gradle\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\layout_activity_notification_edit.xml.flat",
+        "source": "C:\\Users\\SAR\\.gradle\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\layout\\activity_notification_edit.xml"
     },
     {
         "merged": "C:\\Users\\SAR\\.gradle\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\drawable_ic_menu_new_note_color.xml.flat",

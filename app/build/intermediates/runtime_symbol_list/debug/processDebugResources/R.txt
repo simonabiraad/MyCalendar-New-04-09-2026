@@ -4099,6 +4099,7 @@ int id add 0x7f090067
 int id addAccountButton 0x7f090068
 int id addCategoryHeaderButton 0x7f090069
 int id addEventButton 0x7f09006a
+int id addEventHeaderButton 0x7f09046c
 int id addNoteIconButton 0x7f09006b
 int id addTaskButton 0x7f09006c
 int id addTransactionMain 0x7f09006d
@@ -4162,6 +4163,7 @@ int id bounceStart 0x7f0900a6
 int id btnAddAttachment 0x7f0900a7
 int id btnAddBills 0x7f0900a8
 int id btnAddDenom 0x7f0900a9
+int id btnBackEdit 0x7f090473
 int id btnCalc0 0x7f0900aa
 int id btnCalc1 0x7f0900ab
 int id btnCalc2 0x7f0900ac
@@ -4185,6 +4187,7 @@ int id btnCalcSub 0x7f0900bd
 int id btnCalculator 0x7f0900be
 int id btnCancel 0x7f0900bf
 int id btnCancelAccount 0x7f0900c0
+int id btnCancelEdit 0x7f09046d
 int id btnCashCalcDelete 0x7f0900c1
 int id btnCashCalcShare 0x7f0900c2
 int id btnCashIn 0x7f0900c3
@@ -4211,6 +4214,7 @@ int id btnPlus 0x7f0900d7
 int id btnRecordVoice 0x7f0900d8
 int id btnSaveAccount 0x7f0900d9
 int id btnSaveContinue 0x7f0900da
+int id btnSaveEdit 0x7f09046e
 int id btnSaveExit 0x7f0900db
 int id btnSelectCategory 0x7f0900dc
 int id btnSummaryCalendar 0x7f0900dd
@@ -4401,6 +4405,7 @@ int id editAccountName 0x7f090193
 int id editAccountsButton 0x7f090194
 int id editAction 0x7f090195
 int id editAmount 0x7f090196
+int id editBottomActions 0x7f090471
 int id editCount 0x7f090197
 int id editDate 0x7f090198
 int id editEndTime 0x7f090199
@@ -4410,6 +4415,8 @@ int id editNotes 0x7f09019c
 int id editOnlineAmount 0x7f09019d
 int id editStartTime 0x7f09019e
 int id editTitle 0x7f09019f
+int id editTitleHeader 0x7f09046f
+int id editTopBar 0x7f090470
 int id editTopButton 0x7f0901a0
 int id editTransferAmount 0x7f0901a1
 int id edit_query 0x7f0901a2
@@ -4822,6 +4829,7 @@ int id scroll 0x7f09032c
 int id scrollIndicatorDown 0x7f09032d
 int id scrollIndicatorUp 0x7f09032e
 int id scrollView 0x7f09032f
+int id scrollView2 0x7f090472
 int id scrollable 0x7f090330
 int id searchCountry 0x7f090331
 int id search_badge 0x7f090332
@@ -5214,6 +5222,7 @@ int layout activity_main 0x7f0c002d
 int layout activity_monthly_expenses 0x7f0c002e
 int layout activity_notebook 0x7f0c002f
 int layout activity_notification_details 0x7f0c0030
+int layout activity_notification_edit 0x7f0c00c7
 int layout activity_rates 0x7f0c0031
 int layout activity_recommend 0x7f0c0032
 int layout activity_report_all 0x7f0c0033
