@@ -93,7 +93,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/headerTextContainer"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/headerTextContainer"
-                app:tint="@color/white" />
+                app:tint="@color/light_green" />
 
             <LinearLayout
                 android:id="@+id/headerTextContainer"
@@ -174,13 +174,13 @@
                 android:paddingBottom="8dp"
                 android:background="#1A1A1A"
                 app:layout_constraintTop_toBottomOf="@id/calendarHeader">
-                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Mon" android:textColor="@color/white" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
-                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Tue" android:textColor="@color/white" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
-                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Wed" android:textColor="@color/white" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
-                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Thu" android:textColor="@color/white" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
-                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Fri" android:textColor="@color/white" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
-                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Sat" android:textColor="@color/white" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
-                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Sun" android:textColor="@color/white" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Mon" android:textColor="@color/light_green" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Tue" android:textColor="@color/light_green" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Wed" android:textColor="@color/light_green" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Thu" android:textColor="@color/light_green" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Fri" android:textColor="@color/light_green" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Sat" android:textColor="@color/light_green" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Sun" android:textColor="@color/light_green" android:gravity="center" android:textSize="12sp" android:textStyle="bold" />
             </LinearLayout>
 
             <GridView

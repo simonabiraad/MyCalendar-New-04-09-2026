@@ -16,8 +16,8 @@
 
         <ImageButton
             android:id="@+id/taskBackButton"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@android:drawable/ic_menu_revert"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="Tasks"
             android:textColor="@color/light_green"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
