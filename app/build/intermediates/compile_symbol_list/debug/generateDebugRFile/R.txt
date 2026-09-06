@@ -67,9 +67,11 @@ int drawable ic_cat_shop_color 0x0
 int drawable ic_cat_transport_color 0x0
 int drawable ic_cat_travel_color 0x0
 int drawable ic_cat_utility_color 0x0
+int drawable ic_clock 0x0
 int drawable ic_excel_logo 0x0
 int drawable ic_launcher_background 0x0
 int drawable ic_launcher_foreground 0x0
+int drawable ic_location 0x0
 int drawable ic_menu_acc_summary_color 0x0
 int drawable ic_menu_accounts_color 0x0
 int drawable ic_menu_address_color 0x0
@@ -125,6 +127,7 @@ int drawable summary_border 0x0
 int drawable task_input_border 0x0
 int drawable today_circle 0x0
 int drawable transaction_row_bg 0x0
+int drawable weekday_pill_bg 0x0
 int drawable widget_card_4x4_bg 0x0
 int id accountBalance 0x0
 int id accountIcon 0x0
@@ -323,6 +326,7 @@ int id dateTimeContainer 0x0
 int id dayCashIn 0x0
 int id dayCashOut 0x0
 int id dayNumber 0x0
+int id dayOfWeekPill 0x0
 int id dayRemarksContainer 0x0
 int id dayTitle 0x0
 int id deleteAction 0x0
@@ -388,6 +392,7 @@ int id eventDate 0x0
 int id eventStatus 0x0
 int id eventTime 0x0
 int id eventTitle 0x0
+int id eventsContainer 0x0
 int id eventsHeader 0x0
 int id eventsRecyclerView 0x0
 int id expense_type_main 0x0
@@ -427,7 +432,10 @@ int id item_text 0x0
 int id item_title 0x0
 int id itemsContainer 0x0
 int id labelTotalCashIn 0x0
+int id layoutLocation 0x0
+int id layoutTime 0x0
 int id lineChart 0x0
+int id locationLayout 0x0
 int id lockExpensesSwitch 0x0
 int id logo_container 0x0
 int id main 0x0
@@ -455,6 +463,7 @@ int id menuSettings 0x0
 int id menuThemes 0x0
 int id menuToggleQuickBar 0x0
 int id modeSwitchContainer 0x0
+int id monthYear 0x0
 int id monthYearText 0x0
 int id monthlyButton 0x0
 int id monthly_expenses_main 0x0
@@ -527,6 +536,7 @@ int id prevMonth 0x0
 int id previousBalanceRow 0x0
 int id previousBalanceTotalText 0x0
 int id priorityIndicator 0x0
+int id priorityLine 0x0
 int id prioritySpinner 0x0
 int id ratesBackButton 0x0
 int id ratesTopBar 0x0
@@ -668,6 +678,9 @@ int id txtCountryName 0x0
 int id txtDate 0x0
 int id txtDenomValue 0x0
 int id txtDenomination 0x0
+int id txtEventLocation 0x0
+int id txtEventTime 0x0
+int id txtEventTitle 0x0
 int id txtOnlineStatus 0x0
 int id txtRowTotal 0x0
 int id txtSelectedCountryName 0x0
@@ -752,6 +765,9 @@ int layout item_country 0x0
 int layout item_deleted_transaction_row 0x0
 int layout item_denom_setting 0x0
 int layout item_dialog_transaction 0x0
+int layout item_event_detail 0x0
+int layout item_event_details 0x0
+int layout item_event_group 0x0
 int layout item_expenses_calendar_day 0x0
 int layout item_notebook_note 0x0
 int layout item_notification_event 0x0

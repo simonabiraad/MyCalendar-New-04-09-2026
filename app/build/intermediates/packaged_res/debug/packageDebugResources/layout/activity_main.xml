@@ -93,7 +93,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/headerTextContainer"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/headerTextContainer"
-                app:tint="@color/light_green" />
+                app:tint="@color/white" />
 
             <LinearLayout
                 android:id="@+id/headerTextContainer"

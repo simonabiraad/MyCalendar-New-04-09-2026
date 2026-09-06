@@ -3836,11 +3836,13 @@ int drawable ic_cat_transport_color 0x7f0800c2
 int drawable ic_cat_travel_color 0x7f0800c3
 int drawable ic_cat_utility_color 0x7f0800c4
 int drawable ic_clear_black_24 0x7f0800c5
+int drawable ic_clock 0x7f080158
 int drawable ic_clock_black_24dp 0x7f0800c6
 int drawable ic_excel_logo 0x7f0800c7
 int drawable ic_keyboard_black_24dp 0x7f0800c8
 int drawable ic_launcher_background 0x7f0800c9
 int drawable ic_launcher_foreground 0x7f0800ca
+int drawable ic_location 0x7f080159
 int drawable ic_m3_chip_check 0x7f0800cb
 int drawable ic_m3_chip_checked_circle 0x7f0800cc
 int drawable ic_m3_chip_close 0x7f0800cd
@@ -3980,6 +3982,7 @@ int drawable today_circle 0x7f080152
 int drawable tooltip_frame_dark 0x7f080153
 int drawable tooltip_frame_light 0x7f080154
 int drawable transaction_row_bg 0x7f080155
+int drawable weekday_pill_bg 0x7f08015a
 int drawable widget_card_4x4_bg 0x7f080156
 int id ALT 0x7f090000
 int id BOTTOM_END 0x7f090001
@@ -4319,6 +4322,7 @@ int id date_picker_actions 0x7f090145
 int id dayCashIn 0x7f090146
 int id dayCashOut 0x7f090147
 int id dayNumber 0x7f090148
+int id dayOfWeekPill 0x7f090460
 int id dayRemarksContainer 0x7f090149
 int id dayTitle 0x7f09014a
 int id decelerate 0x7f09014b
@@ -4425,6 +4429,7 @@ int id eventDate 0x7f0901ae
 int id eventStatus 0x7f0901af
 int id eventTime 0x7f0901b0
 int id eventTitle 0x7f0901b1
+int id eventsContainer 0x7f090461
 int id eventsHeader 0x7f0901b2
 int id eventsRecyclerView 0x7f0901b3
 int id exitUntilCollapsed 0x7f0901b4
@@ -4526,6 +4531,8 @@ int id jumpToStart 0x7f090213
 int id labelTotalCashIn 0x7f090214
 int id labeled 0x7f090215
 int id layout 0x7f090216
+int id layoutLocation 0x7f090466
+int id layoutTime 0x7f090467
 int id left 0x7f090217
 int id leftToRight 0x7f090218
 int id legacy 0x7f090219
@@ -4536,6 +4543,7 @@ int id lineChart 0x7f09021d
 int id linear 0x7f09021e
 int id listMode 0x7f09021f
 int id list_item 0x7f090220
+int id locationLayout 0x7f090463
 int id lockExpensesSwitch 0x7f090221
 int id logo_container 0x7f090222
 int id m3_side_sheet 0x7f090223
@@ -4592,6 +4600,7 @@ int id message 0x7f090242
 int id middle 0x7f090243
 int id mini 0x7f090244
 int id modeSwitchContainer 0x7f090245
+int id monthYear 0x7f090464
 int id monthYearText 0x7f090246
 int id month_grid 0x7f090247
 int id month_navigation_bar 0x7f090248
@@ -4748,6 +4757,7 @@ int id prevMonth 0x7f0902de
 int id previousBalanceRow 0x7f0902df
 int id previousBalanceTotalText 0x7f0902e0
 int id priorityIndicator 0x7f0902e1
+int id priorityLine 0x7f090465
 int id prioritySpinner 0x7f0902e2
 int id progress_circular 0x7f0902e3
 int id progress_horizontal 0x7f0902e4
@@ -5011,6 +5021,9 @@ int id txtCountryName 0x7f0903f1
 int id txtDate 0x7f0903f2
 int id txtDenomValue 0x7f0903f3
 int id txtDenomination 0x7f0903f4
+int id txtEventLocation 0x7f090468
+int id txtEventTime 0x7f090469
+int id txtEventTitle 0x7f09046a
 int id txtOnlineStatus 0x7f0903f5
 int id txtRowTotal 0x7f0903f6
 int id txtSelectedCountryName 0x7f0903f7
@@ -5256,6 +5269,9 @@ int layout item_country 0x7f0c0065
 int layout item_deleted_transaction_row 0x7f0c0066
 int layout item_denom_setting 0x7f0c0067
 int layout item_dialog_transaction 0x7f0c0068
+int layout item_event_detail 0x7f0c00c6
+int layout item_event_details 0x7f0c00c4
+int layout item_event_group 0x7f0c00c5
 int layout item_expenses_calendar_day 0x7f0c0069
 int layout item_notebook_note 0x7f0c006a
 int layout item_notification_event 0x7f0c006b

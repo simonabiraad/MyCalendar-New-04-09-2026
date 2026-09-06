@@ -68,9 +68,11 @@ drawable ic_cat_shop_color
 drawable ic_cat_transport_color
 drawable ic_cat_travel_color
 drawable ic_cat_utility_color
+drawable ic_clock
 drawable ic_excel_logo
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable ic_location
 drawable ic_menu_acc_summary_color
 drawable ic_menu_accounts_color
 drawable ic_menu_address_color
@@ -126,6 +128,7 @@ drawable summary_border
 drawable task_input_border
 drawable today_circle
 drawable transaction_row_bg
+drawable weekday_pill_bg
 drawable widget_card_4x4_bg
 id accountBalance
 id accountIcon
@@ -324,6 +327,7 @@ id dateTimeContainer
 id dayCashIn
 id dayCashOut
 id dayNumber
+id dayOfWeekPill
 id dayRemarksContainer
 id dayTitle
 id deleteAction
@@ -389,6 +393,7 @@ id eventDate
 id eventStatus
 id eventTime
 id eventTitle
+id eventsContainer
 id eventsHeader
 id eventsRecyclerView
 id expense_type_main
@@ -428,7 +433,10 @@ id item_text
 id item_title
 id itemsContainer
 id labelTotalCashIn
+id layoutLocation
+id layoutTime
 id lineChart
+id locationLayout
 id lockExpensesSwitch
 id logo_container
 id main
@@ -456,6 +464,7 @@ id menuSettings
 id menuThemes
 id menuToggleQuickBar
 id modeSwitchContainer
+id monthYear
 id monthYearText
 id monthlyButton
 id monthly_expenses_main
@@ -528,6 +537,7 @@ id prevMonth
 id previousBalanceRow
 id previousBalanceTotalText
 id priorityIndicator
+id priorityLine
 id prioritySpinner
 id ratesBackButton
 id ratesTopBar
@@ -669,6 +679,9 @@ id txtCountryName
 id txtDate
 id txtDenomValue
 id txtDenomination
+id txtEventLocation
+id txtEventTime
+id txtEventTitle
 id txtOnlineStatus
 id txtRowTotal
 id txtSelectedCountryName
@@ -753,6 +766,9 @@ layout item_country
 layout item_deleted_transaction_row
 layout item_denom_setting
 layout item_dialog_transaction
+layout item_event_detail
+layout item_event_details
+layout item_event_group
 layout item_expenses_calendar_day
 layout item_notebook_note
 layout item_notification_event

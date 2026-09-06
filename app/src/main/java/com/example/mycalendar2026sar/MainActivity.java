@@ -2974,15 +2974,24 @@ public class MainActivity extends AppCompatActivity {
                     View eventLine = new View(itemView.getContext());
                     float density = itemView.getContext().getResources().getDisplayMetrics().density;
                     int height = (int) (3 * density);
-                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT, height);
+                    
+                    int width = LinearLayout.LayoutParams.MATCH_PARENT;
+                    int priorityColor = Color.GREEN; // Low
+                    
+                    if ("High".equalsIgnoreCase(e.getPriority())) {
+                        priorityColor = Color.RED;
+                        width = LinearLayout.LayoutParams.MATCH_PARENT;
+                    } else if ("Medium".equalsIgnoreCase(e.getPriority())) {
+                        priorityColor = Color.YELLOW;
+                        width = (int) (30 * density);
+                    } else {
+                        priorityColor = Color.GREEN;
+                        width = (int) (15 * density);
+                    }
+
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(width, height);
                     lp.setMargins(0, (int) (1 * density), 0, (int) (1 * density));
                     eventLine.setLayoutParams(lp);
-                    
-                    int priorityColor = Color.GREEN; // Low
-                    if ("High".equalsIgnoreCase(e.getPriority())) priorityColor = Color.RED;
-                    else if ("Medium".equalsIgnoreCase(e.getPriority())) priorityColor = Color.YELLOW;
-                    
                     eventLine.setBackgroundColor(priorityColor);
                     eventContainer.addView(eventLine);
                 }

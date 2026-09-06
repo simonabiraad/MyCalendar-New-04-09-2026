@@ -1,38 +1,60 @@
-# Implementation Plan - Calendar Refinement and Gap Removal
+# Implementation Plan - Grouped Event List Design
 
-This plan describes how to dynamically adjust the calendar row count, update date colors for contrast, and remove the gap between the calendar and the notes section.
+This plan describes how to redesign the `EventsActivity` list to match the visual style of the target image, grouping events by date and using a modern, clean layout.
 
 ## Proposed Changes
 
+### Resources
+
+#### [NEW] [ic_location.xml](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/drawable/ic_location.xml)
+- Location icon for event details.
+
+#### [NEW] [ic_clock.xml](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/drawable/ic_clock.xml)
+- Clock icon for event time.
+
+#### [NEW] [weekday_pill_bg.xml](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/drawable/weekday_pill_bg.xml)
+- Rounded background for the weekday text.
+
 ### Layouts
 
-#### [MODIFY] [activity_main.xml](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_main.xml)
-- **`calendarGrid`**:
-    - Change `layout_height` from `@dimen/_360sdp` to `wrap_content` or a height that will be set programmatically.
-- **`remarkLabel`**:
-    - Reduce `layout_marginTop` from `16dp` to `4dp` to move the notes section upward.
+#### [NEW] [item_event_group.xml](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/item_event_group.xml)
+- Root: `LinearLayout` (horizontal).
+- **Left Column** (Date Info):
+    - `TextView` (Weekday pill).
+    - `TextView` (Large Day Number).
+    - `TextView` (Month, Year).
+- **Right Column**:
+    - `LinearLayout` (vertical) `id="eventsList"` to hold multiple event details.
+- `View` (Horizontal divider at the bottom).
+
+#### [NEW] [item_event_detail.xml](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/item_event_detail.xml)
+- Root: `LinearLayout` (horizontal).
+- **Priority Line**: `View` (1.5dp width, colored by priority).
+- **Details Area**: `LinearLayout` (vertical).
+    - `TextView` (Title).
+    - `LinearLayout` (horizontal) for Location (Icon + Text).
+    - `LinearLayout` (horizontal) for Time (Icon + Text).
 
 ### Logic
 
-#### [MODIFY] [MainActivity.java](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/java/com/example/mycalendar2026sar/MainActivity.java)
-- **`updateCalendar()`**:
-    - Implement logic to add exactly 35 days (5 rows) or 42 days (6 rows) depending on whether the current month extends into the 6th row.
-    - Programmatically update `calendarGrid` height to match the number of rows (5 rows = 305dp, 6 rows = 366dp including borders).
-- **`CalendarAdapter#getView()`**:
-    - Set text color to `Color.WHITE` for dates in previous/next months.
-    - Ensure background color for other month cells is pure black (`#000000`).
-    - Ensure current month dates use the designated color (`color_note_text`).
-    - Confirm the "Today" highlight is correctly centered using `Gravity.CENTER`.
+#### [MODIFY] [EventsActivity.java](file:///C:/Users/SAR/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/java/com/example/mycalendar2026sar/EventsActivity.java)
+- Update `loadAllEvents()`:
+    - Group the `eventList` by date into a `List<DayGroup>` where `DayGroup` contains the date string and a list of `NotificationEvent`s.
+- Update `EventAdapter`:
+    - Use `item_event_group.xml` for each item.
+    - Inside `onBindViewHolder`, parse the date to extract weekday, day, month, and year.
+    - Dynamically inflate and add `item_event_detail.xml` views to the `eventsList` container for each event in that day group.
+    - Implement priority coloring: High (Red), Medium (Yellow), Low (Green).
 
 ## Verification Plan
 
 ### Automated Tests
-- Build the project to ensure no resource or compilation errors.
+- Build the project to ensure no layout or compilation errors.
 
 ### Manual Verification
-1. Open the Notification Menu for September 2026.
-2. Verify that the 6th row (starting with 5, 6, 7...) is gone.
-3. Verify that dates like 31 (Aug) and 1, 2, 3, 4 (Oct) are white and clearly visible on a black background.
-4. Verify the "Note for..." section sits directly underneath the calendar with a minimal gap.
-5. Verify September 5 (Today) has a green outline with the number perfectly centered.
-6. Check a month that *requires* 6 rows (e.g. August 2026 if week starts Monday) to ensure no days are cut off.
+1. Open the **Events** page.
+2. Verify that events are grouped by date.
+3. Confirm the date column on the left matches the target design (Weekday pill, Large Number, Month/Year).
+4. Confirm the vertical priority lines are correctly colored.
+5. Verify that multiple events on the same day appear underneath each other in the same date group.
+6. Verify that tapping an event still opens the details view.
