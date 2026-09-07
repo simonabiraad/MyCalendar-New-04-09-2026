@@ -470,6 +470,8 @@ int id menuPrint 0x0
 int id menuPrivacyPolicy 0x0
 int id menuSecureBox 0x0
 int id menuSettings 0x0
+int id menuSortDateAsc 0x0
+int id menuSortDateDesc 0x0
 int id menuThemes 0x0
 int id menuToggleQuickBar 0x0
 int id modeSwitchContainer 0x0
@@ -675,6 +677,8 @@ int id transfer_main 0x0
 int id tvPriorityValue 0x0
 int id tvReminderValue 0x0
 int id tvRepeatValue 0x0
+int id tvSortDateAscState 0x0
+int id tvSortDateDescState 0x0
 int id txCashIn 0x0
 int id txCashOut 0x0
 int id txNamesAddButton 0x0

@@ -91,6 +91,78 @@
             android:ellipsize="none" />
     </LinearLayout>
 
+    <!-- Date Ascending -->
+    <LinearLayout
+        android:id="@+id/menuSortDateAsc"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/menu_date_ascending"
+            android:src="@drawable/ic_menu_sort_asc_color" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="@string/menu_date_ascending"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+        <TextView
+            android:id="@+id/tvSortDateAscState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OFF"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_8ssp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Date Descending -->
+    <LinearLayout
+        android:id="@+id/menuSortDateDesc"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/menu_date_descending"
+            android:src="@drawable/ic_menu_sort_desc_color" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="@string/menu_date_descending"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="none" />
+        <TextView
+            android:id="@+id/tvSortDateDescState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OFF"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_8ssp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <!-- Themes -->
     <LinearLayout
         android:id="@+id/menuThemes"

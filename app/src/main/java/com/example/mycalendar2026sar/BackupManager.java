@@ -23,7 +23,8 @@ public class BackupManager {
                 "AppFonts",
                 "SecuritySettings",
                 "ReminderStatus",
-                "ExpensesPrefs"
+                "ExpensesPrefs",
+                "AppSettings"
             };
 
             JSONObject allPrefs = new JSONObject();

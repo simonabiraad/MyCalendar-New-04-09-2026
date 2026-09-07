@@ -634,7 +634,7 @@ public class ExpensesActivity extends AppCompatActivity {
             });
             popup.show();
         });
-        
+
         updateFilterButtonsUI();
     }
 

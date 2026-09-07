@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences securityPrefs;
     private SharedPreferences colorPrefs;
     private SharedPreferences fontPrefs;
+    private SharedPreferences appSettingsPrefs;
     private CalendarAdapter adapter;
 
     private Calendar lastSelectedDateBeforeKeyboard;
@@ -381,6 +382,7 @@ public class MainActivity extends AppCompatActivity {
         colorPrefs = getSharedPreferences("AppColors", Context.MODE_PRIVATE);
         fontPrefs = getSharedPreferences("AppFonts", Context.MODE_PRIVATE);
         speechPrefs = getSharedPreferences("SpeechSettings", Context.MODE_PRIVATE);
+        appSettingsPrefs = getSharedPreferences("AppSettings", Context.MODE_PRIVATE);
 
         speechSourceLang = speechPrefs.getString("speech_source_lang", "en-US");
         speechTargetLang = speechPrefs.getString("speech_target_lang", "ar");
@@ -546,6 +548,34 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.menuChangeFont).setOnClickListener(v -> { hideCustomMenu(); showFontDialog(); });
         findViewById(R.id.menuBackupData).setOnClickListener(v -> { hideCustomMenu(); showBackupDataDialog(); });
         findViewById(R.id.menuPrint).setOnClickListener(v -> { hideCustomMenu(); showPrintDialog(); });
+
+        // Sorting
+        findViewById(R.id.menuSortDateAsc).setOnClickListener(v -> toggleSortOrder(true));
+        findViewById(R.id.menuSortDateDesc).setOnClickListener(v -> toggleSortOrder(false));
+        updateSortOrderUI();
+    }
+
+    private void toggleSortOrder(boolean ascending) {
+        appSettingsPrefs.edit().putString("sort_order", ascending ? "ASC" : "DESC").apply();
+        updateSortOrderUI();
+        updateRemarkHistory();
+    }
+
+    private void updateSortOrderUI() {
+        String sortOrder = appSettingsPrefs.getString("sort_order", "DESC");
+        boolean isAsc = "ASC".equals(sortOrder);
+
+        TextView tvAsc = findViewById(R.id.tvSortDateAscState);
+        TextView tvDesc = findViewById(R.id.tvSortDateDescState);
+
+        if (tvAsc != null) {
+            tvAsc.setText(isAsc ? "● ON" : "OFF");
+            tvAsc.setTextColor(isAsc ? Color.GREEN : Color.WHITE);
+        }
+        if (tvDesc != null) {
+            tvDesc.setText(!isAsc ? "● ON" : "OFF");
+            tvDesc.setTextColor(!isAsc ? Color.GREEN : Color.WHITE);
+        }
     }
 
     private void toggleCustomMenu() {
@@ -2097,13 +2127,19 @@ public class MainActivity extends AppCompatActivity {
         List<String> sortedKeys = new ArrayList<>(allEntries.keySet());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String todayKey = sdf.format(Calendar.getInstance().getTime());
+        String sortOrder = appSettingsPrefs.getString("sort_order", "DESC");
+        
         sortedKeys.sort((o1, o2) -> {
             try {
                 Date d1 = sdf.parse(o1);
                 Date d2 = sdf.parse(o2);
-                if (d1 != null && d2 != null) return d1.compareTo(d2);
+                if (d1 != null && d2 != null) {
+                    int cmp = d1.compareTo(d2);
+                    return "ASC".equals(sortOrder) ? cmp : -cmp;
+                }
             } catch (Exception ignored) {}
-            return o1.compareTo(o2);
+            int cmp = o1.compareTo(o2);
+            return "ASC".equals(sortOrder) ? cmp : -cmp;
         });
         for (String dateKey : sortedKeys) {
             Object valObj = allEntries.get(dateKey);
@@ -2783,15 +2819,22 @@ public class MainActivity extends AppCompatActivity {
         }
         Button notifyBtn = findViewById(R.id.notificationSettingsButton);
         if (notifyBtn != null) {
-            notifyBtn.setBackgroundTintList(ColorStateList.valueOf(mainTheme));
+            notifyBtn.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.light_green)));
             applyFontSettings(notifyBtn, 11);
         }
+        int neutral40 = Color.parseColor("#5E5E5E"); // material_dynamic_neutral40
+        Button aiBtn = findViewById(R.id.aiAssistantButton);
+        if (aiBtn != null) {
+            aiBtn.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.light_green)));
+        }
         ImageButton menuBtn = findViewById(R.id.mainMenuButton);
-        if (menuBtn != null) menuBtn.setImageTintList(ColorStateList.valueOf(mainTheme));
+        if (menuBtn != null) menuBtn.setImageTintList(ColorStateList.valueOf(getColor(R.color.light_green)));
         ImageButton voiceBtn = findViewById(R.id.voiceNoteButton);
         if (voiceBtn != null) voiceBtn.setImageTintList(null);
         ImageButton addNoteBtn = findViewById(R.id.addNoteIconButton);
         if (addNoteBtn != null) addNoteBtn.setImageTintList(null);
+
+        updateSortOrderUI();
 
         // History
         updateRemarkHistory(); // This will use the new colors/fonts during redraw

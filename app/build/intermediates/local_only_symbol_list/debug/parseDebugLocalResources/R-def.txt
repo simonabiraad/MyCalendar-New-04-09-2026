@@ -472,6 +472,8 @@ id menuPrint
 id menuPrivacyPolicy
 id menuSecureBox
 id menuSettings
+id menuSortDateAsc
+id menuSortDateDesc
 id menuThemes
 id menuToggleQuickBar
 id modeSwitchContainer
@@ -677,6 +679,8 @@ id transfer_main
 id tvPriorityValue
 id tvReminderValue
 id tvRepeatValue
+id tvSortDateAscState
+id tvSortDateDescState
 id txCashIn
 id txCashOut
 id txNamesAddButton

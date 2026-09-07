@@ -94,8 +94,14 @@ public class EventsActivity extends AppCompatActivity {
         groupedEvents.clear();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         
+        String sortOrder = getSharedPreferences("AppSettings", MODE_PRIVATE).getString("sort_order", "DESC");
+        
         List<NotificationEvent> allEvents = new ArrayList<>();
-        Cursor c = db.query(TransactionDbHelper.TABLE_NOTIFICATIONS, null, TransactionDbHelper.COL_NOTIF_DELETED + "=0", null, null, null, TransactionDbHelper.COL_NOTIF_DATE + " DESC, " + TransactionDbHelper.COL_NOTIF_START_TIME + " ASC");
+        // Correct chronological sort for dd/MM/yyyy format in SQLite
+        String orderBy = "substr(" + TransactionDbHelper.COL_NOTIF_DATE + ", 7, 4) || substr(" + TransactionDbHelper.COL_NOTIF_DATE + ", 4, 2) || substr(" + TransactionDbHelper.COL_NOTIF_DATE + ", 1, 2) " + sortOrder 
+                + ", " + TransactionDbHelper.COL_NOTIF_START_TIME + " ASC";
+        
+        Cursor c = db.query(TransactionDbHelper.TABLE_NOTIFICATIONS, null, TransactionDbHelper.COL_NOTIF_DELETED + "=0", null, null, null, orderBy);
         if (c != null) {
             while (c.moveToNext()) {
                 allEvents.add(readNotification(c));
