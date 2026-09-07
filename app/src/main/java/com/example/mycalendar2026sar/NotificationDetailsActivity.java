@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,9 @@ import java.util.List;
 import java.util.Locale;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.graphics.Insets;
 import java.util.Date;
 
 public class NotificationDetailsActivity extends AppCompatActivity {
@@ -85,6 +89,16 @@ public class NotificationDetailsActivity extends AppCompatActivity {
 
     private void setupEditUI() {
         setContentView(R.layout.activity_notification_edit);
+
+        View editRoot = findViewById(android.R.id.content);
+        ViewCompat.setOnApplyWindowInsetsListener(editRoot, (v, insets) -> {
+            boolean isKeyboardVisible = insets.isVisible(WindowInsetsCompat.Type.ime());
+            if (!isKeyboardVisible) {
+                // Force a layout pass when keyboard is hidden to ensure everything returns to normal
+                v.post(v::requestLayout);
+            }
+            return insets;
+        });
         
         TextView editDate = findViewById(R.id.editDate);
         TextView editStartTime = findViewById(R.id.editStartTime);
@@ -92,9 +106,12 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         android.widget.EditText editTitle = findViewById(R.id.editTitle);
         android.widget.EditText editNotesField = findViewById(R.id.editNotes);
         android.widget.EditText editLocationField = findViewById(R.id.editLocation);
-        android.widget.Spinner prioritySpinner = findViewById(R.id.prioritySpinner);
-        android.widget.Spinner repeatSpinner = findViewById(R.id.repeatSpinner);
-        android.widget.Spinner reminderSpinner = findViewById(R.id.reminderSpinner);
+        TextView tvPriorityValue = findViewById(R.id.tvPriorityValue);
+        android.widget.ImageView btnPriorityArrow = findViewById(R.id.btnPriorityArrow);
+        TextView tvRepeatValue = findViewById(R.id.tvRepeatValue);
+        android.widget.ImageView btnRepeatArrow = findViewById(R.id.btnRepeatArrow);
+        TextView tvReminderValue = findViewById(R.id.tvReminderValue);
+        android.widget.ImageView btnReminderArrow = findViewById(R.id.btnReminderArrow);
         Button btnAddAttachment = findViewById(R.id.btnAddAttachment);
         Button btnRecordVoice = findViewById(R.id.btnRecordVoice);
         TextView btnCancel = findViewById(R.id.btnCancelEdit);
@@ -135,6 +152,10 @@ public class NotificationDetailsActivity extends AppCompatActivity {
             filePickerLauncher.launch(intent);
         });
 
+        btnPriorityArrow.setOnClickListener(v -> showPopupMenu(tvPriorityValue, R.array.priority_options, tvPriorityValue));
+        btnRepeatArrow.setOnClickListener(v -> showPopupMenu(tvRepeatValue, R.array.repeat_options, tvRepeatValue));
+        btnReminderArrow.setOnClickListener(v -> showPopupMenu(tvReminderValue, R.array.reminder_options, tvReminderValue));
+
         // Pre-fill
         editTitle.setText(currentEvent.getTitle());
         editNotesField.setText(currentEvent.getNotes());
@@ -143,10 +164,10 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         editStartTime.setText(currentEvent.getStartTime());
         editEndTime.setText(currentEvent.getEndTime());
 
-        // Set spinner selections
-        setSpinnerSelection(prioritySpinner, currentEvent.getPriority(), R.array.priority_options);
-        setSpinnerSelection(repeatSpinner, currentEvent.getRepeat(), R.array.repeat_options);
-        setSpinnerSelection(reminderSpinner, currentEvent.getReminder(), R.array.reminder_options);
+        // Set values
+        tvPriorityValue.setText(currentEvent.getPriority());
+        tvRepeatValue.setText(currentEvent.getRepeat());
+        tvReminderValue.setText(currentEvent.getReminder());
 
         editDate.setOnClickListener(v -> {
             Calendar cal = Calendar.getInstance();
@@ -175,9 +196,9 @@ public class NotificationDetailsActivity extends AppCompatActivity {
             currentEvent.setDate(editDate.getText().toString());
             currentEvent.setStartTime(editStartTime.getText().toString());
             currentEvent.setEndTime(editEndTime.getText().toString());
-            currentEvent.setPriority(prioritySpinner.getSelectedItem().toString());
-            currentEvent.setRepeat(repeatSpinner.getSelectedItem().toString());
-            currentEvent.setReminder(reminderSpinner.getSelectedItem().toString());
+            currentEvent.setPriority(tvPriorityValue.getText().toString());
+            currentEvent.setRepeat(tvRepeatValue.getText().toString());
+            currentEvent.setReminder(tvReminderValue.getText().toString());
 
             if (currentEvent.getId() == -1) {
                 addHistoryLog("Created");
@@ -207,15 +228,99 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         });
     }
 
-    private void setSpinnerSelection(android.widget.Spinner spinner, String value, int arrayRes) {
+    private void showPopupMenu(View anchor, int arrayRes, TextView targetTv) {
+        android.widget.PopupMenu popup = new android.widget.PopupMenu(this, anchor);
         String[] options = getResources().getStringArray(arrayRes);
-        for (int i = 0; i < options.length; i++) {
-            if (options[i].equalsIgnoreCase(value)) {
-                spinner.setSelection(i);
-                break;
-            }
+        for (String option : options) {
+            popup.getMenu().add(option);
         }
+        popup.setOnMenuItemClickListener(item -> {
+            String selection = item.getTitle().toString();
+            if ("Custom".equalsIgnoreCase(selection)) {
+                if (targetTv.getId() == R.id.tvRepeatValue) {
+                    showCustomRepeatDialog(targetTv);
+                } else if (targetTv.getId() == R.id.tvReminderValue) {
+                    showCustomReminderDialog(targetTv);
+                }
+            } else {
+                targetTv.setText(selection);
+            }
+            return true;
+        });
+        popup.show();
     }
+
+    private void showCustomRepeatDialog(TextView targetTv) {
+        List<String> selectedDates = new ArrayList<>();
+        String current = targetTv.getText().toString();
+        if (current.startsWith("Custom: ")) {
+            String[] existing = current.substring(8).split(", ");
+            for (String s : existing) if (!s.isEmpty()) selectedDates.add(s);
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme);
+        builder.setTitle("Custom Repeat Dates");
+
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(40, 20, 40, 20);
+
+        TextView datesList = new TextView(this);
+        datesList.setTextColor(Color.WHITE);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < selectedDates.size(); i++) {
+            sb.append(selectedDates.get(i));
+            if (i < selectedDates.size() - 1) sb.append(", ");
+        }
+        datesList.setText(selectedDates.isEmpty() ? "No dates selected" : sb.toString());
+        layout.addView(datesList);
+
+        Button btnAdd = new Button(this);
+        btnAdd.setText("Add Date");
+        btnAdd.setOnClickListener(v -> {
+            Calendar cal = Calendar.getInstance();
+            new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+                String date = String.format(Locale.getDefault(), "%02d/%02d/%d", dayOfMonth, month + 1, year);
+                if (!selectedDates.contains(date)) {
+                    selectedDates.add(date);
+                    java.util.Collections.sort(selectedDates, (d1, d2) -> {
+                        try {
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                            return sdf.parse(d1).compareTo(sdf.parse(d2));
+                        } catch (Exception e) { return 0; }
+                    });
+                    StringBuilder sb2 = new StringBuilder();
+                    for (int i = 0; i < selectedDates.size(); i++) {
+                        sb2.append(selectedDates.get(i));
+                        if (i < selectedDates.size() - 1) sb2.append(", ");
+                    }
+                    datesList.setText(sb2.toString());
+                }
+            }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
+        });
+        layout.addView(btnAdd);
+
+        builder.setView(layout);
+        builder.setPositiveButton("Set", (dialog, which) -> {
+            if (!selectedDates.isEmpty()) {
+                StringBuilder sbFinal = new StringBuilder("Custom: ");
+                for (int i = 0; i < selectedDates.size(); i++) {
+                    sbFinal.append(selectedDates.get(i));
+                    if (i < selectedDates.size() - 1) sbFinal.append(", ");
+                }
+                targetTv.setText(sbFinal.toString());
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
+    }
+
+    private void showCustomReminderDialog(TextView targetTv) {
+        new TimePickerDialog(this, (view, hourOfDay, minute) -> {
+            targetTv.setText(String.format(Locale.getDefault(), "Custom: %02d:%02d", hourOfDay, minute));
+        }, 12, 0, false).show();
+    }
+
 
     private void initViews() {
         setContentView(R.layout.activity_notification_details);
@@ -525,15 +630,42 @@ public class NotificationDetailsActivity extends AppCompatActivity {
 
     private void showMoreMenu() {
         android.widget.PopupMenu popup = new android.widget.PopupMenu(this, moreOptionsButton);
+        popup.getMenu().add("Share");
         popup.getMenu().add("Convert to Task");
         popup.setOnMenuItemClickListener(item -> {
-            if ("Convert to Task".equals(item.getTitle())) {
+            if ("Share".equals(item.getTitle())) {
+                shareEvent();
+                return true;
+            } else if ("Convert to Task".equals(item.getTitle())) {
                 convertToTask();
                 return true;
             }
             return false;
         });
         popup.show();
+    }
+
+    private void shareEvent() {
+        if (currentEvent == null) return;
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append("Event: ").append(currentEvent.getTitle()).append("\n");
+        sb.append("Date: ").append(currentEvent.getDate()).append("\n");
+        sb.append("Time: ").append(currentEvent.getStartTime()).append(" - ").append(currentEvent.getEndTime()).append("\n");
+        if (!currentEvent.getLocation().isEmpty()) {
+            sb.append("Location: ").append(currentEvent.getLocation()).append("\n");
+        }
+        if (!currentEvent.getNotes().isEmpty()) {
+            sb.append("Notes: ").append(currentEvent.getNotes()).append("\n");
+        }
+        
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, sb.toString());
+        sendIntent.setType("text/plain");
+        
+        Intent shareIntent = Intent.createChooser(sendIntent, "Share Event via");
+        startActivity(shareIntent);
     }
 
     private void convertToTask() {

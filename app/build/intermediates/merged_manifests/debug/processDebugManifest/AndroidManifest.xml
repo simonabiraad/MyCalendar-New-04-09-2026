@@ -158,7 +158,8 @@
         <activity
             android:name="com.example.mycalendar2026sar.NotificationDetailsActivity"
             android:exported="false"
-            android:theme="@style/Theme.MyCalendar2026SAR" />
+            android:theme="@style/Theme.MyCalendar2026SAR"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.example.mycalendar2026sar.EventsActivity"
             android:exported="false"

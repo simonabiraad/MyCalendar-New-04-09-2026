@@ -256,7 +256,10 @@ int id btnPeriod30Days 0x0
 int id btnPeriod7Days 0x0
 int id btnPeriodToday 0x0
 int id btnPlus 0x0
+int id btnPriorityArrow 0x0
 int id btnRecordVoice 0x0
+int id btnReminderArrow 0x0
+int id btnRepeatArrow 0x0
 int id btnSaveAccount 0x0
 int id btnSaveContinue 0x0
 int id btnSaveEdit 0x0
@@ -669,6 +672,9 @@ int id transferDatePickerBox 0x0
 int id transferTimePickerBox 0x0
 int id transferTopBar 0x0
 int id transfer_main 0x0
+int id tvPriorityValue 0x0
+int id tvReminderValue 0x0
+int id tvRepeatValue 0x0
 int id txCashIn 0x0
 int id txCashOut 0x0
 int id txNamesAddButton 0x0

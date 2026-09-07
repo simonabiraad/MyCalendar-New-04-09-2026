@@ -405,6 +405,24 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
         return list;
     }
 
+    public List<NotificationEvent> getAllNotificationsForBackup() {
+        List<NotificationEvent> list = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.query(TABLE_NOTIFICATIONS, null, null, null, null, null, COL_NOTIF_ID + " ASC");
+        if (c != null) {
+            while (c.moveToNext()) {
+                list.add(readNotification(c));
+            }
+            c.close();
+        }
+        return list;
+    }
+
+    public void clearAllNotificationsPermanently() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_NOTIFICATIONS, null, null);
+    }
+
     public NotificationEvent getNotificationById(long id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.query(TABLE_NOTIFICATIONS, null, COL_NOTIF_ID + "=?", new String[]{String.valueOf(id)}, null, null, null);

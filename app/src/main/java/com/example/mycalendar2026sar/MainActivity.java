@@ -2789,9 +2789,9 @@ public class MainActivity extends AppCompatActivity {
         ImageButton menuBtn = findViewById(R.id.mainMenuButton);
         if (menuBtn != null) menuBtn.setImageTintList(ColorStateList.valueOf(mainTheme));
         ImageButton voiceBtn = findViewById(R.id.voiceNoteButton);
-        if (voiceBtn != null) voiceBtn.setImageTintList(ColorStateList.valueOf(mainTheme));
+        if (voiceBtn != null) voiceBtn.setImageTintList(null);
         ImageButton addNoteBtn = findViewById(R.id.addNoteIconButton);
-        if (addNoteBtn != null) addNoteBtn.setImageTintList(ColorStateList.valueOf(mainTheme));
+        if (addNoteBtn != null) addNoteBtn.setImageTintList(null);
 
         // History
         updateRemarkHistory(); // This will use the new colors/fonts during redraw

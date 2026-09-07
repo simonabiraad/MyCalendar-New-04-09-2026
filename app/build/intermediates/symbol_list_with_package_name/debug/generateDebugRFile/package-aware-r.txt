@@ -257,7 +257,10 @@ id btnPeriod30Days
 id btnPeriod7Days
 id btnPeriodToday
 id btnPlus
+id btnPriorityArrow
 id btnRecordVoice
+id btnReminderArrow
+id btnRepeatArrow
 id btnSaveAccount
 id btnSaveContinue
 id btnSaveEdit
@@ -670,6 +673,9 @@ id transferDatePickerBox
 id transferTimePickerBox
 id transferTopBar
 id transfer_main
+id tvPriorityValue
+id tvReminderValue
+id tvRepeatValue
 id txCashIn
 id txCashOut
 id txNamesAddButton

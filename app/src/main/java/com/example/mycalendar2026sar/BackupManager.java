@@ -56,6 +56,28 @@ public class BackupManager {
             }
             backup.put("transactions", transactionsJson);
 
+            // Backup Notifications Database
+            JSONArray notificationsJson = new JSONArray();
+            List<NotificationEvent> notifications = TransactionDbHelper.getInstance(context).getAllNotificationsForBackup();
+            for (NotificationEvent e : notifications) {
+                JSONObject eObj = new JSONObject();
+                eObj.put("title", e.getTitle());
+                eObj.put("notes", e.getNotes());
+                eObj.put("date", e.getDate());
+                eObj.put("start_time", e.getStartTime());
+                eObj.put("end_time", e.getEndTime());
+                eObj.put("priority", e.getPriority());
+                eObj.put("status", e.getStatus());
+                eObj.put("repeat", e.getRepeat());
+                eObj.put("reminder", e.getReminder());
+                eObj.put("location", e.getLocation());
+                eObj.put("attachments", e.getAttachments());
+                eObj.put("voice_path", e.getVoiceNotePath());
+                eObj.put("history", e.getHistory());
+                notificationsJson.put(eObj);
+            }
+            backup.put("notifications", notificationsJson);
+
             backup.put("backup_time", System.currentTimeMillis());
             backup.put("app_version", "1.0");
 
@@ -123,6 +145,34 @@ public class BackupManager {
                         tObj.optString("voice_path", ""),
                         tObj.optString("bills", "")
                     );
+                }
+            }
+
+            // Restore Notifications Database
+            if (backup.has("notifications")) {
+                JSONArray notificationsJson = backup.getJSONArray("notifications");
+                TransactionDbHelper dbHelper = TransactionDbHelper.getInstance(context);
+                dbHelper.clearAllNotificationsPermanently();
+
+                for (int i = 0; i < notificationsJson.length(); i++) {
+                    JSONObject eObj = notificationsJson.getJSONObject(i);
+                    NotificationEvent event = new NotificationEvent(
+                        -1,
+                        eObj.getString("title"),
+                        eObj.optString("notes", ""),
+                        eObj.getString("date"),
+                        eObj.optString("start_time", ""),
+                        eObj.optString("end_time", ""),
+                        eObj.optString("priority", "Medium"),
+                        eObj.optString("status", "Pending"),
+                        eObj.optString("repeat", "None"),
+                        eObj.optString("reminder", "None"),
+                        eObj.optString("location", ""),
+                        eObj.optString("attachments", "[]"),
+                        eObj.optString("voice_path", ""),
+                        eObj.optString("history", "[]")
+                    );
+                    dbHelper.addNotification(event);
                 }
             }
 

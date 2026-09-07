@@ -41,6 +41,16 @@ public class NotificationUtils {
     }
 
     private static void applyReminderOffset(Calendar calendar, String reminder) {
+        if (reminder != null && reminder.startsWith("Custom: ")) {
+            try {
+                String timePart = reminder.substring(8);
+                String[] parts = timePart.split(":");
+                calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(parts[0]));
+                calendar.set(Calendar.MINUTE, Integer.parseInt(parts[1]));
+                calendar.set(Calendar.SECOND, 0);
+            } catch (Exception ignored) {}
+            return;
+        }
         if ("5 minutes before".equals(reminder)) calendar.add(Calendar.MINUTE, -5);
         else if ("10 minutes before".equals(reminder)) calendar.add(Calendar.MINUTE, -10);
         else if ("15 minutes before".equals(reminder)) calendar.add(Calendar.MINUTE, -15);
@@ -73,6 +83,40 @@ public class NotificationUtils {
         }
 
         String repeat = event.getRepeat();
+        if (repeat != null && repeat.startsWith("Custom: ")) {
+            String datesStr = repeat.substring(8);
+            String[] dates = datesStr.split(", ");
+            SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            long currentMillis = calendar.getTimeInMillis();
+            long nextMillis = Long.MAX_VALUE;
+            String nextDate = null;
+
+            for (String d : dates) {
+                try {
+                    java.util.Date parsed = sdfDate.parse(d);
+                    if (parsed != null) {
+                        Calendar nextCal = Calendar.getInstance();
+                        nextCal.setTime(parsed);
+                        nextCal.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY));
+                        nextCal.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE));
+                        nextCal.set(Calendar.SECOND, 0);
+
+                        if (nextCal.getTimeInMillis() > currentMillis && nextCal.getTimeInMillis() < nextMillis) {
+                            nextMillis = nextCal.getTimeInMillis();
+                            nextDate = d;
+                        }
+                    }
+                } catch (Exception ignored) {}
+            }
+
+            if (nextDate != null) {
+                event.setDate(nextDate);
+                TransactionDbHelper.getInstance(context).updateNotification(event);
+                scheduleNotification(context, event);
+                return;
+            }
+        }
+
         if ("Every day".equalsIgnoreCase(repeat)) calendar.add(Calendar.DAY_OF_YEAR, 1);
         else if ("Every week".equalsIgnoreCase(repeat)) calendar.add(Calendar.WEEK_OF_YEAR, 1);
         else if ("Every month".equalsIgnoreCase(repeat)) calendar.add(Calendar.MONTH, 1);

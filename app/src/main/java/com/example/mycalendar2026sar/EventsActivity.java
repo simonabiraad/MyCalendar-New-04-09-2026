@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -190,6 +192,7 @@ public class EventsActivity extends AppCompatActivity {
                 TextView title = detailView.findViewById(R.id.detailTitle);
                 TextView location = detailView.findViewById(R.id.detailLocation);
                 TextView time = detailView.findViewById(R.id.detailTime);
+                TextView statusBadge = detailView.findViewById(R.id.detailStatus);
                 View locationLayout = detailView.findViewById(R.id.locationLayout);
                 View priorityLine = detailView.findViewById(R.id.priorityLine);
 
@@ -202,6 +205,16 @@ public class EventsActivity extends AppCompatActivity {
                 }
                 time.setText(event.getStartTime());
                 
+                // Status Badge
+                updateStatusBadge(statusBadge, event.getStatus());
+                statusBadge.setOnClickListener(v -> {
+                    String newStatus = "Completed".equalsIgnoreCase(event.getStatus()) ? "Pending" : "Completed";
+                    event.setStatus(newStatus);
+                    addHistoryLog(event, "Status changed to " + newStatus);
+                    dbHelper.updateNotification(event);
+                    updateStatusBadge(statusBadge, newStatus);
+                });
+
                 // Priority Logic for line color
                 int priorityColor = Color.GREEN;
                 if ("High".equalsIgnoreCase(event.getPriority())) priorityColor = Color.RED;
@@ -219,6 +232,28 @@ public class EventsActivity extends AppCompatActivity {
                 });
 
                 holder.eventsContainer.addView(detailView);
+            }
+        }
+
+        private void updateStatusBadge(TextView badge, String status) {
+            badge.setText(status.toUpperCase());
+            if ("Completed".equalsIgnoreCase(status)) {
+                badge.setTextColor(Color.GRAY);
+            } else {
+                badge.setTextColor(Color.parseColor("#8BC34A"));
+            }
+        }
+
+        private void addHistoryLog(NotificationEvent event, String action) {
+            try {
+                JSONArray history = new JSONArray(event.getHistory());
+                JSONObject log = new JSONObject();
+                log.put("action", action);
+                log.put("time", new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date()));
+                history.put(log);
+                event.setHistory(history.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
