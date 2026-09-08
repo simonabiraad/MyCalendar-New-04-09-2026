@@ -1074,42 +1074,12 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = createRemarkTextView(remarkText, index, sourcePrefs);
         horizontalLayout.addView(textView);
 
-        // Add Voice Button
-        int iconSizeSmall = (int) (22 * getResources().getDisplayMetrics().density);
-        LinearLayout.LayoutParams voiceParams = new LinearLayout.LayoutParams(iconSizeSmall, iconSizeSmall);
-        voiceParams.setMargins(4, 0, 4, 0);
-        ImageButton voiceBtn = createActionButton(android.R.drawable.ic_btn_speak_now, voiceParams, v -> {
-            voiceTargetIndex = index;
-            voiceTargetPrefs = sourcePrefs;
-            voiceTargetDateKey = currentDateKey;
-            startVoiceRecognition();
-        });
-        horizontalLayout.addView(voiceBtn);
-
         textView.setOnLongClickListener(v -> {
-            if (!isSelectionMode) {
-                isSelectionMode = true;
-                selectionBar.setVisibility(View.VISIBLE);
-                toggleSelection(noteId);
-                return true;
-            }
-            return false;
-        });
+            if (isSelectionMode) return false;
 
-        textView.setOnClickListener(v -> {
-            if (isSelectionMode) {
-                toggleSelection(noteId);
-            } else {
-                toggleNoteFinished(index, sourcePrefs);
-            }
-        });
-
-        int iconSize = (int) (23 * getResources().getDisplayMetrics().density);
-        LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(iconSize, iconSize);
-        btnParams.setMargins(4, 0, 4, 0);
-
-        ImageButton menuBtn = createActionButton(android.R.drawable.ic_menu_more, btnParams, v -> {
             android.widget.PopupMenu popup = new android.widget.PopupMenu(this, v);
+            popup.getMenu().add(0, 7, 0, "Select").setIcon(R.drawable.ic_menu_tx_all_color);
+            popup.getMenu().add(0, 8, 0, "Voice Append").setIcon(android.R.drawable.ic_btn_speak_now);
             popup.getMenu().add(0, 1, 0, "Reminder").setIcon(R.drawable.ic_menu_reminder_color);
             popup.getMenu().add(0, 2, 0, "Edit").setIcon(R.drawable.ic_menu_edit_color);
             popup.getMenu().add(0, 3, 0, "Share").setIcon(R.drawable.ic_menu_share_color);
@@ -1117,7 +1087,6 @@ public class MainActivity extends AppCompatActivity {
             popup.getMenu().add(0, 4, 0, "Archive").setIcon(R.drawable.ic_menu_archive_color);
             popup.getMenu().add(0, 5, 0, "Delete").setIcon(R.drawable.ic_menu_trash_color);
 
-            // Optional: force icons to show in PopupMenu
             try {
                 java.lang.reflect.Field field = popup.getClass().getDeclaredField("mPopup");
                 field.setAccessible(true);
@@ -1129,10 +1098,18 @@ public class MainActivity extends AppCompatActivity {
 
             popup.setOnMenuItemClickListener(item -> {
                 int id = item.getItemId();
-                if (id == 1) manageReminder(remarkText);
+                if (id == 7) {
+                    isSelectionMode = true;
+                    selectionBar.setVisibility(View.VISIBLE);
+                    toggleSelection(noteId);
+                } else if (id == 8) {
+                    voiceTargetIndex = index;
+                    voiceTargetPrefs = sourcePrefs;
+                    voiceTargetDateKey = currentDateKey;
+                    startVoiceRecognition();
+                } else if (id == 1) manageReminder(remarkText);
                 else if (id == 2) showEditDialog(remarkText, index, sourcePrefs);
                 else if (id == 3) {
-                    // Reuse sharing logic
                     String[] options = {"Share as Text", "Share as .ics File"};
                     new AlertDialog.Builder(this)
                             .setTitle("Share Note")
@@ -1157,8 +1134,16 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             });
             popup.show();
+            return true;
         });
-        horizontalLayout.addView(menuBtn);
+
+        textView.setOnClickListener(v -> {
+            if (isSelectionMode) {
+                toggleSelection(noteId);
+            } else {
+                toggleNoteFinished(index, sourcePrefs);
+            }
+        });
         
         dayRemarksContainer.addView(horizontalLayout);
     }
@@ -2183,18 +2168,6 @@ public class MainActivity extends AppCompatActivity {
                 tv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
                 noteLayout.addView(tv);
 
-                // Add Voice Button
-                int iconSizeVoice = (int) (22 * getResources().getDisplayMetrics().density);
-                LinearLayout.LayoutParams voiceParams = new LinearLayout.LayoutParams(iconSizeVoice, iconSizeVoice);
-                voiceParams.setMargins(4, 0, 4, 0);
-                ImageButton voiceBtn = createActionButton(android.R.drawable.ic_btn_speak_now, voiceParams, v -> {
-                    voiceTargetIndex = index;
-                    voiceTargetPrefs = prefs;
-                    voiceTargetDateKey = currentLoopDateKey;
-                    startVoiceRecognition();
-                });
-                noteLayout.addView(voiceBtn);
-
                 tv.setOnClickListener(v -> {
                     if (isSelectionMode) {
                         toggleSelection(noteId);
@@ -2202,29 +2175,11 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 tv.setOnLongClickListener(v -> {
-                    if (!isSelectionMode) {
-                        isSelectionMode = true;
-                        selectionBar.setVisibility(View.VISIBLE);
-                        toggleSelection(noteId);
-                        return true;
-                    }
-                    android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                    android.content.ClipData clip = android.content.ClipData.newPlainText("SAR Note", noteText);
-                    clipboard.setPrimaryClip(clip);
-                    Toast.makeText(this, "Note copied", Toast.LENGTH_SHORT).show();
-                    return true;
-                });
+                    if (isSelectionMode) return false;
 
-                int iconSize = (int) (28 * getResources().getDisplayMetrics().density);
-                LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(iconSize, iconSize);
-                btnParams.setMargins(4, 0, 4, 0);
-
-                ImageButton menuBtn = createActionButton(android.R.drawable.ic_menu_more, btnParams, v -> {
-                    if (isSelectionMode) {
-                        toggleSelection(noteId);
-                        return;
-                    }
                     android.widget.PopupMenu popup = new android.widget.PopupMenu(this, v);
+                    popup.getMenu().add(0, 7, 0, "Select").setIcon(R.drawable.ic_menu_tx_all_color);
+                    popup.getMenu().add(0, 8, 0, "Voice Append").setIcon(android.R.drawable.ic_btn_speak_now);
                     popup.getMenu().add(0, 1, 0, "Share").setIcon(R.drawable.ic_menu_share_color);
                     popup.getMenu().add(0, 6, 0, "Move").setIcon(R.drawable.ic_menu_transfer_color);
                     
@@ -2247,7 +2202,16 @@ public class MainActivity extends AppCompatActivity {
 
                     popup.setOnMenuItemClickListener(item -> {
                         int itemId = item.getItemId();
-                        if (itemId == 1) {
+                        if (itemId == 7) {
+                            isSelectionMode = true;
+                            selectionBar.setVisibility(View.VISIBLE);
+                            toggleSelection(noteId);
+                        } else if (itemId == 8) {
+                            voiceTargetIndex = index;
+                            voiceTargetPrefs = prefs;
+                            voiceTargetDateKey = currentLoopDateKey;
+                            startVoiceRecognition();
+                        } else if (itemId == 1) {
                             String[] options = {"Share as Text", "Share as .ics File"};
                             new AlertDialog.Builder(this).setTitle("Share Note").setItems(options, (dialog, which) -> {
                                 if (which == 0) {
@@ -2288,8 +2252,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     });
                     popup.show();
+                    return true;
                 });
-                noteLayout.addView(menuBtn);
                 container.addView(noteLayout);
             }
         }
