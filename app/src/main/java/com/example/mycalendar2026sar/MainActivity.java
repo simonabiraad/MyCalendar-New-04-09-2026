@@ -3083,17 +3083,10 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (isDoubleClick) {
-                    SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                    String dateStr = sdfDate.format(cellCal.getTime());
-                    
-                    List<NotificationEvent> dayEvents = eventMap.get(dateStr);
-                    if (dayEvents != null && !dayEvents.isEmpty()) {
-                        showEventsPopup(dateStr, dayEvents);
-                    } else {
-                        Intent intent = new Intent(MainActivity.this, NotificationDetailsActivity.class);
-                        intent.putExtra("mode", "add");
-                        intent.putExtra("date", dateStr);
-                        startActivity(intent);
+                    noteInput.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.showSoftInput(noteInput, InputMethodManager.SHOW_IMPLICIT);
                     }
                 }
             });
