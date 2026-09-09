@@ -60,8 +60,12 @@ public class EventsActivity extends AppCompatActivity {
         findViewById(R.id.addEventHeaderButton).setOnClickListener(v -> {
             Intent intent = new Intent(this, NotificationDetailsActivity.class);
             intent.putExtra("mode", "add");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-            intent.putExtra("date", sdf.format(new Date())); 
+            String selectedDate = getIntent().getStringExtra("selected_date");
+            if (selectedDate == null) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                selectedDate = sdf.format(new Date());
+            }
+            intent.putExtra("date", selectedDate); 
             startActivity(intent);
         });
 

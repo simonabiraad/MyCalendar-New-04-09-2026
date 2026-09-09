@@ -115,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences appSettingsPrefs;
     private CalendarAdapter adapter;
 
-    private Calendar lastSelectedDateBeforeKeyboard;
     private boolean isKeyboardModeActive = false;
 
     private SharedPreferences speechPrefs;
@@ -284,17 +283,11 @@ public class MainActivity extends AppCompatActivity {
     private void setKeyboardMode(boolean isOpen) {
         if (isOpen && !isKeyboardModeActive) {
             isKeyboardModeActive = true;
-            lastSelectedDateBeforeKeyboard = (Calendar) selectedDate.clone();
-            selectedDate = Calendar.getInstance();
-
+            // Removed automatic reset to today
             setViewsVisibility(View.GONE);
             updateRemarkLabelAndHistory();
         } else if (!isOpen && isKeyboardModeActive) {
             isKeyboardModeActive = false;
-            if (lastSelectedDateBeforeKeyboard != null) {
-                selectedDate = (Calendar) lastSelectedDateBeforeKeyboard.clone();
-            }
-
             setViewsVisibility(View.VISIBLE);
             updateRemarkLabelAndHistory();
         }
@@ -431,7 +424,10 @@ public class MainActivity extends AppCompatActivity {
         });
         
         eventButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, EventsActivity.class));
+            Intent intent = new Intent(this, EventsActivity.class);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            intent.putExtra("selected_date", sdf.format(selectedDate.getTime()));
+            startActivity(intent);
         });
 
         noteInput.setOnEditorActionListener((v, actionId, event) -> {
@@ -1829,7 +1825,7 @@ public class MainActivity extends AppCompatActivity {
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setPadding(50, 40, 50, 10);
 
-        final Calendar noteDate = Calendar.getInstance();
+        final Calendar noteDate = (Calendar) selectedDate.clone();
         final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
         final Button dateButton = new Button(this);
@@ -2955,6 +2951,8 @@ public class MainActivity extends AppCompatActivity {
         private final Calendar currentMonth;
         private final LayoutInflater inflater;
         private final Map<String, List<NotificationEvent>> eventMap;
+        private long lastClickTime = 0;
+        private int lastClickPos = -1;
 
         public CalendarAdapter(Context context, ArrayList<Date> days, Calendar currentMonth, Map<String, List<NotificationEvent>> eventMap) {
             this.days = days;
@@ -3067,6 +3065,12 @@ public class MainActivity extends AppCompatActivity {
             }
 
             itemView.setOnClickListener(v -> {
+                long clickTime = System.currentTimeMillis();
+                boolean isDoubleClick = (position == lastClickPos && (clickTime - lastClickTime) < 500);
+                
+                lastClickTime = clickTime;
+                lastClickPos = position;
+
                 selectedDate.set(cellCal.get(Calendar.YEAR), cellCal.get(Calendar.MONTH), cellCal.get(Calendar.DAY_OF_MONTH));
                 
                 if (cellCal.get(Calendar.MONTH) != currentMonth.get(Calendar.MONTH)) {
@@ -3076,6 +3080,21 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     updateDateInfo(selectedDate.get(Calendar.YEAR), selectedDate.get(Calendar.MONTH), selectedDate.get(Calendar.DAY_OF_MONTH));
                     notifyDataSetChanged();
+                }
+
+                if (isDoubleClick) {
+                    SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                    String dateStr = sdfDate.format(cellCal.getTime());
+                    
+                    List<NotificationEvent> dayEvents = eventMap.get(dateStr);
+                    if (dayEvents != null && !dayEvents.isEmpty()) {
+                        showEventsPopup(dateStr, dayEvents);
+                    } else {
+                        Intent intent = new Intent(MainActivity.this, NotificationDetailsActivity.class);
+                        intent.putExtra("mode", "add");
+                        intent.putExtra("date", dateStr);
+                        startActivity(intent);
+                    }
                 }
             });
 

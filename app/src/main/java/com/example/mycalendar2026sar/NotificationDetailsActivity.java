@@ -171,6 +171,12 @@ public class NotificationDetailsActivity extends AppCompatActivity {
 
         editDate.setOnClickListener(v -> {
             Calendar cal = Calendar.getInstance();
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                Date d = sdf.parse(editDate.getText().toString());
+                if (d != null) cal.setTime(d);
+            } catch (Exception ignored) {}
+
             new DatePickerDialog(this, (d, y, m, day) -> {
                 String date = String.format(Locale.getDefault(), "%02d/%02d/%d", day, m + 1, y);
                 editDate.setText(date);
