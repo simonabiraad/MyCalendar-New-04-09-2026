@@ -545,15 +545,15 @@
             <EditText
                 android:id="@+id/editNotes"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/summary_border"
                 android:gravity="top"
                 android:hint="Event description..."
-                android:minLines="2"
-                android:padding="8dp"
+                android:padding="12dp"
                 android:textColor="@color/white"
-                android:textColorHint="#888888" />
+                android:textColorHint="#888888"
+                android:textSize="16sp" />
 
         </LinearLayout>
     </ScrollView>

@@ -15,8 +15,14 @@ public class NotificationUtils {
 
         Calendar calendar = Calendar.getInstance();
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
-            java.util.Date date = sdf.parse(event.getDate() + " " + event.getStartTime());
+            String timeStr = event.getStartTime();
+            SimpleDateFormat sdf;
+            if (timeStr.contains("AM") || timeStr.contains("PM")) {
+                sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.getDefault());
+            } else {
+                sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+            }
+            java.util.Date date = sdf.parse(event.getDate() + " " + timeStr);
             if (date != null) calendar.setTime(date);
             else return;
         } catch (Exception e) {
@@ -74,8 +80,14 @@ public class NotificationUtils {
 
         Calendar calendar = Calendar.getInstance();
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
-            java.util.Date date = sdf.parse(event.getDate() + " " + event.getStartTime());
+            String timeStr = event.getStartTime();
+            SimpleDateFormat sdf;
+            if (timeStr.contains("AM") || timeStr.contains("PM")) {
+                sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.getDefault());
+            } else {
+                sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+            }
+            java.util.Date date = sdf.parse(event.getDate() + " " + timeStr);
             if (date != null) calendar.setTime(date);
             else return;
         } catch (Exception e) {

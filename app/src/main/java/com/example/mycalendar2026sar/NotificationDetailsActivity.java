@@ -211,13 +211,17 @@ public class NotificationDetailsActivity extends AppCompatActivity {
 
         editStartTime.setOnClickListener(v -> {
             new TimePickerDialog(this, (t, h, min) -> {
-                editStartTime.setText(String.format(Locale.getDefault(), "%02d:%02d", h, min));
+                String amPm = h >= 12 ? "PM" : "AM";
+                int h12 = h > 12 ? h - 12 : (h == 0 ? 12 : h);
+                editStartTime.setText(String.format(Locale.getDefault(), "%02d:%02d %s", h12, min, amPm));
             }, 10, 0, false).show();
         });
 
         editEndTime.setOnClickListener(v -> {
             new TimePickerDialog(this, (t, h, min) -> {
-                editEndTime.setText(String.format(Locale.getDefault(), "%02d:%02d", h, min));
+                String amPm = h >= 12 ? "PM" : "AM";
+                int h12 = h > 12 ? h - 12 : (h == 0 ? 12 : h);
+                editEndTime.setText(String.format(Locale.getDefault(), "%02d:%02d %s", h12, min, amPm));
             }, 11, 0, false).show();
         });
 
