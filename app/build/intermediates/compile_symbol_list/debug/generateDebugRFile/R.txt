@@ -239,6 +239,7 @@ int id btnCashCalcShare 0x0
 int id btnCashIn 0x0
 int id btnCashOut 0x0
 int id btnCategoryArrow 0x0
+int id btnColorArrow 0x0
 int id btnCrop 0x0
 int id btnDelete 0x0
 int id btnDeleteAccount 0x0
@@ -267,6 +268,7 @@ int id btnSaveContinue 0x0
 int id btnSaveEdit 0x0
 int id btnSaveExit 0x0
 int id btnSelectCategory 0x0
+int id btnStatusArrow 0x0
 int id btnSummaryCalendar 0x0
 int id btnSummaryReport 0x0
 int id btnText 0x0
@@ -610,6 +612,9 @@ int id spinnerToAccount 0x0
 int id statInText 0x0
 int id statNetText 0x0
 int id statOutText 0x0
+int id statusContainer 0x0
+int id statusDot 0x0
+int id statusText 0x0
 int id sticky_widget_root 0x0
 int id sticky_widget_text 0x0
 int id sticky_widget_title 0x0
@@ -678,11 +683,13 @@ int id transferTimePickerBox 0x0
 int id transferTopBar 0x0
 int id transfer_main 0x0
 int id tvCategoryValue 0x0
+int id tvColorValue 0x0
 int id tvPriorityValue 0x0
 int id tvReminderValue 0x0
 int id tvRepeatValue 0x0
 int id tvSortDateAscState 0x0
 int id tvSortDateDescState 0x0
+int id tvStatusValue 0x0
 int id txCashIn 0x0
 int id txCashOut 0x0
 int id txNamesAddButton 0x0
@@ -712,6 +719,9 @@ int id txtTransferDate 0x0
 int id txtTransferTime 0x0
 int id typeMinusContainer 0x0
 int id typePlusContainer 0x0
+int id viewEventColorIndicator 0x0
+int id viewEventColorMarker 0x0
+int id viewStatusDot 0x0
 int id voiceNoteButton 0x0
 int id voiceNoteContainer 0x0
 int id voiceTaskButton 0x0
@@ -777,6 +787,7 @@ int layout dialog_item_with_icon 0x0
 int layout dialog_media_picker 0x0
 int layout dialog_notebook_note 0x0
 int layout dialog_select_country 0x0
+int layout dialog_status_picker 0x0
 int layout dialog_transaction_note 0x0
 int layout item_account 0x0
 int layout item_account_summary_row 0x0
@@ -810,6 +821,7 @@ int layout layout_custom_menu 0x0
 int layout layout_settings_panel 0x0
 int layout nav_header_expenses 0x0
 int layout notification_widget 0x0
+int layout status_picker_item 0x0
 int layout sticky_note_item 0x0
 int layout sticky_widget 0x0
 int layout widget_list_item 0x0

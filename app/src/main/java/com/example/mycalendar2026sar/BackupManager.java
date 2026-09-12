@@ -73,6 +73,7 @@ public class BackupManager {
                 eObj.put("reminder", e.getReminder());
                 eObj.put("location", e.getLocation());
                 eObj.put("category", e.getCategory());
+                eObj.put("color", e.getColor());
                 eObj.put("attachments", e.getAttachments());
                 eObj.put("voice_path", e.getVoiceNotePath());
                 eObj.put("history", e.getHistory());
@@ -171,6 +172,7 @@ public class BackupManager {
                         eObj.optString("reminder", "None"),
                         eObj.optString("location", ""),
                         eObj.optString("category", "Business"),
+                        eObj.optString("color", ""),
                         eObj.optString("attachments", "[]"),
                         eObj.optString("voice_path", ""),
                         eObj.optString("history", "[]")

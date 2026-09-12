@@ -17,7 +17,7 @@ import java.util.List;
 public class TransactionDbHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "mycalendar.db";
-    private static final int DB_VERSION = 6;
+    private static final int DB_VERSION = 7;
 
     public static final String TABLE_TRANSACTIONS = "transactions";
     public static final String COL_ID = "_id";
@@ -48,6 +48,7 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
     public static final String COL_NOTIF_REMINDER = "reminder";
     public static final String COL_NOTIF_LOCATION = "location";
     public static final String COL_NOTIF_CATEGORY = "category";
+    public static final String COL_NOTIF_COLOR = "color";
     public static final String COL_NOTIF_ATTACHMENTS = "attachments";
     public static final String COL_NOTIF_VOICE_PATH = "voice_path";
     public static final String COL_NOTIF_HISTORY = "history";
@@ -95,6 +96,7 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
                 COL_NOTIF_REMINDER + " TEXT, " +
                 COL_NOTIF_LOCATION + " TEXT, " +
                 COL_NOTIF_CATEGORY + " TEXT, " +
+                COL_NOTIF_COLOR + " TEXT, " +
                 COL_NOTIF_ATTACHMENTS + " TEXT, " +
                 COL_NOTIF_VOICE_PATH + " TEXT, " +
                 COL_NOTIF_HISTORY + " TEXT, " +
@@ -118,6 +120,9 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
         }
         if (oldVersion < 6) {
             db.execSQL("ALTER TABLE " + TABLE_NOTIFICATIONS + " ADD COLUMN " + COL_NOTIF_CATEGORY + " TEXT");
+        }
+        if (oldVersion < 7) {
+            db.execSQL("ALTER TABLE " + TABLE_NOTIFICATIONS + " ADD COLUMN " + COL_NOTIF_COLOR + " TEXT");
         }
     }
 
@@ -329,6 +334,7 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
         values.put(COL_NOTIF_REMINDER, event.getReminder());
         values.put(COL_NOTIF_LOCATION, event.getLocation());
         values.put(COL_NOTIF_CATEGORY, event.getCategory());
+        values.put(COL_NOTIF_COLOR, event.getColor());
         values.put(COL_NOTIF_ATTACHMENTS, event.getAttachments());
         values.put(COL_NOTIF_VOICE_PATH, event.getVoiceNotePath());
         values.put(COL_NOTIF_HISTORY, event.getHistory());
@@ -350,6 +356,7 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
         values.put(COL_NOTIF_REMINDER, event.getReminder());
         values.put(COL_NOTIF_LOCATION, event.getLocation());
         values.put(COL_NOTIF_CATEGORY, event.getCategory());
+        values.put(COL_NOTIF_COLOR, event.getColor());
         values.put(COL_NOTIF_ATTACHMENTS, event.getAttachments());
         values.put(COL_NOTIF_VOICE_PATH, event.getVoiceNotePath());
         values.put(COL_NOTIF_HISTORY, event.getHistory());
@@ -438,6 +445,7 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
                 c.getString(c.getColumnIndexOrThrow(COL_NOTIF_REMINDER)),
                 c.getString(c.getColumnIndexOrThrow(COL_NOTIF_LOCATION)),
                 c.getString(c.getColumnIndexOrThrow(COL_NOTIF_CATEGORY)),
+                c.getString(c.getColumnIndexOrThrow(COL_NOTIF_COLOR)),
                 c.getString(c.getColumnIndexOrThrow(COL_NOTIF_ATTACHMENTS)),
                 c.getString(c.getColumnIndexOrThrow(COL_NOTIF_VOICE_PATH)),
                 c.getString(c.getColumnIndexOrThrow(COL_NOTIF_HISTORY))

@@ -240,6 +240,7 @@ id btnCashCalcShare
 id btnCashIn
 id btnCashOut
 id btnCategoryArrow
+id btnColorArrow
 id btnCrop
 id btnDelete
 id btnDeleteAccount
@@ -268,6 +269,7 @@ id btnSaveContinue
 id btnSaveEdit
 id btnSaveExit
 id btnSelectCategory
+id btnStatusArrow
 id btnSummaryCalendar
 id btnSummaryReport
 id btnText
@@ -611,6 +613,9 @@ id spinnerToAccount
 id statInText
 id statNetText
 id statOutText
+id statusContainer
+id statusDot
+id statusText
 id sticky_widget_root
 id sticky_widget_text
 id sticky_widget_title
@@ -679,11 +684,13 @@ id transferTimePickerBox
 id transferTopBar
 id transfer_main
 id tvCategoryValue
+id tvColorValue
 id tvPriorityValue
 id tvReminderValue
 id tvRepeatValue
 id tvSortDateAscState
 id tvSortDateDescState
+id tvStatusValue
 id txCashIn
 id txCashOut
 id txNamesAddButton
@@ -713,6 +720,9 @@ id txtTransferDate
 id txtTransferTime
 id typeMinusContainer
 id typePlusContainer
+id viewEventColorIndicator
+id viewEventColorMarker
+id viewStatusDot
 id voiceNoteButton
 id voiceNoteContainer
 id voiceTaskButton
@@ -778,6 +788,7 @@ layout dialog_item_with_icon
 layout dialog_media_picker
 layout dialog_notebook_note
 layout dialog_select_country
+layout dialog_status_picker
 layout dialog_transaction_note
 layout item_account
 layout item_account_summary_row
@@ -811,6 +822,7 @@ layout layout_custom_menu
 layout layout_settings_panel
 layout nav_header_expenses
 layout notification_widget
+layout status_picker_item
 layout sticky_note_item
 layout sticky_widget
 layout widget_list_item

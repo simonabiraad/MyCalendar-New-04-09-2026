@@ -142,6 +142,7 @@ public class EventsActivity extends AppCompatActivity {
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_REMINDER)),
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_LOCATION)),
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_CATEGORY)),
+                c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_COLOR)),
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_ATTACHMENTS)),
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_VOICE_PATH)),
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_HISTORY))
@@ -206,8 +207,15 @@ public class EventsActivity extends AppCompatActivity {
                 TextView statusBadge = detailView.findViewById(R.id.detailStatus);
                 View locationLayout = detailView.findViewById(R.id.locationLayout);
                 View priorityLine = detailView.findViewById(R.id.priorityLine);
+                View colorMarker = detailView.findViewById(R.id.viewEventColorMarker);
 
                 title.setText(event.getTitle());
+                if (event.getColor() != null && !event.getColor().isEmpty()) {
+                    colorMarker.setVisibility(View.VISIBLE);
+                    colorMarker.getBackground().setTint(Color.parseColor(event.getColor()));
+                } else {
+                    colorMarker.setVisibility(View.GONE);
+                }
                 if (event.getLocation() != null && !event.getLocation().isEmpty()) {
                     location.setText(event.getLocation());
                     locationLayout.setVisibility(View.VISIBLE);
@@ -250,6 +258,10 @@ public class EventsActivity extends AppCompatActivity {
             badge.setText(status.toUpperCase());
             if ("Completed".equalsIgnoreCase(status)) {
                 badge.setTextColor(Color.GRAY);
+            } else if ("Confirmed".equalsIgnoreCase(status)) {
+                badge.setTextColor(Color.parseColor("#2196F3"));
+            } else if ("Cancelled".equalsIgnoreCase(status)) {
+                badge.setTextColor(Color.parseColor("#F44336"));
             } else {
                 badge.setTextColor(Color.parseColor("#8BC34A"));
             }

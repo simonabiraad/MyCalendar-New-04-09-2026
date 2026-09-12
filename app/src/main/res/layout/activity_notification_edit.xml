@@ -163,6 +163,108 @@
                     android:layout_marginTop="8dp"
                     android:orientation="horizontal">
 
+                    <!-- Reminder | Repeater -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Reminder"
+                            android:textColor="@color/light_green"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/summary_border"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingStart="8dp">
+
+                            <TextView
+                                android:id="@+id/tvReminderValue"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="None"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/btnReminderArrow"
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_arrow_down"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:focusable="true"
+                                app:tint="@color/white" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="16dp"
+                        android:layout_height="match_parent" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Repeater"
+                            android:textColor="@color/light_green"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/summary_border"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingStart="8dp">
+
+                            <TextView
+                                android:id="@+id/tvRepeatValue"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="None"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/btnRepeatArrow"
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_arrow_down"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:focusable="true"
+                                app:tint="@color/white" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
                     <!-- Category | Priority -->
                     <LinearLayout
                         android:layout_width="0dp"
@@ -265,7 +367,7 @@
                     android:layout_marginTop="8dp"
                     android:orientation="horizontal">
 
-                    <!-- Reminder | Repeater -->
+                    <!-- Status | Event Color -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -275,7 +377,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Reminder"
+                            android:text="Status"
                             android:textColor="@color/light_green"
                             android:textStyle="bold" />
 
@@ -288,18 +390,27 @@
                             android:orientation="horizontal"
                             android:paddingStart="8dp">
 
+                            <View
+                                android:id="@+id/viewStatusDot"
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_marginEnd="8dp"
+                                android:background="@drawable/status_dot_on"
+                                android:backgroundTint="#FFC107"
+                                android:visibility="gone" />
+
                             <TextView
-                                android:id="@+id/tvReminderValue"
+                                android:id="@+id/tvStatusValue"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="None"
+                                android:text="Pending"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:id="@+id/btnReminderArrow"
+                                android:id="@+id/btnStatusArrow"
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
                                 android:padding="8dp"
@@ -324,7 +435,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Repeater"
+                            android:text="Event Color"
                             android:textColor="@color/light_green"
                             android:textStyle="bold" />
 
@@ -337,18 +448,27 @@
                             android:orientation="horizontal"
                             android:paddingStart="8dp">
 
+                            <View
+                                android:id="@+id/viewEventColorIndicator"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginVertical="8dp"
+                                android:background="@drawable/status_dot_on"
+                                android:backgroundTint="@color/light_green" />
+
                             <TextView
-                                android:id="@+id/tvRepeatValue"
+                                android:id="@+id/tvColorValue"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="None"
+                                android:layout_marginStart="8dp"
+                                android:text="Default"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:id="@+id/btnRepeatArrow"
+                                android:id="@+id/btnColorArrow"
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
                                 android:padding="8dp"

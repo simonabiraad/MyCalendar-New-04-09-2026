@@ -80,7 +80,7 @@ public class NotificationDetailsActivity extends AppCompatActivity {
 
         if ("add".equals(mode)) {
             String date = getIntent().getStringExtra("date");
-            currentEvent = new NotificationEvent(-1, "", "", date, "", "", "Medium", "Pending", "None", "None", "", "Other", "[]", "", "[]");
+            currentEvent = new NotificationEvent(-1, "", "", date, "", "", "Medium", "Pending", "None", "None", "", "Other", "", "[]", "", "[]");
             setupEditUI();
         } else {
             loadEvent();
@@ -114,6 +114,12 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         android.widget.ImageView btnRepeatArrow = findViewById(R.id.btnRepeatArrow);
         TextView tvReminderValue = findViewById(R.id.tvReminderValue);
         android.widget.ImageView btnReminderArrow = findViewById(R.id.btnReminderArrow);
+        TextView tvStatusValue = findViewById(R.id.tvStatusValue);
+        android.widget.ImageView btnStatusArrow = findViewById(R.id.btnStatusArrow);
+        View viewStatusDot = findViewById(R.id.viewStatusDot);
+        TextView tvColorValue = findViewById(R.id.tvColorValue);
+        android.widget.ImageView btnColorArrow = findViewById(R.id.btnColorArrow);
+        View viewEventColorIndicator = findViewById(R.id.viewEventColorIndicator);
         Button btnAddAttachment = findViewById(R.id.btnAddAttachment);
         Button btnRecordVoice = findViewById(R.id.btnRecordVoice);
         TextView btnCancel = findViewById(R.id.btnCancelEdit);
@@ -158,6 +164,9 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         btnRepeatArrow.setOnClickListener(v -> showPopupMenu(tvRepeatValue, R.array.repeat_options, tvRepeatValue));
         btnReminderArrow.setOnClickListener(v -> showPopupMenu(tvReminderValue, R.array.reminder_options, tvReminderValue));
         btnCategoryArrow.setOnClickListener(v -> showPopupMenu(tvCategoryValue, R.array.event_category_options, tvCategoryValue));
+        
+        btnStatusArrow.setOnClickListener(v -> showStatusPickerDialog(tvStatusValue, viewStatusDot));
+        btnColorArrow.setOnClickListener(v -> showColorPickerDialog(tvColorValue, viewEventColorIndicator));
 
         // Pre-fill
         editTitle.setText(currentEvent.getTitle());
@@ -172,6 +181,19 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         tvPriorityValue.setText(currentEvent.getPriority());
         tvRepeatValue.setText(currentEvent.getRepeat());
         tvReminderValue.setText(currentEvent.getReminder());
+        
+        String status = currentEvent.getStatus() == null ? "Pending" : currentEvent.getStatus();
+        tvStatusValue.setText(status);
+        updateStatusDot(viewStatusDot, status);
+        
+        String colorHex = currentEvent.getColor();
+        if (colorHex == null || colorHex.isEmpty()) {
+            tvColorValue.setText("Default");
+            viewEventColorIndicator.getBackground().setTint(Color.parseColor("#8BC34A"));
+        } else {
+            tvColorValue.setText("Custom");
+            viewEventColorIndicator.getBackground().setTint(Color.parseColor(colorHex));
+        }
 
         editDate.setOnClickListener(v -> {
             Calendar cal = Calendar.getInstance();
@@ -210,6 +232,14 @@ public class NotificationDetailsActivity extends AppCompatActivity {
             currentEvent.setPriority(tvPriorityValue.getText().toString());
             currentEvent.setRepeat(tvRepeatValue.getText().toString());
             currentEvent.setReminder(tvReminderValue.getText().toString());
+            currentEvent.setStatus(tvStatusValue.getText().toString());
+            
+            Object colorTag = viewEventColorIndicator.getTag();
+            if (colorTag instanceof String) {
+                currentEvent.setColor((String) colorTag);
+            } else if (currentEvent.getColor() == null) {
+                currentEvent.setColor("");
+            }
 
             if (currentEvent.getId() == -1) {
                 addHistoryLog("Created");
@@ -388,7 +418,6 @@ public class NotificationDetailsActivity extends AppCompatActivity {
     private void bindData() {
         topTitle.setText(currentEvent.getTitle());
         detailTitle.setText(currentEvent.getTitle());
-        detailStatus.setText(currentEvent.getStatus().toUpperCase());
         detailDate.setText(currentEvent.getDate());
         detailTime.setText(currentEvent.getStartTime() + " - " + currentEvent.getEndTime());
         detailCategory.setText("Category: " + currentEvent.getCategory());
@@ -397,6 +426,16 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         detailReminder.setText(currentEvent.getReminder());
         detailLocation.setText(currentEvent.getLocation().isEmpty() ? "No location" : currentEvent.getLocation());
         detailNotes.setText(currentEvent.getNotes());
+
+        // Update status and color in view mode
+        detailStatus.setText(currentEvent.getStatus().toUpperCase());
+        updateStatusBadge(detailStatus, currentEvent.getStatus());
+        
+        if (currentEvent.getColor() != null && !currentEvent.getColor().isEmpty()) {
+            detailTitle.setTextColor(Color.parseColor(currentEvent.getColor()));
+        } else {
+            detailTitle.setTextColor(Color.WHITE);
+        }
 
         if (currentEvent.getVoiceNotePath() != null && !currentEvent.getVoiceNotePath().isEmpty()) {
             voiceNoteContainer.setVisibility(View.VISIBLE);
@@ -408,13 +447,106 @@ public class NotificationDetailsActivity extends AppCompatActivity {
 
         loadHistory();
         loadAttachments();
+    }
 
-        // Update status color
-        if ("Completed".equalsIgnoreCase(currentEvent.getStatus())) {
-            detailStatus.setTextColor(Color.GRAY);
+    private void updateStatusBadge(TextView badge, String status) {
+        badge.setText(status.toUpperCase());
+        if ("Completed".equalsIgnoreCase(status)) {
+            badge.setTextColor(Color.GRAY);
+        } else if ("Confirmed".equalsIgnoreCase(status)) {
+            badge.setTextColor(Color.parseColor("#2196F3"));
+        } else if ("Cancelled".equalsIgnoreCase(status)) {
+            badge.setTextColor(Color.parseColor("#F44336"));
         } else {
-            detailStatus.setTextColor(Color.parseColor("#8BC34A"));
+            badge.setTextColor(Color.parseColor("#8BC34A"));
         }
+    }
+
+    private void updateStatusDot(View dot, String status) {
+        dot.setVisibility(View.VISIBLE);
+        int color = Color.parseColor("#FFC107"); // Yellow
+        if ("Confirmed".equalsIgnoreCase(status)) color = Color.parseColor("#2196F3"); // Blue
+        else if ("Completed".equalsIgnoreCase(status)) color = Color.parseColor("#4CAF50"); // Green
+        else if ("Cancelled".equalsIgnoreCase(status)) color = Color.parseColor("#F44336"); // Red
+        dot.getBackground().setTint(color);
+    }
+
+    private void showStatusPickerDialog(TextView targetTv, View dotView) {
+        String[] statuses = {"Pending", "Confirmed", "Completed", "Cancelled"};
+        int[] colors = {Color.parseColor("#FFC107"), Color.parseColor("#2196F3"), Color.parseColor("#4CAF50"), Color.parseColor("#F44336")};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_status_picker, null);
+        LinearLayout container = dialogView.findViewById(R.id.statusContainer);
+
+        AlertDialog dialog = builder.setView(dialogView).create();
+
+        for (int i = 0; i < statuses.length; i++) {
+            final String status = statuses[i];
+            final int color = colors[i];
+            View itemView = getLayoutInflater().inflate(R.layout.status_picker_item, container, false);
+            View dot = itemView.findViewById(R.id.statusDot);
+            TextView text = itemView.findViewById(R.id.statusText);
+            
+            dot.getBackground().setTint(color);
+            text.setText(status);
+            
+            itemView.setOnClickListener(v -> {
+                targetTv.setText(status);
+                updateStatusDot(dotView, status);
+                dialog.dismiss();
+            });
+            container.addView(itemView);
+        }
+        dialog.show();
+    }
+
+    private void showColorPickerDialog(TextView targetTv, View colorIndicator) {
+        int[] colors = {
+                Color.parseColor("#8BC34A"), // Light Green
+                Color.parseColor("#4CAF50"), // Green
+                Color.parseColor("#2196F3"), // Blue
+                Color.parseColor("#FF9800"), // Orange
+                Color.parseColor("#F44336"), // Red
+                Color.parseColor("#9C27B0"), // Purple
+                Color.parseColor("#E91E63"), // Pink
+                Color.parseColor("#FFEB3B"), // Yellow
+                Color.parseColor("#00BCD4"), // Cyan
+                Color.parseColor("#795548")  // Brown
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme);
+        builder.setTitle("Select Event Color");
+
+        android.widget.GridView gridView = new android.widget.GridView(this);
+        gridView.setNumColumns(5);
+        gridView.setPadding(20, 20, 20, 20);
+        gridView.setVerticalSpacing(20);
+        gridView.setHorizontalSpacing(20);
+        
+        gridView.setAdapter(new android.widget.BaseAdapter() {
+            @Override public int getCount() { return colors.length; }
+            @Override public Object getItem(int position) { return colors[position]; }
+            @Override public long getItemId(int position) { return position; }
+            @Override public View getView(int position, View convertView, ViewGroup parent) {
+                View view = new View(parent.getContext());
+                view.setLayoutParams(new android.widget.AbsListView.LayoutParams(80, 80));
+                view.setBackgroundResource(R.drawable.status_dot_on);
+                view.getBackground().setTint(colors[position]);
+                return view;
+            }
+        });
+
+        AlertDialog dialog = builder.setView(gridView).create();
+        gridView.setOnItemClickListener((parent, view, position, id) -> {
+            int selectedColor = colors[position];
+            colorIndicator.getBackground().setTint(selectedColor);
+            String hexColor = String.format("#%06X", (0xFFFFFF & selectedColor));
+            colorIndicator.setTag(hexColor);
+            targetTv.setText("Custom");
+            dialog.dismiss();
+        });
+        dialog.show();
     }
 
     private void loadAttachments() {
