@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="event_category_options">
+        <item>Business</item>
+        <item>Meeting</item>
+        <item>Personal</item>
+        <item>Appointment</item>
+        <item>Travel</item>
+        <item>Birthday</item>
+        <item>Important</item>
+        <item>Other</item>
+    </string-array>
     <string-array name="priority_options">
         <item>High</item>
         <item>Medium</item>

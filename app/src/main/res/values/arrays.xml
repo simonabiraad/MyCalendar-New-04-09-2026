@@ -25,4 +25,15 @@
         <item>1 day before</item>
         <item>Custom</item>
     </string-array>
+
+    <string-array name="event_category_options">
+        <item>Business</item>
+        <item>Meeting</item>
+        <item>Personal</item>
+        <item>Appointment</item>
+        <item>Travel</item>
+        <item>Birthday</item>
+        <item>Important</item>
+        <item>Other</item>
+    </string-array>
 </resources>

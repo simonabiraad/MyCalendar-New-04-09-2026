@@ -1,4 +1,5 @@
 com.example.mycalendar2026sar
+array event_category_options
 array priority_options
 array reminder_options
 array repeat_options
@@ -238,6 +239,7 @@ id btnCashCalcDelete
 id btnCashCalcShare
 id btnCashIn
 id btnCashOut
+id btnCategoryArrow
 id btnCrop
 id btnDelete
 id btnDeleteAccount
@@ -354,6 +356,7 @@ id deletedRowRestoreButton
 id deletedRowTitle
 id deletedTopBar
 id denomRecyclerView
+id detailCategory
 id detailDate
 id detailLocation
 id detailNotes
@@ -675,6 +678,7 @@ id transferDatePickerBox
 id transferTimePickerBox
 id transferTopBar
 id transfer_main
+id tvCategoryValue
 id tvPriorityValue
 id tvReminderValue
 id tvRepeatValue

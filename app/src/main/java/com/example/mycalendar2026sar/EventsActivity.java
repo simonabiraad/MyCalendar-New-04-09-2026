@@ -141,6 +141,7 @@ public class EventsActivity extends AppCompatActivity {
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_REPEAT)),
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_REMINDER)),
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_LOCATION)),
+                c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_CATEGORY)),
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_ATTACHMENTS)),
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_VOICE_PATH)),
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_HISTORY))

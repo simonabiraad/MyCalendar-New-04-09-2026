@@ -42,7 +42,7 @@ public class NotificationDetailsActivity extends AppCompatActivity {
     private String mode = "view"; // "view", "edit", "add"
     private TransactionDbHelper dbHelper;
 
-    private TextView topTitle, detailTitle, detailStatus, detailDate, detailTime, detailPriority, detailRepeat, detailReminder, detailLocation, detailNotes;
+    private TextView topTitle, detailTitle, detailStatus, detailDate, detailTime, detailCategory, detailPriority, detailRepeat, detailReminder, detailLocation, detailNotes;
     private ImageButton backButton, editTopButton, moreOptionsButton, playVoiceBtn, deleteVoiceBtn;
     private Button completeAction, snoozeAction, editAction, deleteAction;
     private android.widget.LinearLayout historyContainer, voiceNoteContainer;
@@ -80,7 +80,7 @@ public class NotificationDetailsActivity extends AppCompatActivity {
 
         if ("add".equals(mode)) {
             String date = getIntent().getStringExtra("date");
-            currentEvent = new NotificationEvent(-1, "", "", date, "", "", "Medium", "Pending", "None", "None", "", "[]", "", "[]");
+            currentEvent = new NotificationEvent(-1, "", "", date, "", "", "Medium", "Pending", "None", "None", "", "Other", "[]", "", "[]");
             setupEditUI();
         } else {
             loadEvent();
@@ -106,6 +106,8 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         android.widget.EditText editTitle = findViewById(R.id.editTitle);
         android.widget.EditText editNotesField = findViewById(R.id.editNotes);
         android.widget.EditText editLocationField = findViewById(R.id.editLocation);
+        TextView tvCategoryValue = findViewById(R.id.tvCategoryValue);
+        android.widget.ImageView btnCategoryArrow = findViewById(R.id.btnCategoryArrow);
         TextView tvPriorityValue = findViewById(R.id.tvPriorityValue);
         android.widget.ImageView btnPriorityArrow = findViewById(R.id.btnPriorityArrow);
         TextView tvRepeatValue = findViewById(R.id.tvRepeatValue);
@@ -155,6 +157,7 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         btnPriorityArrow.setOnClickListener(v -> showPopupMenu(tvPriorityValue, R.array.priority_options, tvPriorityValue));
         btnRepeatArrow.setOnClickListener(v -> showPopupMenu(tvRepeatValue, R.array.repeat_options, tvRepeatValue));
         btnReminderArrow.setOnClickListener(v -> showPopupMenu(tvReminderValue, R.array.reminder_options, tvReminderValue));
+        btnCategoryArrow.setOnClickListener(v -> showPopupMenu(tvCategoryValue, R.array.event_category_options, tvCategoryValue));
 
         // Pre-fill
         editTitle.setText(currentEvent.getTitle());
@@ -165,6 +168,7 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         editEndTime.setText(currentEvent.getEndTime());
 
         // Set values
+        tvCategoryValue.setText(currentEvent.getCategory() == null || currentEvent.getCategory().isEmpty() ? "Other" : currentEvent.getCategory());
         tvPriorityValue.setText(currentEvent.getPriority());
         tvRepeatValue.setText(currentEvent.getRepeat());
         tvReminderValue.setText(currentEvent.getReminder());
@@ -202,6 +206,7 @@ public class NotificationDetailsActivity extends AppCompatActivity {
             currentEvent.setDate(editDate.getText().toString());
             currentEvent.setStartTime(editStartTime.getText().toString());
             currentEvent.setEndTime(editEndTime.getText().toString());
+            currentEvent.setCategory(tvCategoryValue.getText().toString());
             currentEvent.setPriority(tvPriorityValue.getText().toString());
             currentEvent.setRepeat(tvRepeatValue.getText().toString());
             currentEvent.setReminder(tvReminderValue.getText().toString());
@@ -335,6 +340,7 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         detailStatus = findViewById(R.id.detailStatus);
         detailDate = findViewById(R.id.detailDate);
         detailTime = findViewById(R.id.detailTime);
+        detailCategory = findViewById(R.id.detailCategory);
         detailPriority = findViewById(R.id.detailPriority);
         detailRepeat = findViewById(R.id.detailRepeat);
         detailReminder = findViewById(R.id.detailReminder);
@@ -385,6 +391,7 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         detailStatus.setText(currentEvent.getStatus().toUpperCase());
         detailDate.setText(currentEvent.getDate());
         detailTime.setText(currentEvent.getStartTime() + " - " + currentEvent.getEndTime());
+        detailCategory.setText("Category: " + currentEvent.getCategory());
         detailPriority.setText("Priority: " + currentEvent.getPriority());
         detailRepeat.setText(currentEvent.getRepeat());
         detailReminder.setText(currentEvent.getReminder());
