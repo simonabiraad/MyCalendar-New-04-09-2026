@@ -19,12 +19,13 @@
 
         <ImageButton
             android:id="@+id/notebookBackButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Back"
-            android:src="@android:drawable/ic_menu_revert"
-            app:tint="@color/white" />
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_back_color" />
 
         <TextView
             android:layout_width="0dp"
@@ -38,12 +39,13 @@
 
         <ImageButton
             android:id="@+id/notebookAddButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Add note"
-            android:src="@android:drawable/ic_input_add"
-            app:tint="@color/light_green" />
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_notif_plus_color" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -51,6 +51,7 @@ drawable dialog_border
 drawable edit_text_outline
 drawable ic_add_circle
 drawable ic_arrow_down
+drawable ic_back_color
 drawable ic_banner_foreground
 drawable ic_cat_bill_color
 drawable ic_cat_business_color
@@ -83,6 +84,7 @@ drawable ic_menu_calendar_color
 drawable ic_menu_cash_in_color
 drawable ic_menu_cash_out_color
 drawable ic_menu_category_color
+drawable ic_menu_color
 drawable ic_menu_color_palette
 drawable ic_menu_crop_color
 drawable ic_menu_edit_color
@@ -113,6 +115,7 @@ drawable ic_menu_trash_color
 drawable ic_menu_tx_all_color
 drawable ic_menu_tx_names_color
 drawable ic_menu_voice_note_color
+drawable ic_more_color
 drawable ic_notif_camera_color
 drawable ic_notif_clock_color
 drawable ic_notif_gallery_color

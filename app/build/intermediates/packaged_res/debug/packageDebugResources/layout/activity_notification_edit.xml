@@ -18,11 +18,12 @@
 
         <ImageButton
             android:id="@+id/btnBackEdit"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@android:drawable/ic_menu_revert"
-            app:tint="@color/white" />
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_back_color" />
 
         <TextView
             android:id="@+id/editTitleHeader"

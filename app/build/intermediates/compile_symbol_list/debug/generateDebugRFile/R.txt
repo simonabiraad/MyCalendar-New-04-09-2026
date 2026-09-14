@@ -50,6 +50,7 @@ int drawable dialog_border 0x0
 int drawable edit_text_outline 0x0
 int drawable ic_add_circle 0x0
 int drawable ic_arrow_down 0x0
+int drawable ic_back_color 0x0
 int drawable ic_banner_foreground 0x0
 int drawable ic_cat_bill_color 0x0
 int drawable ic_cat_business_color 0x0
@@ -82,6 +83,7 @@ int drawable ic_menu_calendar_color 0x0
 int drawable ic_menu_cash_in_color 0x0
 int drawable ic_menu_cash_out_color 0x0
 int drawable ic_menu_category_color 0x0
+int drawable ic_menu_color 0x0
 int drawable ic_menu_color_palette 0x0
 int drawable ic_menu_crop_color 0x0
 int drawable ic_menu_edit_color 0x0
@@ -112,6 +114,7 @@ int drawable ic_menu_trash_color 0x0
 int drawable ic_menu_tx_all_color 0x0
 int drawable ic_menu_tx_names_color 0x0
 int drawable ic_menu_voice_note_color 0x0
+int drawable ic_more_color 0x0
 int drawable ic_notif_camera_color 0x0
 int drawable ic_notif_clock_color 0x0
 int drawable ic_notif_gallery_color 0x0

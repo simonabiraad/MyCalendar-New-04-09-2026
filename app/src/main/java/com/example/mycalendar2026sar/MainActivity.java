@@ -2787,7 +2787,7 @@ public class MainActivity extends AppCompatActivity {
             aiBtn.setImageTintList(null);
         }
         ImageButton menuBtn = findViewById(R.id.mainMenuButton);
-        if (menuBtn != null) menuBtn.setImageTintList(ColorStateList.valueOf(getColor(R.color.white)));
+        if (menuBtn != null) menuBtn.setImageTintList(null);
         ImageButton voiceBtn = findViewById(R.id.voiceNoteButton);
         if (voiceBtn != null) voiceBtn.setImageTintList(null);
         ImageButton addNoteBtn = findViewById(R.id.addNoteIconButton);

@@ -1,43 +1,100 @@
-# Change Voice and Notification Emojis to Colored Logos
+# Standardize Top Action Icons Across SAR Calendar
 
-This plan describes how to replace the emoji-based icons in the application's header with "real" colored logos (vector drawables) as requested.
+This plan describes how to standardize all top action icons (Back, Plus, Menu, More, Edit) across all pages of the application to follow the professional, logo-style design used for the Voice icon.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> The top right buttons in `MainActivity` and `ExpensesActivity` will be changed from `Button` widgets (using emojis like 🎙 and 🔔) to `ImageButton` widgets using colored vector drawables. This improves the visual consistency with the bottom bar.
+> - All top action buttons will be converted to `ImageButton` widgets with transparent backgrounds (`?attr/selectableItemBackgroundBorderless`).
+> - The icons will use colored vector drawables instead of plain white tints or emojis.
+> - A consistent size of `@dimen/icon_size_medium` (24-32dp) and padding of `4dp` will be applied.
+> - New colored drawables will be created for Back, Menu, and More actions to ensure a unified design language.
 
 ## Proposed Changes
 
-### Layouts
+### New Drawables
 
-#### [MODIFY] [activity_main.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_main.xml)
-- Change `aiAssistantButton` from `Button` to `ImageButton`.
-- Change `notificationSettingsButton` from `Button` to `ImageButton`.
-- Remove `android:text` (🎙 and 🔔).
-- Set `android:src="@drawable/ic_notif_voice_color"` for the voice button.
-- Set `android:src="@drawable/ic_menu_reminder_color"` for the notification button.
-- Set `android:background="?attr/selectableItemBackgroundBorderless"` to remove the grey box background.
-- Adjust padding and scale type for better appearance.
+#### [NEW] [ic_back_color.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/drawable/ic_back_color.xml)
+- A professional blue back arrow logo.
 
-#### [MODIFY] [activity_expenses.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_expenses.xml)
-- Change `aiAssistantButton` from `Button` to `ImageButton`.
-- Remove `android:text="🎙"`.
-- Set `android:src="@drawable/ic_notif_voice_color"`.
-- Set `android:background="?attr/selectableItemBackgroundBorderless"`.
+#### [NEW] [ic_menu_color.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/drawable/ic_menu_color.xml)
+- A professional colored hamburger menu logo.
+
+#### [NEW] [ic_more_color.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/drawable/ic_more_color.xml)
+- A professional colored "three dots" more options logo.
 
 ---
 
-### Java Code
+### Layout Modifications
+
+The following layouts will be updated to replace existing header buttons/icons with the standardized `ImageButton` style:
+
+#### [MODIFY] [activity_main.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_main.xml)
+- Update `mainMenuButton` to use `ic_menu_color`.
+- Standardize size and remove tint.
+
+#### [MODIFY] [activity_task.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_task.xml)
+- Update `taskBackButton` to `ic_back_color` and standardize size.
+- Update `taskMenuButton` to use `ic_more_color`.
+- Update `addTaskButton` to use `ic_notif_plus_color`.
+
+#### [MODIFY] [activity_events.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_events.xml)
+- Update `eventBackButton` to `ic_back_color`.
+- Update `addEventHeaderButton` to `ic_notif_plus_color`.
+
+#### [MODIFY] [activity_notification_details.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_notification_details.xml)
+- Update `backButton` to `ic_back_color`.
+- Update `editTopButton` styling.
+- Update `moreOptionsButton` to `ic_more_color`.
+
+#### [MODIFY] [activity_notification_edit.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_notification_edit.xml)
+- Update `btnBackEdit` to `ic_back_color`.
+
+#### [MODIFY] [activity_secure_box.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_secure_box.xml)
+- Update `backButton` to `ic_back_color`.
+- Change `addCategoryHeaderButton` from `Button` (+) to `ImageButton` with `ic_notif_plus_color`.
+
+#### [MODIFY] [activity_notebook.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_notebook.xml)
+- Update `notebookBackButton` to `ic_back_color`.
+- Update `notebookAddButton` to `ic_notif_plus_color`.
+
+#### [MODIFY] [activity_chart.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_chart.xml)
+- Update `chartBackButton` to `ic_back_color`.
+
+#### [MODIFY] [activity_summary.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_summary.xml)
+- Update `summaryBackButton` to `ic_back_color`.
+
+#### [MODIFY] [activity_account_summary.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_account_summary.xml)
+- Update `accountSummaryBackButton` to `ic_back_color`.
+
+#### [MODIFY] [activity_expenses_calendar.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_expenses_calendar.xml)
+- Update `backButton` and `moreButton`.
+
+#### [MODIFY] [activity_accounts_overview.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_accounts_overview.xml)
+- Update `backButton` to `ic_back_color`.
+
+#### [MODIFY] [activity_add_transaction.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_add_transaction.xml)
+- Update `backButton` to `ic_back_color`.
+
+#### [MODIFY] [activity_cash_calculator.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_cash_calculator.xml)
+- Update `backButton` to `ic_back_color`.
+
+#### [MODIFY] [activity_report_all.xml](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/res/layout/activity_report_all.xml)
+- Update `backButton` to `ic_back_color`.
+
+---
+
+### Java Code Modifications
 
 #### [MODIFY] [MainActivity.java](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/java/com/example/mycalendar2026sar/MainActivity.java)
-- Update variable types from `Button` to `ImageButton` for `aiBtn` and `notifyBtn`.
-- Remove code that applies font settings or background tints to these specific buttons, as they will now be transparent-background icons.
+- Ensure menu button styling is handled.
+
+#### [MODIFY] [SecureBoxActivity.java](file:///C:/Users/simon/StudioProjects/MyCalendar-New-04-09-2026/app/src/main/java/com/example/mycalendar2026sar/SecureBoxActivity.java)
+- Update `addCategoryHeaderButton` reference from `Button` to `ImageButton` to avoid casting errors.
 
 ## Verification Plan
 
 ### Manual Verification
-- Deploy the app to the device.
-- Check the top right of the main screen to see the colored microphone and yellow bell.
-- Check the `ExpensesActivity` to see the colored microphone.
-- Verify that clicking these icons still triggers the correct actions (Voice Assistant and Notification Settings).
+- Navigate through all pages (Tasks, Events, Notifications, Secure Box, Notebook, etc.).
+- Verify that all top action icons have consistent sizing, spacing, and colored logo designs.
+- Ensure that clicking these icons still performs the correct action.

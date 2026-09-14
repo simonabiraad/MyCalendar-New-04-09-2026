@@ -19,12 +19,13 @@
 
         <ImageButton
             android:id="@+id/categoryBackButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/prev_month"
-            android:src="@android:drawable/ic_menu_revert"
-            app:tint="@color/white" />
+            android:contentDescription="Back"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_back_color" />
 
         <TextView
             android:id="@+id/categoryToolbarTitle"
