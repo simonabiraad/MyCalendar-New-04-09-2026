@@ -982,6 +982,7 @@ string note_flag
 string note_hint
 string note_saved
 string notification_icon
+string notifications
 string prev_month
 string remark_for
 string sat
@@ -1004,6 +1005,7 @@ string today_widget_small_description
 string transaction
 string transfer
 string tue
+string voice_assistant
 string wed
 string yearly
 string yes

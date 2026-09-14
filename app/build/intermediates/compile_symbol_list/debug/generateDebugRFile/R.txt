@@ -980,6 +980,7 @@ int string note_flag 0x0
 int string note_hint 0x0
 int string note_saved 0x0
 int string notification_icon 0x0
+int string notifications 0x0
 int string prev_month 0x0
 int string remark_for 0x0
 int string sat 0x0
@@ -1002,6 +1003,7 @@ int string today_widget_small_description 0x0
 int string transaction 0x0
 int string transfer 0x0
 int string tue 0x0
+int string voice_assistant 0x0
 int string wed 0x0
 int string yearly 0x0
 int string yes 0x0

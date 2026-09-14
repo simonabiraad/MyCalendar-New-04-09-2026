@@ -2777,18 +2777,17 @@ public class MainActivity extends AppCompatActivity {
             expBtn.setBackgroundTintList(ColorStateList.valueOf(mainTheme));
             applyFontSettings(expBtn, 11);
         }
-        Button notifyBtn = findViewById(R.id.notificationSettingsButton);
+        ImageButton notifyBtn = findViewById(R.id.notificationSettingsButton);
         if (notifyBtn != null) {
-            notifyBtn.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.light_green)));
-            applyFontSettings(notifyBtn, 11);
+            notifyBtn.setImageTintList(null);
         }
         int neutral40 = Color.parseColor("#5E5E5E"); // material_dynamic_neutral40
-        Button aiBtn = findViewById(R.id.aiAssistantButton);
+        ImageButton aiBtn = findViewById(R.id.aiAssistantButton);
         if (aiBtn != null) {
-            aiBtn.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.light_green)));
+            aiBtn.setImageTintList(null);
         }
         ImageButton menuBtn = findViewById(R.id.mainMenuButton);
-        if (menuBtn != null) menuBtn.setImageTintList(ColorStateList.valueOf(getColor(R.color.light_green)));
+        if (menuBtn != null) menuBtn.setImageTintList(ColorStateList.valueOf(getColor(R.color.white)));
         ImageButton voiceBtn = findViewById(R.id.voiceNoteButton);
         if (voiceBtn != null) voiceBtn.setImageTintList(null);
         ImageButton addNoteBtn = findViewById(R.id.addNoteIconButton);

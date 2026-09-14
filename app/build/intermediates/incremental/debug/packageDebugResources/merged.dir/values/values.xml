@@ -215,6 +215,7 @@
     <string name="note_hint">Enter note here...</string>
     <string name="note_saved">Note saved!</string>
     <string name="notification_icon">🔔</string>
+    <string name="notifications">Notifications</string>
     <string name="prev_month">Previous Month</string>
     <string name="remark_for">Notes for: %s</string>
     <string name="sat">Sat</string>
@@ -237,6 +238,7 @@
     <string name="transaction">Transaction</string>
     <string name="transfer">Transfer</string>
     <string name="tue">Tue</string>
+    <string name="voice_assistant">Voice Assistant</string>
     <string name="wed">Wed</string>
     <string name="yearly">Yearly</string>
     <string name="yes">Yes</string>
