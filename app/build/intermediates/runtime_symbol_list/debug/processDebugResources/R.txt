@@ -3810,6 +3810,7 @@ int drawable fingerprint_dialog_fp_icon 0x7f0800a9
 int drawable googleg_disabled_color_18 0x7f0800aa
 int drawable googleg_standard_color_18 0x7f0800ab
 int drawable ic_add_circle 0x7f0800ac
+int drawable ic_add_colorful 0x7f08015e
 int drawable ic_arrow_back_black_24 0x7f0800ad
 int drawable ic_arrow_down 0x7f0800ae
 int drawable ic_back_color 0x7f0800af

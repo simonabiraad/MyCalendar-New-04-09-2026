@@ -3,7 +3,16 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
+    <!-- Plane Main Body (Blue) -->
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M2.01,21L23,12 2.01,3 2,10l15,2 -15,2z" />
+    <!-- Plane Bottom Wing (Green) -->
     <path
         android:fillColor="#4CAF50"
-        android:pathData="M2.01,21L23,12 2.01,3 2,10l15,2 -15,2z" />
+        android:pathData="M2.01,21L12,16.5L2,14z" />
+    <!-- Plane Top Wing (Orange) -->
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M2.01,3L12,7.5L2,10z" />
 </vector>

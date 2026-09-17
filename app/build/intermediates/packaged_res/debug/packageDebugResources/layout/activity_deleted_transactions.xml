@@ -23,8 +23,7 @@
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Back"
-            android:src="@android:drawable/ic_menu_revert"
-            app:tint="@color/white" />
+            android:src="@drawable/ic_back_color" />
 
         <TextView
             android:layout_width="0dp"
@@ -42,8 +41,7 @@
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Empty trash"
-            android:src="@android:drawable/ic_menu_delete"
-            app:tint="@color/expense_red" />
+            android:src="@drawable/ic_menu_trash_color" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

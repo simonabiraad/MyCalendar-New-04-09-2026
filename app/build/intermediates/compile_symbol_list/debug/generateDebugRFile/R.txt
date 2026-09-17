@@ -49,6 +49,7 @@ int drawable dialog_background_rounded 0x0
 int drawable dialog_border 0x0
 int drawable edit_text_outline 0x0
 int drawable ic_add_circle 0x0
+int drawable ic_add_colorful 0x0
 int drawable ic_arrow_down 0x0
 int drawable ic_back_color 0x0
 int drawable ic_banner_foreground 0x0

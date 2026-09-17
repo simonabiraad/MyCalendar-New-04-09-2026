@@ -51,6 +51,7 @@ drawable dialog_background_rounded
 drawable dialog_border
 drawable edit_text_outline
 drawable ic_add_circle
+drawable ic_add_colorful
 drawable ic_arrow_down
 drawable ic_back_color
 drawable ic_banner_foreground

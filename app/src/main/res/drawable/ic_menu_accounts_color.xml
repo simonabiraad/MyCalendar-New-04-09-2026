@@ -3,7 +3,20 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
+    <!-- Columns (Blue) -->
     <path
-        android:fillColor="#008080"
-        android:pathData="M4,10h3v7H4zM10.5,10h3v7h-3zM17,10h3v7h-3zM2,19h20v2H2zM12,1L2,6v2h20V6L12,1z" />
+        android:fillColor="#2196F3"
+        android:pathData="M4,10h3v7H4zM10.5,10h3v7h-3zM17,10h3v7h-3z" />
+    <!-- Base (Dark Grey) -->
+    <path
+        android:fillColor="#455A64"
+        android:pathData="M2,19h20v2H2z" />
+    <!-- Roof (Gold) -->
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M12,1L2,6v2h20V6L12,1z" />
+    <!-- Roof Detail (Orange) -->
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M12,2L4,6v1h16V6L12,2z" />
 </vector>

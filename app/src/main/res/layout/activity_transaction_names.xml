@@ -23,8 +23,7 @@
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Back"
-            android:src="@android:drawable/ic_menu_revert"
-            app:tint="@color/white" />
+            android:src="@drawable/ic_back_color" />
 
         <TextView
             android:layout_width="0dp"
@@ -42,8 +41,7 @@
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Add name"
-            android:src="@android:drawable/ic_input_add"
-            app:tint="@color/light_green" />
+            android:src="@drawable/ic_add_colorful" />
     </LinearLayout>
 
     <androidx.appcompat.widget.SearchView

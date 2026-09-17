@@ -20,10 +20,9 @@
             android:layout_margin="@dimen/_6sdp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/menu_content_description"
-            android:src="@android:drawable/ic_menu_sort_by_size"
+            android:src="@drawable/ic_menu_color"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/topExpensesButton"
@@ -51,8 +50,7 @@
             android:src="@drawable/ic_menu_print_color"
             app:layout_constraintBottom_toBottomOf="@id/expensesChartButton"
             app:layout_constraintEnd_toStartOf="@id/aiAssistantButton"
-            app:layout_constraintTop_toTopOf="@id/expensesChartButton"
-            app:tint="@color/white" />
+            app:layout_constraintTop_toTopOf="@id/expensesChartButton" />
 
         <ImageButton
             android:id="@+id/aiAssistantButton"
@@ -90,8 +88,7 @@
             android:contentDescription="@string/more_options_description"
             android:src="@drawable/ic_menu_tx_all_color"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/expensesButtonContainer"
