@@ -50,9 +50,9 @@ import java.util.Map;
 
 public class ChartActivity extends AppCompatActivity {
 
-    private PieChart pieChart, pieChartAccount;
+    private PieChart pieChart;
     private LineChart lineChart;
-    private LinearLayout detailsContainer, detailsContainerAccount;
+    private LinearLayout detailsContainer, currencyChartsContainer;
     private TransactionDbHelper dbHelper;
     private TextView currentBalanceTrendText;
     private TextView btnToday, btn7Days, btn30Days;
@@ -65,10 +65,9 @@ public class ChartActivity extends AppCompatActivity {
 
         dbHelper = TransactionDbHelper.getInstance(this);
         pieChart = findViewById(R.id.pieChart);
-        pieChartAccount = findViewById(R.id.pieChartAccount);
         lineChart = findViewById(R.id.lineChart);
         detailsContainer = findViewById(R.id.detailsContainer);
-        detailsContainerAccount = findViewById(R.id.detailsContainerAccount);
+        currencyChartsContainer = findViewById(R.id.currencyChartsContainer);
         currentBalanceTrendText = findViewById(R.id.currentBalanceTrendText);
         btnToday = findViewById(R.id.btnPeriodToday);
         btn7Days = findViewById(R.id.btnPeriod7Days);
@@ -113,27 +112,84 @@ public class ChartActivity extends AppCompatActivity {
 
     private void setupCharts() {
         List<Transaction> transactions = dbHelper.getAllTransactionsAscending();
-        setupPieChartTotalAccounts();
         setupPieChart(transactions);
         setupLineChart(transactions);
+        setupCurrencyCharts(transactions);
     }
 
-    private void setupPieChartTotalAccounts() {
+    private void setupCurrencyCharts(List<Transaction> transactions) {
+        currencyChartsContainer.removeAllViews();
         List<Account> accounts = loadAccounts();
-        Map<String, Double> accountBalances = new HashMap<>();
-        double totalBalance = 0;
-
+        
+        // Group accounts by currency
+        Map<String, List<Account>> groupedAccounts = new HashMap<>();
         for (Account a : accounts) {
-            double balance = a.getBalance();
-            accountBalances.put(a.getName(), balance);
-            totalBalance += balance;
+            String curr = a.getCurrency();
+            if (curr == null) curr = "USD";
+            if (!groupedAccounts.containsKey(curr)) {
+                groupedAccounts.put(curr, new ArrayList<>());
+            }
+            List<Account> accountList = groupedAccounts.get(curr);
+            if (accountList != null) {
+                accountList.add(a);
+            }
         }
 
-        if (accountBalances.isEmpty()) {
-            pieChartAccount.setNoDataText("No account data available");
-            return;
-        }
+        // Sort currencies so they appear consistently
+        List<String> currencies = new ArrayList<>(groupedAccounts.keySet());
+        Collections.sort(currencies);
 
+        for (String currency : currencies) {
+            List<Account> currencyAccounts = groupedAccounts.get(currency);
+            if (currencyAccounts == null) continue;
+            
+            // Calculate stats for this currency
+            double totalAmount = 0;
+            Map<String, Double> accountBalances = new HashMap<>();
+            for (Account a : currencyAccounts) {
+                totalAmount += a.getBalance();
+                accountBalances.put(a.getName(), a.getBalance());
+            }
+
+            double income = 0;
+            double expenses = 0;
+            for (Transaction t : transactions) {
+                if (currency.equalsIgnoreCase(t.getCurrency())) {
+                    if (t.isCashIn()) {
+                        income += t.getAmount();
+                    } else {
+                        expenses += t.getAmount();
+                    }
+                }
+            }
+            double balance = income - expenses;
+
+            // Inflate layout
+            View currencyView = LayoutInflater.from(this).inflate(R.layout.layout_currency_chart, currencyChartsContainer, false);
+            
+            TextView header = currencyView.findViewById(R.id.currencyHeader);
+            TextView tvTotal = currencyView.findViewById(R.id.tvTotalAmount);
+            TextView tvIncome = currencyView.findViewById(R.id.tvIncome);
+            TextView tvExpenses = currencyView.findViewById(R.id.tvExpenses);
+            TextView tvBalance = currencyView.findViewById(R.id.tvBalance);
+            PieChart currencyPieChart = currencyView.findViewById(R.id.currencyPieChart);
+            LinearLayout detailsContainer = currencyView.findViewById(R.id.currencyDetailsContainer);
+
+            String symbol = getCurrencySymbol(currency);
+            header.setText(currency + " Breakdown");
+            tvTotal.setText(String.format(Locale.US, "%,.2f %s", totalAmount, symbol));
+            tvIncome.setText(String.format(Locale.US, "%,.2f %s", income, symbol));
+            tvExpenses.setText(String.format(Locale.US, "%,.2f %s", expenses, symbol));
+            tvBalance.setText(String.format(Locale.US, "%,.2f %s", balance, symbol));
+
+            // Setup PieChart for this currency
+            setupCurrencyPieChart(currencyPieChart, detailsContainer, accountBalances, totalAmount, currency);
+
+            currencyChartsContainer.addView(currencyView);
+        }
+    }
+
+    private void setupCurrencyPieChart(PieChart chart, LinearLayout container, Map<String, Double> accountBalances, double totalBalance, String currency) {
         ArrayList<PieEntry> entries = new ArrayList<>();
         for (Map.Entry<String, Double> entry : accountBalances.entrySet()) {
             entries.add(new PieEntry(entry.getValue().floatValue(), entry.getKey()));
@@ -151,28 +207,41 @@ public class ChartActivity extends AppCompatActivity {
         };
         dataSet.setColors(colors);
         dataSet.setDrawValues(true);
-        dataSet.setValueTextSize(14f);
+        dataSet.setValueTextSize(12f);
         dataSet.setValueTextColor(Color.WHITE);
         dataSet.setValueTypeface(Typeface.DEFAULT_BOLD);
 
         PieData data = new PieData(dataSet);
-        data.setValueFormatter(new PercentFormatter(pieChartAccount));
-        pieChartAccount.setData(data);
-        pieChartAccount.setUsePercentValues(true);
-        pieChartAccount.getDescription().setEnabled(false);
-        pieChartAccount.setDrawHoleEnabled(true);
-        pieChartAccount.setHoleRadius(50f);
-        pieChartAccount.setTransparentCircleRadius(55f);
-        pieChartAccount.setHoleColor(Color.BLACK);
-        pieChartAccount.setDrawEntryLabels(false);
-        pieChartAccount.getLegend().setEnabled(false);
+        data.setValueFormatter(new PercentFormatter(chart));
+        chart.setData(data);
+        chart.setUsePercentValues(true);
+        chart.getDescription().setEnabled(false);
+        chart.setDrawHoleEnabled(true);
+        chart.setHoleRadius(55f);
+        chart.setTransparentCircleRadius(60f);
+        chart.setHoleColor(Color.BLACK);
+        chart.setDrawEntryLabels(false);
+        chart.getLegend().setEnabled(false);
 
-        pieChartAccount.setCenterText(generateCenterText("Total accounts", totalBalance));
+        chart.setCenterText(generateCenterText("Total accounts", totalBalance, currency));
 
-        pieChartAccount.animateY(1200);
-        pieChartAccount.invalidate();
+        chart.animateY(1000);
+        chart.invalidate();
 
-        populateDetails(detailsContainerAccount, accountBalances, totalBalance, colors, true);
+        populateDetails(container, accountBalances, totalBalance, colors, true, currency);
+    }
+
+    private String getCurrencySymbol(String currency) {
+        if (currency == null) return "$";
+        switch (currency.toUpperCase()) {
+            case "USD": return "$";
+            case "EUR": return "€";
+            case "GBP": return "£";
+            case "JPY": return "¥";
+            case "CNY": return "¥";
+            case "LBP": return "LBP";
+            default: return currency;
+        }
     }
 
     private List<Account> loadAccounts() {
@@ -184,7 +253,11 @@ public class ChartActivity extends AppCompatActivity {
                 JSONArray array = new JSONArray(json);
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject obj = array.getJSONObject(i);
-                    list.add(new Account(obj.getString("name"), obj.getDouble("balance")));
+                    list.add(new Account(
+                        obj.getString("name"),
+                        obj.getDouble("balance"),
+                        obj.optString("currency", "USD")
+                    ));
                 }
             }
         } catch (Exception e) {
@@ -240,33 +313,36 @@ public class ChartActivity extends AppCompatActivity {
         pieChart.getLegend().setEnabled(false);
         
         // Center text: Total spent
-        pieChart.setCenterText(generateCenterText("Total spent", totalSpent));
+        pieChart.setCenterText(generateCenterText("Total spent", totalSpent, "USD"));
         
         pieChart.animateY(1200);
         pieChart.invalidate();
 
-        populateDetails(detailsContainer, categoryTotals, totalSpent, colors, false);
+        populateDetails(detailsContainer, categoryTotals, totalSpent, colors, false, "USD");
     }
 
-    private SpannableString generateCenterText(String label, double total) {
+    private SpannableString generateCenterText(String label, double total, String currency) {
         String top = label + "\n";
-        String bottom = String.format(Locale.US, "%,.2f $", total);
+        String symbol = getCurrencySymbol(currency);
+        String bottom = String.format(Locale.US, "%,.2f %s", total, symbol);
         SpannableString s = new SpannableString(top + bottom);
         s.setSpan(new ForegroundColorSpan(Color.LTGRAY), 0, top.length(), 0);
         s.setSpan(new RelativeSizeSpan(1.0f), 0, top.length(), 0);
         s.setSpan(new StyleSpan(Typeface.BOLD), 0, top.length(), 0);
         
         s.setSpan(new ForegroundColorSpan(Color.WHITE), top.length(), s.length(), 0);
-        s.setSpan(new RelativeSizeSpan(2.2f), top.length(), s.length(), 0);
+        s.setSpan(new RelativeSizeSpan(1.8f), top.length(), s.length(), 0);
         s.setSpan(new StyleSpan(Typeface.BOLD), top.length(), s.length(), 0);
         return s;
     }
 
-    private void populateDetails(LinearLayout container, Map<String, Double> totals, double grandTotal, int[] palette, boolean isAccount) {
+    private void populateDetails(LinearLayout container, Map<String, Double> totals, double grandTotal, int[] palette, boolean isAccount, String currency) {
         container.removeAllViews();
         List<Map.Entry<String, Double>> list = new ArrayList<>(totals.entrySet());
         // Sort by amount descending
         Collections.sort(list, (a, b) -> b.getValue().compareTo(a.getValue()));
+
+        String symbol = getCurrencySymbol(currency);
 
         int colorIndex = 0;
         for (Map.Entry<String, Double> entry : list) {
@@ -286,7 +362,7 @@ public class ChartActivity extends AppCompatActivity {
             int p = (int) Math.round((val / grandTotal) * 100);
             
             percent.setText(p + "%");
-            amount.setText(String.format(Locale.US, "%,.2f $", val));
+            amount.setText(String.format(Locale.US, "%,.2f %s", val, symbol));
             
             if (isAccount) {
                 icon.setImageResource(R.drawable.ic_menu_accounts_color);
