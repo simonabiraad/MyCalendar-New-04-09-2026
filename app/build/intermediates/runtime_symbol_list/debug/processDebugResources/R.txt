@@ -77,13 +77,16 @@ int animator mtrl_fab_show_motion_spec 0x7f02001f
 int animator mtrl_fab_transformation_sheet_collapse_spec 0x7f020020
 int animator mtrl_fab_transformation_sheet_expand_spec 0x7f020021
 int array assume_strong_biometrics_models 0x7f030000
+int array category_options 0x7f030008
 int array crypto_fingerprint_fallback_prefixes 0x7f030001
 int array crypto_fingerprint_fallback_vendors 0x7f030002
 int array delay_showing_prompt_models 0x7f030003
+int array event_color_options 0x7f030009
 int array hide_fingerprint_instantly_prefixes 0x7f030004
 int array priority_options 0x7f030005
 int array reminder_options 0x7f030006
 int array repeat_options 0x7f030007
+int array status_options 0x7f03000a
 int attr SharedValue 0x7f040000
 int attr SharedValueId 0x7f040001
 int attr actionBarDivider 0x7f040002
@@ -4197,6 +4200,7 @@ int id btnCashCalcDelete 0x7f0900cc
 int id btnCashCalcShare 0x7f0900cd
 int id btnCashIn 0x7f0900ce
 int id btnCashOut 0x7f0900cf
+int id btnCategoryArrow 0x7f09046b
 int id btnCrop 0x7f0900d0
 int id btnDelete 0x7f0900d1
 int id btnDeleteAccount 0x7f0900d2
@@ -4205,6 +4209,7 @@ int id btnDialogCashIn 0x7f0900d4
 int id btnDialogCashOut 0x7f0900d5
 int id btnDraw 0x7f0900d6
 int id btnEdit 0x7f0900d7
+int id btnEventColorArrow 0x7f09046c
 int id btnMinus 0x7f0900d8
 int id btnMoveDown 0x7f0900d9
 int id btnMoveUp 0x7f0900da
@@ -4225,6 +4230,7 @@ int id btnSaveContinue 0x7f0900e8
 int id btnSaveEdit 0x7f0900e9
 int id btnSaveExit 0x7f0900ea
 int id btnSelectCategory 0x7f0900eb
+int id btnStatusArrow 0x7f09046d
 int id btnSummaryCalendar 0x7f0900ec
 int id btnSummaryReport 0x7f0900ed
 int id btnText 0x7f0900ee
@@ -4262,6 +4268,7 @@ int id catName 0x7f09010d
 int id catPercent 0x7f09010e
 int id catProgress 0x7f09010f
 int id categoryBackButton 0x7f090110
+int id categoryBox 0x7f090473
 int id categoryContainer 0x7f090111
 int id categoryExpenseToggle 0x7f090112
 int id categoryIconImg 0x7f090113
@@ -4297,6 +4304,7 @@ int id clip_vertical 0x7f090130
 int id clockwise 0x7f090131
 int id closest 0x7f090132
 int id collapseActionView 0x7f090133
+int id colorBox 0x7f090474
 int id completeAction 0x7f090134
 int id compress 0x7f090135
 int id confirm_button 0x7f090136
@@ -4330,6 +4338,7 @@ int id cut 0x7f09014c
 int id dailyButton 0x7f09014d
 int id daily_expenses_main 0x7f09014e
 int id dark 0x7f09014f
+int id dateBox 0x7f090475
 int id dateNavigator 0x7f090150
 int id datePickerBox 0x7f090151
 int id dateRangeText 0x7f090152
@@ -4438,6 +4447,7 @@ int id embed 0x7f0901b9
 int id emptyStateText 0x7f0901ba
 int id empty_view 0x7f0901bb
 int id end 0x7f0901bc
+int id endTimeBox 0x7f09047a
 int id endToStart 0x7f0901bd
 int id enterAlways 0x7f0901be
 int id enterAlwaysCollapsed 0x7f0901bf
@@ -4538,7 +4548,9 @@ int id info 0x7f09021d
 int id invisible 0x7f09021e
 int id inward 0x7f09021f
 int id italic 0x7f090220
+int id itemDot 0x7f09047b
 int id itemIcon 0x7f090221
+int id itemLabel 0x7f09047c
 int id itemText 0x7f090222
 int id item_date 0x7f090223
 int id item_text 0x7f090224
@@ -4776,6 +4788,7 @@ int id pressed 0x7f09030c
 int id prevMonth 0x7f09030d
 int id previousBalanceRow 0x7f09030e
 int id previousBalanceTotalText 0x7f09030f
+int id priorityBox 0x7f090476
 int id priorityIndicator 0x7f090310
 int id priorityLine 0x7f090311
 int id prioritySpinner 0x7f090312
@@ -4791,7 +4804,9 @@ int id rectangles 0x7f09031b
 int id remarkHistoryContainer 0x7f09031c
 int id remarkHistoryTitle 0x7f09031d
 int id remarkLabel 0x7f09031e
+int id reminderBox 0x7f090477
 int id reminderSpinner 0x7f09031f
+int id repeatBox 0x7f090478
 int id repeatSpinner 0x7f090320
 int id reportAllButton 0x7f090321
 int id reportBackButton 0x7f090322
@@ -4899,6 +4914,7 @@ int id src_over 0x7f090386
 int id standard 0x7f090387
 int id start 0x7f090388
 int id startHorizontal 0x7f090389
+int id startTimeBox 0x7f09047d
 int id startToEnd 0x7f09038a
 int id startVertical 0x7f09038b
 int id statBalance 0x7f09045b
@@ -4907,6 +4923,7 @@ int id statOut 0x7f09045d
 int id statTitle 0x7f09045e
 int id staticLayout 0x7f09038f
 int id staticPostLayout 0x7f090390
+int id statusBox 0x7f090479
 int id sticky_widget_root 0x7f090391
 int id sticky_widget_text 0x7f090392
 int id sticky_widget_title 0x7f090393
@@ -5028,6 +5045,8 @@ int id transition_scene_layoutid_cache 0x7f090406
 int id transition_transform 0x7f090407
 int id triangle 0x7f090408
 int id tvBalance 0x7f090465
+int id tvCategoryValue 0x7f09046e
+int id tvEventColorValue 0x7f09046f
 int id tvExpenses 0x7f090466
 int id tvIncome 0x7f090467
 int id tvPriorityValue 0x7f090409
@@ -5035,6 +5054,7 @@ int id tvReminderValue 0x7f09040a
 int id tvRepeatValue 0x7f09040b
 int id tvSortDateAscState 0x7f09040c
 int id tvSortDateDescState 0x7f09040d
+int id tvStatusValue 0x7f090470
 int id tvTotalAmount 0x7f090468
 int id txCashIn 0x7f09040e
 int id txCashOut 0x7f09040f
@@ -5073,6 +5093,8 @@ int id unlabeled 0x7f09042d
 int id up 0x7f09042e
 int id useLogo 0x7f09042f
 int id vertical_only 0x7f090430
+int id viewEventColorDot 0x7f090471
+int id viewStatusDot 0x7f090472
 int id view_offset_helper 0x7f090431
 int id view_transition 0x7f090432
 int id view_tree_disjoint_parent 0x7f090433
@@ -5304,6 +5326,7 @@ int layout item_country 0x7f0c0065
 int layout item_deleted_transaction_row 0x7f0c0066
 int layout item_denom_setting 0x7f0c0067
 int layout item_dialog_transaction 0x7f0c0068
+int layout item_dropdown_with_dot 0x7f0c00c6
 int layout item_event_detail 0x7f0c0069
 int layout item_event_details 0x7f0c006a
 int layout item_event_group 0x7f0c006b

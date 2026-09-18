@@ -80,7 +80,7 @@ public class NotificationDetailsActivity extends AppCompatActivity {
 
         if ("add".equals(mode)) {
             String date = getIntent().getStringExtra("date");
-            currentEvent = new NotificationEvent(-1, "", "", date, "", "", "Medium", "Pending", "None", "None", "", "[]", "", "[]");
+            currentEvent = new NotificationEvent(-1, "", "", date, "", "", "Medium", "Pending", "None", "None", "", "Other", "Default", "[]", "", "[]");
             setupEditUI();
         } else {
             loadEvent();
@@ -112,6 +112,25 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         android.widget.ImageView btnRepeatArrow = findViewById(R.id.btnRepeatArrow);
         TextView tvReminderValue = findViewById(R.id.tvReminderValue);
         android.widget.ImageView btnReminderArrow = findViewById(R.id.btnReminderArrow);
+        TextView tvCategoryValue = findViewById(R.id.tvCategoryValue);
+        android.widget.ImageView btnCategoryArrow = findViewById(R.id.btnCategoryArrow);
+        TextView tvStatusValue = findViewById(R.id.tvStatusValue);
+        android.widget.ImageView btnStatusArrow = findViewById(R.id.btnStatusArrow);
+        TextView tvEventColorValue = findViewById(R.id.tvEventColorValue);
+        android.widget.ImageView btnEventColorArrow = findViewById(R.id.btnEventColorArrow);
+        View viewStatusDot = findViewById(R.id.viewStatusDot);
+        View viewEventColorDot = findViewById(R.id.viewEventColorDot);
+
+        View dateBox = findViewById(R.id.dateBox);
+        View startTimeBox = findViewById(R.id.startTimeBox);
+        View endTimeBox = findViewById(R.id.endTimeBox);
+        View reminderBox = findViewById(R.id.reminderBox);
+        View repeatBox = findViewById(R.id.repeatBox);
+        View categoryBox = findViewById(R.id.categoryBox);
+        View priorityBox = findViewById(R.id.priorityBox);
+        View statusBox = findViewById(R.id.statusBox);
+        View colorBox = findViewById(R.id.colorBox);
+
         Button btnAddAttachment = findViewById(R.id.btnAddAttachment);
         Button btnRecordVoice = findViewById(R.id.btnRecordVoice);
         TextView btnCancel = findViewById(R.id.btnCancelEdit);
@@ -152,9 +171,23 @@ public class NotificationDetailsActivity extends AppCompatActivity {
             filePickerLauncher.launch(intent);
         });
 
-        btnPriorityArrow.setOnClickListener(v -> showPopupMenu(tvPriorityValue, R.array.priority_options, tvPriorityValue));
-        btnRepeatArrow.setOnClickListener(v -> showPopupMenu(tvRepeatValue, R.array.repeat_options, tvRepeatValue));
-        btnReminderArrow.setOnClickListener(v -> showPopupMenu(tvReminderValue, R.array.reminder_options, tvReminderValue));
+        btnPriorityArrow.setOnClickListener(v -> showListPopupWindow(priorityBox, R.array.priority_options, tvPriorityValue));
+        priorityBox.setOnClickListener(v -> btnPriorityArrow.performClick());
+
+        btnRepeatArrow.setOnClickListener(v -> showListPopupWindow(repeatBox, R.array.repeat_options, tvRepeatValue));
+        repeatBox.setOnClickListener(v -> btnRepeatArrow.performClick());
+
+        btnReminderArrow.setOnClickListener(v -> showListPopupWindow(reminderBox, R.array.reminder_options, tvReminderValue));
+        reminderBox.setOnClickListener(v -> btnReminderArrow.performClick());
+
+        btnCategoryArrow.setOnClickListener(v -> showListPopupWindow(categoryBox, R.array.category_options, tvCategoryValue));
+        categoryBox.setOnClickListener(v -> btnCategoryArrow.performClick());
+
+        btnStatusArrow.setOnClickListener(v -> showListPopupWindow(statusBox, R.array.status_options, tvStatusValue));
+        statusBox.setOnClickListener(v -> btnStatusArrow.performClick());
+
+        btnEventColorArrow.setOnClickListener(v -> showListPopupWindow(colorBox, R.array.event_color_options, tvEventColorValue));
+        colorBox.setOnClickListener(v -> btnEventColorArrow.performClick());
 
         // Pre-fill
         editTitle.setText(currentEvent.getTitle());
@@ -168,6 +201,11 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         tvPriorityValue.setText(currentEvent.getPriority());
         tvRepeatValue.setText(currentEvent.getRepeat());
         tvReminderValue.setText(currentEvent.getReminder());
+        tvCategoryValue.setText(currentEvent.getCategory());
+        tvStatusValue.setText(currentEvent.getStatus());
+        tvEventColorValue.setText(currentEvent.getEventColor());
+        updateStatusDot(viewStatusDot, currentEvent.getStatus());
+        updateEventColorDot(viewEventColorDot, currentEvent.getEventColor());
 
         editDate.setOnClickListener(v -> {
             Calendar cal = Calendar.getInstance();
@@ -182,18 +220,21 @@ public class NotificationDetailsActivity extends AppCompatActivity {
                 editDate.setText(date);
             }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
         });
+        dateBox.setOnClickListener(v -> editDate.performClick());
 
         editStartTime.setOnClickListener(v -> {
             new TimePickerDialog(this, (t, h, min) -> {
                 editStartTime.setText(String.format(Locale.getDefault(), "%02d:%02d", h, min));
             }, 10, 0, false).show();
         });
+        startTimeBox.setOnClickListener(v -> editStartTime.performClick());
 
         editEndTime.setOnClickListener(v -> {
             new TimePickerDialog(this, (t, h, min) -> {
                 editEndTime.setText(String.format(Locale.getDefault(), "%02d:%02d", h, min));
             }, 11, 0, false).show();
         });
+        endTimeBox.setOnClickListener(v -> editEndTime.performClick());
 
         btnSave.setOnClickListener(v -> {
             currentEvent.setTitle(editTitle.getText().toString());
@@ -205,6 +246,9 @@ public class NotificationDetailsActivity extends AppCompatActivity {
             currentEvent.setPriority(tvPriorityValue.getText().toString());
             currentEvent.setRepeat(tvRepeatValue.getText().toString());
             currentEvent.setReminder(tvReminderValue.getText().toString());
+            currentEvent.setCategory(tvCategoryValue.getText().toString());
+            currentEvent.setStatus(tvStatusValue.getText().toString());
+            currentEvent.setEventColor(tvEventColorValue.getText().toString());
 
             if (currentEvent.getId() == -1) {
                 addHistoryLog("Created");
@@ -234,14 +278,38 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         });
     }
 
-    private void showPopupMenu(View anchor, int arrayRes, TextView targetTv) {
-        android.widget.PopupMenu popup = new android.widget.PopupMenu(this, anchor);
+    private void showListPopupWindow(View anchor, int arrayRes, TextView targetTv) {
+        androidx.appcompat.widget.ListPopupWindow popup = new androidx.appcompat.widget.ListPopupWindow(this);
         String[] options = getResources().getStringArray(arrayRes);
-        for (String option : options) {
-            popup.getMenu().add(option);
+        
+        android.widget.ArrayAdapter<String> adapter;
+        if (targetTv.getId() == R.id.tvStatusValue || targetTv.getId() == R.id.tvEventColorValue) {
+            adapter = new android.widget.ArrayAdapter<String>(this, R.layout.item_dropdown_with_dot, R.id.itemLabel, options) {
+                @NonNull
+                @Override
+                public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                    View view = super.getView(position, convertView, parent);
+                    View dot = view.findViewById(R.id.itemDot);
+                    String item = options[position];
+                    
+                    if (targetTv.getId() == R.id.tvStatusValue) {
+                        updateStatusDot(dot, item);
+                    } else {
+                        updateEventColorDot(dot, item);
+                    }
+                    return view;
+                }
+            };
+        } else {
+            adapter = new android.widget.ArrayAdapter<>(this, android.R.layout.simple_list_item_1, options);
         }
-        popup.setOnMenuItemClickListener(item -> {
-            String selection = item.getTitle().toString();
+
+        popup.setAdapter(adapter);
+        popup.setAnchorView(anchor);
+        popup.setWidth(anchor.getWidth());
+        popup.setModal(true);
+        popup.setOnItemClickListener((parent, view, position, id) -> {
+            String selection = options[position];
             if ("Custom".equalsIgnoreCase(selection)) {
                 if (targetTv.getId() == R.id.tvRepeatValue) {
                     showCustomRepeatDialog(targetTv);
@@ -250,10 +318,36 @@ public class NotificationDetailsActivity extends AppCompatActivity {
                 }
             } else {
                 targetTv.setText(selection);
+                if (targetTv.getId() == R.id.tvStatusValue) {
+                    updateStatusDot(findViewById(R.id.viewStatusDot), selection);
+                } else if (targetTv.getId() == R.id.tvEventColorValue) {
+                    updateEventColorDot(findViewById(R.id.viewEventColorDot), selection);
+                }
             }
-            return true;
+            popup.dismiss();
         });
         popup.show();
+    }
+
+    private void updateStatusDot(View dot, String status) {
+        if (dot == null) return;
+        int color = Color.GRAY;
+        if ("Pending".equalsIgnoreCase(status)) color = Color.parseColor("#FBBC05"); // Yellow
+        else if ("Confirmed".equalsIgnoreCase(status)) color = Color.parseColor("#4285F4"); // Blue
+        else if ("Completed".equalsIgnoreCase(status)) color = Color.parseColor("#34A853"); // Green
+        else if ("Cancelled".equalsIgnoreCase(status)) color = Color.parseColor("#EA4335"); // Red
+        dot.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
+    }
+
+    private void updateEventColorDot(View dot, String eventColor) {
+        if (dot == null) return;
+        int color = Color.parseColor("#34A853"); // Default green
+        if ("Red".equalsIgnoreCase(eventColor)) color = Color.parseColor("#EA4335");
+        else if ("Blue".equalsIgnoreCase(eventColor)) color = Color.parseColor("#4285F4");
+        else if ("Green".equalsIgnoreCase(eventColor)) color = Color.parseColor("#34A853");
+        else if ("Yellow".equalsIgnoreCase(eventColor)) color = Color.parseColor("#FBBC05");
+        else if ("Purple".equalsIgnoreCase(eventColor)) color = Color.parseColor("#8E24AA");
+        dot.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
     }
 
     private void showCustomRepeatDialog(TextView targetTv) {
@@ -403,10 +497,16 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         loadAttachments();
 
         // Update status color
-        if ("Completed".equalsIgnoreCase(currentEvent.getStatus())) {
-            detailStatus.setTextColor(Color.GRAY);
+        if ("Pending".equalsIgnoreCase(currentEvent.getStatus())) {
+            detailStatus.setTextColor(Color.parseColor("#FBBC05"));
+        } else if ("Confirmed".equalsIgnoreCase(currentEvent.getStatus())) {
+            detailStatus.setTextColor(Color.parseColor("#4285F4"));
+        } else if ("Completed".equalsIgnoreCase(currentEvent.getStatus())) {
+            detailStatus.setTextColor(Color.parseColor("#34A853"));
+        } else if ("Cancelled".equalsIgnoreCase(currentEvent.getStatus())) {
+            detailStatus.setTextColor(Color.parseColor("#EA4335"));
         } else {
-            detailStatus.setTextColor(Color.parseColor("#8BC34A"));
+            detailStatus.setTextColor(Color.GRAY);
         }
     }
 

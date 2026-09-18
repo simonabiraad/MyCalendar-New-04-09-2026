@@ -18,12 +18,15 @@ public class NotificationEvent implements Serializable {
     private String repeat;   // None, Daily, Weekly, Monthly, Yearly, Custom
     private String reminder; // At event time, 5m, 10m, 15m, 30m, 1h, 1d, Custom
     private String location;
+    private String category;
+    private String eventColor;
     private String attachments; // JSON array of file paths
     private String voiceNotePath;
     private String history; // JSON array of action logs
 
     public NotificationEvent(long id, String title, String notes, String date, String startTime, String endTime,
                              String priority, String status, String repeat, String reminder, String location,
+                             String category, String eventColor,
                              String attachments, String voiceNotePath, String history) {
         this.id = id;
         this.title = title;
@@ -36,6 +39,8 @@ public class NotificationEvent implements Serializable {
         this.repeat = repeat;
         this.reminder = reminder;
         this.location = location;
+        this.category = category;
+        this.eventColor = eventColor;
         this.attachments = attachments;
         this.voiceNotePath = voiceNotePath;
         this.history = history;
@@ -73,6 +78,12 @@ public class NotificationEvent implements Serializable {
 
     public String getLocation() { return location; }
     public void setLocation(String location) { this.location = location; }
+
+    public String getCategory() { return category != null ? category : "Other"; }
+    public void setCategory(String category) { this.category = category; }
+
+    public String getEventColor() { return eventColor != null ? eventColor : "Default"; }
+    public void setEventColor(String eventColor) { this.eventColor = eventColor; }
 
     public String getAttachments() { return attachments; }
     public void setAttachments(String attachments) { this.attachments = attachments; }

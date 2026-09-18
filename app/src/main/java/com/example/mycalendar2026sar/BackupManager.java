@@ -76,6 +76,8 @@ public class BackupManager {
                 eObj.put("attachments", e.getAttachments());
                 eObj.put("voice_path", e.getVoiceNotePath());
                 eObj.put("history", e.getHistory());
+                eObj.put("category", e.getCategory());
+                eObj.put("color", e.getEventColor());
                 notificationsJson.put(eObj);
             }
             backup.put("notifications", notificationsJson);
@@ -171,6 +173,8 @@ public class BackupManager {
                         eObj.optString("repeat", "None"),
                         eObj.optString("reminder", "None"),
                         eObj.optString("location", ""),
+                        eObj.optString("category", "Other"),
+                        eObj.optString("color", "Default"),
                         eObj.optString("attachments", "[]"),
                         eObj.optString("voice_path", ""),
                         eObj.optString("history", "[]")

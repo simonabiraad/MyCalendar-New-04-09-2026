@@ -1,6 +1,9 @@
+int array category_options 0x0
+int array event_color_options 0x0
 int array priority_options 0x0
 int array reminder_options 0x0
 int array repeat_options 0x0
+int array status_options 0x0
 int color black 0x0
 int color blue 0x0
 int color card_dark 0x0
@@ -242,6 +245,7 @@ int id btnCashCalcDelete 0x0
 int id btnCashCalcShare 0x0
 int id btnCashIn 0x0
 int id btnCashOut 0x0
+int id btnCategoryArrow 0x0
 int id btnCrop 0x0
 int id btnDelete 0x0
 int id btnDeleteAccount 0x0
@@ -250,6 +254,7 @@ int id btnDialogCashIn 0x0
 int id btnDialogCashOut 0x0
 int id btnDraw 0x0
 int id btnEdit 0x0
+int id btnEventColorArrow 0x0
 int id btnMinus 0x0
 int id btnMoveDown 0x0
 int id btnMoveUp 0x0
@@ -270,6 +275,7 @@ int id btnSaveContinue 0x0
 int id btnSaveEdit 0x0
 int id btnSaveExit 0x0
 int id btnSelectCategory 0x0
+int id btnStatusArrow 0x0
 int id btnSummaryCalendar 0x0
 int id btnSummaryReport 0x0
 int id btnText 0x0
@@ -302,6 +308,7 @@ int id catName 0x0
 int id catPercent 0x0
 int id catProgress 0x0
 int id categoryBackButton 0x0
+int id categoryBox 0x0
 int id categoryContainer 0x0
 int id categoryExpenseToggle 0x0
 int id categoryIconImg 0x0
@@ -319,6 +326,7 @@ int id chartBackButton 0x0
 int id chartHeader 0x0
 int id chartTitle 0x0
 int id clearDataRow 0x0
+int id colorBox 0x0
 int id completeAction 0x0
 int id copySelectedBtn 0x0
 int id count_sticky 0x0
@@ -335,6 +343,7 @@ int id currentTabLabel 0x0
 int id customMenuContainer 0x0
 int id dailyButton 0x0
 int id daily_expenses_main 0x0
+int id dateBox 0x0
 int id dateNavigator 0x0
 int id datePickerBox 0x0
 int id dateRangeText 0x0
@@ -404,6 +413,7 @@ int id editTopButton 0x0
 int id editTransferAmount 0x0
 int id emptyStateText 0x0
 int id empty_view 0x0
+int id endTimeBox 0x0
 int id eventBackButton 0x0
 int id eventButton 0x0
 int id eventContainer 0x0
@@ -444,7 +454,9 @@ int id imagePreview 0x0
 int id income_main 0x0
 int id indicatorMinus 0x0
 int id indicatorPlus 0x0
+int id itemDot 0x0
 int id itemIcon 0x0
+int id itemLabel 0x0
 int id itemText 0x0
 int id item_date 0x0
 int id item_text 0x0
@@ -555,6 +567,7 @@ int id playVoiceBtn 0x0
 int id prevMonth 0x0
 int id previousBalanceRow 0x0
 int id previousBalanceTotalText 0x0
+int id priorityBox 0x0
 int id priorityIndicator 0x0
 int id priorityLine 0x0
 int id prioritySpinner 0x0
@@ -565,7 +578,9 @@ int id recommendTopBar 0x0
 int id remarkHistoryContainer 0x0
 int id remarkHistoryTitle 0x0
 int id remarkLabel 0x0
+int id reminderBox 0x0
 int id reminderSpinner 0x0
+int id repeatBox 0x0
 int id repeatSpinner 0x0
 int id reportAllButton 0x0
 int id reportBackButton 0x0
@@ -613,10 +628,12 @@ int id settingsTopBar 0x0
 int id snoozeAction 0x0
 int id spinnerFromAccount 0x0
 int id spinnerToAccount 0x0
+int id startTimeBox 0x0
 int id statBalance 0x0
 int id statIn 0x0
 int id statOut 0x0
 int id statTitle 0x0
+int id statusBox 0x0
 int id sticky_widget_root 0x0
 int id sticky_widget_text 0x0
 int id sticky_widget_title 0x0
@@ -685,6 +702,8 @@ int id transferTimePickerBox 0x0
 int id transferTopBar 0x0
 int id transfer_main 0x0
 int id tvBalance 0x0
+int id tvCategoryValue 0x0
+int id tvEventColorValue 0x0
 int id tvExpenses 0x0
 int id tvIncome 0x0
 int id tvPriorityValue 0x0
@@ -692,6 +711,7 @@ int id tvReminderValue 0x0
 int id tvRepeatValue 0x0
 int id tvSortDateAscState 0x0
 int id tvSortDateDescState 0x0
+int id tvStatusValue 0x0
 int id tvTotalAmount 0x0
 int id txCashIn 0x0
 int id txCashOut 0x0
@@ -724,6 +744,8 @@ int id txtTransferDate 0x0
 int id txtTransferTime 0x0
 int id typeMinusContainer 0x0
 int id typePlusContainer 0x0
+int id viewEventColorDot 0x0
+int id viewStatusDot 0x0
 int id voiceNoteButton 0x0
 int id voiceNoteContainer 0x0
 int id voiceTaskButton 0x0
@@ -800,6 +822,7 @@ int layout item_country 0x0
 int layout item_deleted_transaction_row 0x0
 int layout item_denom_setting 0x0
 int layout item_dialog_transaction 0x0
+int layout item_dropdown_with_dot 0x0
 int layout item_event_detail 0x0
 int layout item_event_details 0x0
 int layout item_event_group 0x0

@@ -1,7 +1,10 @@
 com.example.mycalendar2026sar
+array category_options
+array event_color_options
 array priority_options
 array reminder_options
 array repeat_options
+array status_options
 color black
 color blue
 color card_dark
@@ -243,6 +246,7 @@ id btnCashCalcDelete
 id btnCashCalcShare
 id btnCashIn
 id btnCashOut
+id btnCategoryArrow
 id btnCrop
 id btnDelete
 id btnDeleteAccount
@@ -251,6 +255,7 @@ id btnDialogCashIn
 id btnDialogCashOut
 id btnDraw
 id btnEdit
+id btnEventColorArrow
 id btnMinus
 id btnMoveDown
 id btnMoveUp
@@ -271,6 +276,7 @@ id btnSaveContinue
 id btnSaveEdit
 id btnSaveExit
 id btnSelectCategory
+id btnStatusArrow
 id btnSummaryCalendar
 id btnSummaryReport
 id btnText
@@ -303,6 +309,7 @@ id catName
 id catPercent
 id catProgress
 id categoryBackButton
+id categoryBox
 id categoryContainer
 id categoryExpenseToggle
 id categoryIconImg
@@ -320,6 +327,7 @@ id chartBackButton
 id chartHeader
 id chartTitle
 id clearDataRow
+id colorBox
 id completeAction
 id copySelectedBtn
 id count_sticky
@@ -336,6 +344,7 @@ id currentTabLabel
 id customMenuContainer
 id dailyButton
 id daily_expenses_main
+id dateBox
 id dateNavigator
 id datePickerBox
 id dateRangeText
@@ -405,6 +414,7 @@ id editTopButton
 id editTransferAmount
 id emptyStateText
 id empty_view
+id endTimeBox
 id eventBackButton
 id eventButton
 id eventContainer
@@ -445,7 +455,9 @@ id imagePreview
 id income_main
 id indicatorMinus
 id indicatorPlus
+id itemDot
 id itemIcon
+id itemLabel
 id itemText
 id item_date
 id item_text
@@ -556,6 +568,7 @@ id playVoiceBtn
 id prevMonth
 id previousBalanceRow
 id previousBalanceTotalText
+id priorityBox
 id priorityIndicator
 id priorityLine
 id prioritySpinner
@@ -566,7 +579,9 @@ id recommendTopBar
 id remarkHistoryContainer
 id remarkHistoryTitle
 id remarkLabel
+id reminderBox
 id reminderSpinner
+id repeatBox
 id repeatSpinner
 id reportAllButton
 id reportBackButton
@@ -614,10 +629,12 @@ id settingsTopBar
 id snoozeAction
 id spinnerFromAccount
 id spinnerToAccount
+id startTimeBox
 id statBalance
 id statIn
 id statOut
 id statTitle
+id statusBox
 id sticky_widget_root
 id sticky_widget_text
 id sticky_widget_title
@@ -686,6 +703,8 @@ id transferTimePickerBox
 id transferTopBar
 id transfer_main
 id tvBalance
+id tvCategoryValue
+id tvEventColorValue
 id tvExpenses
 id tvIncome
 id tvPriorityValue
@@ -693,6 +712,7 @@ id tvReminderValue
 id tvRepeatValue
 id tvSortDateAscState
 id tvSortDateDescState
+id tvStatusValue
 id tvTotalAmount
 id txCashIn
 id txCashOut
@@ -725,6 +745,8 @@ id txtTransferDate
 id txtTransferTime
 id typeMinusContainer
 id typePlusContainer
+id viewEventColorDot
+id viewStatusDot
 id voiceNoteButton
 id voiceNoteContainer
 id voiceTaskButton
@@ -801,6 +823,7 @@ layout item_country
 layout item_deleted_transaction_row
 layout item_denom_setting
 layout item_dialog_transaction
+layout item_dropdown_with_dot
 layout item_event_detail
 layout item_event_details
 layout item_event_group
