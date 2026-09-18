@@ -135,9 +135,15 @@ public class ChartActivity extends AppCompatActivity {
             }
         }
 
-        // Sort currencies so they appear consistently
+        // Sort currencies so they appear consistently (USD first, then EUR, then others)
         List<String> currencies = new ArrayList<>(groupedAccounts.keySet());
-        Collections.sort(currencies);
+        Collections.sort(currencies, (c1, c2) -> {
+            if (c1.equalsIgnoreCase("USD")) return -1;
+            if (c2.equalsIgnoreCase("USD")) return 1;
+            if (c1.equalsIgnoreCase("EUR")) return -1;
+            if (c2.equalsIgnoreCase("EUR")) return 1;
+            return c1.compareTo(c2);
+        });
 
         for (String currency : currencies) {
             List<Account> currencyAccounts = groupedAccounts.get(currency);
@@ -269,7 +275,7 @@ public class ChartActivity extends AppCompatActivity {
     private void setupPieChart(List<Transaction> transactions) {
         Map<String, Double> categoryTotals = new HashMap<>();
         double totalSpent = 0;
-        
+
         for (Transaction t : transactions) {
             if (!t.isCashIn()) {
                 String category = t.getTitle();
@@ -311,10 +317,10 @@ public class ChartActivity extends AppCompatActivity {
         pieChart.setHoleColor(Color.BLACK);
         pieChart.setDrawEntryLabels(false);
         pieChart.getLegend().setEnabled(false);
-        
+
         // Center text: Total spent
         pieChart.setCenterText(generateCenterText("Total spent", totalSpent, "USD"));
-        
+
         pieChart.animateY(1200);
         pieChart.invalidate();
 
