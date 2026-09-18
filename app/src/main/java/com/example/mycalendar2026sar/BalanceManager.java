@@ -38,7 +38,11 @@ public class BalanceManager {
                 JSONArray array = new JSONArray(json);
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject obj = array.getJSONObject(i);
-                    accountList.add(new Account(obj.getString("name"), obj.getDouble("balance")));
+                    accountList.add(new Account(
+                            obj.getString("name"),
+                            obj.getDouble("balance"),
+                            obj.optString("currency", "USD")
+                    ));
                 }
             }
         } catch (Exception e) {
@@ -49,13 +53,12 @@ public class BalanceManager {
 
     public static void saveAccounts(Context context, List<Account> accountList) {
         try {
-            double totalBalance = 0;
             JSONArray array = new JSONArray();
             for (Account account : accountList) {
-                totalBalance += account.getBalance();
                 JSONObject obj = new JSONObject();
                 obj.put("name", account.getName());
                 obj.put("balance", account.getBalance());
+                obj.put("currency", account.getCurrency());
                 array.put(obj);
             }
             context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)

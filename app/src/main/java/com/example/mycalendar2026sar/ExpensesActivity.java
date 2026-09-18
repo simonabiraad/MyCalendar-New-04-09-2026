@@ -869,7 +869,9 @@ public class ExpensesActivity extends AppCompatActivity {
                 nameInput.setText(account.getName());
                 balanceInput.setText(String.format(Locale.US, "%,.2f", account.getBalance()));
                 
-                new androidx.appcompat.app.AlertDialog.Builder(ExpensesActivity.this, R.style.CustomAlertDialogTheme)
+                editView.findViewById(R.id.accountCurrencyPicker).setVisibility(View.GONE);
+            
+            new androidx.appcompat.app.AlertDialog.Builder(ExpensesActivity.this, R.style.CustomAlertDialogTheme)
                         .setTitle("Edit Account")
                         .setView(editView)
                         .setPositiveButton("Save", (d, w) -> {
@@ -923,9 +925,26 @@ public class ExpensesActivity extends AppCompatActivity {
             View addView = getLayoutInflater().inflate(R.layout.dialog_add_account, null);
             android.widget.EditText nameInput = addView.findViewById(R.id.editAccountName);
             android.widget.EditText balanceInput = addView.findViewById(R.id.editAccountBalance);
+            android.widget.TextView txtAccountCurrency = addView.findViewById(R.id.txtAccountCurrency);
             android.widget.TextView txtAccountDate = addView.findViewById(R.id.txtAccountDate);
             android.view.View indicatorPlus = addView.findViewById(R.id.indicatorPlus);
             android.view.View indicatorMinus = addView.findViewById(R.id.indicatorMinus);
+
+            final String[] selectedCurrency = {"USD"};
+
+            addView.findViewById(R.id.accountCurrencyPicker).setOnClickListener(v1 -> {
+                List<CountryManager.Country> countries = CountryManager.getCountries();
+                String[] items = new String[countries.size()];
+                for (int i = 0; i < countries.size(); i++) {
+                    items[i] = countries.get(i).currency + " (" + countries.get(i).name + ")";
+                }
+                new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                        .setTitle("Select Currency")
+                        .setItems(items, (dialog1, which) -> {
+                            selectedCurrency[0] = countries.get(which).currency;
+                            txtAccountCurrency.setText("Currency: " + selectedCurrency[0]);
+                        }).show();
+            });
 
             final java.util.Calendar selectedCal = java.util.Calendar.getInstance();
             final java.text.SimpleDateFormat dialogSdf = new java.text.SimpleDateFormat("dd-MMM-yyyy", java.util.Locale.getDefault());
@@ -977,14 +996,14 @@ public class ExpensesActivity extends AppCompatActivity {
                     }
 
                     // Add account with 0 balance first
-                    accountList.add(new Account(name, 0.00));
+                    accountList.add(new Account(name, 0.00, selectedCurrency[0]));
                     saveAccounts();
 
                     if (balance > 0) {
                         String type = isPositive[0] ? Transaction.TYPE_CASH_IN : Transaction.TYPE_CASH_OUT;
                         double finalBalanceDelta = isPositive[0] ? balance : -balance;
 
-                        transactionDbHelper.addTransaction("Income", balance, type, selectedCal.getTimeInMillis(), name);
+                        transactionDbHelper.addTransaction("Income", balance, selectedCurrency[0], type, selectedCal.getTimeInMillis(), name, "", "", "");
                         BalanceManager.updateAccountBalance(this, name, finalBalanceDelta);
                         loadAccounts(); // Reload
                     }
@@ -1196,78 +1215,76 @@ public class ExpensesActivity extends AppCompatActivity {
     private void refreshTransactionsList() {
         List<Transaction> allAscending = transactionDbHelper.getAllTransactionsAscending();
 
-        // Step 1: Calculate Global Aggregated Income (Sum of all "Income" transactions)
-        double totalAggregatedIncome = 0;
+        // Step 1: Sync with Account Balances
+        // We need to re-calculate all account balances from scratch to ensure accuracy with multiple currencies
+        List<Account> accounts = BalanceManager.loadAccounts(this);
+        java.util.Map<String, Double> accountBalances = new java.util.HashMap<>();
+        for (Account a : accounts) accountBalances.put(a.getName(), 0.0);
+
         for (Transaction t : allAscending) {
-            if ("Income".equalsIgnoreCase(t.getTitle())) {
-                totalAggregatedIncome += t.getAmount();
+            if (accountBalances.containsKey(t.getAccount())) {
+                accountBalances.put(t.getAccount(), accountBalances.get(t.getAccount()) + t.getSignedAmount());
             }
         }
-        // Sync with Monthly Income row
-        transactionDbHelper.addOrUpdateMonthlyIncome(totalAggregatedIncome);
-        // Refresh the list from DB to include the updated Monthly Income
-        allAscending = transactionDbHelper.getAllTransactionsAscending();
+        for (Account a : accounts) {
+            if (accountBalances.containsKey(a.getName())) {
+                a.setBalance(accountBalances.get(a.getName()));
+            }
+        }
+        BalanceManager.saveAccounts(this, accounts);
 
-        // Running balance is computed across the history of the ACTIVE ACCOUNT
-        // so "Balance after" always reflects the true account balance at that point in time.
-        // For "Expenses" (Summary), it reflects the global total.
+        // Running balance logic (Respecting Currency)
         java.util.Map<Long, Double> balanceAfterById = new java.util.HashMap<>();
         String activeAccount = getSharedPreferences("ExpensesPrefs", MODE_PRIVATE).getString("ActiveAccount", "Expenses");
         boolean isSummaryMode = activeAccount.equals("Expenses");
         
-        double running = 0;
+        java.util.Map<String, Double> runningMap = new java.util.HashMap<>(); // Currency -> Running Balance
+        
         for (Transaction t : allAscending) {
-            // INDEPENDENCE: In Account mode, only count its own transactions
             if (!isSummaryMode && (t.getAccount() == null || !t.getAccount().equals(activeAccount))) continue;
-            
-            // AGGREGATION FILTER: In Summary mode, hide individual "Income" lines (they are in Monthly Income)
             if (isSummaryMode && "Income".equalsIgnoreCase(t.getTitle())) continue;
-            
-            // AGGREGATION FILTER: In Account mode, hide global "Monthly Income" summary line
             if (!isSummaryMode && "Monthly Income".equalsIgnoreCase(t.getTitle())) continue;
 
-            running += t.getSignedAmount();
-            balanceAfterById.put(t.getId(), running);
+            String curr = t.getCurrency();
+            double r = runningMap.getOrDefault(curr, 0.0);
+            r += t.getSignedAmount();
+            runningMap.put(curr, r);
+            balanceAfterById.put(t.getId(), r);
         }
 
-        // Apply date filter + search
+        // Apply filters
         List<Transaction> filtered = new ArrayList<>();
-        Transaction monthlyIncome = null;
+        List<Transaction> monthlyIncomes = new ArrayList<>();
         
         int count = allAscending.size();
         for (int i = 0; i < count; i++) {
-            // If Ascending, use i; if Descending (default), use count - 1 - i
             int index = isSortAscending ? i : (count - 1 - i);
             Transaction t = allAscending.get(index);
             
-            // INDEPENDENCE: Filter by account if not in summary mode
             if (!isSummaryMode && (t.getAccount() == null || !t.getAccount().equals(activeAccount))) continue;
-
-            // AGGREGATION FILTER: In Summary mode, hide individual "Income" lines
             if (isSummaryMode && "Income".equalsIgnoreCase(t.getTitle())) continue;
-
-            // AGGREGATION FILTER: In Account mode, hide global "Monthly Income" summary line
             if (!isSummaryMode && "Monthly Income".equalsIgnoreCase(t.getTitle())) continue;
 
             if (matchesFilter(t) && matchesSearch(t)) {
                 if ("Monthly Income".equalsIgnoreCase(t.getTitle())) {
-                    monthlyIncome = t;
+                    monthlyIncomes.add(t);
                 } else {
                     filtered.add(t);
                 }
             }
         }
 
-        // Always keep Monthly Income as the first line if it exists (only in summary mode)
-        if (isSummaryMode && monthlyIncome != null) {
-            filtered.add(0, monthlyIncome);
+        if (isSummaryMode) {
+            filtered.addAll(0, monthlyIncomes);
         }
 
-        // Group by date ("Today" / "Yesterday" / actual date) and total up the totals
+        // Grouping and Totals calculation
         List<TransactionListItem> grouped = new ArrayList<>();
         String lastGroupLabel = null;
-        double cashIn = 0;
-        double cashOut = 0;
+        
+        java.util.Map<String, Double> cashInMap = new java.util.HashMap<>();
+        java.util.Map<String, Double> cashOutMap = new java.util.HashMap<>();
+
         for (Transaction t : filtered) {
             String label = getDateGroupLabel(t.getTimestamp());
             if (!label.equals(lastGroupLabel)) {
@@ -1276,10 +1293,12 @@ public class ExpensesActivity extends AppCompatActivity {
             }
             Double balanceAfter = balanceAfterById.get(t.getId());
             grouped.add(TransactionListItem.transaction(t, balanceAfter != null ? balanceAfter : 0.0));
+            
+            String curr = t.getCurrency();
             if (t.isCashIn()) {
-                cashIn += t.getAmount();
+                cashInMap.put(curr, cashInMap.getOrDefault(curr, 0.0) + t.getAmount());
             } else {
-                cashOut += t.getAmount();
+                cashOutMap.put(curr, cashOutMap.getOrDefault(curr, 0.0) + t.getAmount());
             }
         }
 
@@ -1287,32 +1306,76 @@ public class ExpensesActivity extends AppCompatActivity {
         transactionsRecyclerView.setVisibility(filtered.isEmpty() ? View.GONE : View.VISIBLE);
         emptyStateText.setVisibility(filtered.isEmpty() ? View.VISIBLE : View.GONE);
 
-        // BALANCE INTEGRATION: Uniformly show Total Cash In, Total Cash Out, and Balance
-        TextView labelTotalCashIn = findViewById(R.id.labelTotalCashIn);
-        if (labelTotalCashIn != null) labelTotalCashIn.setText("TOTAL Cash In");
+        updateTotalsUI(cashInMap, cashOutMap);
+    }
 
-        cashInTotalText.setText(String.format(Locale.US, "%,.2f", cashIn));
-        cashOutTotalText.setText(String.format(Locale.US, "%,.2f", cashOut));
-        balanceTotalText.setText(String.format(Locale.US, "%,.2f", cashIn - cashOut));
+    private void updateTotalsUI(java.util.Map<String, Double> cashInMap, java.util.Map<String, Double> cashOutMap) {
+        LinearLayout footerContainer = findViewById(R.id.totalsFooterContainer);
+        footerContainer.removeAllViews();
 
-        // --- Period Balance Calculations ---
-        if (currentFilter == FILTER_ALL) {
-            previousBalanceRow.setVisibility(View.GONE);
-            finalBalanceRow.setVisibility(View.GONE);
-        } else {
+        java.util.Set<String> allCurrencies = new java.util.TreeSet<>(cashInMap.keySet());
+        allCurrencies.addAll(cashOutMap.keySet());
+
+        if (allCurrencies.isEmpty()) {
+            allCurrencies.add("USD"); // Default
+        }
+
+        for (String curr : allCurrencies) {
+            double in = cashInMap.getOrDefault(curr, 0.0);
+            double out = cashOutMap.getOrDefault(curr, 0.0);
+            
+            View row = getLayoutInflater().inflate(R.layout.item_summary_stat_row, footerContainer, false);
+            TextView titleTv = row.findViewById(R.id.statTitle);
+            TextView inTv = row.findViewById(R.id.statIn);
+            TextView outTv = row.findViewById(R.id.statOut);
+            TextView balTv = row.findViewById(R.id.statBalance);
+
+            titleTv.setText(curr);
+            inTv.setText(String.format(Locale.US, "%,.2f", in));
+            outTv.setText(String.format(Locale.US, "%,.2f", out));
+            balTv.setText(String.format(Locale.US, "%,.2f", in - out));
+            
+            footerContainer.addView(row);
+        }
+
+        // Handle period balance if not FILTER_ALL
+        if (currentFilter != FILTER_ALL) {
             long periodStart = getPeriodStartMillis();
-            double prevBalance = 0;
-            double totalBalance = 0;
-            for (Transaction t : allAscending) {
-                totalBalance += t.getSignedAmount();
+            List<Transaction> all = transactionDbHelper.getAllTransactionsAscending();
+            String activeAccount = getSharedPreferences("ExpensesPrefs", MODE_PRIVATE).getString("ActiveAccount", "Expenses");
+            boolean isSummary = activeAccount.equals("Expenses");
+
+            java.util.Map<String, Double> prevBalMap = new java.util.HashMap<>();
+            java.util.Map<String, Double> finalBalMap = new java.util.HashMap<>();
+
+            for (Transaction t : all) {
+                if (!isSummary && !t.getAccount().equals(activeAccount)) continue;
+                String curr = t.getCurrency();
+                finalBalMap.put(curr, finalBalMap.getOrDefault(curr, 0.0) + t.getSignedAmount());
                 if (t.getTimestamp() < periodStart) {
-                    prevBalance += t.getSignedAmount();
+                    prevBalMap.put(curr, prevBalMap.getOrDefault(curr, 0.0) + t.getSignedAmount());
                 }
             }
-            previousBalanceRow.setVisibility(View.VISIBLE);
-            finalBalanceRow.setVisibility(View.VISIBLE);
-            previousBalanceTotalText.setText(String.format(Locale.US, "%,.2f", prevBalance));
-            finalBalanceTotalText.setText(String.format(Locale.US, "%,.2f", totalBalance));
+
+            for (String curr : allCurrencies) {
+                LinearLayout balRow = new LinearLayout(this);
+                balRow.setOrientation(LinearLayout.VERTICAL);
+                balRow.setPadding(0, 8, 0, 8);
+
+                TextView prevTv = new TextView(this);
+                prevTv.setTextColor(Color.parseColor("#8BC34A"));
+                prevTv.setTextSize(12);
+                prevTv.setText(curr + " Previous: " + String.format(Locale.US, "%,.2f", prevBalMap.getOrDefault(curr, 0.0)));
+                balRow.addView(prevTv);
+
+                TextView finalTv = new TextView(this);
+                finalTv.setTextColor(Color.WHITE);
+                finalTv.setTextSize(12);
+                finalTv.setText(curr + " Final: " + String.format(Locale.US, "%,.2f", finalBalMap.getOrDefault(curr, 0.0)));
+                balRow.addView(finalTv);
+
+                footerContainer.addView(balRow);
+            }
         }
     }
 
@@ -1392,13 +1455,12 @@ public class ExpensesActivity extends AppCompatActivity {
 
     private void saveAccounts() {
         try {
-            double totalBalance = 0;
             JSONArray array = new JSONArray();
             for (Account account : accountList) {
-                totalBalance += account.getBalance();
                 JSONObject obj = new JSONObject();
                 obj.put("name", account.getName());
                 obj.put("balance", account.getBalance());
+                obj.put("currency", account.getCurrency());
                 array.put(obj);
             }
             getSharedPreferences("ExpensesPrefs", MODE_PRIVATE)
@@ -1406,8 +1468,6 @@ public class ExpensesActivity extends AppCompatActivity {
                     .putString("AccountList", array.toString())
                     .apply();
             
-            // Aggregated Monthly Income
-            transactionDbHelper.addOrUpdateMonthlyIncome(totalBalance);
             refreshTransactionsList();
             
         } catch (Exception e) {
@@ -1424,7 +1484,11 @@ public class ExpensesActivity extends AppCompatActivity {
                 accountList.clear();
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject obj = array.getJSONObject(i);
-                    accountList.add(new Account(obj.getString("name"), obj.getDouble("balance")));
+                    accountList.add(new Account(
+                            obj.getString("name"),
+                            obj.getDouble("balance"),
+                            obj.optString("currency", "USD")
+                    ));
                 }
             }
         } catch (Exception e) {

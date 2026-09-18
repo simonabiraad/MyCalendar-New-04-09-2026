@@ -134,6 +134,7 @@ int drawable transaction_row_bg 0x0
 int drawable weekday_pill_bg 0x0
 int drawable widget_card_4x4_bg 0x0
 int id accountBalance 0x0
+int id accountCurrencyPicker 0x0
 int id accountIcon 0x0
 int id accountName 0x0
 int id accountSummaryBackButton 0x0
@@ -324,6 +325,11 @@ int id count_sticky 0x0
 int id count_today 0x0
 int id countryRecyclerView 0x0
 int id countrySelectorBox 0x0
+int id currencyChartsContainer 0x0
+int id currencyContainer 0x0
+int id currencyDetailsContainer 0x0
+int id currencyHeader 0x0
+int id currencyPieChart 0x0
 int id currentBalanceTrendText 0x0
 int id currentTabLabel 0x0
 int id customMenuContainer 0x0
@@ -367,7 +373,6 @@ int id detailStatus 0x0
 int id detailTime 0x0
 int id detailTitle 0x0
 int id detailsContainer 0x0
-int id detailsContainerAccount 0x0
 int id dialogDateText 0x0
 int id dialogDayCashIn 0x0
 int id dialogDayCashOut 0x0
@@ -546,7 +551,6 @@ int id overviewBackButton 0x0
 int id overviewRecyclerView 0x0
 int id overviewTopBar 0x0
 int id pieChart 0x0
-int id pieChartAccount 0x0
 int id playVoiceBtn 0x0
 int id prevMonth 0x0
 int id previousBalanceRow 0x0
@@ -565,6 +569,7 @@ int id reminderSpinner 0x0
 int id repeatSpinner 0x0
 int id reportAllButton 0x0
 int id reportBackButton 0x0
+int id reportCurrencyButton 0x0
 int id reportEmptyText 0x0
 int id reportExpenseToggle 0x0
 int id reportIncomeToggle 0x0
@@ -608,9 +613,10 @@ int id settingsTopBar 0x0
 int id snoozeAction 0x0
 int id spinnerFromAccount 0x0
 int id spinnerToAccount 0x0
-int id statInText 0x0
-int id statNetText 0x0
-int id statOutText 0x0
+int id statBalance 0x0
+int id statIn 0x0
+int id statOut 0x0
+int id statTitle 0x0
 int id sticky_widget_root 0x0
 int id sticky_widget_text 0x0
 int id sticky_widget_title 0x0
@@ -678,11 +684,15 @@ int id transferDatePickerBox 0x0
 int id transferTimePickerBox 0x0
 int id transferTopBar 0x0
 int id transfer_main 0x0
+int id tvBalance 0x0
+int id tvExpenses 0x0
+int id tvIncome 0x0
 int id tvPriorityValue 0x0
 int id tvReminderValue 0x0
 int id tvRepeatValue 0x0
 int id tvSortDateAscState 0x0
 int id tvSortDateDescState 0x0
+int id tvTotalAmount 0x0
 int id txCashIn 0x0
 int id txCashOut 0x0
 int id txNamesAddButton 0x0
@@ -692,11 +702,13 @@ int id txNamesRecyclerView 0x0
 int id txNamesSearchView 0x0
 int id txNamesTopBar 0x0
 int id txNote 0x0
+int id txtAccountCurrency 0x0
 int id txtAccountDate 0x0
 int id txtCashCalcTitle 0x0
 int id txtCashOutHeader 0x0
 int id txtCountryFlag 0x0
 int id txtCountryName 0x0
+int id txtCurrency 0x0
 int id txtDate 0x0
 int id txtDenomValue 0x0
 int id txtDenomination 0x0
@@ -806,6 +818,7 @@ int layout item_transaction_name_row 0x0
 int layout item_transaction_row 0x0
 int layout layout_calendar_day_details 0x0
 int layout layout_chart_marker 0x0
+int layout layout_currency_chart 0x0
 int layout layout_custom_menu 0x0
 int layout layout_settings_panel 0x0
 int layout nav_header_expenses 0x0

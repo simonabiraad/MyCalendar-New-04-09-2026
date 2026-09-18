@@ -29,6 +29,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import com.google.mlkit.nl.languageid.LanguageIdentification;
@@ -42,12 +43,13 @@ import android.content.SharedPreferences;
 
 public class AddTransactionActivity extends AppCompatActivity {
 
-    private TextView titleView, txtDate, txtTime;
+    private TextView titleView, txtDate, txtTime, txtCurrency;
     private Button btnCashIn, btnCashOut, btnSaveExit, btnSaveContinue, btnDelete;
     private EditText editAmount, editItems, editNotes;
     private ImageView btnCalculator, btnVoice, btnSelectCategory;
     
     private String currentType = Transaction.TYPE_CASH_IN;
+    private String currentCurrency = "USD";
     private long editTransactionId = -1;
     private double originalAmount = 0;
     private String originalType = "";
@@ -184,6 +186,7 @@ public class AddTransactionActivity extends AppCompatActivity {
         btnCashOut = findViewById(R.id.btnCashOut);
         txtDate = findViewById(R.id.txtDate);
         txtTime = findViewById(R.id.txtTime);
+        txtCurrency = findViewById(R.id.txtCurrency);
         editAmount = findViewById(R.id.editAmount);
         editItems = findViewById(R.id.editItems);
         editNotes = findViewById(R.id.editNotes);
@@ -209,6 +212,19 @@ public class AddTransactionActivity extends AppCompatActivity {
             if (initialTimestamp != -1) {
                 selectedDateTime.setTimeInMillis(initialTimestamp);
             }
+
+            // Default currency from active account
+            String activeAccountName = getSharedPreferences("ExpensesPrefs", MODE_PRIVATE).getString("ActiveAccount", "Expenses");
+            if (!activeAccountName.equals("Expenses")) {
+                List<Account> accounts = BalanceManager.loadAccounts(this);
+                for (Account a : accounts) {
+                    if (a.getName().equals(activeAccountName)) {
+                        currentCurrency = a.getCurrency();
+                        break;
+                    }
+                }
+            }
+            txtCurrency.setText("Currency: " + currentCurrency);
         }
 
         updateDateTimeLabels();
@@ -218,6 +234,7 @@ public class AddTransactionActivity extends AppCompatActivity {
 
         findViewById(R.id.datePickerBox).setOnClickListener(v -> showDatePicker());
         findViewById(R.id.timePickerBox).setOnClickListener(v -> showTimePicker());
+        findViewById(R.id.currencyContainer).setOnClickListener(v -> showCurrencyPicker());
 
         btnCalculator.setOnClickListener(v -> {
             CalculatorDialogFragment calc = CalculatorDialogFragment.newInstance(result -> editAmount.setText(result));
@@ -285,6 +302,8 @@ public class AddTransactionActivity extends AppCompatActivity {
         Transaction t = TransactionDbHelper.getInstance(this).getTransactionById(editTransactionId);
         if (t != null) {
             setMode(t.getType());
+            currentCurrency = t.getCurrency();
+            txtCurrency.setText("Currency: " + currentCurrency);
             editAmount.setText(String.format(Locale.US, "%,.2f", t.getAmount()));
             editItems.setText(t.getTitle());
             editNotes.setText(t.getNotes());
@@ -330,6 +349,22 @@ public class AddTransactionActivity extends AppCompatActivity {
             selectedDateTime.set(Calendar.MINUTE, minute);
             updateDateTimeLabels();
         }, selectedDateTime.get(Calendar.HOUR_OF_DAY), selectedDateTime.get(Calendar.MINUTE), false).show();
+    }
+
+    private void showCurrencyPicker() {
+        List<CountryManager.Country> countries = CountryManager.getCountries();
+        String[] items = new String[countries.size()];
+        for (int i = 0; i < countries.size(); i++) {
+            items[i] = countries.get(i).currency + " (" + countries.get(i).name + ")";
+        }
+
+        new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                .setTitle("Select Currency")
+                .setItems(items, (dialog, which) -> {
+                    currentCurrency = countries.get(which).currency;
+                    txtCurrency.setText("Currency: " + currentCurrency);
+                })
+                .show();
     }
 
     private void startVoiceRecognition() {
@@ -443,6 +478,7 @@ public class AddTransactionActivity extends AppCompatActivity {
                     editTransactionId,
                     itemTitle,
                     amount,
+                    currentCurrency,
                     type,
                     selectedDateTime.getTimeInMillis(),
                     account,
@@ -455,6 +491,7 @@ public class AddTransactionActivity extends AppCompatActivity {
             TransactionDbHelper.getInstance(this).addTransaction(
                     itemTitle,
                     amount,
+                    currentCurrency,
                     type,
                     selectedDateTime.getTimeInMillis(),
                     account,

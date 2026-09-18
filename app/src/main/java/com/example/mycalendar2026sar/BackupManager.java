@@ -47,6 +47,7 @@ public class BackupManager {
                 JSONObject tObj = new JSONObject();
                 tObj.put("title", t.getTitle());
                 tObj.put("amount", t.getAmount());
+                tObj.put("currency", t.getCurrency());
                 tObj.put("type", t.getType());
                 tObj.put("timestamp", t.getTimestamp());
                 tObj.put("account", t.getAccount());
@@ -139,6 +140,7 @@ public class BackupManager {
                     dbHelper.addTransaction(
                         tObj.getString("title"),
                         tObj.getDouble("amount"),
+                        tObj.optString("currency", "USD"),
                         tObj.getString("type"),
                         tObj.getLong("timestamp"),
                         tObj.optString("account", ""),

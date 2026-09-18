@@ -34,8 +34,19 @@
             android:layout_weight="1"
             android:text="@string/menu_report_all_accounts"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/reportCurrencyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:backgroundTint="@color/gray"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="USD"
+            android:textSize="10sp"
+            app:cornerRadius="16dp" />
     </LinearLayout>
 
     <LinearLayout

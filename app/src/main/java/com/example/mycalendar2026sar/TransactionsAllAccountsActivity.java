@@ -188,7 +188,7 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
             Toast.makeText(this, "No data to export", Toast.LENGTH_SHORT).show();
             return;
         }
-        String html = ReportUtils.generateHtmlReport(currentFilteredTransactions, "Transaction Report", currentFilteredIn, currentFilteredOut);
+        String html = ReportUtils.generateHtmlReport(currentFilteredTransactions, "Transaction Report");
         ReportUtils.printHtml(this, html, "Transactions_Report");
     }
 
@@ -197,7 +197,7 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
             Toast.makeText(this, "No data to export", Toast.LENGTH_SHORT).show();
             return;
         }
-        pendingExportContent = ReportUtils.generateCsvReport(currentFilteredTransactions, currentFilteredIn, currentFilteredOut);
+        pendingExportContent = ReportUtils.generateCsvReport(currentFilteredTransactions);
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("text/csv");
@@ -303,8 +303,8 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
         List<Transaction> all = dbHelper.getAllTransactionsAscending();
         currentFilteredTransactions.clear();
         
-        currentFilteredIn = 0;
-        currentFilteredOut = 0;
+        java.util.Map<String, Double> cashInMap = new java.util.HashMap<>();
+        java.util.Map<String, Double> cashOutMap = new java.util.HashMap<>();
         
         Calendar now = Calendar.getInstance();
         
@@ -314,17 +314,16 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
 
             if (matchesAllFilters(t, now)) {
                 currentFilteredTransactions.add(t);
+                String curr = t.getCurrency();
                 if (t.isCashIn()) {
-                    currentFilteredIn += t.getAmount();
+                    cashInMap.put(curr, cashInMap.getOrDefault(curr, 0.0) + t.getAmount());
                 } else {
-                    currentFilteredOut += t.getAmount();
+                    cashOutMap.put(curr, cashOutMap.getOrDefault(curr, 0.0) + t.getAmount());
                 }
             }
         }
 
-        footerCashIn.setText(String.format(Locale.US, "%,.2f", currentFilteredIn));
-        footerCashOut.setText(String.format(Locale.US, "%,.2f", currentFilteredOut));
-        footerBalance.setText(String.format(Locale.US, "%,.2f", currentFilteredIn - currentFilteredOut));
+        updateFooterUI(cashInMap, cashOutMap);
 
         // Group by Date for display
         List<AllTxItem> displayItems = new ArrayList<>();
@@ -339,6 +338,32 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
         }
 
         adapter.setItems(displayItems);
+    }
+
+    private void updateFooterUI(java.util.Map<String, Double> cashInMap, java.util.Map<String, Double> cashOutMap) {
+        // If multiple currencies, we show them as a concatenated string or just the first one with a (+) sign
+        // But for best user experience, let's show the main currency if one is dominant, or just "Multi"
+        // Better: let's pick the first one from the map for the simple footer.
+        
+        if (cashInMap.isEmpty() && cashOutMap.isEmpty()) {
+            footerCashIn.setText("0.00");
+            footerCashOut.setText("0.00");
+            footerBalance.setText("0.00");
+            return;
+        }
+
+        String mainCurr = "USD";
+        if (!cashInMap.isEmpty()) mainCurr = cashInMap.keySet().iterator().next();
+        else if (!cashOutMap.isEmpty()) mainCurr = cashOutMap.keySet().iterator().next();
+
+        double in = cashInMap.getOrDefault(mainCurr, 0.0);
+        double out = cashOutMap.getOrDefault(mainCurr, 0.0);
+
+        String suffix = (cashInMap.size() > 1 || cashOutMap.size() > 1) ? " (+)" : "";
+
+        footerCashIn.setText(String.format(Locale.US, "%,.2f %s%s", in, mainCurr, suffix));
+        footerCashOut.setText(String.format(Locale.US, "%,.2f %s%s", out, mainCurr, suffix));
+        footerBalance.setText(String.format(Locale.US, "%,.2f %s%s", in - out, mainCurr, suffix));
     }
 
     private boolean matchesAllFilters(Transaction t, Calendar now) {
@@ -484,7 +509,7 @@ public class TransactionsAllAccountsActivity extends AppCompatActivity {
                 row.title.setText(t.getTitle());
                 row.time.setText(DateFormat.format("hh:mm a", t.getTimestamp()));
                 row.account.setText(t.getAccount() != null ? t.getAccount() : "---");
-                row.amount.setText(String.format(Locale.US, "%,.2f", t.getAmount()));
+                row.amount.setText(String.format(Locale.US, "%,.2f %s", t.getAmount(), t.getCurrency()));
                 row.amount.setTextColor(ContextCompat.getColor(TransactionsAllAccountsActivity.this,
                         t.isCashIn() ? R.color.income_green : R.color.expense_red));
             }

@@ -17,12 +17,13 @@ import java.util.List;
 public class TransactionDbHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "mycalendar.db";
-    private static final int DB_VERSION = 5;
+    private static final int DB_VERSION = 6;
 
     public static final String TABLE_TRANSACTIONS = "transactions";
     public static final String COL_ID = "_id";
     public static final String COL_TITLE = "title";
     public static final String COL_AMOUNT = "amount";
+    public static final String COL_CURRENCY = "currency";
     public static final String COL_TYPE = "type";
     public static final String COL_TIMESTAMP = "timestamp";
     public static final String COL_ACCOUNT = "account";
@@ -71,6 +72,7 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_TITLE + " TEXT NOT NULL, " +
                 COL_AMOUNT + " REAL NOT NULL, " +
+                COL_CURRENCY + " TEXT DEFAULT 'USD', " +
                 COL_TYPE + " TEXT NOT NULL, " +
                 COL_TIMESTAMP + " INTEGER NOT NULL, " +
                 COL_ACCOUNT + " TEXT, " +
@@ -132,6 +134,9 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
                     COL_NOTIF_HISTORY + " TEXT, " +
                     COL_NOTIF_DELETED + " INTEGER DEFAULT 0)");
         }
+        if (oldVersion < 6) {
+            db.execSQL("ALTER TABLE " + TABLE_TRANSACTIONS + " ADD COLUMN " + COL_CURRENCY + " TEXT DEFAULT 'USD'");
+        }
     }
 
     /** Adds a saved transaction name/payee if it doesn't already exist. Ignores duplicates. */
@@ -183,14 +188,15 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
     }
 
     public long addTransaction(String title, double amount, String type, long timestamp, String account) {
-        return addTransaction(title, amount, type, timestamp, account, "", "", "");
+        return addTransaction(title, amount, "USD", type, timestamp, account, "", "", "");
     }
 
-    public long addTransaction(String title, double amount, String type, long timestamp, String account, String notes, String voicePath, String bills) {
+    public long addTransaction(String title, double amount, String currency, String type, long timestamp, String account, String notes, String voicePath, String bills) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL_TITLE, title);
         values.put(COL_AMOUNT, amount);
+        values.put(COL_CURRENCY, currency);
         values.put(COL_TYPE, type);
         values.put(COL_TIMESTAMP, timestamp);
         values.put(COL_ACCOUNT, account);
@@ -257,11 +263,12 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
         db.delete(TABLE_TRANSACTIONS, null, null);
     }
 
-    public void updateTransaction(long id, String title, double amount, String type, long timestamp, String account, String notes, String voicePath, String bills) {
+    public void updateTransaction(long id, String title, double amount, String currency, String type, long timestamp, String account, String notes, String voicePath, String bills) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL_TITLE, title);
         values.put(COL_AMOUNT, amount);
+        values.put(COL_CURRENCY, currency);
         values.put(COL_TYPE, type);
         values.put(COL_TIMESTAMP, timestamp);
         values.put(COL_ACCOUNT, account);
@@ -459,6 +466,7 @@ public class TransactionDbHelper extends SQLiteOpenHelper {
                 c.getLong(c.getColumnIndexOrThrow(COL_ID)),
                 c.getString(c.getColumnIndexOrThrow(COL_TITLE)),
                 c.getDouble(c.getColumnIndexOrThrow(COL_AMOUNT)),
+                c.getString(c.getColumnIndexOrThrow(COL_CURRENCY)),
                 c.getString(c.getColumnIndexOrThrow(COL_TYPE)),
                 c.getLong(c.getColumnIndexOrThrow(COL_TIMESTAMP)),
                 c.getString(c.getColumnIndexOrThrow(COL_ACCOUNT)),

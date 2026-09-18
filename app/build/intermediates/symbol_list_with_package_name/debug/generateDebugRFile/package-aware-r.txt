@@ -135,6 +135,7 @@ drawable transaction_row_bg
 drawable weekday_pill_bg
 drawable widget_card_4x4_bg
 id accountBalance
+id accountCurrencyPicker
 id accountIcon
 id accountName
 id accountSummaryBackButton
@@ -325,6 +326,11 @@ id count_sticky
 id count_today
 id countryRecyclerView
 id countrySelectorBox
+id currencyChartsContainer
+id currencyContainer
+id currencyDetailsContainer
+id currencyHeader
+id currencyPieChart
 id currentBalanceTrendText
 id currentTabLabel
 id customMenuContainer
@@ -368,7 +374,6 @@ id detailStatus
 id detailTime
 id detailTitle
 id detailsContainer
-id detailsContainerAccount
 id dialogDateText
 id dialogDayCashIn
 id dialogDayCashOut
@@ -547,7 +552,6 @@ id overviewBackButton
 id overviewRecyclerView
 id overviewTopBar
 id pieChart
-id pieChartAccount
 id playVoiceBtn
 id prevMonth
 id previousBalanceRow
@@ -566,6 +570,7 @@ id reminderSpinner
 id repeatSpinner
 id reportAllButton
 id reportBackButton
+id reportCurrencyButton
 id reportEmptyText
 id reportExpenseToggle
 id reportIncomeToggle
@@ -609,9 +614,10 @@ id settingsTopBar
 id snoozeAction
 id spinnerFromAccount
 id spinnerToAccount
-id statInText
-id statNetText
-id statOutText
+id statBalance
+id statIn
+id statOut
+id statTitle
 id sticky_widget_root
 id sticky_widget_text
 id sticky_widget_title
@@ -679,11 +685,15 @@ id transferDatePickerBox
 id transferTimePickerBox
 id transferTopBar
 id transfer_main
+id tvBalance
+id tvExpenses
+id tvIncome
 id tvPriorityValue
 id tvReminderValue
 id tvRepeatValue
 id tvSortDateAscState
 id tvSortDateDescState
+id tvTotalAmount
 id txCashIn
 id txCashOut
 id txNamesAddButton
@@ -693,11 +703,13 @@ id txNamesRecyclerView
 id txNamesSearchView
 id txNamesTopBar
 id txNote
+id txtAccountCurrency
 id txtAccountDate
 id txtCashCalcTitle
 id txtCashOutHeader
 id txtCountryFlag
 id txtCountryName
+id txtCurrency
 id txtDate
 id txtDenomValue
 id txtDenomination
@@ -807,6 +819,7 @@ layout item_transaction_name_row
 layout item_transaction_row
 layout layout_calendar_day_details
 layout layout_chart_marker
+layout layout_currency_chart
 layout layout_custom_menu
 layout layout_settings_panel
 layout nav_header_expenses

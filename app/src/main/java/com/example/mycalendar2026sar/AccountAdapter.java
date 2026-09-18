@@ -51,7 +51,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
     public void onBindViewHolder(@NonNull AccountViewHolder holder, int position) {
         Account account = filteredAccounts.get(position);
         holder.nameText.setText(account.getName());
-        holder.balanceText.setText(String.format(java.util.Locale.US, "%,.2f", account.getBalance()));
+        holder.balanceText.setText(String.format(java.util.Locale.US, "%,.2f %s", account.getBalance(), account.getCurrency()));
 
         if (editMode) {
             holder.btnMoveUp.setVisibility(View.VISIBLE);

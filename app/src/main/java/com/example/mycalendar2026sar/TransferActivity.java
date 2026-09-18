@@ -103,6 +103,15 @@ public class TransferActivity extends AppCompatActivity {
             return;
         }
 
+        List<Account> accounts = BalanceManager.loadAccounts(this);
+        Account fromAccount = null, toAccount = null;
+        for (Account a : accounts) {
+            if (a.getName().equals(from)) fromAccount = a;
+            if (a.getName().equals(to)) toAccount = a;
+        }
+
+        if (fromAccount == null || toAccount == null) return;
+
         if (amountStr.isEmpty()) {
             Toast.makeText(this, "Please enter amount", Toast.LENGTH_SHORT).show();
             return;
@@ -124,12 +133,19 @@ public class TransferActivity extends AppCompatActivity {
         TransactionDbHelper dbHelper = TransactionDbHelper.getInstance(this);
         long timestamp = selectedDateTime.getTimeInMillis();
 
+        // If currencies are different, we should ideally ask for both amounts, 
+        // but to keep UI exactly same, we use the same amount for both and warn if different.
+        if (!fromAccount.getCurrency().equals(toAccount.getCurrency())) {
+            Toast.makeText(this, "Warning: Transferring between different currencies (" 
+                    + fromAccount.getCurrency() + " to " + toAccount.getCurrency() + ")", Toast.LENGTH_LONG).show();
+        }
+
         // 1. Transaction: Transfer Out from 'from'
-        dbHelper.addTransaction("Transfer to " + to, amount, Transaction.TYPE_CASH_OUT, timestamp, from);
+        dbHelper.addTransaction("Transfer to " + to, amount, fromAccount.getCurrency(), Transaction.TYPE_CASH_OUT, timestamp, from, "", "", "");
         BalanceManager.updateAccountBalance(this, from, -amount);
 
         // 2. Transaction: Transfer In to 'to'
-        dbHelper.addTransaction("Transfer from " + from, amount, Transaction.TYPE_CASH_IN, timestamp, to);
+        dbHelper.addTransaction("Transfer from " + from, amount, toAccount.getCurrency(), Transaction.TYPE_CASH_IN, timestamp, to, "", "", "");
         BalanceManager.updateAccountBalance(this, to, amount);
 
         Toast.makeText(this, "Transfer successful!", Toast.LENGTH_SHORT).show();

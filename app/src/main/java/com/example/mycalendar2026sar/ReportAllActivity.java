@@ -39,8 +39,9 @@ public class ReportAllActivity extends AppCompatActivity {
 
     private int currentPeriod = PERIOD_MONTH;
     private boolean showExpenses = true;
+    private String selectedCurrency = "USD";
 
-    private Button monthButton, yearButton, allButton;
+    private Button monthButton, yearButton, allButton, currencyButton;
     private Button expenseToggle, incomeToggle;
     private TextView totalText, emptyText;
     private RecyclerView recyclerView;
@@ -54,6 +55,7 @@ public class ReportAllActivity extends AppCompatActivity {
         monthButton = findViewById(R.id.reportMonthButton);
         yearButton = findViewById(R.id.reportYearButton);
         allButton = findViewById(R.id.reportAllButton);
+        currencyButton = findViewById(R.id.reportCurrencyButton);
         expenseToggle = findViewById(R.id.reportExpenseToggle);
         incomeToggle = findViewById(R.id.reportIncomeToggle);
         totalText = findViewById(R.id.reportTotalText);
@@ -67,6 +69,8 @@ public class ReportAllActivity extends AppCompatActivity {
         yearButton.setOnClickListener(v -> { currentPeriod = PERIOD_YEAR; refresh(); });
         allButton.setOnClickListener(v -> { currentPeriod = PERIOD_ALL; refresh(); });
 
+        currencyButton.setOnClickListener(v -> showCurrencyPicker());
+
         expenseToggle.setOnClickListener(v -> { showExpenses = true; refresh(); });
         incomeToggle.setOnClickListener(v -> { showExpenses = false; refresh(); });
 
@@ -75,6 +79,7 @@ public class ReportAllActivity extends AppCompatActivity {
 
     private void refresh() {
         updateButtonStyles();
+        currencyButton.setText(selectedCurrency);
 
         List<Transaction> all = TransactionDbHelper.getInstance(this).getAllTransactionsAscending();
         long periodStart = getPeriodStart();
@@ -84,6 +89,10 @@ public class ReportAllActivity extends AppCompatActivity {
         for (Transaction t : all) {
             if (t.getTimestamp() < periodStart) continue;
             if ("Monthly Income".equals(t.getTitle())) continue; // system entry, not a real category
+            
+            // CURRENCY FILTER
+            if (!selectedCurrency.equalsIgnoreCase(t.getCurrency())) continue;
+
             boolean wantCashIn = !showExpenses;
             if (t.isCashIn() != wantCashIn) continue;
 
@@ -93,7 +102,7 @@ public class ReportAllActivity extends AppCompatActivity {
             grandTotal += t.getAmount();
         }
 
-        totalText.setText(String.format(Locale.US, "Total: %,.2f", grandTotal));
+        totalText.setText(String.format(Locale.US, "Total: %,.2f %s", grandTotal, selectedCurrency));
 
         List<ReportRow> rows = new ArrayList<>();
         for (Map.Entry<String, Double> e : totals.entrySet()) {
@@ -143,6 +152,22 @@ public class ReportAllActivity extends AppCompatActivity {
         int incomeColor = ContextCompat.getColor(this, R.color.income_green);
         expenseToggle.setBackgroundTintList(ColorStateList.valueOf(showExpenses ? expenseColor : inactive));
         incomeToggle.setBackgroundTintList(ColorStateList.valueOf(!showExpenses ? incomeColor : inactive));
+    }
+
+    private void showCurrencyPicker() {
+        List<CountryManager.Country> countries = CountryManager.getCountries();
+        java.util.Set<String> uniqueCurrencies = new java.util.TreeSet<>();
+        for (CountryManager.Country c : countries) uniqueCurrencies.add(c.currency);
+        
+        final String[] items = uniqueCurrencies.toArray(new String[0]);
+
+        new androidx.appcompat.app.AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                .setTitle("Select Currency")
+                .setItems(items, (dialog, which) -> {
+                    selectedCurrency = items[which];
+                    refresh();
+                })
+                .show();
     }
 
     private static class ReportRow {

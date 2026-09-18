@@ -11,6 +11,7 @@ public class Transaction {
     private long id;
     private String title;
     private double amount;
+    private String currency;
     private String type;      // TYPE_CASH_IN or TYPE_CASH_OUT
     private long timestamp;   // millis since epoch
     private String account;   // account name this transaction belongs to
@@ -19,13 +20,14 @@ public class Transaction {
     private String billAttachments; // JSON string of paths
 
     public Transaction(long id, String title, double amount, String type, long timestamp, String account) {
-        this(id, title, amount, type, timestamp, account, "", "", "");
+        this(id, title, amount, "USD", type, timestamp, account, "", "", "");
     }
 
-    public Transaction(long id, String title, double amount, String type, long timestamp, String account, String notes, String voiceNotePath, String billAttachments) {
+    public Transaction(long id, String title, double amount, String currency, String type, long timestamp, String account, String notes, String voiceNotePath, String billAttachments) {
         this.id = id;
         this.title = title;
         this.amount = amount;
+        this.currency = currency;
         this.type = type;
         this.timestamp = timestamp;
         this.account = account;
@@ -44,6 +46,10 @@ public class Transaction {
 
     public double getAmount() {
         return amount;
+    }
+
+    public String getCurrency() {
+        return currency;
     }
 
     public String getType() {
