@@ -469,11 +469,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.notificationSettingsButton).setOnClickListener(v -> {
-            noteInput.requestFocus();
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            if (imm != null) {
-                imm.showSoftInput(noteInput, InputMethodManager.SHOW_IMPLICIT);
-            }
+            openNotificationSettings();
         });
 
         prevMonth.setOnClickListener(v -> {
@@ -2719,12 +2715,24 @@ public class MainActivity extends AppCompatActivity {
         // Header
         TextView title = findViewById(R.id.titleTextView);
         if (title != null) {
-            title.setTextColor(mainTheme);
-            applyFontSettings(title, 22);
+            String fullText = getString(R.string.title_calendar_2026);
+            android.text.SpannableStringBuilder ssb = new android.text.SpannableStringBuilder(fullText);
+            int spaceIndex = fullText.indexOf(" ");
+            if (spaceIndex != -1) {
+                ssb.setSpan(new android.text.style.ForegroundColorSpan(mainTheme), 0, spaceIndex, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ssb.setSpan(new android.text.style.ForegroundColorSpan(Color.WHITE), spaceIndex, fullText.length(), android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                // Make "Calendar" smaller than "SAR"
+                // Original: 22 * 0.8 = 17.6. New base: 24. 17.6 / 24 = 0.733f
+                ssb.setSpan(new android.text.style.RelativeSizeSpan(0.733f), spaceIndex, fullText.length(), android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            } else {
+                ssb.setSpan(new android.text.style.ForegroundColorSpan(mainTheme), 0, fullText.length(), android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+            title.setText(ssb);
+            applyFontSettings(title, 24);
         }
         TextView clock = findViewById(R.id.textClockDate);
         if (clock != null) {
-            clock.setTextColor(mainTheme);
+            clock.setTextColor(Color.WHITE);
             applyFontSettings(clock, 14);
         }
         TextView remarkLbl = findViewById(R.id.remarkLabel);
