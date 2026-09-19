@@ -109,10 +109,16 @@
 
                             <TextView
                                 android:id="@+id/editDate"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:text="Select Date"
                                 android:textColor="@color/white" />
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_menu_calendar_color" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -199,10 +205,16 @@
 
                             <TextView
                                 android:id="@+id/editStartTime"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:text="00:00"
                                 android:textColor="@color/white" />
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_notif_clock_color" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -237,10 +249,16 @@
 
                             <TextView
                                 android:id="@+id/editEndTime"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:text="00:00"
                                 android:textColor="@color/white" />
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_notif_clock_color" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

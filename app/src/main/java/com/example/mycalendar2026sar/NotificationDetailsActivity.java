@@ -80,7 +80,7 @@ public class NotificationDetailsActivity extends AppCompatActivity {
 
         if ("add".equals(mode)) {
             String date = getIntent().getStringExtra("date");
-            currentEvent = new NotificationEvent(-1, "", "", date, "", "", "Medium", "Pending", "None", "None", "", "Other", "None", false, "[]", "", "[]");
+            currentEvent = new NotificationEvent(-1, "", "", date, "00:00 AM", "00:00 AM", "Medium", "Pending", "None", "None", "", "Other", "None", false, "[]", "", "[]");
             setupEditUI();
         } else {
             loadEvent();
@@ -236,15 +236,23 @@ public class NotificationDetailsActivity extends AppCompatActivity {
 
         editStartTime.setOnClickListener(v -> {
             new TimePickerDialog(this, (t, h, min) -> {
-                editStartTime.setText(String.format(Locale.getDefault(), "%02d:%02d", h, min));
-            }, 10, 0, false).show();
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.HOUR_OF_DAY, h);
+                cal.set(Calendar.MINUTE, min);
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+                editStartTime.setText(sdf.format(cal.getTime()));
+            }, 0, 0, false).show();
         });
         startTimeBox.setOnClickListener(v -> editStartTime.performClick());
 
         editEndTime.setOnClickListener(v -> {
             new TimePickerDialog(this, (t, h, min) -> {
-                editEndTime.setText(String.format(Locale.getDefault(), "%02d:%02d", h, min));
-            }, 11, 0, false).show();
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.HOUR_OF_DAY, h);
+                cal.set(Calendar.MINUTE, min);
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+                editEndTime.setText(sdf.format(cal.getTime()));
+            }, 0, 0, false).show();
         });
         endTimeBox.setOnClickListener(v -> editEndTime.performClick());
 
