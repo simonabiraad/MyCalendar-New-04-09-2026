@@ -145,9 +145,12 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<String> matches = result.getData().getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     if (matches != null && !matches.isEmpty()) {
                         String spokenText = matches.get(0);
+                        
                         if (speechTranslateEnabled) {
+                            // In translate mode, identify language and then translate
                             translateText(spokenText);
                         } else {
+                            // If translation is OFF, just handle text directly as detected by STT
                             handleRecognizedText(spokenText);
                         }
                     }
@@ -1806,10 +1809,12 @@ public class MainActivity extends AppCompatActivity {
         if (!speechAutoLang) {
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, speechSourceLang);
         } else {
-            // Auto mode: use default locale but allow detection of all supported languages
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault().toString());
+            // Auto mode: set language to current speechSourceLang as hint but allow broad detection
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, speechSourceLang);
             intent.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES", languageCodes);
             intent.putExtra("android.speech.extra.ENABLE_LANGUAGE_DETECTION", true);
+            // Some newer versions support multi-language detection with these extras
+            intent.putExtra("android.speech.extra.LANGUAGE_DETECTION_MODE", 1); 
         }
         
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, isVoiceCommandMode ? "Listening for command..." : "Speak now...");

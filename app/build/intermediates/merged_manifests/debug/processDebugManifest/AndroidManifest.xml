@@ -47,7 +47,9 @@
         android:theme="@style/Theme.MyCalendar2026SAR" >
         <activity
             android:name="com.example.mycalendar2026sar.MainActivity"
+            android:clearTaskOnLaunch="true"
             android:exported="true"
+            android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,111 +60,138 @@
         <activity
             android:name="com.example.mycalendar2026sar.SecureBoxActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.CategoryActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.ExpensesActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.AddTransactionActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.IncomeActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.ExpenseTypeActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.TransferActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.AccountSummaryActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.TransactionNamesActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.SummaryActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.ReportAllActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.DeletedTransactionsActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.ExpensesSettingsActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.NotebookActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.ImageEditorActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.TaskActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.ExpensesCalendarActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.ChartActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.RatesActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.RecommendActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.AccountsOverviewActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.TransactionsAllAccountsActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.CashCalculatorActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.AddRemoveCurrencyActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.DayDetailsActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
         <activity
             android:name="com.example.mycalendar2026sar.NotificationDetailsActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.example.mycalendar2026sar.EventsActivity"
             android:exported="false"
+            android:finishOnTaskLaunch="true"
             android:theme="@style/Theme.MyCalendar2026SAR" />
 
         <service
