@@ -78,6 +78,7 @@ public class BackupManager {
                 eObj.put("history", e.getHistory());
                 eObj.put("category", e.getCategory());
                 eObj.put("color", e.getEventColor());
+                eObj.put("is_all_day", e.isAllDay());
                 notificationsJson.put(eObj);
             }
             backup.put("notifications", notificationsJson);
@@ -175,6 +176,7 @@ public class BackupManager {
                         eObj.optString("location", ""),
                         eObj.optString("category", "Other"),
                         eObj.optString("color", "Default"),
+                        eObj.optBoolean("is_all_day", false),
                         eObj.optString("attachments", "[]"),
                         eObj.optString("voice_path", ""),
                         eObj.optString("history", "[]")

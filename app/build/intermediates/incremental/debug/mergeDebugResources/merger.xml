@@ -11503,13 +11503,17 @@
         <item>Completed</item>
         <item>Cancelled</item>
     </string-array><string-array name="category_options">
-        <item>Other</item>
-        <item>Work</item>
         <item>Personal</item>
+        <item>Business</item>
+        <item>Meeting</item>
+        <item>Appointment</item>
+        <item>Work</item>
         <item>Family</item>
+        <item>Birthday</item>
         <item>Holiday</item>
+        <item>Health</item>
     </string-array><string-array name="event_color_options">
-        <item>Default</item>
+        <item>None</item>
         <item>Red</item>
         <item>Blue</item>
         <item>Green</item>

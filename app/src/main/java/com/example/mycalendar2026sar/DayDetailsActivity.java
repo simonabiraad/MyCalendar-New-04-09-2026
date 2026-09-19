@@ -85,10 +85,32 @@ public class DayDetailsActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             NotificationEvent event = items.get(position);
-            holder.title.setText(event.getTitle());
+            String titleText = event.getTitle();
+            if (event.isAllDay()) {
+                titleText += " (All Day)";
+            }
+            holder.title.setText(titleText);
             String time = event.getStartTime() + (event.getEndTime().isEmpty() ? "" : " - " + event.getEndTime());
             holder.time.setText(time.isEmpty() ? "No time set" : time);
             holder.status.setText(event.getStatus());
+
+            // Event Color indicator logic
+            String eventColorStr = event.getEventColor();
+            if (holder.eventColorIndicator != null) {
+                if (eventColorStr != null && !eventColorStr.isEmpty() && !"Default".equalsIgnoreCase(eventColorStr)) {
+                    int indicatorColor = Color.parseColor("#34A853"); // Default green
+                    if ("Red".equalsIgnoreCase(eventColorStr)) indicatorColor = Color.parseColor("#EA4335");
+                    else if ("Blue".equalsIgnoreCase(eventColorStr)) indicatorColor = Color.parseColor("#4285F4");
+                    else if ("Green".equalsIgnoreCase(eventColorStr)) indicatorColor = Color.parseColor("#34A853");
+                    else if ("Yellow".equalsIgnoreCase(eventColorStr)) indicatorColor = Color.parseColor("#FBBC05");
+                    else if ("Purple".equalsIgnoreCase(eventColorStr)) indicatorColor = Color.parseColor("#8E24AA");
+
+                    holder.eventColorIndicator.setBackgroundTintList(android.content.res.ColorStateList.valueOf(indicatorColor));
+                    holder.eventColorIndicator.setVisibility(View.VISIBLE);
+                } else {
+                    holder.eventColorIndicator.setVisibility(View.GONE);
+                }
+            }
 
             int priorityColor = Color.GREEN;
             if ("High".equalsIgnoreCase(event.getPriority())) priorityColor = Color.RED;
@@ -110,7 +132,7 @@ public class DayDetailsActivity extends AppCompatActivity {
 
         class ViewHolder extends RecyclerView.ViewHolder {
             TextView title, time, status;
-            View priorityIndicator;
+            View priorityIndicator, eventColorIndicator;
 
             ViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -118,6 +140,7 @@ public class DayDetailsActivity extends AppCompatActivity {
                 time = itemView.findViewById(R.id.eventTime);
                 status = itemView.findViewById(R.id.eventStatus);
                 priorityIndicator = itemView.findViewById(R.id.priorityIndicator);
+                eventColorIndicator = itemView.findViewById(R.id.eventColorIndicator);
             }
         }
     }

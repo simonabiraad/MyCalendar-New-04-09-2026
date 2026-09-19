@@ -80,7 +80,7 @@ public class NotificationDetailsActivity extends AppCompatActivity {
 
         if ("add".equals(mode)) {
             String date = getIntent().getStringExtra("date");
-            currentEvent = new NotificationEvent(-1, "", "", date, "", "", "Medium", "Pending", "None", "None", "", "Other", "Default", "[]", "", "[]");
+            currentEvent = new NotificationEvent(-1, "", "", date, "", "", "Medium", "Pending", "None", "None", "", "Other", "None", false, "[]", "", "[]");
             setupEditUI();
         } else {
             loadEvent();
@@ -121,6 +121,9 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         View viewStatusDot = findViewById(R.id.viewStatusDot);
         View viewEventColorDot = findViewById(R.id.viewEventColorDot);
 
+        androidx.appcompat.widget.SwitchCompat switchAllDay = findViewById(R.id.switchAllDay);
+        TextView tvAllDayStatus = findViewById(R.id.tvAllDayStatus);
+
         View dateBox = findViewById(R.id.dateBox);
         View startTimeBox = findViewById(R.id.startTimeBox);
         View endTimeBox = findViewById(R.id.endTimeBox);
@@ -130,6 +133,7 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         View priorityBox = findViewById(R.id.priorityBox);
         View statusBox = findViewById(R.id.statusBox);
         View colorBox = findViewById(R.id.colorBox);
+        View allDayStatusBox = findViewById(R.id.allDayStatusBox);
 
         Button btnAddAttachment = findViewById(R.id.btnAddAttachment);
         Button btnRecordVoice = findViewById(R.id.btnRecordVoice);
@@ -207,6 +211,14 @@ public class NotificationDetailsActivity extends AppCompatActivity {
         updateStatusDot(viewStatusDot, currentEvent.getStatus());
         updateEventColorDot(viewEventColorDot, currentEvent.getEventColor());
 
+        switchAllDay.setChecked(currentEvent.isAllDay());
+        tvAllDayStatus.setText(currentEvent.isAllDay() ? "ON" : "OFF");
+
+        switchAllDay.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            tvAllDayStatus.setText(isChecked ? "ON" : "OFF");
+        });
+        allDayStatusBox.setOnClickListener(v -> switchAllDay.toggle());
+
         editDate.setOnClickListener(v -> {
             Calendar cal = Calendar.getInstance();
             try {
@@ -249,6 +261,7 @@ public class NotificationDetailsActivity extends AppCompatActivity {
             currentEvent.setCategory(tvCategoryValue.getText().toString());
             currentEvent.setStatus(tvStatusValue.getText().toString());
             currentEvent.setEventColor(tvEventColorValue.getText().toString());
+            currentEvent.setAllDay(switchAllDay.isChecked());
 
             if (currentEvent.getId() == -1) {
                 addHistoryLog("Created");
@@ -341,6 +354,11 @@ public class NotificationDetailsActivity extends AppCompatActivity {
 
     private void updateEventColorDot(View dot, String eventColor) {
         if (dot == null) return;
+        if (eventColor == null || eventColor.isEmpty() || "Default".equalsIgnoreCase(eventColor) || "None".equalsIgnoreCase(eventColor)) {
+            dot.setVisibility(View.GONE);
+            return;
+        }
+        dot.setVisibility(View.VISIBLE);
         int color = Color.parseColor("#34A853"); // Default green
         if ("Red".equalsIgnoreCase(eventColor)) color = Color.parseColor("#EA4335");
         else if ("Blue".equalsIgnoreCase(eventColor)) color = Color.parseColor("#4285F4");

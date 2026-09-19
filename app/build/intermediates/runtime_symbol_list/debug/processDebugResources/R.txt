@@ -4121,6 +4121,7 @@ int id alertTitle 0x7f09007d
 int id aligned 0x7f09007e
 int id all 0x7f09007f
 int id allButton 0x7f090080
+int id allDayStatusBox 0x7f090481
 int id allEventsRecyclerView 0x7f090081
 int id allStates 0x7f090082
 int id allTxBackButton 0x7f090083
@@ -4453,6 +4454,7 @@ int id enterAlways 0x7f0901be
 int id enterAlwaysCollapsed 0x7f0901bf
 int id eventBackButton 0x7f0901c0
 int id eventButton 0x7f0901c1
+int id eventColorIndicator 0x7f09047e
 int id eventContainer 0x7f0901c2
 int id eventDate 0x7f0901c3
 int id eventStatus 0x7f0901c4
@@ -4954,6 +4956,7 @@ int id summaryTableHeaders 0x7f0903ab
 int id summaryTabsContainer 0x7f0903ac
 int id summaryToolbar 0x7f0903ad
 int id supportScrollUp 0x7f0903ae
+int id switchAllDay 0x7f09047f
 int id switchDenom 0x7f0903af
 int id tabAll 0x7f0903b0
 int id tabDaily 0x7f0903b1
@@ -5044,6 +5047,7 @@ int id transition_position 0x7f090405
 int id transition_scene_layoutid_cache 0x7f090406
 int id transition_transform 0x7f090407
 int id triangle 0x7f090408
+int id tvAllDayStatus 0x7f090480
 int id tvBalance 0x7f090465
 int id tvCategoryValue 0x7f09046e
 int id tvEventColorValue 0x7f09046f

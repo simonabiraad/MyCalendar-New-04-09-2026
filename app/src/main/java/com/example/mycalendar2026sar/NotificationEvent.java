@@ -20,13 +20,14 @@ public class NotificationEvent implements Serializable {
     private String location;
     private String category;
     private String eventColor;
+    private boolean isAllDay;
     private String attachments; // JSON array of file paths
     private String voiceNotePath;
     private String history; // JSON array of action logs
 
     public NotificationEvent(long id, String title, String notes, String date, String startTime, String endTime,
                              String priority, String status, String repeat, String reminder, String location,
-                             String category, String eventColor,
+                             String category, String eventColor, boolean isAllDay,
                              String attachments, String voiceNotePath, String history) {
         this.id = id;
         this.title = title;
@@ -41,6 +42,7 @@ public class NotificationEvent implements Serializable {
         this.location = location;
         this.category = category;
         this.eventColor = eventColor;
+        this.isAllDay = isAllDay;
         this.attachments = attachments;
         this.voiceNotePath = voiceNotePath;
         this.history = history;
@@ -82,8 +84,11 @@ public class NotificationEvent implements Serializable {
     public String getCategory() { return category != null ? category : "Other"; }
     public void setCategory(String category) { this.category = category; }
 
-    public String getEventColor() { return eventColor != null ? eventColor : "Default"; }
+    public String getEventColor() { return eventColor != null ? eventColor : "None"; }
     public void setEventColor(String eventColor) { this.eventColor = eventColor; }
+
+    public boolean isAllDay() { return isAllDay; }
+    public void setAllDay(boolean allDay) { isAllDay = allDay; }
 
     public String getAttachments() { return attachments; }
     public void setAttachments(String attachments) { this.attachments = attachments; }

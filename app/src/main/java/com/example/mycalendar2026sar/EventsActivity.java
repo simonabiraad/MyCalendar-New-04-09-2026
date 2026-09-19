@@ -143,6 +143,7 @@ public class EventsActivity extends AppCompatActivity {
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_LOCATION)),
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_CATEGORY)),
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_COLOR)),
+                c.getInt(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_ALL_DAY)) == 1,
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_ATTACHMENTS)),
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_VOICE_PATH)),
                 c.getString(c.getColumnIndexOrThrow(TransactionDbHelper.COL_NOTIF_HISTORY))
@@ -205,10 +206,15 @@ public class EventsActivity extends AppCompatActivity {
                 TextView location = detailView.findViewById(R.id.detailLocation);
                 TextView time = detailView.findViewById(R.id.detailTime);
                 TextView statusBadge = detailView.findViewById(R.id.detailStatus);
+                View eventColorIndicator = detailView.findViewById(R.id.eventColorIndicator);
                 View locationLayout = detailView.findViewById(R.id.locationLayout);
                 View priorityLine = detailView.findViewById(R.id.priorityLine);
 
-                title.setText(event.getTitle());
+                String titleText = event.getTitle();
+                if (event.isAllDay()) {
+                    titleText += " (All Day)";
+                }
+                title.setText(titleText);
                 if (event.getLocation() != null && !event.getLocation().isEmpty()) {
                     location.setText(event.getLocation());
                     locationLayout.setVisibility(View.VISIBLE);
@@ -227,11 +233,29 @@ public class EventsActivity extends AppCompatActivity {
                     updateStatusBadge(statusBadge, newStatus);
                 });
 
+                // Event Color indicator logic
+                String eventColorStr = event.getEventColor();
+                if (eventColorIndicator != null) {
+                    if (eventColorStr != null && !eventColorStr.isEmpty() && !"Default".equalsIgnoreCase(eventColorStr)) {
+                        int indicatorColor = Color.parseColor("#34A853"); // Default green
+                        if ("Red".equalsIgnoreCase(eventColorStr)) indicatorColor = Color.parseColor("#EA4335");
+                        else if ("Blue".equalsIgnoreCase(eventColorStr)) indicatorColor = Color.parseColor("#4285F4");
+                        else if ("Green".equalsIgnoreCase(eventColorStr)) indicatorColor = Color.parseColor("#34A853");
+                        else if ("Yellow".equalsIgnoreCase(eventColorStr)) indicatorColor = Color.parseColor("#FBBC05");
+                        else if ("Purple".equalsIgnoreCase(eventColorStr)) indicatorColor = Color.parseColor("#8E24AA");
+                        
+                        eventColorIndicator.setBackgroundTintList(android.content.res.ColorStateList.valueOf(indicatorColor));
+                        eventColorIndicator.setVisibility(View.VISIBLE);
+                    } else {
+                        eventColorIndicator.setVisibility(View.GONE);
+                    }
+                }
+
                 // Priority Logic for line color
                 int priorityColor = Color.GREEN;
                 if ("High".equalsIgnoreCase(event.getPriority())) priorityColor = Color.RED;
                 else if ("Medium".equalsIgnoreCase(event.getPriority())) priorityColor = Color.YELLOW;
-                
+
                 if (priorityLine != null) {
                     priorityLine.setBackgroundColor(priorityColor);
                 }

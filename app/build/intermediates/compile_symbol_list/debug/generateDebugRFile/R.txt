@@ -190,6 +190,7 @@ int id agenda_list 0x0
 int id agenda_title 0x0
 int id aiAssistantButton 0x0
 int id allButton 0x0
+int id allDayStatusBox 0x0
 int id allEventsRecyclerView 0x0
 int id allTxBackButton 0x0
 int id allTxFooter 0x0
@@ -416,6 +417,7 @@ int id empty_view 0x0
 int id endTimeBox 0x0
 int id eventBackButton 0x0
 int id eventButton 0x0
+int id eventColorIndicator 0x0
 int id eventContainer 0x0
 int id eventDate 0x0
 int id eventStatus 0x0
@@ -659,6 +661,7 @@ int id summaryRecyclerView 0x0
 int id summaryTableHeaders 0x0
 int id summaryTabsContainer 0x0
 int id summaryToolbar 0x0
+int id switchAllDay 0x0
 int id switchDenom 0x0
 int id tabAll 0x0
 int id tabDaily 0x0
@@ -701,6 +704,7 @@ int id transferDatePickerBox 0x0
 int id transferTimePickerBox 0x0
 int id transferTopBar 0x0
 int id transfer_main 0x0
+int id tvAllDayStatus 0x0
 int id tvBalance 0x0
 int id tvCategoryValue 0x0
 int id tvEventColorValue 0x0
