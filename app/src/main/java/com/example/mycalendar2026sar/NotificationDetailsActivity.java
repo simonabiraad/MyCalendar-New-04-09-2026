@@ -239,8 +239,8 @@ public class NotificationDetailsActivity extends AppCompatActivity {
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.HOUR_OF_DAY, h);
                 cal.set(Calendar.MINUTE, min);
-                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-                editStartTime.setText(sdf.format(cal.getTime()));
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.US);
+                editStartTime.setText(sdf.format(cal.getTime()).toUpperCase());
             }, 0, 0, false).show();
         });
         startTimeBox.setOnClickListener(v -> editStartTime.performClick());
@@ -250,8 +250,8 @@ public class NotificationDetailsActivity extends AppCompatActivity {
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.HOUR_OF_DAY, h);
                 cal.set(Calendar.MINUTE, min);
-                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-                editEndTime.setText(sdf.format(cal.getTime()));
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.US);
+                editEndTime.setText(sdf.format(cal.getTime()).toUpperCase());
             }, 0, 0, false).show();
         });
         endTimeBox.setOnClickListener(v -> editEndTime.performClick());
