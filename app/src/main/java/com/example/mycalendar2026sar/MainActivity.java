@@ -160,13 +160,17 @@ public class MainActivity extends AppCompatActivity {
             languageIdentifier.identifyLanguage(text)
                     .addOnSuccessListener(languageCode -> {
                         if (languageCode.equals("und")) {
-                            performTranslation(text, getMLKitCode(speechSourceLang));
+                            // If language detection failed, do not use speechSourceLang as fallback
+                            // to avoid interference. Just handle text as is.
+                            handleRecognizedText(text);
                         } else {
+                            // Use detected language as source for translation
                             performTranslation(text, languageCode);
                         }
                     })
-                    .addOnFailureListener(e -> performTranslation(text, getMLKitCode(speechSourceLang)));
+                    .addOnFailureListener(e -> handleRecognizedText(text));
         } else {
+            // Use manually selected Speaking Language as source
             performTranslation(text, getMLKitCode(speechSourceLang));
         }
     }
@@ -186,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
         final Translator translator = Translation.getClient(options);
 
         DownloadConditions conditions = new DownloadConditions.Builder()
-                .requireWifi()
                 .build();
         
         translator.downloadModelIfNeeded(conditions)
@@ -1803,9 +1806,10 @@ public class MainActivity extends AppCompatActivity {
         if (!speechAutoLang) {
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, speechSourceLang);
         } else {
-            // If auto-lang is on, try to set a list or let it be
+            // Auto mode: use default locale but allow detection of all supported languages
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault().toString());
             intent.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES", languageCodes);
+            intent.putExtra("android.speech.extra.ENABLE_LANGUAGE_DETECTION", true);
         }
         
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, isVoiceCommandMode ? "Listening for command..." : "Speak now...");
