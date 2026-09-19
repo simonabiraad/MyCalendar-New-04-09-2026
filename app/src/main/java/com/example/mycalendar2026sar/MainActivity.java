@@ -468,9 +468,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-        findViewById(R.id.notificationSettingsButton).setOnClickListener(v -> {
-            openNotificationSettings();
-        });
+        findViewById(R.id.notificationSettingsButton).setOnClickListener(v -> openNotificationSettings());
 
         prevMonth.setOnClickListener(v -> {
             calendar.add(Calendar.MONTH, -1);
@@ -2767,22 +2765,26 @@ public class MainActivity extends AppCompatActivity {
         // Buttons
         Button saveBtn = findViewById(R.id.eventButton);
         if (saveBtn != null) {
-            saveBtn.setBackgroundTintList(ColorStateList.valueOf(mainTheme));
+            saveBtn.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
+            saveBtn.setTextColor(mainTheme);
             applyFontSettings(saveBtn, 11);
         }
         Button taskBtn = findViewById(R.id.taskButton);
         if (taskBtn != null) {
-            taskBtn.setBackgroundTintList(ColorStateList.valueOf(mainTheme));
+            taskBtn.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
+            taskBtn.setTextColor(mainTheme);
             applyFontSettings(taskBtn, 11);
         }
         Button secureBtn = findViewById(R.id.secureBoxButton);
         if (secureBtn != null) {
-            secureBtn.setBackgroundTintList(ColorStateList.valueOf(mainTheme));
+            secureBtn.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
+            secureBtn.setTextColor(mainTheme);
             applyFontSettings(secureBtn, 11);
         }
         Button expBtn = findViewById(R.id.expensesButton);
         if (expBtn != null) {
-            expBtn.setBackgroundTintList(ColorStateList.valueOf(mainTheme));
+            expBtn.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
+            expBtn.setTextColor(mainTheme);
             applyFontSettings(expBtn, 11);
         }
         ImageButton notifyBtn = findViewById(R.id.notificationSettingsButton);

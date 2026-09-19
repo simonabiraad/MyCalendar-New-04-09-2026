@@ -405,58 +405,86 @@
 
             <Button
                 android:id="@+id/eventButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#444444"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="@string/save_note"
-                android:textSize="@dimen/_9ssp" />
+                android:textColor="@color/light_green"
+                android:textSize="@dimen/_9ssp"
+                app:backgroundTint="@android:color/transparent"
+                app:icon="@drawable/ic_menu_calendar_color"
+                app:iconGravity="top"
+                app:iconSize="24dp"
+                app:iconTint="@null"
+                app:elevation="0dp" />
 
             <Button
                 android:id="@+id/taskButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/light_green"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="Task"
-                android:textSize="@dimen/_9ssp" />
+                android:textColor="@color/light_green"
+                android:textSize="@dimen/_9ssp"
+                app:backgroundTint="@android:color/transparent"
+                app:icon="@drawable/ic_menu_task_color"
+                app:iconGravity="top"
+                app:iconSize="24dp"
+                app:iconTint="@null"
+                app:elevation="0dp" />
 
             <Button
                 android:id="@+id/secureBoxButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/light_green"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="@string/secure_box"
-                android:textSize="@dimen/_9ssp" />
+                android:textColor="@color/light_green"
+                android:textSize="@dimen/_9ssp"
+                app:backgroundTint="@android:color/transparent"
+                app:icon="@drawable/ic_menu_password_color"
+                app:iconGravity="top"
+                app:iconSize="24dp"
+                app:iconTint="@null"
+                app:elevation="0dp" />
 
             <Button
                 android:id="@+id/expensesButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/light_green"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="@string/expenses"
-                android:textSize="@dimen/_9ssp" />
+                android:textColor="@color/light_green"
+                android:textSize="@dimen/_9ssp"
+                app:backgroundTint="@android:color/transparent"
+                app:icon="@drawable/ic_menu_acc_summary_color"
+                app:iconGravity="top"
+                app:iconSize="24dp"
+                app:iconTint="@null"
+                app:elevation="0dp" />
 
         </LinearLayout>
     </LinearLayout>
