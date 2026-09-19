@@ -90,7 +90,7 @@
             android:ellipsize="none" />
     </LinearLayout>
 
-    <!-- New Sticky Note -->
+    <!-- Task -->
     <LinearLayout
         android:id="@+id/menuNewStickyNote"
         android:layout_width="match_parent"
@@ -103,13 +103,13 @@
         <ImageView
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            android:contentDescription="New Sticky Note"
-            android:src="@drawable/ic_menu_sticky_note_color" />
+            android:contentDescription="Task"
+            android:src="@drawable/ic_menu_task_color" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="New Sticky Note"
+            android:text="Task"
             android:textColor="@color/white"
             android:textSize="@dimen/_10ssp"
             android:textStyle="bold"

@@ -497,8 +497,14 @@ public class MainActivity extends AppCompatActivity {
         // Main Menu Items
         findViewById(R.id.menuNewNote).setOnClickListener(v -> { hideCustomMenu(); showNewNoteDialog(""); });
         findViewById(R.id.menuNewVoiceNote).setOnClickListener(v -> { hideCustomMenu(); startVoiceRecognition(); });
-        findViewById(R.id.menuEvents).setOnClickListener(v -> { hideCustomMenu(); startActivity(new Intent(this, EventsActivity.class)); });
-        findViewById(R.id.menuNewStickyNote).setOnClickListener(v -> { hideCustomMenu(); launchSecureBox(true); });
+        findViewById(R.id.menuEvents).setOnClickListener(v -> {
+            hideCustomMenu();
+            Intent intent = new Intent(this, NotificationDetailsActivity.class);
+            intent.putExtra("mode", "add");
+            intent.putExtra("date", currentDateKey);
+            startActivity(intent);
+        });
+        findViewById(R.id.menuNewStickyNote).setOnClickListener(v -> { hideCustomMenu(); startActivity(new Intent(this, TaskActivity.class)); });
         findViewById(R.id.menuSecureBox).setOnClickListener(v -> { hideCustomMenu(); launchSecureBox(false); });
         findViewById(R.id.menuExpenses).setOnClickListener(v -> { hideCustomMenu(); launchExpenses(); });
         
@@ -1996,13 +2002,6 @@ public class MainActivity extends AppCompatActivity {
             applyFontSettings(activeTitle, 18);
         }
         loadHistoryFromPrefs(sharedPreferences, remarkHistoryContainer, R.string.no_notes_saved, mainTheme);
-        Button archiveBtn = new Button(this);
-        archiveBtn.setText(R.string.archive_all_past_notes);
-        applyFontSettings(archiveBtn, 12);
-        archiveBtn.setBackgroundTintList(ColorStateList.valueOf(mainTheme));
-        archiveBtn.setTextColor(Color.WHITE);
-        archiveBtn.setOnClickListener(v -> archiveAllPastNotes());
-        remarkHistoryContainer.addView(archiveBtn);
         int archiveCount = countTotalNotes(archivePreferences);
         TextView archiveTitle = findViewById(R.id.archiveHistoryTitle);
         if (archiveTitle != null) {
@@ -2021,20 +2020,6 @@ public class MainActivity extends AppCompatActivity {
             applyFontSettings(deletedTitle, 18);
         }
         loadHistoryFromPrefs(deletedPreferences, deletedHistoryContainer, R.string.no_deleted_notes, deletedColor);
-        Button clearTrashBtn = new Button(this);
-        clearTrashBtn.setText(R.string.clear_trash_btn);
-        applyFontSettings(clearTrashBtn, 10);
-        clearTrashBtn.setBackgroundTintList(ColorStateList.valueOf(deletedColor));
-        clearTrashBtn.setTextColor(Color.WHITE);
-        clearTrashBtn.setOnClickListener(v -> new AlertDialog.Builder(MainActivity.this)
-                .setTitle("Clear Trash")
-                .setMessage("Permanently delete all notes in trash?").setPositiveButton("Yes", (dialog, which) -> {
-                    deletedPreferences.edit().clear().apply();
-                    updateRemarkHistory();
-                    updateAllWidgets();
-                    Toast.makeText(MainActivity.this, "Trash cleared", Toast.LENGTH_SHORT).show();
-                }).setNegativeButton("No", null).show());
-        deletedHistoryContainer.addView(clearTrashBtn);
     }
 
     private int countTotalNotes(SharedPreferences prefs) {
