@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.speech.RecognizerIntent;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -580,62 +582,7 @@ public class ExpensesActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        findViewById(R.id.expensesOverflowButton).setOnClickListener(v -> {
-            androidx.appcompat.widget.PopupMenu popup = new androidx.appcompat.widget.PopupMenu(this, v);
-            popup.getMenuInflater().inflate(R.menu.menu_expenses_overflow, popup.getMenu());
-
-            try {
-                java.lang.reflect.Field field = popup.getClass().getDeclaredField("mPopup");
-                field.setAccessible(true);
-                Object menuHelper = field.get(popup);
-                if (menuHelper != null) {
-                    Class<?> classPopupHelper = menuHelper.getClass();
-                    java.lang.reflect.Method setForceIcons = classPopupHelper.getMethod("setForceShowIcon", boolean.class);
-                    setForceIcons.invoke(menuHelper, true);
-                }
-            } catch (Exception ignored) {}
-
-            // Mark the currently active sorting method
-            popup.getMenu().findItem(R.id.action_date_asc).setChecked(isSortAscending);
-            popup.getMenu().findItem(R.id.action_date_desc).setChecked(!isSortAscending);
-
-            popup.setOnMenuItemClickListener(item -> {
-                int id = item.getItemId();
-                if (id == R.id.action_category) {
-                    startActivity(new Intent(this, CategoryActivity.class));
-                } else if (id == R.id.action_notes) {
-                    startActivity(new Intent(this, NotebookActivity.class));
-                } else if (id == R.id.action_date) {
-                    showDatePicker();
-                } else if (id == R.id.action_date_range) {
-                    showDateRangePicker();
-                } else if (id == R.id.action_date_asc) {
-                    isSortAscending = true;
-                    item.setChecked(true);
-                    refreshTransactionsList();
-                } else if (id == R.id.action_date_desc) {
-                    isSortAscending = false;
-                    item.setChecked(true);
-                    refreshTransactionsList();
-                } else if (id == R.id.action_cash_in) {
-                    filterOnlyCashIn = !filterOnlyCashIn;
-                    filterOnlyCashOut = false;
-                    refreshTransactionsList();
-                } else if (id == R.id.action_cash_out) {
-                    filterOnlyCashOut = !filterOnlyCashOut;
-                    filterOnlyCashIn = false;
-                    refreshTransactionsList();
-                } else if (id == R.id.action_print) {
-                    findViewById(R.id.expensesExportButton).performClick();
-                } else if (id == R.id.action_name) {
-                    showUserInfoDialog("Name", "UserName");
-                } else if (id == R.id.action_address) {
-                    showUserInfoDialog("Address", "UserAddress");
-                }
-                return true;
-            });
-            popup.show();
-        });
+        findViewById(R.id.expensesOverflowButton).setOnClickListener(this::showExpensesOverflowMenu);
 
         updateFilterButtonsUI();
 
@@ -661,6 +608,82 @@ public class ExpensesActivity extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    private void showExpensesOverflowMenu(View anchor) {
+        View popupView = getLayoutInflater().inflate(R.layout.layout_expenses_overflow_menu, null);
+        final PopupWindow popupWindow = new PopupWindow(popupView, 
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        
+        popupWindow.setElevation(20);
+        popupWindow.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(Color.BLACK));
+
+        // Sorting toggles
+        SwitchCompat switchAsc = popupView.findViewById(R.id.switch_asc);
+        SwitchCompat switchDesc = popupView.findViewById(R.id.switch_desc);
+
+        // Remove listeners temporarily to set initial state without triggering refresh
+        switchAsc.setOnCheckedChangeListener(null);
+        switchDesc.setOnCheckedChangeListener(null);
+        switchAsc.setChecked(isSortAscending);
+        switchDesc.setChecked(!isSortAscending);
+
+        switchAsc.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                isSortAscending = true;
+                if (switchDesc.isChecked()) switchDesc.setChecked(false);
+                refreshTransactionsList();
+            } else {
+                if (!switchDesc.isChecked()) switchAsc.setChecked(true); // Always keep one ON
+            }
+        });
+
+        switchDesc.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                isSortAscending = false;
+                if (switchAsc.isChecked()) switchAsc.setChecked(false);
+                refreshTransactionsList();
+            } else {
+                if (!switchAsc.isChecked()) switchDesc.setChecked(true); // Always keep one ON
+            }
+        });
+
+        // Clicks for items
+        popupView.findViewById(R.id.menu_category).setOnClickListener(v -> { startActivity(new Intent(this, CategoryActivity.class)); popupWindow.dismiss(); });
+        popupView.findViewById(R.id.menu_notes).setOnClickListener(v -> { startActivity(new Intent(this, NotebookActivity.class)); popupWindow.dismiss(); });
+        popupView.findViewById(R.id.menu_date).setOnClickListener(v -> { showDatePicker(); popupWindow.dismiss(); });
+        popupView.findViewById(R.id.menu_date_range).setOnClickListener(v -> { showDateRangePicker(); popupWindow.dismiss(); });
+        
+        // Containers for switches should also toggle
+        popupView.findViewById(R.id.menu_asc_container).setOnClickListener(v -> switchAsc.toggle());
+        popupView.findViewById(R.id.menu_desc_container).setOnClickListener(v -> switchDesc.toggle());
+
+        popupView.findViewById(R.id.menu_cash_in).setOnClickListener(v -> { 
+            filterOnlyCashIn = !filterOnlyCashIn; 
+            filterOnlyCashOut = false; 
+            refreshTransactionsList(); 
+            popupWindow.dismiss(); 
+        });
+        popupView.findViewById(R.id.menu_cash_out).setOnClickListener(v -> { 
+            filterOnlyCashOut = !filterOnlyCashOut; 
+            filterOnlyCashIn = false; 
+            refreshTransactionsList(); 
+            popupWindow.dismiss(); 
+        });
+        popupView.findViewById(R.id.menu_print).setOnClickListener(v -> { 
+            findViewById(R.id.expensesExportButton).performClick(); 
+            popupWindow.dismiss(); 
+        });
+        popupView.findViewById(R.id.menu_name).setOnClickListener(v -> { 
+            showUserInfoDialog("Name", "UserName"); 
+            popupWindow.dismiss(); 
+        });
+        popupView.findViewById(R.id.menu_address).setOnClickListener(v -> { 
+            showUserInfoDialog("Address", "UserAddress"); 
+            popupWindow.dismiss(); 
+        });
+
+        popupWindow.showAsDropDown(anchor, 0, 0, Gravity.END);
     }
 
     private void showSpeechTranslationDialog() {

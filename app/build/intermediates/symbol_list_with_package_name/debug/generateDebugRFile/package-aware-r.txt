@@ -504,6 +504,17 @@ id menuSortDateAsc
 id menuSortDateDesc
 id menuThemes
 id menuToggleQuickBar
+id menu_address
+id menu_asc_container
+id menu_cash_in
+id menu_cash_out
+id menu_category
+id menu_date
+id menu_date_range
+id menu_desc_container
+id menu_name
+id menu_notes
+id menu_print
 id modeSwitchContainer
 id monthYear
 id monthYearText
@@ -676,6 +687,8 @@ id summaryTabsContainer
 id summaryToolbar
 id switchAllDay
 id switchDenom
+id switch_asc
+id switch_desc
 id tabAll
 id tabDaily
 id tabMonthly
@@ -862,6 +875,7 @@ layout layout_calendar_day_details
 layout layout_chart_marker
 layout layout_currency_chart
 layout layout_custom_menu
+layout layout_expenses_overflow_menu
 layout layout_settings_panel
 layout layout_task_bottom_sheet
 layout nav_header_expenses
