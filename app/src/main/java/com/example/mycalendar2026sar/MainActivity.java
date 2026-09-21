@@ -369,7 +369,7 @@ public class MainActivity extends AppCompatActivity {
 
         initSelectionBar();
 
-        Button eventButton = findViewById(R.id.eventButton);
+        BottomNavigationHelper.setupBottomNavigation(this, R.id.navHomeButton);
         ImageButton prevMonth = findViewById(R.id.prevMonth);
         ImageButton nextMonth = findViewById(R.id.nextMonth);
 
@@ -429,13 +429,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         
-        eventButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, EventsActivity.class);
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-            intent.putExtra("selected_date", sdf.format(selectedDate.getTime()));
-            startActivity(intent);
-        });
-
         noteInput.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE || 
                 (event != null && event.getKeyCode() == android.view.KeyEvent.KEYCODE_ENTER)) {
@@ -453,26 +446,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.addNoteIconButton).setOnClickListener(v -> saveNote());
 
         findViewById(R.id.mainMenuButton).setOnClickListener(v -> toggleCustomMenu());
-
-        findViewById(R.id.secureBoxButton).setOnClickListener(v -> {
-            startActivity(new Intent(this, SecureBoxActivity.class));
-        });
-        findViewById(R.id.secureBoxButton).setOnLongClickListener(v -> {
-            showSecurityToggleDialog("Secure Box", "sb_password_disabled");
-            return true;
-        });
-
-        findViewById(R.id.taskButton).setOnClickListener(v -> {
-            startActivity(new Intent(this, TaskActivity.class));
-        });
-
-        findViewById(R.id.expensesButton).setOnClickListener(v -> {
-            startActivity(new Intent(this, ExpensesActivity.class));
-        });
-        findViewById(R.id.expensesButton).setOnLongClickListener(v -> {
-            showSecurityToggleDialog("Expenses", "exp_password_disabled");
-            return true;
-        });
 
         findViewById(R.id.notificationSettingsButton).setOnClickListener(v -> openNotificationSettings());
 
@@ -2756,31 +2729,6 @@ public class MainActivity extends AppCompatActivity {
             applyFontSettings(input, 14);
         }
 
-        // Buttons
-        Button saveBtn = findViewById(R.id.eventButton);
-        if (saveBtn != null) {
-            saveBtn.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
-            saveBtn.setTextColor(mainTheme);
-            applyFontSettings(saveBtn, 11);
-        }
-        Button taskBtn = findViewById(R.id.taskButton);
-        if (taskBtn != null) {
-            taskBtn.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
-            taskBtn.setTextColor(mainTheme);
-            applyFontSettings(taskBtn, 11);
-        }
-        Button secureBtn = findViewById(R.id.secureBoxButton);
-        if (secureBtn != null) {
-            secureBtn.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
-            secureBtn.setTextColor(mainTheme);
-            applyFontSettings(secureBtn, 11);
-        }
-        Button expBtn = findViewById(R.id.expensesButton);
-        if (expBtn != null) {
-            expBtn.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
-            expBtn.setTextColor(mainTheme);
-            applyFontSettings(expBtn, 11);
-        }
         ImageButton notifyBtn = findViewById(R.id.notificationSettingsButton);
         if (notifyBtn != null) {
             notifyBtn.setImageTintList(null);

@@ -156,6 +156,8 @@ public class TaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
 
+        BottomNavigationHelper.setupBottomNavigation(this, R.id.navTaskButton);
+        
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {

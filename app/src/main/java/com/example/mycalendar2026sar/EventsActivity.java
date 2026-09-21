@@ -51,6 +51,8 @@ public class EventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
 
+        BottomNavigationHelper.setupBottomNavigation(this, R.id.navEventButton);
+        
         dbHelper = TransactionDbHelper.getInstance(this);
         recyclerView = findViewById(R.id.allEventsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

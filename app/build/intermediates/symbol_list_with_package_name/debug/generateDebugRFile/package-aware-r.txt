@@ -94,6 +94,7 @@ drawable ic_menu_crop_color
 drawable ic_menu_edit_color
 drawable ic_menu_exit_color
 drawable ic_menu_font_color
+drawable ic_menu_home_color
 drawable ic_menu_info_color
 drawable ic_menu_new_note_color
 drawable ic_menu_no_ads
@@ -214,6 +215,7 @@ id balanceText
 id balanceTotalText
 id bottomActions
 id bottomContainer
+id bottomNavContainer
 id bottomStickyContainer
 id btnAddAttachment
 id btnAddBills
@@ -417,7 +419,6 @@ id emptyStateText
 id empty_view
 id endTimeBox
 id eventBackButton
-id eventButton
 id eventColorIndicator
 id eventContainer
 id eventDate
@@ -428,7 +429,6 @@ id eventsContainer
 id eventsHeader
 id eventsRecyclerView
 id expense_type_main
-id expensesButton
 id expensesButtonContainer
 id expensesChartButton
 id expensesExportButton
@@ -509,6 +509,11 @@ id moveSelectedBtn
 id nameRowDeleteButton
 id nameRowEditButton
 id nameRowText
+id navEventButton
+id navExpensesButton
+id navHomeButton
+id navSecureBoxButton
+id navTaskButton
 id nav_account_summary
 id nav_accounts
 id nav_backup_restore
@@ -620,7 +625,6 @@ id sbCameraNoteButton
 id sbVoiceNoteButton
 id scrollView2
 id searchCountry
-id secureBoxButton
 id secureBoxTitle
 id selectionBar
 id selectionCountText
@@ -671,8 +675,8 @@ id tabWeekly
 id tabYearly
 id tableHeader
 id taskBackButton
-id taskButton
 id taskCheckBox
+id taskContentArea
 id taskHeader
 id taskInput
 id taskLogoContainer
@@ -844,6 +848,7 @@ layout item_transaction_all_accounts_row
 layout item_transaction_header
 layout item_transaction_name_row
 layout item_transaction_row
+layout layout_bottom_navigation
 layout layout_calendar_day_details
 layout layout_chart_marker
 layout layout_currency_chart
@@ -1037,6 +1042,7 @@ string sticky_widget_large_description
 string sticky_widget_medium_description
 string sticky_widget_small_description
 string sun
+string task
 string task_widget_large_description
 string task_widget_medium_description
 string task_widget_small_description

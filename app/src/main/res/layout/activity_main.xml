@@ -401,97 +401,10 @@
                 android:src="@drawable/ic_notif_plus_color" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/buttonContainer"
+        <include
+            layout="@layout/layout_bottom_navigation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_6sdp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/eventButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:text="@string/save_note"
-                android:textColor="@color/light_green"
-                android:textSize="@dimen/_9ssp"
-                app:backgroundTint="@android:color/transparent"
-                app:icon="@drawable/ic_menu_calendar_color"
-                app:iconGravity="top"
-                app:iconSize="24dp"
-                app:iconTint="@null"
-                app:elevation="0dp" />
-
-            <Button
-                android:id="@+id/taskButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:text="Task"
-                android:textColor="@color/light_green"
-                android:textSize="@dimen/_9ssp"
-                app:backgroundTint="@android:color/transparent"
-                app:icon="@drawable/ic_menu_task_color"
-                app:iconGravity="top"
-                app:iconSize="24dp"
-                app:iconTint="@null"
-                app:elevation="0dp" />
-
-            <Button
-                android:id="@+id/secureBoxButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:text="@string/secure_box"
-                android:textColor="@color/light_green"
-                android:textSize="@dimen/_9ssp"
-                app:backgroundTint="@android:color/transparent"
-                app:icon="@drawable/ic_menu_accounts_color"
-                app:iconGravity="top"
-                app:iconSize="24dp"
-                app:iconTint="@null"
-                app:elevation="0dp" />
-
-            <Button
-                android:id="@+id/expensesButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:text="@string/expenses"
-                android:textColor="@color/light_green"
-                android:textSize="@dimen/_9ssp"
-                app:backgroundTint="@android:color/transparent"
-                app:icon="@drawable/ic_menu_cash_in_color"
-                app:iconGravity="top"
-                app:iconSize="24dp"
-                app:iconTint="@null"
-                app:elevation="0dp" />
-
-        </LinearLayout>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <View

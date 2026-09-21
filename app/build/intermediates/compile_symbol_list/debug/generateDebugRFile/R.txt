@@ -93,6 +93,7 @@ int drawable ic_menu_crop_color 0x0
 int drawable ic_menu_edit_color 0x0
 int drawable ic_menu_exit_color 0x0
 int drawable ic_menu_font_color 0x0
+int drawable ic_menu_home_color 0x0
 int drawable ic_menu_info_color 0x0
 int drawable ic_menu_new_note_color 0x0
 int drawable ic_menu_no_ads 0x0
@@ -213,6 +214,7 @@ int id balanceText 0x0
 int id balanceTotalText 0x0
 int id bottomActions 0x0
 int id bottomContainer 0x0
+int id bottomNavContainer 0x0
 int id bottomStickyContainer 0x0
 int id btnAddAttachment 0x0
 int id btnAddBills 0x0
@@ -416,7 +418,6 @@ int id emptyStateText 0x0
 int id empty_view 0x0
 int id endTimeBox 0x0
 int id eventBackButton 0x0
-int id eventButton 0x0
 int id eventColorIndicator 0x0
 int id eventContainer 0x0
 int id eventDate 0x0
@@ -427,7 +428,6 @@ int id eventsContainer 0x0
 int id eventsHeader 0x0
 int id eventsRecyclerView 0x0
 int id expense_type_main 0x0
-int id expensesButton 0x0
 int id expensesButtonContainer 0x0
 int id expensesChartButton 0x0
 int id expensesExportButton 0x0
@@ -508,6 +508,11 @@ int id moveSelectedBtn 0x0
 int id nameRowDeleteButton 0x0
 int id nameRowEditButton 0x0
 int id nameRowText 0x0
+int id navEventButton 0x0
+int id navExpensesButton 0x0
+int id navHomeButton 0x0
+int id navSecureBoxButton 0x0
+int id navTaskButton 0x0
 int id nav_account_summary 0x0
 int id nav_accounts 0x0
 int id nav_backup_restore 0x0
@@ -619,7 +624,6 @@ int id sbCameraNoteButton 0x0
 int id sbVoiceNoteButton 0x0
 int id scrollView2 0x0
 int id searchCountry 0x0
-int id secureBoxButton 0x0
 int id secureBoxTitle 0x0
 int id selectionBar 0x0
 int id selectionCountText 0x0
@@ -670,8 +674,8 @@ int id tabWeekly 0x0
 int id tabYearly 0x0
 int id tableHeader 0x0
 int id taskBackButton 0x0
-int id taskButton 0x0
 int id taskCheckBox 0x0
+int id taskContentArea 0x0
 int id taskHeader 0x0
 int id taskInput 0x0
 int id taskLogoContainer 0x0
@@ -843,6 +847,7 @@ int layout item_transaction_all_accounts_row 0x0
 int layout item_transaction_header 0x0
 int layout item_transaction_name_row 0x0
 int layout item_transaction_row 0x0
+int layout layout_bottom_navigation 0x0
 int layout layout_calendar_day_details 0x0
 int layout layout_chart_marker 0x0
 int layout layout_currency_chart 0x0
@@ -1036,6 +1041,7 @@ int string sticky_widget_large_description 0x0
 int string sticky_widget_medium_description 0x0
 int string sticky_widget_small_description 0x0
 int string sun 0x0
+int string task 0x0
 int string task_widget_large_description 0x0
 int string task_widget_medium_description 0x0
 int string task_widget_small_description 0x0

@@ -217,6 +217,8 @@ public class ExpensesActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_expenses);
 
+        BottomNavigationHelper.setupBottomNavigation(this, R.id.navExpensesButton);
+        
         loadAccounts();
         if (accountList.isEmpty()) {
             accountList.add(new Account("Expenses", 0.00));

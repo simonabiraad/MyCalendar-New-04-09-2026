@@ -81,6 +81,7 @@
     <string name="clear_trash_btn">Clear All Deleted Notes</string>
     <string name="notification_icon">🔔</string>
     <string name="secure_box">Secure Box</string>
+    <string name="task">Task</string>
 
     <!-- Categories -->
     <string name="category_title">Category</string>
