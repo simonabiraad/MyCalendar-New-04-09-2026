@@ -406,7 +406,7 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="16dp"
-            app:layout_constraintBottom_toTopOf="@id/totalsFooterContainer"
+            app:layout_constraintBottom_toTopOf="@id/toggleFooterButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -435,6 +435,18 @@
 
         </LinearLayout>
 
+        <ImageButton
+            android:id="@+id/toggleFooterButton"
+            android:layout_width="32dp"
+            android:layout_height="24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_down"
+            app:tint="@color/light_green"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toTopOf="@id/totalsFooterContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <LinearLayout
             android:id="@+id/totalsFooterContainer"
             android:layout_width="match_parent"
@@ -446,6 +458,7 @@
             android:paddingEnd="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/bottomNavContainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">

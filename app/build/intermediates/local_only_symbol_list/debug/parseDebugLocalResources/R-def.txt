@@ -696,6 +696,7 @@ id taskTitle
 id textClockDate
 id timePickerBox
 id titleTextView
+id toggleFooterButton
 id toolbar
 id topBar
 id topExpensesButton

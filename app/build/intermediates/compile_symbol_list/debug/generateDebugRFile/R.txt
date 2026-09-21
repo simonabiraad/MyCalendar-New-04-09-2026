@@ -694,6 +694,7 @@ int id taskTitle 0x0
 int id textClockDate 0x0
 int id timePickerBox 0x0
 int id titleTextView 0x0
+int id toggleFooterButton 0x0
 int id toolbar 0x0
 int id topBar 0x0
 int id topExpensesButton 0x0

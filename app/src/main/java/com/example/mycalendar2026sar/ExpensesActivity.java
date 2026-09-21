@@ -638,6 +638,29 @@ public class ExpensesActivity extends AppCompatActivity {
         });
 
         updateFilterButtonsUI();
+
+        // Expandable / Hideable totals panel setup
+        View totalsFooterContainer = findViewById(R.id.totalsFooterContainer);
+        android.widget.ImageButton toggleFooterButton = findViewById(R.id.toggleFooterButton);
+        
+        toggleFooterButton.setOnClickListener(v -> {
+            if (totalsFooterContainer.getVisibility() == View.VISIBLE) {
+                totalsFooterContainer.setVisibility(View.GONE);
+                toggleFooterButton.setImageResource(R.drawable.ic_arrow_down);
+            } else {
+                totalsFooterContainer.setVisibility(View.VISIBLE);
+                toggleFooterButton.setImageResource(android.R.drawable.arrow_up_float);
+            }
+        });
+
+        // Hide when tapping outside
+        findViewById(R.id.expenses_main).setOnTouchListener((v, event) -> {
+            if (totalsFooterContainer.getVisibility() == View.VISIBLE) {
+                totalsFooterContainer.setVisibility(View.GONE);
+                toggleFooterButton.setImageResource(R.drawable.ic_arrow_down);
+            }
+            return false;
+        });
     }
 
     private void showSpeechTranslationDialog() {

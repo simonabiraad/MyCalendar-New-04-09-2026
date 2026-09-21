@@ -80,7 +80,7 @@
     <string name="archive_all_past_notes">Archive all past notes</string>
     <string name="clear_trash_btn">Clear All Deleted Notes</string>
     <string name="notification_icon">🔔</string>
-    <string name="secure_box">Secure Box</string>
+    <string name="secure_box">Safe Box</string>
     <string name="task">Task</string>
 
     <!-- Categories -->
@@ -177,7 +177,7 @@
     <string name="close_app">Close App</string>
     <string name="close_app_msg">Are you sure you want to close the app?</string>
     <string name="enter_amount_for">Enter Amount for %s</string>
-    <string name="action_event">New Event</string>
+    <string name="action_event">All Events</string>
     <string name="action_privacy_policy">Privacy Policy</string>
     <string name="action_settings">Settings</string>
     <string name="action_change_password">Change Password</string>

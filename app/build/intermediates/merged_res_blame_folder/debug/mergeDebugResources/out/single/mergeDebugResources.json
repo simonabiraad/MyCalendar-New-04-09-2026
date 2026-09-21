@@ -400,6 +400,10 @@
         "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\drawable\\ic_menu_tx_names_color.xml"
     },
     {
+        "merged": "com.example.mycalendar2026sar.app-debug-43:/menu_main_popup_menu.xml.flat",
+        "source": "com.example.mycalendar2026sar.app-main-45:/menu/main_popup_menu.xml"
+    },
+    {
         "merged": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\layout_item_country.xml.flat",
         "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\layout\\item_country.xml"
     },
@@ -546,10 +550,6 @@
     {
         "merged": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\drawable_ic_menu_trash_color.xml.flat",
         "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\drawable\\ic_menu_trash_color.xml"
-    },
-    {
-        "merged": "com.example.mycalendar2026sar.app-debug-43:/layout_item_summary_stat_row.xml.flat",
-        "source": "com.example.mycalendar2026sar.app-main-45:/layout/item_summary_stat_row.xml"
     },
     {
         "merged": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\layout_item_transaction_name_row.xml.flat",
@@ -786,6 +786,10 @@
     {
         "merged": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\layout_item_transaction_row.xml.flat",
         "source": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-main-45:\\layout\\item_transaction_row.xml"
+    },
+    {
+        "merged": "com.example.mycalendar2026sar.app-debug-43:/layout_activity_secure_box.xml.flat",
+        "source": "com.example.mycalendar2026sar.app-main-45:/layout/activity_secure_box.xml"
     },
     {
         "merged": "C:\\Users\\SAR\\.gradle\\gradle-9.2.1\\daemon\\9.5.0\\com.example.mycalendar2026sar.app-debug-43:\\layout_activity_notification_details.xml.flat",
