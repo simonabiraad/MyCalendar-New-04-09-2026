@@ -1342,6 +1342,13 @@ public class ExpensesActivity extends AppCompatActivity {
 
         // Handle period balance if not FILTER_ALL
         if (currentFilter != FILTER_ALL) {
+            // Add a small empty vertical space/blank line between the USD Cash In section and the Preview sections
+            View space = new View(this);
+            LinearLayout.LayoutParams spaceParams = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, (int) (8 * getResources().getDisplayMetrics().density));
+            space.setLayoutParams(spaceParams);
+            footerContainer.addView(space);
+
             long periodStart = getPeriodStartMillis();
             List<Transaction> all = transactionDbHelper.getAllTransactionsAscending();
             String activeAccount = getSharedPreferences("ExpensesPrefs", MODE_PRIVATE).getString("ActiveAccount", "Expenses");
@@ -1360,20 +1367,29 @@ public class ExpensesActivity extends AppCompatActivity {
             }
 
             for (String curr : allCurrencies) {
-                LinearLayout balRow = new LinearLayout(this);
-                balRow.setOrientation(LinearLayout.VERTICAL);
-                balRow.setPadding(0, 8, 0, 8);
+                android.widget.RelativeLayout balRow = new android.widget.RelativeLayout(this);
+                balRow.setPadding(0, 2, 0, 2);
 
                 TextView prevTv = new TextView(this);
                 prevTv.setTextColor(Color.parseColor("#8BC34A"));
                 prevTv.setTextSize(12);
                 prevTv.setText(curr + " Previous: " + String.format(Locale.US, "%,.2f", prevBalMap.getOrDefault(curr, 0.0)));
+                
+                android.widget.RelativeLayout.LayoutParams lpPrev = new android.widget.RelativeLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                lpPrev.addRule(android.widget.RelativeLayout.ALIGN_PARENT_LEFT);
+                prevTv.setLayoutParams(lpPrev);
                 balRow.addView(prevTv);
 
                 TextView finalTv = new TextView(this);
                 finalTv.setTextColor(Color.WHITE);
                 finalTv.setTextSize(12);
                 finalTv.setText(curr + " Final: " + String.format(Locale.US, "%,.2f", finalBalMap.getOrDefault(curr, 0.0)));
+                
+                android.widget.RelativeLayout.LayoutParams lpFinal = new android.widget.RelativeLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                lpFinal.addRule(android.widget.RelativeLayout.ALIGN_PARENT_RIGHT);
+                finalTv.setLayoutParams(lpFinal);
                 balRow.addView(finalTv);
 
                 footerContainer.addView(balRow);

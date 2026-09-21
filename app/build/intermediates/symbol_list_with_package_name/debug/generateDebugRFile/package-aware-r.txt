@@ -307,8 +307,10 @@ id cashCalcBackButton
 id cashCalcMoreButton
 id cashCalcToolbar
 id cashInButton
+id cashInLayout
 id cashInTotalText
 id cashOutButton
+id cashOutLayout
 id cashOutTotalText
 id catAmount
 id catIcon
@@ -534,6 +536,7 @@ id nav_summary
 id nav_transaction_all
 id nav_transaction_names
 id nav_transfer
+id netLayout
 id nextMonth
 id noEventsText
 id noteBodyInput

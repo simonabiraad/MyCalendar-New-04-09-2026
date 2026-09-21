@@ -306,8 +306,10 @@ int id cashCalcBackButton 0x0
 int id cashCalcMoreButton 0x0
 int id cashCalcToolbar 0x0
 int id cashInButton 0x0
+int id cashInLayout 0x0
 int id cashInTotalText 0x0
 int id cashOutButton 0x0
+int id cashOutLayout 0x0
 int id cashOutTotalText 0x0
 int id catAmount 0x0
 int id catIcon 0x0
@@ -533,6 +535,7 @@ int id nav_summary 0x0
 int id nav_transaction_all 0x0
 int id nav_transaction_names 0x0
 int id nav_transfer 0x0
+int id netLayout 0x0
 int id nextMonth 0x0
 int id noEventsText 0x0
 int id noteBodyInput 0x0
