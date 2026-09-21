@@ -52,6 +52,11 @@ public class TaskActivity extends AppCompatActivity {
     private List<TaskItem> taskList = new ArrayList<>();
     private SharedPreferences sharedPreferences;
 
+    private View selectionBar;
+    private TextView selectionCountText;
+    private boolean isSelectionMode = false;
+    private final List<Integer> selectedIndices = new ArrayList<>();
+
     private final ActivityResultLauncher<Intent> voiceRecognitionLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
@@ -160,9 +165,20 @@ public class TaskActivity extends AppCompatActivity {
         
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
+        selectionBar = findViewById(R.id.selectionBar);
+        selectionCountText = findViewById(R.id.selectionCountText);
+
+        findViewById(R.id.cancelSelectionBtn).setOnClickListener(v -> exitSelectionMode());
+        findViewById(R.id.shareSelectedBtn).setOnClickListener(v -> shareSelectedTasks());
+        findViewById(R.id.deleteSelectedBtn).setOnClickListener(v -> deleteSelectedTasks());
+
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
+                if (isSelectionMode) {
+                    exitSelectionMode();
+                    return;
+                }
                 new AlertDialog.Builder(TaskActivity.this, R.style.CustomAlertDialogTheme)
                         .setTitle("Leave Page")
                         .setMessage("Are you sure you want to leave this page?")
@@ -234,6 +250,178 @@ public class TaskActivity extends AppCompatActivity {
         sendIntent.putExtra(Intent.EXTRA_TEXT, sb.toString());
         sendIntent.setType("text/plain");
         startActivity(Intent.createChooser(sendIntent, "Share Tasks via"));
+    }
+
+    private void toggleSelection(int position) {
+        if (selectedIndices.contains(position)) {
+            selectedIndices.remove((Integer) position);
+        } else {
+            selectedIndices.add(position);
+        }
+        if (selectedIndices.isEmpty()) {
+            exitSelectionMode();
+        } else {
+            if (selectionCountText != null) {
+                selectionCountText.setText(selectedIndices.size() + " selected");
+            }
+            if (adapter != null) {
+                adapter.notifyItemChanged(position);
+            }
+        }
+    }
+
+    private void exitSelectionMode() {
+        isSelectionMode = false;
+        selectedIndices.clear();
+        if (selectionBar != null) {
+            selectionBar.setVisibility(View.GONE);
+        }
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    private void shareSelectedTasks() {
+        if (selectedIndices.isEmpty()) return;
+        StringBuilder sb = new StringBuilder("SAR Tasks List:\n");
+        int count = 1;
+        List<Integer> sorted = new ArrayList<>(selectedIndices);
+        Collections.sort(sorted);
+        for (int index : sorted) {
+            if (index >= 0 && index < taskList.size()) {
+                TaskItem item = taskList.get(index);
+                sb.append(count++).append(". ").append(item.completed ? "[Done] " : "").append(item.text).append("\n");
+            }
+        }
+        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, sb.toString());
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, "Share Tasks via"));
+        exitSelectionMode();
+    }
+
+    private void deleteSelectedTasks() {
+        if (selectedIndices.isEmpty()) return;
+        new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                .setTitle("Delete Selected Tasks")
+                .setMessage("Are you sure you want to delete the selected tasks?")
+                .setPositiveButton("Delete", (dialog, which) -> {
+                    List<Integer> sorted = new ArrayList<>(selectedIndices);
+                    Collections.sort(sorted, Collections.reverseOrder());
+                    for (int index : sorted) {
+                        if (index >= 0 && index < taskList.size()) {
+                            taskList.remove(index);
+                        }
+                    }
+                    saveTasks();
+                    exitSelectionMode();
+                    Toast.makeText(this, "Selected tasks deleted", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    private void showTaskBottomSheet(int position) {
+        if (position < 0 || position >= taskList.size()) return;
+        TaskItem item = taskList.get(position);
+
+        com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog =
+                new com.google.android.material.bottomsheet.BottomSheetDialog(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.layout_task_bottom_sheet, null);
+        bottomSheetDialog.setContentView(view);
+
+        view.findViewById(R.id.bsSelectTask).setOnClickListener(v -> {
+            bottomSheetDialog.dismiss();
+            isSelectionMode = true;
+            selectedIndices.clear();
+            selectedIndices.add(position);
+            if (selectionBar != null) {
+                selectionBar.setVisibility(View.VISIBLE);
+            }
+            if (selectionCountText != null) {
+                selectionCountText.setText("1 selected");
+            }
+            if (adapter != null) {
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        view.findViewById(R.id.bsEditTask).setOnClickListener(v -> {
+            bottomSheetDialog.dismiss();
+            showEditTaskDialog(position);
+        });
+
+        view.findViewById(R.id.bsShareTask).setOnClickListener(v -> {
+            bottomSheetDialog.dismiss();
+            StringBuilder sb = new StringBuilder("SAR Task:\n");
+            sb.append(item.completed ? "[Done] " : "").append(item.text);
+            Intent sendIntent = new Intent(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, sb.toString());
+            sendIntent.setType("text/plain");
+            startActivity(Intent.createChooser(sendIntent, "Share Task via"));
+        });
+
+        view.findViewById(R.id.bsDeleteTask).setOnClickListener(v -> {
+            bottomSheetDialog.dismiss();
+            new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                    .setTitle("Delete Task")
+                    .setMessage("Are you sure you want to delete this task?")
+                    .setPositiveButton("Delete", (dialog, which) -> {
+                        taskList.remove(position);
+                        saveTasks();
+                        if (adapter != null) {
+                            adapter.notifyDataSetChanged();
+                        }
+                        Toast.makeText(this, "Task deleted", Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        });
+
+        bottomSheetDialog.show();
+    }
+
+    private void showEditTaskDialog(int position) {
+        if (position < 0 || position >= taskList.size()) return;
+        TaskItem item = taskList.get(position);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme);
+        builder.setTitle("Edit Task");
+
+        final EditText input = new EditText(this);
+        input.setText(item.text);
+        input.setTextColor(android.graphics.Color.WHITE);
+        
+        int padding = (int) (16 * getResources().getDisplayMetrics().density);
+        android.widget.FrameLayout container = new android.widget.FrameLayout(this);
+        android.widget.FrameLayout.LayoutParams params = new android.widget.FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.leftMargin = padding;
+        params.rightMargin = padding;
+        params.topMargin = padding;
+        params.bottomMargin = padding;
+        input.setLayoutParams(params);
+        container.addView(input);
+        builder.setView(container);
+
+        // Position cursor at end of text
+        input.setSelection(input.getText().length());
+
+        builder.setPositiveButton("Save", (dialog, which) -> {
+            String updatedText = input.getText().toString().trim();
+            if (!TextUtils.isEmpty(updatedText)) {
+                item.text = updatedText;
+                saveTasks();
+                if (adapter != null) {
+                    adapter.notifyItemChanged(position);
+                }
+                Toast.makeText(this, "Task updated", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Task text cannot be empty", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
     }
 
     private void showClearCompletedConfirm() {
@@ -399,6 +587,28 @@ public class TaskActivity extends AppCompatActivity {
                 item.completed = isChecked;
                 updateStrikethrough(holder.taskText, isChecked);
                 saveTasks();
+            });
+
+            holder.checkBox.setClickable(!isSelectionMode);
+            holder.checkBox.setFocusable(!isSelectionMode);
+
+            if (isSelectionMode) {
+                holder.itemView.setBackgroundColor(selectedIndices.contains(position) ? android.graphics.Color.parseColor("#338BC34A") : android.graphics.Color.TRANSPARENT);
+            } else {
+                holder.itemView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+            }
+
+            holder.itemView.setOnClickListener(v -> {
+                if (isSelectionMode) {
+                    toggleSelection(holder.getAdapterPosition());
+                }
+            });
+
+            holder.itemView.setOnLongClickListener(v -> {
+                if (!isSelectionMode) {
+                    showTaskBottomSheet(holder.getAdapterPosition());
+                }
+                return true;
             });
         }
 

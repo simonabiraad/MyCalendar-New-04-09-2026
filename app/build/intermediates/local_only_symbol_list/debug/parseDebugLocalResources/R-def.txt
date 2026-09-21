@@ -218,6 +218,10 @@ id bottomActions
 id bottomContainer
 id bottomNavContainer
 id bottomStickyContainer
+id bsDeleteTask
+id bsEditTask
+id bsSelectTask
+id bsShareTask
 id btnAddAttachment
 id btnAddBills
 id btnAddDenom
@@ -633,6 +637,7 @@ id settingsArrow
 id settingsBackButton
 id settingsPanelContainer
 id settingsTopBar
+id shareSelectedBtn
 id snoozeAction
 id spinnerFromAccount
 id spinnerToAccount
@@ -855,6 +860,7 @@ layout layout_chart_marker
 layout layout_currency_chart
 layout layout_custom_menu
 layout layout_settings_panel
+layout layout_task_bottom_sheet
 layout nav_header_expenses
 layout notification_widget
 layout sticky_note_item

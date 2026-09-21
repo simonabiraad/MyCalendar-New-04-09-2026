@@ -16,20 +16,20 @@ public class BottomNavigationHelper {
 
         if (homeBtn == null) return;
 
-        // Reset all to light_green
-        int lightGreen = Color.parseColor("#8BC34A");
-        homeBtn.setTextColor(lightGreen);
-        eventBtn.setTextColor(lightGreen);
-        taskBtn.setTextColor(lightGreen);
-        secureBtn.setTextColor(lightGreen);
-        expensesBtn.setTextColor(lightGreen);
+        // Reset all to white
+        int activeGreen = Color.parseColor("#8BC34A");
+        homeBtn.setTextColor(Color.WHITE);
+        eventBtn.setTextColor(Color.WHITE);
+        taskBtn.setTextColor(Color.WHITE);
+        secureBtn.setTextColor(Color.WHITE);
+        expensesBtn.setTextColor(Color.WHITE);
 
-        // Set active to white
-        if (activeTabId == R.id.navHomeButton) homeBtn.setTextColor(Color.WHITE);
-        else if (activeTabId == R.id.navEventButton) eventBtn.setTextColor(Color.WHITE);
-        else if (activeTabId == R.id.navTaskButton) taskBtn.setTextColor(Color.WHITE);
-        else if (activeTabId == R.id.navSecureBoxButton) secureBtn.setTextColor(Color.WHITE);
-        else if (activeTabId == R.id.navExpensesButton) expensesBtn.setTextColor(Color.WHITE);
+        // Set active to green
+        if (activeTabId == R.id.navHomeButton) homeBtn.setTextColor(activeGreen);
+        else if (activeTabId == R.id.navEventButton) eventBtn.setTextColor(activeGreen);
+        else if (activeTabId == R.id.navTaskButton) taskBtn.setTextColor(activeGreen);
+        else if (activeTabId == R.id.navSecureBoxButton) secureBtn.setTextColor(activeGreen);
+        else if (activeTabId == R.id.navExpensesButton) expensesBtn.setTextColor(activeGreen);
 
         homeBtn.setOnClickListener(v -> {
             if (!(activity instanceof MainActivity)) {
