@@ -59,6 +59,63 @@ public class AddTransactionActivity extends AppCompatActivity {
     private SimpleDateFormat dateSdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
     private SimpleDateFormat timeSdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
 
+    private boolean isFormattingAmount = false;
+
+    private final android.text.TextWatcher amountTextWatcher = new android.text.TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+        @Override
+        public void afterTextChanged(android.text.Editable s) {
+            if (isFormattingAmount) return;
+
+            String originalText = s.toString();
+            if (originalText.isEmpty()) return;
+
+            int cursorPosition = editAmount.getSelectionStart();
+            boolean isLbp = "LBP".equalsIgnoreCase(currentCurrency);
+
+            int significantCountBefore = 0;
+            for (int i = 0; i < Math.min(cursorPosition, originalText.length()); i++) {
+                char c = originalText.charAt(i);
+                if (isLbp ? Character.isDigit(c) : (Character.isDigit(c) || c == '.')) {
+                    significantCountBefore++;
+                }
+            }
+
+            String formatted = CurrencyFormatter.formatLiveText(originalText, currentCurrency);
+
+            if (formatted.equals(originalText)) return;
+
+            isFormattingAmount = true;
+            editAmount.setText(formatted);
+
+            int newCursorPosition = 0;
+            if (significantCountBefore > 0) {
+                int currentSignificant = 0;
+                for (int i = 0; i < formatted.length(); i++) {
+                    char c = formatted.charAt(i);
+                    if (isLbp ? Character.isDigit(c) : (Character.isDigit(c) || c == '.')) {
+                        currentSignificant++;
+                        if (currentSignificant == significantCountBefore) {
+                            newCursorPosition = i + 1;
+                            break;
+                        }
+                    }
+                }
+                if (currentSignificant < significantCountBefore) {
+                    newCursorPosition = formatted.length();
+                }
+            }
+
+            editAmount.setSelection(Math.min(newCursorPosition, formatted.length()));
+            isFormattingAmount = false;
+        }
+    };
+
     private final ActivityResultLauncher<Intent> categoryLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -188,6 +245,7 @@ public class AddTransactionActivity extends AppCompatActivity {
         txtTime = findViewById(R.id.txtTime);
         txtCurrency = findViewById(R.id.txtCurrency);
         editAmount = findViewById(R.id.editAmount);
+        editAmount.addTextChangedListener(amountTextWatcher);
         editItems = findViewById(R.id.editItems);
         editNotes = findViewById(R.id.editNotes);
         btnCalculator = findViewById(R.id.btnCalculator);
@@ -367,6 +425,7 @@ public class AddTransactionActivity extends AppCompatActivity {
                 .setItems(items, (dialog, which) -> {
                     currentCurrency = countries.get(which).currency;
                     txtCurrency.setText("Currency: " + currentCurrency);
+                    editAmount.setText(editAmount.getText().toString());
                 })
                 .show();
     }
