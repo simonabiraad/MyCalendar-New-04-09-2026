@@ -304,7 +304,11 @@ public class AddTransactionActivity extends AppCompatActivity {
             setMode(t.getType());
             currentCurrency = t.getCurrency();
             txtCurrency.setText("Currency: " + currentCurrency);
-            editAmount.setText(String.format(Locale.US, "%,.2f", t.getAmount()));
+            if ("LBP".equalsIgnoreCase(t.getCurrency())) {
+                editAmount.setText(CurrencyFormatter.formatLbpAmount(t.getAmount()));
+            } else {
+                editAmount.setText(String.format(Locale.US, "%,.2f", t.getAmount()));
+            }
             editItems.setText(t.getTitle());
             editNotes.setText(t.getNotes());
             selectedDateTime.setTimeInMillis(t.getTimestamp());
@@ -451,7 +455,15 @@ public class AddTransactionActivity extends AppCompatActivity {
 
         double amount;
         try {
-            amount = Double.parseDouble(amountStr.replace(",", ""));
+            if ("LBP".equalsIgnoreCase(currentCurrency)) {
+                String cleanStr = amountStr.replace(",", "");
+                if (cleanStr.contains(".") && cleanStr.matches(".*\\d+\\.\\d{3}(\\.\\d{3})*")) {
+                    cleanStr = cleanStr.replace(".", "");
+                }
+                amount = Double.parseDouble(cleanStr);
+            } else {
+                amount = Double.parseDouble(amountStr.replace(",", ""));
+            }
         } catch (NumberFormatException e) {
             Toast.makeText(this, "Invalid amount", Toast.LENGTH_SHORT).show();
             return false;

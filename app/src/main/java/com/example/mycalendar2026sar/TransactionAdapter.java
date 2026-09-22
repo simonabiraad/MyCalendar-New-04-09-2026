@@ -88,7 +88,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             rowHolder.title.setText(displayTitle);
             rowHolder.time.setText(DateFormat.format("hh:mm a", transaction.getTimestamp()));
 
-            String formattedAmount = String.format(Locale.US, "%,.2f %s", transaction.getAmount(), transaction.getCurrency());
+            String formattedAmount = CurrencyFormatter.formatAmount(transaction.getAmount(), transaction.getCurrency());
 
             if (transaction.isCashIn()) {
                 rowHolder.cashIn.setText(formattedAmount);
@@ -98,7 +98,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 rowHolder.cashIn.setText("");
             }
 
-            rowHolder.balance.setText(String.format(Locale.US, "%,.2f %s", item.getBalanceAfter(), transaction.getCurrency()));
+            rowHolder.balance.setText(CurrencyFormatter.formatAmount(item.getBalanceAfter(), transaction.getCurrency()));
 
             rowHolder.itemView.setOnClickListener(v -> {
                 if (clickListener != null) {

@@ -1379,9 +1379,15 @@ public class ExpensesActivity extends AppCompatActivity {
             TextView balTv = row.findViewById(R.id.statBalance);
 
             titleTv.setText(curr);
-            inTv.setText(String.format(Locale.US, "%,.2f", in));
-            outTv.setText(String.format(Locale.US, "%,.2f", out));
-            balTv.setText(String.format(Locale.US, "%,.2f", in - out));
+            if ("LBP".equalsIgnoreCase(curr)) {
+                inTv.setText(CurrencyFormatter.formatLbpAmount(in));
+                outTv.setText(CurrencyFormatter.formatLbpAmount(out));
+                balTv.setText(CurrencyFormatter.formatLbpAmount(in - out));
+            } else {
+                inTv.setText(String.format(Locale.US, "%,.2f", in));
+                outTv.setText(String.format(Locale.US, "%,.2f", out));
+                balTv.setText(String.format(Locale.US, "%,.2f", in - out));
+            }
             
             footerContainer.addView(row);
         }
@@ -1419,7 +1425,10 @@ public class ExpensesActivity extends AppCompatActivity {
                 TextView prevTv = new TextView(this);
                 prevTv.setTextColor(Color.parseColor("#8BC34A"));
                 prevTv.setTextSize(12);
-                prevTv.setText(curr + " Previous: " + String.format(Locale.US, "%,.2f", prevBalMap.getOrDefault(curr, 0.0)));
+                String prevValStr = "LBP".equalsIgnoreCase(curr)
+                        ? CurrencyFormatter.formatLbpAmount(prevBalMap.getOrDefault(curr, 0.0))
+                        : String.format(Locale.US, "%,.2f", prevBalMap.getOrDefault(curr, 0.0));
+                prevTv.setText(curr + " Previous: " + prevValStr);
                 
                 android.widget.RelativeLayout.LayoutParams lpPrev = new android.widget.RelativeLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -1430,7 +1439,10 @@ public class ExpensesActivity extends AppCompatActivity {
                 TextView finalTv = new TextView(this);
                 finalTv.setTextColor(Color.WHITE);
                 finalTv.setTextSize(12);
-                finalTv.setText(curr + " Final: " + String.format(Locale.US, "%,.2f", finalBalMap.getOrDefault(curr, 0.0)));
+                String finalValStr = "LBP".equalsIgnoreCase(curr)
+                        ? CurrencyFormatter.formatLbpAmount(finalBalMap.getOrDefault(curr, 0.0))
+                        : String.format(Locale.US, "%,.2f", finalBalMap.getOrDefault(curr, 0.0));
+                finalTv.setText(curr + " Final: " + finalValStr);
                 
                 android.widget.RelativeLayout.LayoutParams lpFinal = new android.widget.RelativeLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
