@@ -2,10 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ratesRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="#000000"
+    tools:context=".RatesActivity">
 
+    <!-- Top Bar -->
     <LinearLayout
         android:id="@+id/ratesTopBar"
         android:layout_width="match_parent"
@@ -18,27 +21,456 @@
 
         <ImageButton
             android:id="@+id/ratesBackButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Back"
             android:src="@drawable/ic_back_color" />
 
         <TextView
-            android:layout_width="0dp"
+            android:id="@+id/txtConvertTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_weight="1"
-            android:text="Rates"
+            android:layout_marginStart="12dp"
+            android:text="Convert"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btnSaveRate"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/bg_save_button"
+            android:gravity="center"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:text="Save"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/ratesRefreshButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Refresh"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_refresh" />
     </LinearLayout>
 
+    <!-- Convert View Container -->
     <ScrollView
+        android:id="@+id/viewConvertContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:fillViewport="true"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/ratesBottomNav"
+        app:layout_constraintTop_toBottomOf="@id/ratesTopBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Two Main Currency Cards Container -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <!-- From Currency Card -->
+                    <LinearLayout
+                        android:id="@+id/cardFromCurrency"
+                        android:layout_width="0dp"
+                        android:layout_height="120dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_currency_card"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/txtFromLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="From"
+                            android:textColor="#8E8E93"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txtFromCode"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="EUR"
+                                android:textColor="@color/white"
+                                android:textSize="22sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/imgFromArrow"
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_marginStart="6dp"
+                                android:contentDescription="Select"
+                                android:src="@drawable/ic_arrow_down"
+                                app:tint="#8E8E93" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txtFromNameFlag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Euro 🇪🇺"
+                            android:textColor="#8E8E93"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- To Currency Card -->
+                    <LinearLayout
+                        android:id="@+id/cardToCurrency"
+                        android:layout_width="0dp"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_currency_card"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/txtToLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="To"
+                            android:textColor="#8E8E93"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txtToCode"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="USD"
+                                android:textColor="@color/white"
+                                android:textSize="22sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/imgToArrow"
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_marginStart="6dp"
+                                android:contentDescription="Select"
+                                android:src="@drawable/ic_arrow_down"
+                                app:tint="#8E8E93" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txtToNameFlag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="US Dollar 🇺🇸"
+                            android:textColor="#8E8E93"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Central Swap Circle Button -->
+                <ImageButton
+                    android:id="@+id/btnSwapCurrency"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/bg_swap_circle"
+                    android:contentDescription="Swap"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_swap_vert"
+                    app:tint="@color/white" />
+
+            </RelativeLayout>
+
+            <!-- Amount Fields (Side-By-Side) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+                <!-- From Amount Field -->
+                <LinearLayout
+                    android:id="@+id/cardFromAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_currency_card"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
+
+                    <EditText
+                        android:id="@+id/editFromAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:autofillHints="none"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:hint="1.00"
+                        android:inputType="numberDecimal"
+                        android:text="503.67"
+                        android:textColor="@color/white"
+                        android:textColorHint="#8E8E93"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- To Converted Amount Field -->
+                <LinearLayout
+                    android:id="@+id/cardToAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_currency_card"
+                    android:gravity="center"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
+
+                    <TextView
+                        android:id="@+id/txtToAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="550,78 $"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Period Selector Pill Bar -->
+            <LinearLayout
+                android:id="@+id/periodBar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_currency_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <TextView
+                    android:id="@+id/btnPeriod1D"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_period_inactive"
+                    android:gravity="center"
+                    android:text="1D"
+                    android:textColor="#8E8E93"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnPeriod5D"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_period_inactive"
+                    android:gravity="center"
+                    android:text="5D"
+                    android:textColor="#8E8E93"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnPeriod1M"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_period_active"
+                    android:gravity="center"
+                    android:text="1M"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnPeriod6M"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_period_inactive"
+                    android:gravity="center"
+                    android:text="6M"
+                    android:textColor="#8E8E93"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnPeriod1Y"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_period_inactive"
+                    android:gravity="center"
+                    android:text="1Y"
+                    android:textColor="#8E8E93"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnPeriodMax"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_period_inactive"
+                    android:gravity="center"
+                    android:text="MAX"
+                    android:textColor="#8E8E93"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Chart Card -->
+            <LinearLayout
+                android:id="@+id/cardChartContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_currency_card"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:id="@+id/txtPairAndRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="EUR/USD 1.0932"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtRateChange"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_pill_green"
+                        android:paddingStart="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="4dp"
+                        android:text="+1.94%"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <!-- Loading Indicator -->
+                <ProgressBar
+                    android:id="@+id/progressBarLoading"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="#4CAF50"
+                    android:visibility="gone" />
+
+                <!-- MPAndroidChart LineChart -->
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp" />
+
+            </LinearLayout>
+
+            <!-- Footer Status Info -->
+            <TextView
+                android:id="@+id/txtStatusInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Last updated: Just now • Live Rates"
+                android:textColor="#8E8E93"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- History View Container -->
+    <ScrollView
+        android:id="@+id/viewHistoryContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/ratesBottomNav"
+        app:layout_constraintTop_toBottomOf="@id/ratesTopBar">
+
+        <LinearLayout
+            android:id="@+id/historyGroupContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" />
+    </ScrollView>
+
+    <!-- Settings View Container -->
+    <ScrollView
+        android:id="@+id/viewSettingsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/ratesBottomNav"
         app:layout_constraintTop_toBottomOf="@id/ratesTopBar">
 
         <LinearLayout
@@ -48,64 +480,329 @@
             android:padding="16dp">
 
             <TextView
+                android:id="@+id/txtSettingsHeaderTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current Currency Rates"
-                android:textColor="@color/light_green"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp"
+                android:text="Settings"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/card_dark"
+                android:background="@drawable/bg_currency_card"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="4dp">
 
-                <TextView
+                <!-- 1. Default Currency -->
+                <LinearLayout
+                    android:id="@+id/settingDefaultCurrency"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1 USD = 0.92 EUR"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
-                <TextView
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtDefaultCurrencyTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Default Currency"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtDefaultCurrencyValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="US Dollar"
+                            android:textColor="#8E8E93"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:contentDescription="Open"
+                        android:src="@drawable/ic_arrow_down"
+                        android:rotation="-90"
+                        app:tint="#8E8E93" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="#2C2C2E" />
+
+                <!-- 2. Location Permission -->
+                <LinearLayout
+                    android:id="@+id/settingLocationPermission"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1 USD = 0.79 GBP"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
-                <TextView
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtLocationPermissionTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Location Permission"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtLocationPermissionValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Allow only while using app"
+                            android:textColor="#8E8E93"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:contentDescription="Open"
+                        android:src="@drawable/ic_arrow_down"
+                        android:rotation="-90"
+                        app:tint="#8E8E93" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="#2C2C2E" />
+
+                <!-- 3. Language -->
+                <LinearLayout
+                    android:id="@+id/settingLanguage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1 USD = 150.25 JPY"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
-                <TextView
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtLanguageTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Language"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtLanguageValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="English"
+                            android:textColor="#8E8E93"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:contentDescription="Open"
+                        android:src="@drawable/ic_arrow_down"
+                        android:rotation="-90"
+                        app:tint="#8E8E93" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="#2C2C2E" />
+
+                <!-- 4. Theme -->
+                <LinearLayout
+                    android:id="@+id/settingTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1 USD = 1.35 CAD"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"/>
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtThemeTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Theme"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtThemeValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Dark mode"
+                            android:textColor="#8E8E93"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchDarkMode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        app:thumbTint="@color/white"
+                        app:trackTint="#4CAF50" />
+                </LinearLayout>
 
             </LinearLayout>
 
+            <!-- Version 1.0 Footer -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Last updated: Just now"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp"
-                android:gravity="center"/>
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="Version 1.0"
+                android:textColor="#8E8E93"
+                android:textSize="13sp" />
 
         </LinearLayout>
     </ScrollView>
+
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/ratesBottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:orientation="horizontal"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/navConvert"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="Convert"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_9ssp"
+            app:backgroundTint="@android:color/transparent"
+            app:icon="@drawable/ic_menu_transfer_color"
+            app:iconGravity="top"
+            app:iconSize="24dp"
+            app:iconTint="@null"
+            app:elevation="0dp" />
+
+        <Button
+            android:id="@+id/navScan"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="Scan"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_9ssp"
+            app:backgroundTint="@android:color/transparent"
+            app:icon="@drawable/ic_notif_camera_color"
+            app:iconGravity="top"
+            app:iconSize="24dp"
+            app:iconTint="@null"
+            app:elevation="0dp" />
+
+        <Button
+            android:id="@+id/navHistory"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="History"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_9ssp"
+            app:backgroundTint="@android:color/transparent"
+            app:icon="@drawable/ic_menu_tx_all_color"
+            app:iconGravity="top"
+            app:iconSize="24dp"
+            app:iconTint="@null"
+            app:elevation="0dp" />
+
+        <Button
+            android:id="@+id/navSettings"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="Settings"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_9ssp"
+            app:backgroundTint="@android:color/transparent"
+            app:icon="@drawable/ic_menu_settings_color"
+            app:iconGravity="top"
+            app:iconSize="24dp"
+            app:iconTint="@null"
+            app:elevation="0dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
