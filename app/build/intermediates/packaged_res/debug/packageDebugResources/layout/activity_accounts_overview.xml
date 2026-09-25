@@ -50,22 +50,11 @@
         android:padding="16dp"
         app:layout_constraintTop_toBottomOf="@id/overviewTopBar">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/totalOverviewContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total Balance (All Accounts)"
-            android:textColor="@color/text_secondary"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/totalOverviewBalance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="0.00"
-            android:textColor="@color/light_green"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+            android:orientation="vertical" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

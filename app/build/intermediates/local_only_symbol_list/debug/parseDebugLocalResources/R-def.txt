@@ -756,8 +756,8 @@ id topExpensesButton
 id topTitle
 id totalCashInText
 id totalCashOutText
-id totalOverviewBalance
 id totalOverviewCard
+id totalOverviewContainer
 id totalsFooterContainer
 id transactionAmountInput
 id transactionBalance

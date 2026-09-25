@@ -5,27 +5,31 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Screen showing a list of all account cards with their current balance
  * and this month's cash-in / cash-out totals.
- * Opens when clicking the "Expenses" button to allow account selection.
+ * Displays separate independent Total Balance for each currency.
  */
 public class AccountsOverviewActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private TextView totalBalanceText;
+    private LinearLayout totalOverviewContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,7 @@ public class AccountsOverviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_accounts_overview);
 
         recyclerView = findViewById(R.id.overviewRecyclerView);
-        totalBalanceText = findViewById(R.id.totalOverviewBalance);
+        totalOverviewContainer = findViewById(R.id.totalOverviewContainer);
 
         findViewById(R.id.overviewBackButton).setOnClickListener(v -> finish());
 
@@ -50,15 +54,65 @@ public class AccountsOverviewActivity extends AppCompatActivity {
         List<Account> accounts = BalanceManager.loadAccounts(this);
 
         if (accounts.isEmpty()) {
-            accounts.add(new Account("Expenses", 0.00));
+            accounts.add(new Account("Expenses", 0.00, "USD"));
             BalanceManager.saveAccounts(this, accounts);
         }
 
-        double totalBalance = 0;
+        // Group total balances by currency independently without combining them
+        Map<String, Double> currencyTotals = new LinkedHashMap<>();
         for (Account a : accounts) {
-            totalBalance += a.getBalance();
+            String curr = a.getCurrency();
+            if (curr == null || curr.trim().isEmpty()) {
+                curr = "USD";
+            }
+            curr = curr.toUpperCase(Locale.US).trim();
+            currencyTotals.put(curr, currencyTotals.getOrDefault(curr, 0.0) + a.getBalance());
         }
-        totalBalanceText.setText(String.format(Locale.US, "%,.2f", totalBalance));
+
+        totalOverviewContainer.removeAllViews();
+
+        if (currencyTotals.isEmpty()) {
+            currencyTotals.put("USD", 0.0);
+        }
+
+        int index = 0;
+        for (Map.Entry<String, Double> entry : currencyTotals.entrySet()) {
+            String curr = entry.getKey();
+            double total = entry.getValue();
+
+            LinearLayout block = new LinearLayout(this);
+            block.setOrientation(LinearLayout.VERTICAL);
+            if (index > 0) {
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                lp.topMargin = (int) (12 * getResources().getDisplayMetrics().density);
+                block.setLayoutParams(lp);
+            }
+
+            TextView labelTv = new TextView(this);
+            labelTv.setText("Total Balance (" + curr + ")");
+            labelTv.setTextColor(ContextCompat.getColor(this, R.color.text_secondary));
+            labelTv.setTextSize(13);
+
+            TextView valueTv = new TextView(this);
+            valueTv.setTypeface(null, android.graphics.Typeface.BOLD);
+            valueTv.setTextColor(ContextCompat.getColor(this, R.color.light_green));
+            valueTv.setTextSize(currencyTotals.size() > 1 ? 24 : 28);
+
+            String formattedValue;
+            if ("LBP".equalsIgnoreCase(curr)) {
+                formattedValue = CurrencyFormatter.formatLbpAmount(total);
+            } else {
+                formattedValue = String.format(Locale.US, "%,.2f", total);
+            }
+            valueTv.setText(formattedValue);
+
+            block.addView(labelTv);
+            block.addView(valueTv);
+
+            totalOverviewContainer.addView(block);
+            index++;
+        }
 
         // This-month cash-in / cash-out per account
         Calendar cal = Calendar.getInstance();
@@ -70,7 +124,7 @@ public class AccountsOverviewActivity extends AppCompatActivity {
         long monthStart = cal.getTimeInMillis();
 
         List<Transaction> all = TransactionDbHelper.getInstance(this).getAllTransactionsAscending();
-        java.util.Map<String, double[]> monthTotals = new java.util.HashMap<>(); // name -> [in, out]
+        Map<String, double[]> monthTotals = new java.util.HashMap<>(); // name -> [in, out]
         for (Transaction t : all) {
             if (t.getTimestamp() < monthStart) continue;
             String acc = t.getAccount() == null ? "" : t.getAccount();
@@ -99,14 +153,14 @@ public class AccountsOverviewActivity extends AppCompatActivity {
 
     private static class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.ViewHolder> {
         private final List<Account> accounts;
-        private final java.util.Map<String, double[]> monthTotals;
+        private final Map<String, double[]> monthTotals;
         private final OnAccountClickListener listener;
 
         interface OnAccountClickListener {
             void onAccountClick(Account account);
         }
 
-        OverviewAdapter(List<Account> accounts, java.util.Map<String, double[]> monthTotals, OnAccountClickListener listener) {
+        OverviewAdapter(List<Account> accounts, Map<String, double[]> monthTotals, OnAccountClickListener listener) {
             this.accounts = new ArrayList<>(accounts);
             this.monthTotals = monthTotals;
             this.listener = listener;
@@ -124,13 +178,27 @@ public class AccountsOverviewActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             Account account = accounts.get(position);
             holder.name.setText(account.getName());
-            holder.balance.setText(String.format(Locale.US, "%,.2f", account.getBalance()));
+
+            String curr = account.getCurrency();
+            if (curr == null || curr.trim().isEmpty()) curr = "USD";
+
+            if ("LBP".equalsIgnoreCase(curr)) {
+                holder.balance.setText(CurrencyFormatter.formatLbpAmount(account.getBalance()));
+            } else {
+                holder.balance.setText(String.format(Locale.US, "%,.2f", account.getBalance()));
+            }
 
             double[] totals = monthTotals.get(account.getName());
             double in = totals != null ? totals[0] : 0;
             double out = totals != null ? totals[1] : 0;
-            holder.in.setText(String.format(Locale.US, "This month In: %,.2f", in));
-            holder.out.setText(String.format(Locale.US, "This month Out: %,.2f", out));
+
+            if ("LBP".equalsIgnoreCase(curr)) {
+                holder.in.setText("This month In: " + CurrencyFormatter.formatLbpAmount(in));
+                holder.out.setText("This month Out: " + CurrencyFormatter.formatLbpAmount(out));
+            } else {
+                holder.in.setText(String.format(Locale.US, "This month In: %,.2f", in));
+                holder.out.setText(String.format(Locale.US, "This month Out: %,.2f", out));
+            }
 
             holder.itemView.setOnClickListener(v -> listener.onAccountClick(account));
         }

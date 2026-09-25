@@ -229,20 +229,43 @@ public class RatesActivity extends AppCompatActivity {
         SharedPreferences settingsPrefs = getSharedPreferences(PREFS_SETTINGS, Context.MODE_PRIVATE);
         String savedDefaultCode = settingsPrefs.getString("default_currency_code", "US");
 
-        fromCountry = findCountryByCode(countries, "EU");
+        String lastFromCode = settingsPrefs.getString("last_selected_from_code", "EU");
+        String lastToCode = settingsPrefs.getString("last_selected_to_code", savedDefaultCode);
+
+        fromCountry = findCountryByCode(countries, lastFromCode);
         if (fromCountry == null) fromCountry = new CountryManager.Country("European Union", "EU", "EUR", "🇪🇺");
 
-        toCountry = findCountryByCode(countries, savedDefaultCode);
+        toCountry = findCountryByCode(countries, lastToCode);
+        if (toCountry == null) toCountry = findCountryByCode(countries, savedDefaultCode);
         if (toCountry == null) toCountry = new CountryManager.Country("United States", "US", "USD", "🇺🇸");
 
-        if (cardFrom != null) cardFrom.setOnClickListener(v -> showCountryPicker(c -> { fromCountry = c; updateCurrencyCards(); fetchLiveRatesAndChart(); }));
-        if (cardTo != null) cardTo.setOnClickListener(v -> showCountryPicker(c -> { toCountry = c; updateCurrencyCards(); fetchLiveRatesAndChart(); }));
+        if (cardFrom != null) {
+            cardFrom.setOnClickListener(v -> showCountryPicker(c -> {
+                fromCountry = c;
+                settingsPrefs.edit().putString("last_selected_from_code", c.code).apply();
+                updateCurrencyCards();
+                fetchLiveRatesAndChart();
+            }));
+        }
+
+        if (cardTo != null) {
+            cardTo.setOnClickListener(v -> showCountryPicker(c -> {
+                toCountry = c;
+                settingsPrefs.edit().putString("last_selected_to_code", c.code).apply();
+                updateCurrencyCards();
+                fetchLiveRatesAndChart();
+            }));
+        }
 
         if (btnSwap != null) {
             btnSwap.setOnClickListener(v -> {
                 CountryManager.Country temp = fromCountry;
                 fromCountry = toCountry;
                 toCountry = temp;
+                settingsPrefs.edit()
+                        .putString("last_selected_from_code", fromCountry.code)
+                        .putString("last_selected_to_code", toCountry.code)
+                        .apply();
                 updateCurrencyCards();
                 calculateConvertedAmount();
                 fetchChartDataForPeriod();
@@ -352,6 +375,7 @@ public class RatesActivity extends AppCompatActivity {
                 if (txtDefaultCurrencyValue != null) txtDefaultCurrencyValue.setText(currName);
                 prefs.edit().putString("default_currency", currName)
                         .putString("default_currency_code", country.code)
+                        .putString("last_selected_to_code", country.code)
                         .apply();
 
                 // Apply automatically to To currency field!
@@ -429,6 +453,10 @@ public class RatesActivity extends AppCompatActivity {
                     CountryManager.Country country = findCountryByCode(CountryManager.getCountries(), finalCode);
                     if (country != null) {
                         fromCountry = country;
+                        getSharedPreferences(PREFS_SETTINGS, Context.MODE_PRIVATE)
+                                .edit()
+                                .putString("last_selected_from_code", country.code)
+                                .apply();
                         updateCurrencyCards();
                         calculateConvertedAmount();
                         fetchChartDataForPeriod();

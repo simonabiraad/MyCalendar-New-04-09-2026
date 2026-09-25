@@ -754,8 +754,8 @@ int id topExpensesButton 0x0
 int id topTitle 0x0
 int id totalCashInText 0x0
 int id totalCashOutText 0x0
-int id totalOverviewBalance 0x0
 int id totalOverviewCard 0x0
+int id totalOverviewContainer 0x0
 int id totalsFooterContainer 0x0
 int id transactionAmountInput 0x0
 int id transactionBalance 0x0

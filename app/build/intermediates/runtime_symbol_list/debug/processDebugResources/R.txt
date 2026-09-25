@@ -5088,8 +5088,8 @@ int id topPanel 0x7f09043b
 int id topTitle 0x7f09043c
 int id totalCashInText 0x7f09043d
 int id totalCashOutText 0x7f09043e
-int id totalOverviewBalance 0x7f09043f
-int id totalOverviewCard 0x7f090440
+int id totalOverviewCard 0x7f09043f
+int id totalOverviewContainer 0x7f090440
 int id totalsFooterContainer 0x7f090441
 int id touch_outside 0x7f090442
 int id transactionAmountInput 0x7f090443
