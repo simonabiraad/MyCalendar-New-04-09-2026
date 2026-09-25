@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_6sdp"
     android:orientation="horizontal"
-    android:background="#000000">
+    android:background="@color/nav_bg">
 
     <Button
         android:id="@+id/navHomeButton"
@@ -19,7 +19,7 @@
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:text="@string/menu_home"
-        android:textColor="@color/white"
+        android:textColor="@color/text_primary"
         android:textSize="@dimen/_9ssp"
         app:backgroundTint="@android:color/transparent"
         app:icon="@drawable/ic_menu_home_color"
@@ -39,7 +39,7 @@
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:text="@string/save_note"
-        android:textColor="@color/white"
+        android:textColor="@color/text_primary"
         android:textSize="@dimen/_9ssp"
         app:backgroundTint="@android:color/transparent"
         app:icon="@drawable/ic_menu_calendar_color"
@@ -59,7 +59,7 @@
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:text="@string/task"
-        android:textColor="@color/white"
+        android:textColor="@color/text_primary"
         android:textSize="@dimen/_9ssp"
         app:backgroundTint="@android:color/transparent"
         app:icon="@drawable/ic_menu_task_color"
@@ -79,7 +79,7 @@
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:text="@string/secure_box"
-        android:textColor="@color/white"
+        android:textColor="@color/text_primary"
         android:textSize="@dimen/_9ssp"
         app:backgroundTint="@android:color/transparent"
         app:icon="@drawable/ic_menu_accounts_color"

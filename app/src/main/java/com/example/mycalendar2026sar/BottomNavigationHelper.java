@@ -2,8 +2,9 @@ package com.example.mycalendar2026sar;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.widget.Button;
+
+import androidx.core.content.ContextCompat;
 
 public class BottomNavigationHelper {
 
@@ -16,13 +17,14 @@ public class BottomNavigationHelper {
 
         if (homeBtn == null) return;
 
-        // Reset all to white
-        int activeGreen = Color.parseColor("#8BC34A");
-        homeBtn.setTextColor(Color.WHITE);
-        eventBtn.setTextColor(Color.WHITE);
-        taskBtn.setTextColor(Color.WHITE);
-        secureBtn.setTextColor(Color.WHITE);
-        expensesBtn.setTextColor(Color.WHITE);
+        int unselectedColor = ContextCompat.getColor(activity, R.color.text_primary);
+        int activeGreen = ContextCompat.getColor(activity, R.color.light_green);
+
+        homeBtn.setTextColor(unselectedColor);
+        eventBtn.setTextColor(unselectedColor);
+        taskBtn.setTextColor(unselectedColor);
+        secureBtn.setTextColor(unselectedColor);
+        expensesBtn.setTextColor(unselectedColor);
 
         // Set active to green
         if (activeTabId == R.id.navHomeButton) homeBtn.setTextColor(activeGreen);

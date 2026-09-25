@@ -23,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +31,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -323,6 +325,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeManager.applyTheme(this);
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -2523,6 +2526,53 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showChangeColorsDialog() {
+        LinearLayout container = new LinearLayout(this);
+        container.setOrientation(LinearLayout.VERTICAL);
+        container.setPadding(32, 24, 32, 16);
+
+        // Dark Mode Toggle Row
+        LinearLayout toggleRow = new LinearLayout(this);
+        toggleRow.setOrientation(LinearLayout.HORIZONTAL);
+        toggleRow.setGravity(android.view.Gravity.CENTER_VERTICAL);
+        toggleRow.setPadding(0, 8, 0, 16);
+
+        LinearLayout textCol = new LinearLayout(this);
+        textCol.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams lpCol = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
+        textCol.setLayoutParams(lpCol);
+
+        TextView darkTitle = new TextView(this);
+        darkTitle.setText("Dark Mode");
+        darkTitle.setTextSize(16);
+        darkTitle.setTypeface(null, android.graphics.Typeface.BOLD);
+        darkTitle.setTextColor(androidx.core.content.ContextCompat.getColor(this, R.color.text_primary));
+
+        TextView darkSub = new TextView(this);
+        darkSub.setText(ThemeManager.isDarkMode(this) ? "Currently ON (Dark Theme)" : "Currently OFF (Light Theme)");
+        darkSub.setTextSize(12);
+        darkSub.setTextColor(androidx.core.content.ContextCompat.getColor(this, R.color.text_secondary));
+
+        textCol.addView(darkTitle);
+        textCol.addView(darkSub);
+
+        androidx.appcompat.widget.SwitchCompat darkModeSwitch = new androidx.appcompat.widget.SwitchCompat(this);
+        darkModeSwitch.setChecked(ThemeManager.isDarkMode(this));
+        darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            darkSub.setText(isChecked ? "Currently ON (Dark Theme)" : "Currently OFF (Light Theme)");
+            ThemeManager.setDarkMode(MainActivity.this, isChecked, MainActivity.this);
+        });
+
+        toggleRow.addView(textCol);
+        toggleRow.addView(darkModeSwitch);
+        container.addView(toggleRow);
+
+        // Divider
+        View divider = new View(this);
+        divider.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 2));
+        divider.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, R.color.divider_color));
+        container.addView(divider);
+
+        // Color Options
         String[] options = {
                 "Main Theme (Buttons/Title)",
                 "Active Note Text",
@@ -2537,17 +2587,38 @@ public class MainActivity extends AppCompatActivity {
                 "App Background Color",
                 "Reset All Colors"
         };
-        new AlertDialog.Builder(this)
-                .setTitle("Change Colors")
-                .setItems(options, (dialog, which) -> {
-                    if (which == 11) {
-                        resetColors();
-                    } else {
-                        showColorPicker(which);
-                    }
-                })
-                .setNegativeButton("Cancel", null)
-                .show();
+
+        AlertDialog dialog = new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                .setTitle("Change Colors & Theme")
+                .setView(container)
+                .setNegativeButton("Close", null)
+                .create();
+
+        ListView listView = new ListView(this);
+        listView.setDivider(null);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options) {
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView tv = view.findViewById(android.R.id.text1);
+                tv.setTextColor(androidx.core.content.ContextCompat.getColor(MainActivity.this, R.color.text_primary));
+                tv.setTextSize(14);
+                return view;
+            }
+        };
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener((parent, view, which, id) -> {
+            dialog.dismiss();
+            if (which == 11) {
+                resetColors();
+            } else {
+                showColorPicker(which);
+            }
+        });
+
+        container.addView(listView);
+        dialog.show();
     }
 
     private void showColorPicker(int category) {

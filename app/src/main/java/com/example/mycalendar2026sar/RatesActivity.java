@@ -2,13 +2,16 @@ package com.example.mycalendar2026sar;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -390,10 +393,11 @@ public class RatesActivity extends AppCompatActivity {
         // 2. Location Permission Handler -> Detects current location online
         if (settingLocationPermission != null) {
             settingLocationPermission.setOnClickListener(v -> {
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, REQ_CODE_LOCATION);
-                } else {
+                if (isLocationPermissionGranted()) {
+                    updateLocationPermissionStatus();
                     detectUserLocationOnline();
+                } else {
+                    requestLocationPermission();
                 }
             });
         }
@@ -417,12 +421,43 @@ public class RatesActivity extends AppCompatActivity {
         }
     }
 
+    private boolean isLocationPermissionGranted() {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+    }
+
     private void updateLocationPermissionStatus() {
         if (txtLocationPermissionValue == null) return;
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            txtLocationPermissionValue.setText("Allow only while using app");
+        if (isLocationPermissionGranted()) {
+            if (txtLocationPermissionValue.getText() == null || !txtLocationPermissionValue.getText().toString().startsWith("Allow only while using app")) {
+                txtLocationPermissionValue.setText("Allow only while using app");
+            }
         } else {
             txtLocationPermissionValue.setText("Not granted (Tap to allow)");
+        }
+    }
+
+    private void requestLocationPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                    .setTitle("Location Permission Required")
+                    .setMessage("Location permission is needed to automatically detect your country and currency.")
+                    .setPositiveButton("Grant", (dialog, which) -> {
+                        ActivityCompat.requestPermissions(
+                                RatesActivity.this,
+                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                                REQ_CODE_LOCATION
+                        );
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        } else {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    REQ_CODE_LOCATION
+            );
         }
     }
 
@@ -553,13 +588,47 @@ public class RatesActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        updateLocationPermissionStatus();
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQ_CODE_LOCATION) {
+            boolean granted = false;
+            if (grantResults.length > 0) {
+                for (int result : grantResults) {
+                    if (result == PackageManager.PERMISSION_GRANTED) {
+                        granted = true;
+                        break;
+                    }
+                }
+            }
+
             updateLocationPermissionStatus();
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+            if (granted) {
                 Toast.makeText(this, "Location permission granted", Toast.LENGTH_SHORT).show();
                 detectUserLocationOnline();
+            } else {
+                if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                        && !ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                    new AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
+                            .setTitle("Location Permission Disabled")
+                            .setMessage("Location permission was denied. Please enable it in System Settings to allow country/currency detection.")
+                            .setPositiveButton("Open Settings", (dialog, which) -> {
+                                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                                intent.setData(uri);
+                                startActivity(intent);
+                            })
+                            .setNegativeButton("Cancel", null)
+                            .show();
+                } else {
+                    Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }

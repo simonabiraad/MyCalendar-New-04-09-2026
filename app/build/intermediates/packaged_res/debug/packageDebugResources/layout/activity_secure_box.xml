@@ -73,18 +73,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/secureBoxTitle"
+        <LinearLayout
+            android:id="@+id/secureBoxTitleContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Safe Box"
-            android:textColor="@color/light_green"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginEnd="6dp"
+                android:contentDescription="Safe Box Icon"
+                android:src="@drawable/ic_menu_accounts_color" />
+
+            <TextView
+                android:id="@+id/secureBoxTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Safe Box"
+                android:textColor="@color/light_green"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/addCategoryHeaderButton"
@@ -95,9 +110,9 @@
             android:padding="4dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_notif_plus_color"
-            app:layout_constraintBottom_toBottomOf="@id/secureBoxTitle"
+            app:layout_constraintBottom_toBottomOf="@id/secureBoxTitleContainer"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/secureBoxTitle" />
+            app:layout_constraintTop_toTopOf="@id/secureBoxTitleContainer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

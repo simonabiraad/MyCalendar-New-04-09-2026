@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand & Semantic Theme Tokens (Dark Mode) -->
+    <color name="app_bg">#000000</color>
+    <color name="card_bg">#1A1A1A</color>
+    <color name="card_dark">#1A1A1A</color>
+    <color name="nav_bg">#000000</color>
+    <color name="dialog_bg">#1E1E1E</color>
+    <color name="input_bg">#222222</color>
+    <color name="button_bg">#2A2A2A</color>
+    <color name="border_color">#333333</color>
+    <color name="divider_color">#333333</color>
+
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#AAAAAA</color>
+    <color name="text_disabled">#666666</color>
+    <color name="text_on_accent">#FFFFFF</color>
+
+    <!-- Legacy Color Mappings for Dark Mode -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Primary Accent Blue (replaces Green) -->
+    <color name="light_green">#2196F3</color>
+    <color name="green">#2196F3</color>
+    <color name="income_green">#42A5F5</color>
+    <color name="hunter_green">#1565C0</color>
+
+    <!-- Red / Expense / Negative -->
+    <color name="red">#FF0000</color>
+    <color name="expense_red">#FF5252</color>
+    <color name="chili_red">#C21807</color>
+
+    <!-- Other Semantic Colors -->
+    <color name="blue">#2196F3</color>
+    <color name="orange">#FF9800</color>
+    <color name="gold">#FFD700</color>
+    <color name="honey">#FFC30B</color>
+    <color name="unmellow_yellow">#FFFF66</color>
+    <color name="gray">#888888</color>
+    <color name="light_brown">#D2B48C</color>
+    <color name="light_orange">#FFCC80</color>
+
+    <!-- Material Theme Defaults -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+</resources>
